@@ -17,5 +17,8 @@ namespace ToronPuzzle
         private float _배수 = 1f;        //기본값에 증가량이 더해진 값에 곱한다.
         private int _추가량 = 0;         //나머지 계산이 다 완료 된 후, 값을 추가한다.
         public int FinalValue { get { return (int)((_기본값 + _증가량 * _증가량배수) * _배수) + _추가량; } }
+
+
+
     }
 }
