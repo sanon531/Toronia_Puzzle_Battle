@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace ToronPuzzle.Data
 {
-    public enum CharactorID
+    public enum CharacterID
     {
         //플레이어는 1 적은 다양한 바리에이션이 있다.
         플레이어 = 1,
 
-        멸고단원 = 2,
+        멸고단원 = 2
 
 
     }
