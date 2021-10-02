@@ -7,8 +7,6 @@ namespace ToronPuzzle
 {
     public class Master_Battle : MonoBehaviour
     {
-
-
         private static class Data_OnlyInBattle
         {
 
@@ -39,6 +37,13 @@ namespace ToronPuzzle
                 }
             }
 
+        }
+
+        public static class CanvasData
+        {
+            public static Vector2 LDAchorPos=default;
+            public static Vector2 RUAchorPos = default;
+            public static Vector2 _screenWorldSize = default;
         }
 
         protected CharacterID _characterID;

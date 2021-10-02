@@ -44,3 +44,15 @@ TagManager:
   - name: DefaultUI
     uniqueID: 4258642817
     locked: 0
+  - name: Object
+    uniqueID: 3761733257
+    locked: 0
+  - name: PlacingCell
+    uniqueID: 3091899837
+    locked: 0
+  - name: Block
+    uniqueID: 2681527273
+    locked: 0
+  - name: HighUI
+    uniqueID: 407947089
+    locked: 0
