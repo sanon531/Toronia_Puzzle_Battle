@@ -16,12 +16,12 @@ MonoBehaviour:
   RuntimePath: 1_InternalTools/DataSheet/Runtime
   EditorPath: 1_InternalTools/DataSheet/Editor
   OAuth2Data:
-    client_id: 476955819716-lm7knmrovi68gk8cg5u0ppieue69m2g3.apps.googleusercontent.com
+    client_id: 
     auth_uri: 
     token_uri: 
     auth_provider_x509_cert_url: 
-    client_secret: jUEscS4Oun9YukUnWFF0iw3j
+    client_secret: 
     redirect_uris: []
-  _AccessCode: 4/1AFkdqy40OZXSrCNXfgxt6oAdm3k0KGeInVnLGEyplW0zocSfwfO2uA
-  _RefreshToken: 1//0ezoes4ZX61TtCgYIARAAGA4SNwF-L9IrSmipiRCQHnTG-hdIXlVZScIqAWDjPH47xBRXvqohaJULbc1VyvLAL2tB0HIhLJ1yruw
-  _AccessToken: ya29.a0AfH6SMAcN56ZAvpOEW5AXfgJJl6n74Z9NRjSKq8yDJWaPEYkLEiqznTEyNDTnXY7PHzRTW5sKazEJpS3ELC8jWMbHFqFOWAoDE9FdQyhODm9VEdiBkSPdwo5Ku3214qRrn7WgCGUk3NrM4qcNTBeej2HF6011uWSljc
+  _AccessCode: 
+  _RefreshToken: 
+  _AccessToken: 
