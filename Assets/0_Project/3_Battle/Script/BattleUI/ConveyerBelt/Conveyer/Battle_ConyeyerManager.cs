@@ -7,6 +7,9 @@ namespace ToronPuzzle.Battle
 {
     public class Battle_ConyeyerManager : MonoBehaviour
     {
+  
+
+
 
 
         void Start()
@@ -19,6 +22,19 @@ namespace ToronPuzzle.Battle
         {
 
         }
+
+        public static void SetQueueOnConveyer()
+        {
+
+        }
+
+        public static void GetLatestBloakQueue()
+        {
+
+
+        }
+
+
     }
 
 }

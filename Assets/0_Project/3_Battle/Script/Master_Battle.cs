@@ -7,16 +7,31 @@ namespace ToronPuzzle
 {
     public class Master_Battle : MonoBehaviour
     {
-       
-        public struct Data_OnlyInBattle
+
+
+        private static class Data_OnlyInBattle
         {
 
-            public bool IsDead { get; private set; }
-            public void SetDead() { IsDead = true; }
-            public void SetAlive() { IsDead = false; }
+            public static int _currentTurn = 0;
+            public static bool _batletIsEnd = false;
+            public static bool _canGetReward = true;
+            public static bool _playerIsDead;
 
-            public int TurnCount { get; private set; }
-            public void OwnTurnStart(bool is행동불능)
+
+            public static Transform[] _alliesPos = default;
+            public static Transform[] _enemiesPos = default;
+
+            public static Transform[] _alliesHUDPos = default;
+            public static Transform[] _enemiesHUDPos = default;
+
+            public static Data_Character _focusedCharacter;
+
+            public static bool IsDead { get; private set; }
+            public static void SetDead() { IsDead = true; }
+            public static void SetAlive() { IsDead = false; }
+
+            public static int TurnCount { get; private set; }
+            public static void OwnTurnStart(bool is행동불능)
             {
                 if (is행동불능)
                 {
@@ -36,9 +51,17 @@ namespace ToronPuzzle
         [SerializeField] Transform[] _alliesHUDPos = default;
         [SerializeField] Transform[] _enemiesHUDPos = default;
 
-        [SerializeField] Transform _backCharPos = default;
+        void Awake()
+        {
+            //RegisterCurrentScene(SceneType.Combat);
+            //Global_VfxPool.instance.OnEnterNewScene(_vfxCanvas);
+            Data_OnlyInBattle._alliesPos = _alliesPos;
+            Data_OnlyInBattle._enemiesPos = _enemiesPos;
+            Data_OnlyInBattle._alliesHUDPos = _alliesHUDPos;
+            Data_OnlyInBattle._enemiesHUDPos = _enemiesHUDPos;
 
-        [SerializeField] Transform _skullKeyPos = default;
+        }
+
         void Start()
         {
 
