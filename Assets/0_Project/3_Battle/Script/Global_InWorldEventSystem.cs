@@ -29,9 +29,15 @@ namespace ToronPuzzle.Event
         public static void CallOn노드선택() { on노드선택?.Invoke(); }
         public static event On이벤트 on노드로드완료;
         public static void CallOn노드로드완료() { on노드로드완료?.Invoke(); }
+
+
         //배틀 중 이벤트 
-        public static event On이벤트 on최초시작;
-        public static void CallOn최초시작() { on최초시작?.Invoke(); }
+        public static event On이벤트 onTouchMain;
+        public static void CallOnTouchMain() { onTouchMain?.Invoke(); }
+
+
+        public static event On이벤트 on배틀시작;
+        public static void CallOn배틀시작() { on배틀시작?.Invoke(); }
 
         public static event On이벤트 on판생성;
         public static void CallOn판생성() { on판생성?.Invoke(); }

@@ -56,15 +56,23 @@ namespace ToronPuzzle
         [SerializeField] Transform[] _alliesHUDPos = default;
         [SerializeField] Transform[] _enemiesHUDPos = default;
 
-        void Awake()
+
+        public void BeginMasterData()
         {
-            //RegisterCurrentScene(SceneType.Combat);
-            //Global_VfxPool.instance.OnEnterNewScene(_vfxCanvas);
+            CanvasData.LDAchorPos = GameObject.Find("LDAnchor").transform.position;
+            CanvasData.RUAchorPos = GameObject.Find("RUAnchor").transform.position;
+            CanvasData._screenWorldSize = CanvasData.RUAchorPos - CanvasData.LDAchorPos ;
+
+            //플레이어의 위치와 적의 위치를 가져온다.
             Data_OnlyInBattle._alliesPos = _alliesPos;
             Data_OnlyInBattle._enemiesPos = _enemiesPos;
             Data_OnlyInBattle._alliesHUDPos = _alliesHUDPos;
             Data_OnlyInBattle._enemiesHUDPos = _enemiesHUDPos;
+        }
 
+
+        void Awake()
+        {
         }
 
         void Start()
@@ -72,9 +80,11 @@ namespace ToronPuzzle
 
         }
 
-        // Update is called once per frame
         void Update()
         {
+
+
+
 
         }
     }

@@ -111,8 +111,8 @@ Material:
     - _GhostBlend: 1
     - _GhostColorBoost: 1
     - _GhostTransparency: 0
-    - _GlitchAmount: 4.1
-    - _GlitchSize: 0.74
+    - _GlitchAmount: 9.33
+    - _GlitchSize: 3.5
     - _Glow: 10
     - _GlowTexUsed: 0
     - _GradBlend: 1
