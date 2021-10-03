@@ -12,6 +12,10 @@ namespace ToronPuzzle.Battle
         [SerializeField]
         Vector2Int SizeOfPannel = new Vector2Int(3, 6);
 
+        [SerializeField]
+        string _caseSkin = "PlacingCell";
+
+
         private void Awake()
         {
             if (SceneManager.GetActiveScene().name == "BattleScene")
@@ -22,10 +26,11 @@ namespace ToronPuzzle.Battle
             Master_Battle master_Battle = GameObject.Find("Master_Battle").GetComponent<Master_Battle>();
             master_Battle.BeginMasterData();
             Master_BlockPlace master_BlockPlace = GameObject.Find("Master_BlockPlace").GetComponent<Master_BlockPlace>();
-            master_BlockPlace.BeginBlockPlace(SizeOfPannel.x, SizeOfPannel.y);
-
-
-
+            master_BlockPlace.BeginBlockPlace(SizeOfPannel.x, SizeOfPannel.y, _caseSkin);
+            Battle_ConveyerManager battle_ConveyerManager = GameObject.Find("Battle_ConveyerBelt").GetComponent<Battle_ConveyerManager>();
+            battle_ConveyerManager.BeginConveyer();
+            Battle_DragDropManager battle_DragDropManager = GameObject.Find("Battle_DragDropManager").GetComponent<Battle_DragDropManager>();
+            battle_DragDropManager.BeginDragDrap();
 
         }
 

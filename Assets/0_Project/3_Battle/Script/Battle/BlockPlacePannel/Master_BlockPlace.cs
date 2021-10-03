@@ -9,14 +9,14 @@ namespace ToronPuzzle.Battle
     public class Master_BlockPlace : MonoBehaviour
     {
         public static Master_BlockPlace instance;
-
-        
         [ReadOnly] [SerializeField]int _maxX = 4;
         [ReadOnly] [SerializeField]int _maxY = 6;
         float _currentHeigth, _occupyHeigth, _widthInterval, _heightInterval = 0;
         float _cellSizeY = 0;
         Vector3 _showPos, _hidePos = new Vector3();
         GameObject Dot,_placeCellPrefab;
+        string _placingCellSkin = "BlockPlace/";
+
 
         [SerializeField] SpriteRenderer _placingSprite;
         [SerializeField] Transform _cellHolder;
@@ -30,8 +30,10 @@ namespace ToronPuzzle.Battle
         }
 
         //BattleInitialtor 에 의해 선언된다.
-        public void BeginBlockPlace(int argX, int argY)
+        public void BeginBlockPlace(int argX, int argY,string argCellSkin)
         {
+            _placingCellSkin = "BlockPlace/";
+            _placingCellSkin += argCellSkin;
             _maxX = argX;
             _maxY = argY;
             instance = this;
@@ -47,7 +49,7 @@ namespace ToronPuzzle.Battle
             if (Master_Battle.CanvasData._screenWorldSize != null)
             {
                 Dot = Resources.Load("Debug/Dot") as GameObject;
-                _placeCellPrefab = Resources.Load("BlockPlace/PlacingCell") as GameObject;
+                _placeCellPrefab = Resources.Load(_placingCellSkin) as GameObject;
                 //배치 판의 사이즈 조절 및 위치 설정
                 Vector2 LDAnchor = Master_Battle.CanvasData.LDAchorPos;
 
