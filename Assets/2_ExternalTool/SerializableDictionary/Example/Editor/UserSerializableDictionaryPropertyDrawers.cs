@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.Events;
 
 [CustomPropertyDrawer(typeof(StringStringDictionary))]
 [CustomPropertyDrawer(typeof(ObjectColorDictionary))]
@@ -9,6 +10,7 @@ using UnityEditor;
 [CustomPropertyDrawer(typeof(StringObjectDictionary))]
 [CustomPropertyDrawer(typeof(StringObjectArrayDictionary))]
 [CustomPropertyDrawer(typeof(SkinenumAddressDictionary))]
+[CustomPropertyDrawer(typeof(KeyAimDictionary))]
 
 [CustomPropertyDrawer(typeof(StringAudioDictionary))]
 [CustomPropertyDrawer(typeof(SequenceVector3Dictionary))]

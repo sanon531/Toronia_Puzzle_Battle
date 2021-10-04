@@ -21,6 +21,10 @@ public class StringObjectDictionary : SerializableDictionary<string, GameObject>
 [Serializable]
 public class StringAudioDictionary : SerializableDictionary<string, AudioSource> { }
 
+[Serializable]
+public class KeyAimDictionary : SerializableDictionary<KeyCode, CameraAimName> { }
+
+
 
 [Serializable]
 public class ColorArrayStorage : SerializableDictionary.Storage<Color[]> {}
