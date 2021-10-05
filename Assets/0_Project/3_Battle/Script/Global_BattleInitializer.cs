@@ -29,8 +29,19 @@ namespace ToronPuzzle.Battle
             master_BlockPlace.BeginBlockPlace(SizeOfPannel.x, SizeOfPannel.y, _caseSkin);
             Battle_ConveyerManager battle_ConveyerManager = GameObject.Find("Battle_ConveyerBelt").GetComponent<Battle_ConveyerManager>();
             battle_ConveyerManager.BeginConveyer();
-            Battle_DragDropManager battle_DragDropManager = GameObject.Find("Battle_DragDropManager").GetComponent<Battle_DragDropManager>();
+            Global_DragDropManager battle_DragDropManager = GameObject.Find("Battle_DragDropManager").GetComponent<Global_DragDropManager>();
             battle_DragDropManager.BeginDragDrap();
+
+
+            Global_BlockGenerator global_BlockGenerator = GameObject.Find("Global_BlockGenerator").GetComponent<Global_BlockGenerator>();
+            global_BlockGenerator.BeginBlockGenerator();
+
+
+
+            Battle_CameraAimer battle_CameraAimer = GameObject.Find("Battle_CameraAimer").GetComponent<Battle_CameraAimer>();
+            battle_CameraAimer.BeginCameraAimer();
+
+
 
         }
 

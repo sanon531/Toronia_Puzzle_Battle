@@ -4,7 +4,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 using ToronPuzzle.Data;
-
+using ToronPuzzle;
 
 [Serializable]
 public class StringStringDictionary : SerializableDictionary<string, string> {}
@@ -15,6 +15,8 @@ public class ObjectColorDictionary : SerializableDictionary<UnityEngine.Object, 
 [Serializable]
 public class FloatObjectDictionary : SerializableDictionary<float, GameObject> { }
 
+[Serializable]
+public class VectorCellDictionary : SerializableDictionary<Vector2Int, BlockCase> { }
 
 [Serializable]
 public class StringObjectDictionary : SerializableDictionary<string, GameObject> { }
@@ -22,7 +24,7 @@ public class StringObjectDictionary : SerializableDictionary<string, GameObject>
 public class StringAudioDictionary : SerializableDictionary<string, AudioSource> { }
 
 [Serializable]
-public class KeyAimDictionary : SerializableDictionary<KeyCode, CameraAimName> { }
+public class KeyAimDictionary : SerializableDictionary<KeyCode, CameraAimEnum> { }
 
 
 
@@ -38,6 +40,9 @@ public class StringColorArrayDictionary : SerializableDictionary<string, Color[]
 
 [Serializable]
 public class SkinenumAddressDictionary : SerializableDictionary<PlacingCaseSkin, string> { }
+
+[Serializable]
+public class StringBlockInfoDictionary : SerializableDictionary<string,BlockInfo> { }
 
 
 [Serializable]

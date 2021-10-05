@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ToronPuzzle.Data;
+using ToronPuzzle.Battle;
 
 namespace ToronPuzzle
 {
     public class Master_Battle : MonoBehaviour
     {
-        private static class Data_OnlyInBattle
+        public static class Data_OnlyInBattle
         {
 
             public static int _currentTurn = 0;
@@ -15,14 +16,12 @@ namespace ToronPuzzle
             public static bool _canGetReward = true;
             public static bool _playerIsDead;
 
-
             public static Transform[] _alliesPos = default;
             public static Transform[] _enemiesPos = default;
 
             public static Transform[] _alliesHUDPos = default;
             public static Transform[] _enemiesHUDPos = default;
-
-            public static Data_Character _focusedCharacter;
+            public static Vector2 _cellsize = default;
 
             public static bool IsDead { get; private set; }
             public static void SetDead() { IsDead = true; }
@@ -38,6 +37,7 @@ namespace ToronPuzzle
             }
 
         }
+
 
         public static class CanvasData
         {

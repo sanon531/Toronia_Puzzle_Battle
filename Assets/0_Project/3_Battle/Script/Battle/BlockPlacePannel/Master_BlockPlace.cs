@@ -19,7 +19,8 @@ namespace ToronPuzzle.Battle
 
 
         [SerializeField] SpriteRenderer _placingSprite;
-        [SerializeField] Transform _cellHolder;
+        public Transform _cellHolder;
+        public Transform _blockHolder;
         [SerializeField] Vector2 _screenSize;
 
         Battle_PlacingCell[,] placingCellArray;
@@ -61,6 +62,9 @@ namespace ToronPuzzle.Battle
                 _showPos = new Vector3(LDAnchor.x + (_maxX + 1) * _cellSizeY * 0.5f, LDAnchor.y + _currentHeigth * 0.5f);
                 _hidePos = new Vector3(LDAnchor.x - (_maxX + 1) * _cellSizeY * 0.5f, LDAnchor.y + _currentHeigth * 0.5f);
 
+                Master_Battle.Data_OnlyInBattle._cellsize = new Vector2(_cellSizeY, _cellSizeY);
+
+
                 transform.position = _showPos;
                 _placingSprite.transform.localScale = new Vector2((-LDAnchor.x + _showPos.x)*2, _screenSize.y/2);
 
@@ -95,7 +99,7 @@ namespace ToronPuzzle.Battle
                     _name += i_y.ToString();
                     temptPlacingCell.name = _name;
                     temptPlacingCell.transform.localScale = new Vector2(_cellSizeY, _cellSizeY);
-                    //temptPlacingCell.GetComponent<Battle_PlacingCell>().SetInitialData();
+                    temptPlacingCell.GetComponent<Battle_PlacingCell>().SetInitialData(new Vector2Int(j_x,i_y));
                     placingCellArray[j_x, i_y] = temptPlacingCell.GetComponent<Battle_PlacingCell>();
 
                 }
