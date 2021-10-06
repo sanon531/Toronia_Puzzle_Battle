@@ -110,9 +110,16 @@ namespace ToronPuzzle.Battle
         }
 
 
-        // Start is called before the first frame update
 
-        // Update is called once per frame
+
+        public void ActivateHoldingPanel(bool turnOn)
+        {
+
+
+        }
+
+
+
         void Update()
         {
 

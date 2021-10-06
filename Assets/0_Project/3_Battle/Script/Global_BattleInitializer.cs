@@ -18,9 +18,20 @@ namespace ToronPuzzle.Battle
 
         private void Awake()
         {
+            GlobalBegin();
+
             if (SceneManager.GetActiveScene().name == "BattleScene")
                 BattleBegin();
         }
+        private void GlobalBegin()
+        {
+            Global_DragDropManager battle_DragDropManager = GameObject.Find("Global_DragDropManager").GetComponent<Global_DragDropManager>();
+            battle_DragDropManager.BeginDragDrap();
+            Global_BlockGenerator global_BlockGenerator = GameObject.Find("Global_BlockGenerator").GetComponent<Global_BlockGenerator>();
+            global_BlockGenerator.BeginBlockGenerator();
+
+        }
+
         private void BattleBegin()
         {
             Master_Battle master_Battle = GameObject.Find("Master_Battle").GetComponent<Master_Battle>();
@@ -29,12 +40,6 @@ namespace ToronPuzzle.Battle
             master_BlockPlace.BeginBlockPlace(SizeOfPannel.x, SizeOfPannel.y, _caseSkin);
             Battle_ConveyerManager battle_ConveyerManager = GameObject.Find("Battle_ConveyerBelt").GetComponent<Battle_ConveyerManager>();
             battle_ConveyerManager.BeginConveyer();
-            Global_DragDropManager battle_DragDropManager = GameObject.Find("Battle_DragDropManager").GetComponent<Global_DragDropManager>();
-            battle_DragDropManager.BeginDragDrap();
-
-
-            Global_BlockGenerator global_BlockGenerator = GameObject.Find("Global_BlockGenerator").GetComponent<Global_BlockGenerator>();
-            global_BlockGenerator.BeginBlockGenerator();
 
 
 

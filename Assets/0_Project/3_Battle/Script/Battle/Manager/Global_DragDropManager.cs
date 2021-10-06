@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
+using ToronPuzzle.Battle;
 
 namespace ToronPuzzle
 {
@@ -12,14 +12,18 @@ namespace ToronPuzzle
         // Update is called once per frame
         public static Global_DragDropManager instance;
         bool _isPicked;
+        
         [SerializeField]
         Camera _inputCamera;
         [SerializeField]
+        Canvas _canvas;
+        [SerializeField]
         GameObject _mousePointer;
 
-        GraphicRaycaster m_raycaster;
-        PointerEventData m_pointerData;
 
+        //saved는 틀릭한 순간 복사된 데이터, _pickedorigin은 클릭해서 가져온 데이터
+        [SerializeField]
+        BlockCase _savedCase, _pickOriginCase;
 
 
         public void BeginDragDrap()
@@ -27,10 +31,10 @@ namespace ToronPuzzle
             if (_inputCamera == null)
                 _inputCamera = Camera.main;
             if (_mousePointer == null)
-                _mousePointer = GameObject.Find("MousePointer") as GameObject;
+                _mousePointer = GameObject.Find("Global_MousePointer") as GameObject;
+            if(_canvas==null)
+                _canvas = GameObject.Find("Global_Canvas").GetComponent<Canvas>();
 
-            m_raycaster = _mousePointer.GetComponent<GraphicRaycaster>();
-            m_pointerData = _mousePointer.GetComponent<PointerEventData>();
 
         }
 
@@ -47,7 +51,8 @@ namespace ToronPuzzle
 
             if (Input.GetMouseButtonDown(0))
                 OnClicked();
-
+            if (Input.GetMouseButtonUp(0))
+                UnClicked();
 
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -74,27 +79,34 @@ namespace ToronPuzzle
         }
         void OnClicked()
         {
-            m_pointerData.position = Input.mousePosition;
-            List<RaycastResult> results = new List<RaycastResult>();
-            m_raycaster.Raycast(m_pointerData, results);
-            if (results.Count > 0)
-            {
-                GameObject choosed = results[0].gameObject;
-                if (choosed.GetComponent<BlockCase>() != null)
-                {
-                    BlockCase temptCase = choosed.GetComponent<BlockCase>();
+            Vector3 _mouseWorldPos = _inputCamera.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(_mouseWorldPos, Vector3.forward,200f);
 
-                    if (choosed.GetComponent<BlockCase>().CheckLiftable())
+            //Debug.DrawRay(_mouseWorldPos, Vector3.forward *15f,Color.cyan,0.5f);
+            if (hit)
+            {
+                if (hit.transform.GetComponent<BlockCase>())
+                {
+                    Debug.Log(hit.transform.gameObject.name);
+                    BlockCase temptCase = hit.transform.GetComponent<BlockCase>();
+
+                    Debug.Log(temptCase.gameObject.transform.position);
+
+                    if (temptCase.CheckLiftable())
                         PreserveData(temptCase);
                 }
-
             }
 
-
         }
-        void PreserveData(BlockCase target)
+        //저장한다음 손으로 올림.
+        void PreserveData(BlockCase _argCase)
         {
             _isPicked = true;
+            Debug.Log(_isPicked);
+
+            _savedCase = new BlockCase();
+            _savedCase._blockInfo = new BlockInfo(_savedCase._blockInfo);
+            _pickOriginCase = _argCase;
 
         }
 
@@ -105,7 +117,7 @@ namespace ToronPuzzle
         }
 
         void RotateProtocol(bool spindirr)
-        {
+        {/*
             if (PickedBlockcase != null)
             {
                 int[,] temptRotate = (int[,])PickedBlockArr.Clone();
@@ -158,8 +170,71 @@ namespace ToronPuzzle
                 // 이부분 트위닝으로 바꾸기
                 //m_cursor.RotateTween(spindirr);
                 m_cursor.blockData.blockGenerator.GeneratingBlockOnCursor(PickedBlockElement, PickedBlockArr, BlockPerSize);
+            }*/
+        }
+
+        void UnClicked()
+        {
+            Vector3 _mouseWorldPos = _inputCamera.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(_mouseWorldPos, Vector3.forward, 200f);
+            //Debug.DrawRay(_mouseWorldPos, Vector3.forward *15f,Color.cyan,0.5f);
+            if (hit)
+            {
+                //불가함.
+                if (hit.transform.GetComponent<BlockCase>() == null || hit.transform.GetComponent<BlockCase>() == _pickOriginCase)
+                {
+                    BlockReset();
+                }
+                else if (hit.transform.GetComponent<BlockCase>())
+                {
+                    if (_isPicked) // 세팅할지 말지정함
+                    {
+                        BlockCase targetCase = hit.transform.GetComponent<BlockCase>();
+
+                        //세팅 가능하면 바로 세팅함.
+                        if (targetCase.CheckPlaceable(_savedCase._blockInfo))
+                        {
+                            targetCase.PlaceBlock(_savedCase._blockInfo);
+
+
+                        }
+                        else
+                        {
+                            BlockReset();
+                        }
+                        
+                    }
+
+
+                }
+
+
             }
         }
+
+        private void FinishClick()
+        {
+            _isPicked = false;
+            _savedCase.DeleteBlock();
+            //m_cursor.OnOffBlock(false);
+            //PickedBlockArr = null;
+            if (Master_BlockPlace.instance != null)
+                Master_BlockPlace.instance.ActivateHoldingPanel(true);
+            //if (m_blockInventoryCase != null)
+                //m_blockInventoryCase.ActivateInventoryPlace(false);
+
+        }
+
+        void BlockReset()
+        {
+            if (_pickOriginCase != null && _pickOriginCase.IsEmpty)// 엄한데 타겟팅 + 케이스가 비어있을 경우.
+            {
+                _pickOriginCase.ResetBlock();
+                _pickOriginCase.PlaceBlock();
+            }
+        }
+
+
     }
 
 }

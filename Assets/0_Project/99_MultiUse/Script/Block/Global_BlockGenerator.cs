@@ -40,7 +40,7 @@ namespace ToronPuzzle
             Vector2 InputSize = Master_Battle.Data_OnlyInBattle._cellsize;
             GameObject CaseObject = 
                 Instantiate(_blockCase_world, transform.position, Quaternion.identity, Master_BlockPlace.instance._blockHolder);
-            BlockCase_World blockCase = CaseObject.GetComponent<BlockCase_World>();
+            BlockCase_World _current_Case = CaseObject.GetComponent<BlockCase_World>();
 
             int _maxX = _tempt_BlockArray.GetLength(0);
             int _maxY = _tempt_BlockArray.GetLength(1);
@@ -56,6 +56,11 @@ namespace ToronPuzzle
                         Vector3 spawnedvector = new Vector3(InputSize.x * j_x, (InputSize.y * i_y), 0);
                         _spawned.transform.localPosition = spawnedvector;
                         _spawned.transform.localScale = OutlinePercent;
+
+
+                        _spawned = Instantiate(_worldBlock, new Vector3(0, 0, 0), Quaternion.identity, CaseObject.transform);
+                        _spawned.GetComponent<BlockCaseCell>().initializeCell(_current_Case);
+                        _spawned.transform.localPosition = spawnedvector;
 
 
 

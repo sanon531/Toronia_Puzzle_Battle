@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5999941291379677574}
   - component: {fileID: 5999941291379677575}
   - component: {fileID: 2257067267327032879}
+  - component: {fileID: -5666966851539292646}
   m_Layer: 0
   m_Name: PlacingCell
   m_TagString: Untagged
@@ -95,3 +96,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59e0ca77c3ffd2347a5041978827d3c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsEmpty: 1
+  MaxBlockX: 0
+  MaxBlockY: 1
+  _blockInfo:
+    IsLiftable: 0
+    ModuleName: 
+    _blockElement: 3
+    _blockStength: 0
+    _blockShape: 14
+    _blockPlace: {x: -1, y: -1}
+  BlockSize: {x: 180, y: 180}
+  BlockColor: {r: 0, g: 1, b: 0, a: 1}
+  _caseNum: {x: -1, y: -1}
+--- !u!61 &-5666966851539292646
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5999941291379677572}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 1
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0

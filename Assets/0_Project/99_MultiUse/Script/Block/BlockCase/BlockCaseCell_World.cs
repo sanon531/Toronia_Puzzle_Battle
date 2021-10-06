@@ -1,18 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class BlockCaseCell_World : MonoBehaviour
+ 
+namespace ToronPuzzle
 {
-    // Start is called before the first frame update
-    void Start()
+    public class BlockCaseCell_World :BlockCaseCell
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
