@@ -9,18 +9,20 @@ namespace ToronPuzzle
     //모듈에서도 활용되며 현재는 사이즈만 조절 가능한 수준으로 만들자.
     public class BlockCaseCell : BlockCase
     {
-        
+        public Vector2Int _cellPos=new Vector2Int(-1,-1);
 
         public BlockCase _parentCase;
 
 
-        public void initializeCell(BlockCase arg_parent)
+        public virtual void SetParentCase(BlockCase arg_parent)
         {
             _parentCase = arg_parent;
-
-
         }
-
+        public override BlockCase LiftBlock()
+        {
+            _parentCase.LiftBlock();
+            return _parentCase;
+        }
 
 
 

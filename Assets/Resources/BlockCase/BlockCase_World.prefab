@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 349235246170538872}
   - component: {fileID: 4551835825694965299}
   m_Layer: 0
-  m_Name: BlockCase_Wolrd
+  m_Name: BlockCase_World
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

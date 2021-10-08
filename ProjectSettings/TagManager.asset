@@ -47,6 +47,9 @@ TagManager:
   - name: Object
     uniqueID: 3761733257
     locked: 0
+  - name: PlacingCellOutLiner
+    uniqueID: 1004438337
+    locked: 0
   - name: PlacingCell
     uniqueID: 3091899837
     locked: 0

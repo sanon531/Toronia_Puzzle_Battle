@@ -8,28 +8,54 @@ namespace ToronPuzzle
     {
         [SerializeField]
         Vector3 centerData, OriginCenter;
+
+        public List<BlockCaseCell> _childCase = new List<BlockCaseCell>();
+        public List<GameObject> _childObjects = new List<GameObject>();
         [SerializeField]
-        List<Vector3> BlockLocalPosList = new List<Vector3>();
+        List<Vector2Int> localPosList = new List<Vector2Int>();
 
+        [SerializeField]
+        bool isDebug = false;
 
-        public void InitializeBasicData()
+        private void Awake()
         {
-            _blockInfo._blockShapeArr = new int[MaxBlockX, MaxBlockY];
+            if (isDebug)
+            {
+                _blockInfo._blockShapeArr = Data.BlockShapePool.shapeDic[_blockInfo._blockShape];
 
-            if (!CheckIsEmpty(BlockLocalPosList.Count))
-                for (int i = 0; i < BlockLocalPosList.Count; i++)
-                {
-                    Vector3 tempt = BlockLocalPosList[i];
-                    _blockInfo._blockShapeArr[(int)(tempt.x / BlockSize.x), (int)(tempt.y / BlockSize.y)] = 1;
+            }
 
-                }
         }
 
 
+
+
+
+
+        //초기화
+
+        public void SetCaseToCenter()
+        {
+            _blockInfo._blockShapeArr = new int[_maxBlockX, _maxBlockY];
+        }
+        /// <summary>
+        /// 들었을때
+        /// </summary>
+        #region
         public override bool CheckLiftable()
         {
             return _blockInfo.IsLiftable;
         }
+
+
+        public override BlockCase LiftBlock()
+        {
+
+
+            return this;
+        }
+
+        #endregion
 
 
         private bool CheckIsEmpty(int num)
@@ -37,7 +63,7 @@ namespace ToronPuzzle
             if (num <= 0)
             {
                 IsEmpty = true;
-                BlockLocalPosList.Clear();
+                localPosList.Clear();
                 return true;
             }
             else
@@ -47,7 +73,5 @@ namespace ToronPuzzle
             }
 
         }
-
-
     }
 }

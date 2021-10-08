@@ -17,10 +17,11 @@ namespace ToronPuzzle
         Camera _inputCamera;
         [SerializeField]
         Canvas _canvas;
-        [SerializeField]
-        GameObject _mousePointer;
+        Transform _dragPointer;
 
+        GameObject _HoldingObject;
 
+        List<GameObject> _current_Blocks = new List<GameObject>();
         //saved는 틀릭한 순간 복사된 데이터, _pickedorigin은 클릭해서 가져온 데이터
         [SerializeField]
         BlockCase _savedCase, _pickOriginCase;
@@ -30,8 +31,10 @@ namespace ToronPuzzle
         {
             if (_inputCamera == null)
                 _inputCamera = Camera.main;
-            if (_mousePointer == null)
-                _mousePointer = GameObject.Find("Global_MousePointer") as GameObject;
+
+            if (_dragPointer == null)
+                _dragPointer = GameObject.Find("Global_DragPointer").transform;
+
             if(_canvas==null)
                 _canvas = GameObject.Find("Global_Canvas").GetComponent<Canvas>();
 
@@ -73,8 +76,8 @@ namespace ToronPuzzle
         void SetMousePointerPos()
         {
             Vector3 _mouseWorldPos = _inputCamera.ScreenToWorldPoint(Input.mousePosition);
-            _mouseWorldPos += new Vector3(0, 0, 10);
-            _mousePointer.transform.position = _mouseWorldPos;
+            _mouseWorldPos += new Vector3(0, 0, 20);
+            _dragPointer.transform.position = _mouseWorldPos;
 
         }
         void OnClicked()
@@ -93,7 +96,7 @@ namespace ToronPuzzle
                     Debug.Log(temptCase.gameObject.transform.position);
 
                     if (temptCase.CheckLiftable())
-                        PreserveData(temptCase);
+                        PreserveData(temptCase.LiftBlock());
                 }
             }
 
@@ -102,12 +105,10 @@ namespace ToronPuzzle
         void PreserveData(BlockCase _argCase)
         {
             _isPicked = true;
-            Debug.Log(_isPicked);
-
-            _savedCase = new BlockCase();
-            _savedCase._blockInfo = new BlockInfo(_savedCase._blockInfo);
+            //Debug.Log(_isPicked);
             _pickOriginCase = _argCase;
-
+            _HoldingObject = Global_BlockGenerator.instance.GenerateOnPointer(_argCase._blockInfo,_dragPointer);
+            _savedCase = _HoldingObject.GetComponent<BlockCase>();
         }
 
         void HoldingBlock()
@@ -195,8 +196,6 @@ namespace ToronPuzzle
                         if (targetCase.CheckPlaceable(_savedCase._blockInfo))
                         {
                             targetCase.PlaceBlock(_savedCase._blockInfo);
-
-
                         }
                         else
                         {
@@ -210,6 +209,9 @@ namespace ToronPuzzle
 
 
             }
+
+
+            //Destroy(_HoldingObject);
         }
 
         private void FinishClick()
@@ -232,6 +234,8 @@ namespace ToronPuzzle
                 _pickOriginCase.ResetBlock();
                 _pickOriginCase.PlaceBlock();
             }
+            
+
         }
 
 

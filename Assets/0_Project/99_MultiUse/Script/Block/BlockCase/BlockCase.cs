@@ -7,20 +7,21 @@ namespace ToronPuzzle
     //블록들을 한대로 묶는 케이스 블록의 정보가 들어있다.
     public class BlockCase : MonoBehaviour
     {
-        public bool IsEmpty=true;
-        public int MaxBlockX, MaxBlockY = 1;
+        public bool IsEmpty=false;
+        public int _maxBlockX, _maxBlockY = 1;
         public BlockInfo _blockInfo= new BlockInfo();
         public Vector2 BlockSize = new Vector2(180, 180);
-        public Color BlockColor = Color.green;
         // Start is called before the first frame update
 
         public virtual bool CheckLiftable()
         {
-            return false;
+            return IsEmpty;
         }
 
-        public virtual void BlockLifted()
+        //케이스가 들렸을때의 업무.
+        public virtual BlockCase LiftBlock()
         {
+            return this;
         }
         public virtual bool CheckPlaceable(BlockInfo blockInfo, int[,] Arg_IntArr)
         {
