@@ -24,7 +24,6 @@ namespace ToronPuzzle
                 _blockInfo._blockShapeArr = Data.BlockShapePool.shapeDic[_blockInfo._blockShape];
 
             }
-
         }
 
 

@@ -93,7 +93,6 @@ namespace ToronPuzzle
                     Debug.Log(hit.transform.gameObject.name);
                     BlockCase temptCase = hit.transform.GetComponent<BlockCase>();
 
-                    Debug.Log(temptCase.gameObject.transform.position);
 
                     if (temptCase.CheckLiftable())
                         PreserveData(temptCase.LiftBlock());

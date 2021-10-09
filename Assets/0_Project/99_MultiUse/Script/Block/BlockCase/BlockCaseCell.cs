@@ -23,6 +23,10 @@ namespace ToronPuzzle
             _parentCase.LiftBlock();
             return _parentCase;
         }
+        public virtual void SetMaterial(Material _mat)
+        {
+
+        }
 
 
 
