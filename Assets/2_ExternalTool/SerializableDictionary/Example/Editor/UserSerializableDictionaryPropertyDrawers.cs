@@ -11,6 +11,11 @@ using UnityEngine.Events;
 [CustomPropertyDrawer(typeof(StringObjectArrayDictionary))]
 [CustomPropertyDrawer(typeof(SkinenumAddressDictionary))]
 [CustomPropertyDrawer(typeof(KeyAimDictionary))]
+[CustomPropertyDrawer(typeof(AudioSFXEnumDictionary))]
+[CustomPropertyDrawer(typeof(SFXEnumFloatDictionary))]
+[CustomPropertyDrawer(typeof(BGMAudioDictionary))]
+
+
 [CustomPropertyDrawer(typeof(StringBlockInfoDictionary))]
 [CustomPropertyDrawer(typeof(VectorCellDictionary))]
 
