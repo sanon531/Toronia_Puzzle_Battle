@@ -10,8 +10,9 @@ namespace ToronPuzzle
     public class BlockCaseCell : BlockCase
     {
         public Vector2Int _cellPos=new Vector2Int(-1,-1);
-
         public BlockCase _parentCase;
+        protected Color _normalColor = new Color(1, 1, 1, 1);
+        protected Color _liftColor = new Color(0.75f, 0.75f, 0.75f, 1);
 
 
         public virtual void SetParentCase(BlockCase arg_parent)
@@ -27,6 +28,10 @@ namespace ToronPuzzle
         {
 
         }
+        //가시성+ 분업를 위한 분리
+        public virtual void LiftCell() { }
+        public virtual void ResetCell() { }
+
 
 
 

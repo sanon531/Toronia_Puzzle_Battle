@@ -15,7 +15,6 @@ namespace ToronPuzzle
         private void Awake()
         {
             GlobalBegin();
-
             if (SceneManager.GetActiveScene().name == "BattleScene")
                 global_BattleInitializer.BattleBegin();
         }

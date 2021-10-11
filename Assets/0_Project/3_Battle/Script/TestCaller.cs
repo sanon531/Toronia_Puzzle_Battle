@@ -7,14 +7,21 @@ using ToronPuzzle.Event;
 using ToronPuzzle;
 public class TestCaller : MonoBehaviour
 {
+
+    public static TestCaller instance;
+
     [Header("For Test")]
+
     [SerializeField]
     bool _pressed,_paused = false;
 
     [SerializeField]
     KeyAimDictionary testkeytoAim;
 
-
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Update()
     {
@@ -30,9 +37,6 @@ public class TestCaller : MonoBehaviour
                 Time.timeScale = 1;
 
         }
-
-
-
         if (_pressed)
             SetAimCamera();
         else
@@ -73,6 +77,22 @@ public class TestCaller : MonoBehaviour
 
     }
 
+    public void DebugArrayShape(int[,] _ints)
+    {
+        int _maxX = _ints.GetLength(0);
+        int _maxY = _ints.GetLength(1);
+        Debug.Log(_maxX + "+" + _maxY);
+        string Lines = "";
+        for (int i_y = _maxY - 1; i_y >= 0; i_y--)
+        {
+            for (int j_x = 0; j_x < _maxX; j_x++)
+            {
+                Lines += _ints[j_x, i_y].ToString();
+            }
+            Lines += "\n";
+        }
+        Debug.Log(Lines);
 
+    }
 
 }

@@ -4892,7 +4892,7 @@ MonoBehaviour:
   _blockInfo:
     IsLiftable: 1
     ModuleName: 
-    _blockElement: 4
+    _blockElement: 3
     _blockStength: 1
     _blockShape: 13
     _blockPlace: {x: -1, y: -1}

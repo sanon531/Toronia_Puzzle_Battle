@@ -29,6 +29,10 @@ namespace ToronPuzzle.Battle
         public override void PlaceBlock(BlockInfo blockInfo)
         {
             blockInfo._blockPlace = _caseNum;
+            int _maxX = blockInfo._blockShapeArr.GetLength(0);
+            int _maxY = blockInfo._blockShapeArr.GetLength(1);
+
+
             Global_BlockGenerator.instance.GenerateOnBlockPlace(blockInfo);
         }
 

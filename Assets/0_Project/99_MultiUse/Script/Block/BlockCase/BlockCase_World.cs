@@ -49,12 +49,37 @@ namespace ToronPuzzle
 
         public override BlockCase LiftBlock()
         {
-
-
+            foreach (BlockCaseCell _childcell in _childCase)
+            {
+                _childcell.LiftCell();
+            }
             return this;
         }
 
+        public override void ResetBlock()
+        {
+
+            foreach (BlockCaseCell _childcell in _childCase)
+            {
+                _childcell.ResetCell();
+            }
+
+        }
+
         #endregion
+
+
+        public override void DeleteBlock()
+        {
+            _childCase.Clear();
+            foreach (GameObject _cellobj in _childObjects)
+            {
+                GameObject tempt = _cellobj;
+                Destroy(tempt);
+            }
+            _childObjects.Clear();
+        }
+
 
 
         private bool CheckIsEmpty(int num)

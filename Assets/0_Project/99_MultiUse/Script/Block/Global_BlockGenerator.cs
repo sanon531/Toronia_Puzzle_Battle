@@ -50,23 +50,31 @@ namespace ToronPuzzle
 
         }
 
+        //블록 플레이서에 뭐가 되었든 일단 놓는다.
         public GameObject GenerateOnBlockPlace(BlockInfo _inputInfo)
         {
             _lastBlockInfo = _inputInfo;
             int[,] _tempt_BlockArray = (int[,])_lastBlockInfo._blockShapeArr.Clone();
             Vector2 InputSize = Master_Battle.Data_OnlyInBattle._cellsize;
-
+            TestCaller.instance.DebugArrayShape(_tempt_BlockArray);
+            
             //케이스 생성
             GameObject CaseObject = 
-                Instantiate(_blockCase_world, transform.position, Quaternion.identity, Master_BlockPlace.instance._blockHolder);
+                Instantiate(_blockCase_world, Master_BlockPlace.instance.GetCellPosByOrder(_inputInfo._blockPlace), 
+                Quaternion.identity, Master_BlockPlace.instance._blockHolder);
             BlockCase_World _current_Case = CaseObject.GetComponent<BlockCase_World>();
 
             _current_Case._blockInfo = new BlockInfo(_lastBlockInfo);
+
+
             int _maxX = _tempt_BlockArray.GetLength(0);
             int _maxY = _tempt_BlockArray.GetLength(1);
 
+            //케이스 오브젝트 로컬 위치 설정(포지션으로 함 오류 아님) 
+            CaseObject.transform.position += new Vector3(InputSize.x * (1 - _maxX), 0,0);
+          
 
-            for (int i_y = _maxY-1; i_y > 0 ; i_y--)
+            for (int i_y = _maxY - 1; i_y >= 0; i_y--)
             {
                 for (int j_x = 0; j_x < _maxX; j_x++)
                 {
@@ -75,7 +83,7 @@ namespace ToronPuzzle
                         _spawned = Instantiate(_outLinerWorld, new Vector3(0, 0, 0), Quaternion.identity, CaseObject.transform);
                         Vector3 spawnedvector = new Vector3(InputSize.x * j_x, (InputSize.y * i_y), 0);
                         _spawned.transform.localPosition = spawnedvector;
-                        _spawned.transform.localScale = OutlinePercent;
+                        _spawned.transform.localScale = InputSize * OutlinePercent;
                         _current_Case._childObjects.Add(_spawned);
 
 
@@ -83,7 +91,10 @@ namespace ToronPuzzle
                         BlockCaseCell _current_Cell = _spawned.GetComponent<BlockCaseCell>();
                         _current_Cell.SetMaterial(SetElementToBlockMaterial(_inputInfo._blockElement));
                         _current_Cell.SetParentCase(_current_Case);
+                        _spawned.transform.localScale = InputSize;
+
                         _current_Case._childCase.Add(_current_Cell);
+
                         _spawned.transform.localPosition = spawnedvector;
                         _current_Case._childObjects.Add(_spawned);
 
@@ -101,8 +112,6 @@ namespace ToronPuzzle
             return CaseObject;
         }
 
-
-        //
         public GameObject GenerateOnPointer(BlockInfo _inputInfo,Transform _pointerTranform)
         {
             
@@ -136,7 +145,7 @@ namespace ToronPuzzle
                     {
                         _spawned = Instantiate(_outLinerWorld, new Vector3(0, 0, 0), Quaternion.identity, CaseObject.transform);
                         Vector3 spawnedvector = new Vector3(InputSize.x * j_x, (InputSize.y * i_y), 0);
-                        _spawned.transform.localPosition = spawnedvector;
+                        _spawned.transform.localPosition = spawnedvector+new Vector3(0,0,0.1f);
                         _spawned.transform.localScale = InputSize * OutlinePercent;
                         _current_Case._childObjects.Add(_spawned);
 

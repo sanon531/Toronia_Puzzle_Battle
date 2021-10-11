@@ -73,6 +73,12 @@ namespace ToronPuzzle.Battle
                 Debug.LogError("BattleUIAnchor Didn't Setted");
 
         }
+        public Vector3 GetCellPosByOrder(Vector2Int _pos)
+        {
+            Debug.Log(placingCellArray[_pos.x, _pos.y].transform.position);
+            return placingCellArray[_pos.x, _pos.y].transform.position;
+        }
+
 
 
 

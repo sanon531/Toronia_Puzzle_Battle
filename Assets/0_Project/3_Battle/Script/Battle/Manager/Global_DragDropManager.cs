@@ -92,7 +92,8 @@ namespace ToronPuzzle
                 {
                     Debug.Log(hit.transform.gameObject.name);
                     BlockCase temptCase = hit.transform.GetComponent<BlockCase>();
-
+                    //Debug.Log("Clicked Case");
+                    //TestCaller.instance.DebugArrayShape(temptCase._blockInfo._blockShapeArr);
 
                     if (temptCase.CheckLiftable())
                         PreserveData(temptCase.LiftBlock());
@@ -108,6 +109,9 @@ namespace ToronPuzzle
             _pickOriginCase = _argCase;
             _HoldingObject = Global_BlockGenerator.instance.GenerateOnPointer(_argCase._blockInfo,_dragPointer);
             _savedCase = _HoldingObject.GetComponent<BlockCase>();
+            _savedCase._blockInfo = new BlockInfo(_argCase._blockInfo);
+            //Debug.Log("preserve");
+            //TestCaller.instance.DebugArrayShape(_argCase._blockInfo._blockShapeArr);
         }
 
         void HoldingBlock()
@@ -183,7 +187,7 @@ namespace ToronPuzzle
                 //불가함.
                 if (hit.transform.GetComponent<BlockCase>() == null || hit.transform.GetComponent<BlockCase>() == _pickOriginCase)
                 {
-                    BlockReset();
+                    OriginBlockReset();
                 }
                 else if (hit.transform.GetComponent<BlockCase>())
                 {
@@ -195,10 +199,12 @@ namespace ToronPuzzle
                         if (targetCase.CheckPlaceable(_savedCase._blockInfo))
                         {
                             targetCase.PlaceBlock(_savedCase._blockInfo);
+                            //Debug.Log("Placable :"+targetCase.CheckPlaceable(_savedCase._blockInfo));
+                            OriginBlockDelete();
                         }
                         else
                         {
-                            BlockReset();
+                            OriginBlockReset();
                         }
                         
                     }
@@ -209,8 +215,8 @@ namespace ToronPuzzle
 
             }
 
-
-            //Destroy(_HoldingObject);
+            //놓은 순간 부터 들고있는건 더이상 쓸모 없어.
+            Destroy(_HoldingObject);
         }
 
         private void FinishClick()
@@ -226,7 +232,7 @@ namespace ToronPuzzle
 
         }
 
-        void BlockReset()
+        void OriginBlockReset()
         {
             if (_pickOriginCase != null && _pickOriginCase.IsEmpty)// 엄한데 타겟팅 + 케이스가 비어있을 경우.
             {
@@ -237,6 +243,13 @@ namespace ToronPuzzle
 
         }
 
+        void OriginBlockDelete()
+        {
+            if (_pickOriginCase != null && _pickOriginCase.IsEmpty)// 엄한데 타겟팅 + 케이스가 비어있을 경우.
+            {
+                _pickOriginCase.DeleteBlock();
+            }
+        }
 
     }
 
