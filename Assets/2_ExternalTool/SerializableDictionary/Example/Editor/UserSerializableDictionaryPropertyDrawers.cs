@@ -14,6 +14,7 @@ using UnityEngine.Events;
 [CustomPropertyDrawer(typeof(AudioSFXEnumDictionary))]
 [CustomPropertyDrawer(typeof(SFXEnumFloatDictionary))]
 [CustomPropertyDrawer(typeof(BGMAudioDictionary))]
+[CustomPropertyDrawer(typeof(SFXAudioDictionary))]
 
 
 [CustomPropertyDrawer(typeof(StringBlockInfoDictionary))]

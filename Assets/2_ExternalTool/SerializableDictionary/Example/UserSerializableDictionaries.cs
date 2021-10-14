@@ -27,9 +27,13 @@ public class StringAudioDictionary : SerializableDictionary<string, AudioSource>
 public class KeyAimDictionary : SerializableDictionary<KeyCode, CameraAimEnum> { }
 
 [Serializable]
-public class AudioSFXEnumDictionary : SerializableDictionary<AudioSource,SFXKind> { }
+public class AudioSFXEnumDictionary : SerializableDictionary<AudioSource,SoundKind> { }
 [Serializable]
-public class SFXEnumFloatDictionary : SerializableDictionary<SFXKind, float> { }
+public class SFXEnumFloatDictionary : SerializableDictionary<SoundKind, float> { }
+
+[Serializable]
+public class SFXAudioDictionary : SerializableDictionary<SFXName, AudioSource> { }
+
 [Serializable]
 public class BGMAudioDictionary : SerializableDictionary<BGMName, AudioSource> { }
 

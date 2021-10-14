@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ToronPuzzle.Battle;
 using ToronPuzzle.Event;
+using ToronPuzzle.Data;
 
 namespace ToronPuzzle
 {
@@ -108,7 +109,7 @@ namespace ToronPuzzle
 
 
             Global_InWorldEventSystem.CallOn블록배치();
-
+            Global_SoundManager.Instance.PlaySFX(SFXName.BlockPlaced);
             return CaseObject;
         }
 
@@ -167,6 +168,7 @@ namespace ToronPuzzle
 
             _current_Case.SetCaseToCenter();
 
+            Global_SoundManager.Instance.PlaySFX(SFXName.BlockLift);
 
             Global_InWorldEventSystem.CallOn블록배치();
 
