@@ -7,14 +7,16 @@ namespace ToronPuzzle
     public class BlockCaseCell_World : BlockCaseCell
     {
         SpriteRenderer _spriteRenderer;
+        BoxCollider2D _boxCollider;
         void Start()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
+            _boxCollider = GetComponent<BoxCollider2D>();
         }
 
         public override bool CheckLiftable()
         {
-            return base.CheckLiftable();
+            return _blockInfo.IsLiftable;
         }
         public override void SetMaterial(Material _mat)
         {
@@ -26,12 +28,16 @@ namespace ToronPuzzle
         public override void LiftCell()
         {
             _spriteRenderer.color = _liftColor;
+            if(_boxCollider != null)
+                _boxCollider.enabled = false;
         }
 
         public override void ResetCell()
         {
-
             _spriteRenderer.color = _normalColor;
+            if (_boxCollider != null)
+                _boxCollider.enabled = true;
+
         }
 
     }

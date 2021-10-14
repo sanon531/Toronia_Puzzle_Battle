@@ -33,11 +33,7 @@ namespace ToronPuzzle
         }
         public virtual void PlaySFX(SFXName name)
         {
-            if (!_currentSFXManager[name].isPlaying)
-            {
-                _currentSFXManager[name].Stop();
-                _currentSFXManager[name].Play();
-            }
+            _currentSFXManager[name].Play();
 
 
         }

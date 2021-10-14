@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using ToronPuzzle.Battle;
+using ToronPuzzle.Data;
 
 namespace ToronPuzzle
 {
@@ -90,13 +91,17 @@ namespace ToronPuzzle
             {
                 if (hit.transform.GetComponent<BlockCase>())
                 {
-                    Debug.Log(hit.transform.gameObject.name);
+                    //Debug.Log(hit.transform.gameObject.name);
                     BlockCase temptCase = hit.transform.GetComponent<BlockCase>();
                     //Debug.Log("Clicked Case");
                     //TestCaller.instance.DebugArrayShape(temptCase._blockInfo._blockShapeArr);
 
                     if (temptCase.CheckLiftable())
+                    {
                         PreserveData(temptCase.LiftBlock());
+                        Global_SoundManager.Instance.PlaySFX(SFXName.BlockLift);
+                        Master_BlockPlace.instance.ActivateHoldingPanel(false);
+                    }
                 }
             }
 
@@ -105,15 +110,21 @@ namespace ToronPuzzle
         void PreserveData(BlockCase _argCase)
         {
             _isPicked = true;
-            //Debug.Log(_isPicked);
+            //Debug.Log("Preserved FroM"+_argCase.transform.name);
+
             _pickOriginCase = _argCase;
+            //TestCaller.instance.DebugArrayShape(_pickOriginCase._blockInfo._blockShapeArr);
             _HoldingObject = Global_BlockGenerator.instance.GenerateOnPointer(_argCase._blockInfo,_dragPointer);
             _savedCase = _HoldingObject.GetComponent<BlockCase>();
             _savedCase._blockInfo = new BlockInfo(_argCase._blockInfo);
+
+
             //Debug.Log("preserve");
             //TestCaller.instance.DebugArrayShape(_argCase._blockInfo._blockShapeArr);
         }
 
+
+        //여기서는 이제 블록들이 판에 올라갔을 때 배치 그림자를 보여줄 것.
         void HoldingBlock()
         {
 
@@ -121,10 +132,12 @@ namespace ToronPuzzle
         }
 
         void RotateProtocol(bool spindirr)
-        {/*
-            if (PickedBlockcase != null)
+        {
+            if (_savedCase != null)
             {
-                int[,] temptRotate = (int[,])PickedBlockArr.Clone();
+                //Debug.Log(_isPicked);
+
+                int[,] temptRotate = (int[,])_savedCase._blockInfo._blockShapeArr.Clone();
                 int XLength = temptRotate.GetLength(0);
                 int YLength = temptRotate.GetLength(1);
                 int[,] temptTarget = new int[XLength, YLength];
@@ -169,12 +182,17 @@ namespace ToronPuzzle
                     //시계반대방향회전의 알고리즘.
 
                 }
-                FormerBlockcase = null;
-                PickedBlockArr = (int[,])FinalTarget.Clone();
+                _pickOriginCase._blockInfo._blockShapeArr = (int[,])FinalTarget.Clone();
+                _savedCase._blockInfo._blockShapeArr = (int[,])FinalTarget.Clone();
                 // 이부분 트위닝으로 바꾸기
                 //m_cursor.RotateTween(spindirr);
-                m_cursor.blockData.blockGenerator.GeneratingBlockOnCursor(PickedBlockElement, PickedBlockArr, BlockPerSize);
-            }*/
+
+                // 기존의 블럭들의 초기화
+                Destroy(_HoldingObject);
+                PreserveData(_pickOriginCase);
+                Global_SoundManager.Instance.PlaySFX(SFXName.BlockRotate);
+
+            }
         }
 
         void UnClicked()
@@ -206,7 +224,7 @@ namespace ToronPuzzle
                         {
                             OriginBlockReset();
                         }
-                        
+
                     }
 
 
@@ -214,17 +232,23 @@ namespace ToronPuzzle
 
 
             }
+            else
+                OriginBlockReset();
 
-            //놓은 순간 부터 들고있는건 더이상 쓸모 없어.
-            Destroy(_HoldingObject);
+            FinishClick();
         }
 
         private void FinishClick()
         {
+            //놓은 순간 부터 들고있는건 더이상 쓸모 없어.
             _isPicked = false;
-            _savedCase.DeleteBlock();
-            //m_cursor.OnOffBlock(false);
-            //PickedBlockArr = null;
+            _pickOriginCase = null;
+            if (_savedCase != null)
+            {
+                _savedCase.DeleteBlock();
+                Destroy(_HoldingObject);
+
+            }
             if (Master_BlockPlace.instance != null)
                 Master_BlockPlace.instance.ActivateHoldingPanel(true);
             //if (m_blockInventoryCase != null)
@@ -234,21 +258,30 @@ namespace ToronPuzzle
 
         void OriginBlockReset()
         {
+
             if (_pickOriginCase != null && _pickOriginCase.IsEmpty)// 엄한데 타겟팅 + 케이스가 비어있을 경우.
             {
-                _pickOriginCase.ResetBlock();
-                _pickOriginCase.PlaceBlock();
-            }
-            
+                Debug.Log("BlockReset"+ _pickOriginCase.IsOnBlockPlace);
 
+                if (_pickOriginCase.IsOnBlockPlace)
+                    _pickOriginCase.ResetBlock();
+                else
+                    _pickOriginCase.ResetBlock(_savedCase._blockInfo);
+            }
         }
+
+
 
         void OriginBlockDelete()
         {
             if (_pickOriginCase != null && _pickOriginCase.IsEmpty)// 엄한데 타겟팅 + 케이스가 비어있을 경우.
             {
+                if (_pickOriginCase.IsOnBlockPlace && Master_BlockPlace.instance != null)
+                    Master_BlockPlace.instance.RemoveBlockOnPlace((BlockCase_BlockPlace)_pickOriginCase);
+
                 _pickOriginCase.DeleteBlock();
             }
+
         }
 
     }

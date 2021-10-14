@@ -4,8 +4,9 @@ using UnityEngine;
 
 namespace ToronPuzzle
 {
-    public class BlockCase_World : BlockCase
+    public class BlockCase_BlockPlace : BlockCase
     {
+
         [SerializeField]
         Vector3 centerData, OriginCenter;
         [SerializeField]
@@ -26,12 +27,6 @@ namespace ToronPuzzle
 
             }
         }
-
-
-
-
-
-
         //√ ±‚»≠
 
         public void SetCaseToCenter()
@@ -66,8 +61,7 @@ namespace ToronPuzzle
         }
         public override void ResetBlock(BlockInfo blockInfo)
         {
-            foreach (BlockCaseCell _childcell in _childCase)
-                _childcell.ResetCell();
+            DeleteBlock();
             PlaceBlock(blockInfo);
         }
 
@@ -82,7 +76,6 @@ namespace ToronPuzzle
 
         public override void PlaceBlock(BlockInfo _argInfo)
         {
-            DeleteBlock();
             Global_BlockGenerator.instance.GenerateOnNormalCase(_argInfo, transform, _width);
         }
 

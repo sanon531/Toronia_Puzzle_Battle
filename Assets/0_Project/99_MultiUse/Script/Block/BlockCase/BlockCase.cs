@@ -8,6 +8,7 @@ namespace ToronPuzzle
     public class BlockCase : MonoBehaviour
     {
         public bool IsEmpty=false;
+        public bool IsOnBlockPlace = false;
         public int _maxBlockX, _maxBlockY = 1;
         public BlockInfo _blockInfo= new BlockInfo();
         public Vector2 BlockSize = new Vector2(180, 180);
@@ -41,11 +42,19 @@ namespace ToronPuzzle
         }
         public virtual void PlaceBlock()
         {
+            PlaceBlock(_blockInfo);
         }
 
         public virtual void ResetBlock()
         {
         }
+
+        public virtual void ResetBlock(BlockInfo blockInfo)
+        {
+
+
+        }
+
 
         public virtual void DeleteBlock()
         {

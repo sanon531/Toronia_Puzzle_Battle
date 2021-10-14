@@ -18,12 +18,14 @@ namespace ToronPuzzle.Battle
         string _placingCellSkin = "BlockPlace/";
 
 
-        [SerializeField] SpriteRenderer _placingSprite;
+        [SerializeField] SpriteRenderer _placingSprite =default;
         public Transform _cellHolder;
         public Transform _blockHolder;
-        [SerializeField] Vector2 _screenSize;
-
+        Vector2 _screenSize;
         Battle_PlacingCell[,] placingCellArray;
+
+        List<BlockCase_BlockPlace> _placedBlocks=new List<BlockCase_BlockPlace>();
+
 
 
         void Start()
@@ -41,9 +43,6 @@ namespace ToronPuzzle.Battle
             SetBlockPlacePos();
             SetBlockCellOnPannel();
         }
-
-
-
 
         private void SetBlockPlacePos()
         {
@@ -75,12 +74,12 @@ namespace ToronPuzzle.Battle
         }
         public Vector3 GetCellPosByOrder(Vector2Int _pos)
         {
-            Debug.Log(placingCellArray[_pos.x, _pos.y].transform.position);
+            //Debug.Log(placingCellArray[_pos.x, _pos.y].transform.position);
             return placingCellArray[_pos.x, _pos.y].transform.position;
         }
 
 
-
+        
 
         /// <summary>
         /// 3
@@ -117,10 +116,23 @@ namespace ToronPuzzle.Battle
 
 
 
+        public void AddBlockOnPlace(BlockCase_BlockPlace _Block)
+        {
+            _placedBlocks.Add(_Block);
+        }
+        public void RemoveBlockOnPlace(BlockCase_BlockPlace _Block)
+        {
+            _placedBlocks.Remove(_Block);
+        }
 
         public void ActivateHoldingPanel(bool turnOn)
         {
-
+            if (turnOn)
+                foreach (BlockCase_BlockPlace _Block in _placedBlocks)
+                    _Block.ResetBlock();
+            else
+                foreach (BlockCase_BlockPlace _Block in _placedBlocks)
+                    _Block.LiftBlock();
 
         }
 

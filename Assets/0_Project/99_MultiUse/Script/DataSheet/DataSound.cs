@@ -17,7 +17,8 @@ namespace ToronPuzzle.Data
         BlockPlaced,
         BlockLift,
         Bonus_Small,
-        Bonus_Big
+        Bonus_Big,
+        BlockRotate
 
     }
 

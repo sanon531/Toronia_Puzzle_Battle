@@ -101,7 +101,7 @@ MonoBehaviour:
   _maxBlockX: 0
   _maxBlockY: 1
   _blockInfo:
-    IsLiftable: 0
+    IsLiftable: 1
     ModuleName: 
     _blockElement: 3
     _blockStength: 0

@@ -19,10 +19,13 @@ namespace ToronPuzzle.Battle
         }
 
 
+        public override bool CheckLiftable()
+        {
+            return _blockInfo.IsLiftable;
+        }
+
         public override bool CheckPlaceable(BlockInfo blockinfo)
         {
-
-
             return true;
         }
 
