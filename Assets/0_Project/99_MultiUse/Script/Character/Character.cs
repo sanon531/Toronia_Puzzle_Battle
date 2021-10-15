@@ -8,10 +8,19 @@ namespace ToronPuzzle
 {
     public class Character : MonoBehaviour
     {
-        public float _health = 100; 
+        public float _health = 100;
+        [SerializeField]
         protected Material _character_material = default;
-        protected SkeletonAnimation _spine_Animation = default;
-        protected List<CharStatusEffects> _status_Effects = new List<CharStatusEffects>();
+        [SerializeField]
+        protected SkeletonAnimation _skeletonAnimation = default;
+        [SerializeField]
+        protected List<CharStatusEffect> _status_Effects = new List<CharStatusEffect>();
+
+        public virtual void BeginCharactor()
+        {
+
+        }
+
 
         public virtual void SetMaterialTweenAll()
         {

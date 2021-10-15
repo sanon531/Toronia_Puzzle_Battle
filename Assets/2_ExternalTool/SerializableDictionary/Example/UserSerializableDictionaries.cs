@@ -21,6 +21,10 @@ public class VectorCellDictionary : SerializableDictionary<Vector2Int, BlockCase
 [Serializable]
 public class StringObjectDictionary : SerializableDictionary<string, GameObject> { }
 [Serializable]
+public class FXObjectDictionary : SerializableDictionary<FXKind, GameObject> { }
+
+
+[Serializable]
 public class StringAudioDictionary : SerializableDictionary<string, AudioSource> { }
 
 [Serializable]
@@ -36,6 +40,11 @@ public class SFXAudioDictionary : SerializableDictionary<SFXName, AudioSource> {
 
 [Serializable]
 public class BGMAudioDictionary : SerializableDictionary<BGMName, AudioSource> { }
+
+[Serializable]
+public class StatusObjectDictionary : SerializableDictionary<CharStatusEffect, GameObject> { }
+
+
 
 [Serializable]
 public class ColorArrayStorage : SerializableDictionary.Storage<Color[]> {}

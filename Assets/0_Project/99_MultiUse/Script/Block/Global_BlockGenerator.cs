@@ -23,6 +23,15 @@ namespace ToronPuzzle
 
         public Vector2 BlockSize;
         public Vector3 OutlinePercent =new Vector3(1.2f, 1.2f,1.2f);
+        Dictionary<BlockElement, FXKind> ElementToBlockFX = new Dictionary<BlockElement, FXKind>()
+        {
+            {BlockElement.Aggressive , FXKind.BlockSetted_Agr},
+            { BlockElement.Cynical, FXKind.BlockSetted_Cyn},
+            { BlockElement.Friendly, FXKind.BlockSetted_Frn},
+            { BlockElement.Emptiness, FXKind.BlockSetted_Emp},
+            { BlockElement.Bonus, FXKind.BlockSetted_Bns}
+        };
+
         #endregion
 
 
@@ -87,9 +96,6 @@ namespace ToronPuzzle
                         _spawned.transform.localScale = InputSize * OutlinePercent;
                         _current_Case._childObjects.Add(_spawned);
 
-
-
-
                         _spawned = Instantiate(_worldBlock, new Vector3(0, 0, 0), Quaternion.identity, CaseObject.transform);
                         BlockCaseCell _current_Cell = _spawned.GetComponent<BlockCaseCell>();
                         _current_Cell.SetMaterial(SetElementToBlockMaterial(_inputInfo._blockElement));
@@ -101,8 +107,7 @@ namespace ToronPuzzle
                         _spawned.transform.localPosition = spawnedvector;
                         _current_Case._childObjects.Add(_spawned);
 
-
-
+                        Global_FXPlayer.PlayFX(ElementToBlockFX[_inputInfo._blockElement], _spawned.transform.position, _spawned.transform);
                     }
                 }
             }
@@ -276,6 +281,8 @@ namespace ToronPuzzle
                     return null;
             }
         }
+      
+
 
     }
 

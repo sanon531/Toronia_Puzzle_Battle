@@ -5,14 +5,32 @@ using ToronPuzzle.Data;
 
 namespace ToronPuzzle
 {
+
+    public partial class Data_Character
+    {
+        protected struct Data_CombatProgress
+        {
+
+
+        }
+
+        protected CharacterID _characterID;
+
+
+
+    }
+}
+
+namespace ToronPuzzle.Data
+{
     public enum CharSide
     {
-        Ally,        
-        Enemy 
+        Ally,
+        Enemy
     }
     // 턴수가 지남에따라 감소하는 상태이상과 아닌 상태이상으로 나뉨 
     // 해당하는 상태에 따라 이펙트가 달라짐 
-    public enum CharStatusEffects
+    public enum CharStatusEffect
     {
         //합리 포인트 절반일때
         Tired = 0,
@@ -28,6 +46,7 @@ namespace ToronPuzzle
         Rage,
         Compassion,
         Horror,
+        Brave,
         //독뎀
         Painful,
         //회복
@@ -53,17 +72,5 @@ namespace ToronPuzzle
 
     }
 
-    public partial class Data_Character
-    {
-        protected struct Data_CombatProgress
-        {
 
-
-        }
-
-        protected CharacterID _characterID;
-
-
-
-    }
 }

@@ -23,6 +23,8 @@ namespace ToronPuzzle
         {
             Global_SoundManager global_SoundManager = GameObject.Find("Global_SoundManager").GetComponent<Global_SoundManager>();
             global_SoundManager.BeginSoundManager();
+            Global_FXPlayer global_FXPlayer = GameObject.Find("Global_FXPlayer").GetComponent<Global_FXPlayer>();
+            global_FXPlayer.BeginFXPlayer();
             Global_DragDropManager battle_DragDropManager = GameObject.Find("Global_DragDropManager").GetComponent<Global_DragDropManager>();
             battle_DragDropManager.BeginDragDrap();
             Global_BlockGenerator global_BlockGenerator = GameObject.Find("Global_BlockGenerator").GetComponent<Global_BlockGenerator>();
