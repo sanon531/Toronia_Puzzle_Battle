@@ -12,6 +12,9 @@ namespace ToronPuzzle.Data
         BlockSetted_Frn,
         BlockSetted_Emp,
         BlockSetted_Bns,
+        BlockBns_Line,
+        BlockBns_Full
+
 
     }
 

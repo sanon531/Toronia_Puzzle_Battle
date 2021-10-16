@@ -35,7 +35,7 @@ namespace ToronPuzzle.Data
         {ShapeEnum.Four_V, new int[,]{ { 1,1,1,1 } }},
         {ShapeEnum.Four_S, new int[,]{ { 1,1,0 },{0,1,1 } }},
         {ShapeEnum.Four_AS, new int[,]{ { 0,1,1 },{1,1,0 }}},
-        {ShapeEnum.Four_T, new int[,]{ { 0, 1, 0 },{ 1,1,1 }}},
+        {ShapeEnum.Four_T, new int[,]{ { 1, 1, 1 },{ 0,1,0 }}},
         {ShapeEnum.Four_G, new int[,]{ { 1,1,1 },{0,0,1 }}},
         {ShapeEnum.Four_AG, new int[,]{ { 1,1,1 },{1,0,0 }}},
 

@@ -34,11 +34,17 @@ namespace ToronPuzzle
         public virtual void PlaySFX(SFXName name)
         {
             _currentSFXManager[name].Play();
-
-
+        }
+        public virtual void PlaySFX(SFXName name,float _delayedTime)
+        {
+            _currentSFXManager[name].Play();
         }
 
-
+        IEnumerator DelayedPlay(AudioSource source, float delayedtime)
+        {
+            yield return new WaitForSecondsRealtime(delayedtime);
+            source.Play();
+        }
 
 
     }

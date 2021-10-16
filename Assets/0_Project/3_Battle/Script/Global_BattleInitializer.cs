@@ -16,6 +16,8 @@ namespace ToronPuzzle.Battle
         BGMName currentBG = BGMName.Normal_Battle;
         [SerializeField]
         string _caseSkin = "PlacingCell";
+        [SerializeField]
+        string _bonusSkin = "Bonus_Basic_";
 
 
         public void BattleBegin()
@@ -23,7 +25,7 @@ namespace ToronPuzzle.Battle
             Master_Battle master_Battle = GameObject.Find("Master_Battle").GetComponent<Master_Battle>();
             master_Battle.BeginMasterData();
             Master_BlockPlace master_BlockPlace = GameObject.Find("Master_BlockPlace").GetComponent<Master_BlockPlace>();
-            master_BlockPlace.BeginBlockPlace(SizeOfPannel.x, SizeOfPannel.y, _caseSkin);
+            master_BlockPlace.BeginBlockPlace(SizeOfPannel.x, SizeOfPannel.y, _caseSkin, _bonusSkin);
             Battle_ConveyerManager battle_ConveyerManager = GameObject.Find("Battle_ConveyerBelt").GetComponent<Battle_ConveyerManager>();
             battle_ConveyerManager.BeginConveyer();
 

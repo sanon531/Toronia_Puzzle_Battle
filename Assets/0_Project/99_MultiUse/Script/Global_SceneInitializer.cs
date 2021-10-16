@@ -14,7 +14,7 @@ namespace ToronPuzzle
         private void Awake()
         {
             GlobalBegin();
-            CheckScene();
+            //CheckScene();
             //씬이 넘어갈때 어느 씬이냐에 따라서 콜하는 초기화 코드가 달라짐 ㅇㅅㅇ
             SceneManager.activeSceneChanged += CheckScene;
 

@@ -361,6 +361,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 110469659}
   m_CullTransparentMesh: 1
+--- !u!1 &123886659
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 123886660}
+  m_Layer: 0
+  m_Name: BonusHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &123886660
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123886659}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 204463796}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &162000877
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,6 +528,7 @@ GameObject:
   m_Component:
   - component: {fileID: 204463796}
   - component: {fileID: 204463798}
+  - component: {fileID: 204463797}
   m_Layer: 0
   m_Name: Master_BlockPlace
   m_TagString: Untagged
@@ -519,9 +550,28 @@ Transform:
   - {fileID: 1092951942}
   - {fileID: 1899467674}
   - {fileID: 1773979925}
+  - {fileID: 123886660}
   m_Father: {fileID: 758277861}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &204463797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204463795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f952759b0b41996409fd0bcb67ab27ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bonusXColumnLines: []
+  _bonusYRowLines: []
+  _filledLineX: 
+  _filledLineY: 
+  PerfectSetting: {fileID: 0}
+  _fullFXpos: {x: 0, y: 0}
 --- !u!114 &204463798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -539,6 +589,7 @@ MonoBehaviour:
   _placingSprite: {fileID: 1092951943}
   _cellHolder: {fileID: 1899467674}
   _blockHolder: {fileID: 1773979925}
+  _bonusHolder: {fileID: 123886660}
 --- !u!1 &313222172
 GameObject:
   m_ObjectHideFlags: 0
@@ -4684,6 +4735,7 @@ MonoBehaviour:
   SizeOfPannel: {x: 4, y: 6}
   currentBG: 0
   _caseSkin: PlacingCell
+  _bonusSkin: Bonus_Basic_
 --- !u!1 &1743892119
 GameObject:
   m_ObjectHideFlags: 0
