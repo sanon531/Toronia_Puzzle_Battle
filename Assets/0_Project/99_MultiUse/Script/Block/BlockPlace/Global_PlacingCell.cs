@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ToronPuzzle.Battle
+namespace ToronPuzzle
 {
     [Serializable]
-    public class Battle_PlacingCell : BlockCase
+    public class Global_PlacingCell : BlockCase
     {
         public Vector2Int _caseNum = new Vector2Int(-1, -1);
         SpriteRenderer _spriteRenderer;

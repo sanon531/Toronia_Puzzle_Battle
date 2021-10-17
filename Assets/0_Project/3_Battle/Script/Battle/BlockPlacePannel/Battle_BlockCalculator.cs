@@ -6,28 +6,16 @@ using ToronPuzzle.Data;
 
 namespace ToronPuzzle.Battle
 {
-    public class Battle_BlockCalculator : MonoBehaviour
+    public class Battle_BlockCalculator : BlockCalculator
     {
-        public List<GameObject> _bonusXColumnLines = new List<GameObject>();
-        public List<GameObject> _bonusYRowLines = new List<GameObject>();
-        [SerializeField]
-        List<int> _filledLineX = new List<int>();
+      
 
-        [SerializeField]
-        List<int> _filledLineY = new List<int>();
+
 
         //계산 관련
         int AggressiveNum, CynicalNum, FriendlyNum, EmptinessNum = 0;
         int _bonusNum = 0;
-        public GameObject PerfectSetting;
-        
-        public Vector2 _fullFXpos = new Vector2();
 
-        public void BeginBlockcCalculaor()
-        {
-
-
-        }
         public void CalcBonusLine(int[,] _arg_Arr)
         {
             _filledLineX.Clear();

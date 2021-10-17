@@ -39,12 +39,7 @@ namespace ToronPuzzle
         }
 
 
-        public static class CanvasData
-        {
-            public static Vector2 LDAchorPos=default;
-            public static Vector2 RUAchorPos = default;
-            public static Vector2 _screenWorldSize = default;
-        }
+     
 
         protected CharacterID _characterID;
         public CharacterID characterID { get { return _characterID; } }
@@ -59,9 +54,7 @@ namespace ToronPuzzle
 
         public void BeginMasterData()
         {
-            CanvasData.LDAchorPos = GameObject.Find("LDAnchor").transform.position;
-            CanvasData.RUAchorPos = GameObject.Find("RUAnchor").transform.position;
-            CanvasData._screenWorldSize = CanvasData.RUAchorPos - CanvasData.LDAchorPos ;
+          
 
             //플레이어의 위치와 적의 위치를 가져온다.
             Data_OnlyInBattle._alliesPos = _alliesPos;

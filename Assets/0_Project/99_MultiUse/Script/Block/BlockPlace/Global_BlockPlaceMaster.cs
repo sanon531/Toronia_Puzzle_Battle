@@ -6,16 +6,18 @@ using ToronPuzzle.Event;
 
 namespace ToronPuzzle.Battle
 {
-    public class Master_BlockPlace : MonoBehaviour
+    public class Global_BlockPlaceMaster : MonoBehaviour
     {
-        public static Master_BlockPlace instance;
+        public static Global_BlockPlaceMaster instance;
         [ReadOnly] [SerializeField] int _maxX = 4;
         [ReadOnly] [SerializeField] int _maxY = 6;
         float _currentHeigth, _occupyHeigth, _widthInterval, _heightInterval = 0;
         float _cellSizeY = 0;
         Vector3 _showPos, _hidePos = new Vector3();
+        [SerializeField]
         GameObject Dot, _placeCellPrefab,_bonusLine,_bonusFull;
         string _placingCellAddress = "BlockPlace/";
+        [SerializeField]
         string _placingCellSkin , _bonusSkin;
 
         [SerializeField] SpriteRenderer _placingSprite = default;
@@ -23,10 +25,10 @@ namespace ToronPuzzle.Battle
         public Transform _blockHolder;
         public Transform _bonusHolder;
 
-        Battle_BlockCalculator _blockCalculator;
+        BlockCalculator _blockCalculator;
 
         Vector2 _screenSize;
-        Battle_PlacingCell[,] placingCellArray;
+        Global_PlacingCell[,] placingCellArray;
 
         List<BlockCase_BlockPlace> _placedBlocks = new List<BlockCase_BlockPlace>();
 
@@ -35,12 +37,11 @@ namespace ToronPuzzle.Battle
         //BattleInitialtor 에 의해 선언된다.
         public void BeginBlockPlace(int argX, int argY, string argCellSkin,string argBnsSkin)
         {
-            _blockCalculator = GetComponent<Battle_BlockCalculator>();
+            _blockCalculator = GetComponent<BlockCalculator>();
             _placingCellSkin = _placingCellAddress;
             _placingCellSkin += argCellSkin;
             _bonusSkin = _placingCellAddress; ;
             _bonusSkin += argBnsSkin;
-
             _maxX = argX;
             _maxY = argY;
             instance = this;
@@ -53,13 +54,13 @@ namespace ToronPuzzle.Battle
 
         private void SetBlockPlacePos()
         {
-            if (Master_Battle.CanvasData._screenWorldSize != null)
+            if (Global_CanvasData.CanvasData._screenWorldSize != null)
             {
                 _placeCellPrefab = Resources.Load(_placingCellSkin) as GameObject;
                 //배치 판의 사이즈 조절 및 위치 설정
-                Vector2 LDAnchor = Master_Battle.CanvasData.LDAchorPos;
+                Vector2 LDAnchor = Global_CanvasData.CanvasData.LDAchorPos;
 
-                _screenSize = Master_Battle.CanvasData._screenWorldSize;
+                _screenSize = Global_CanvasData.CanvasData._screenWorldSize;
                 _currentHeigth = _screenSize.y / 2;
                 _occupyHeigth = _currentHeigth * 0.9f;
                 _heightInterval = _occupyHeigth / (2 * _maxY);
@@ -92,9 +93,9 @@ namespace ToronPuzzle.Battle
         /// </summary>
         void SetBlockCellOnPannel()
         {
-            Vector2 LUAnchor = Master_Battle.CanvasData.LDAchorPos;
+            Vector2 LUAnchor = Global_CanvasData.CanvasData.LDAchorPos;
             Vector2 firstSpot = new Vector3(LUAnchor.x + (_cellSizeY), LUAnchor.y + (_heightInterval * 1.5f));
-            placingCellArray = new Battle_PlacingCell[_maxX, _maxY];
+            placingCellArray = new Global_PlacingCell[_maxX, _maxY];
 
             for (int i_y = 0; i_y < _maxY; i_y++)
             {
@@ -106,8 +107,8 @@ namespace ToronPuzzle.Battle
                     _name += i_y.ToString();
                     temptPlacingCell.name = _name;
                     temptPlacingCell.transform.localScale = new Vector2(_cellSizeY, _cellSizeY);
-                    temptPlacingCell.GetComponent<Battle_PlacingCell>().SetInitialData(new Vector2Int(j_x, i_y));
-                    placingCellArray[j_x, i_y] = temptPlacingCell.GetComponent<Battle_PlacingCell>();
+                    temptPlacingCell.GetComponent<Global_PlacingCell>().SetInitialData(new Vector2Int(j_x, i_y));
+                    placingCellArray[j_x, i_y] = temptPlacingCell.GetComponent<Global_PlacingCell>();
 
                 }
             }
@@ -118,7 +119,7 @@ namespace ToronPuzzle.Battle
 
         void SetBonusOnPannel()
         {
-            Vector2 LUAnchor = Master_Battle.CanvasData.LDAchorPos;
+            Vector2 LUAnchor = Global_CanvasData.CanvasData.LDAchorPos;
             Vector2 firstSpot = new Vector3(LUAnchor.x + (_cellSizeY), LUAnchor.y + (_heightInterval * 1.5f));
             _bonusLine = Resources.Load(_bonusSkin+"Line") as GameObject;
             _bonusFull = Resources.Load(_bonusSkin + "Full") as GameObject;

@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1203067459
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b7dcc03e988192048883b04393f1b478, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -93,12 +93,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5999941291379677572}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59e0ca77c3ffd2347a5041978827d3c1, type: 3}
+  m_Script: {fileID: 11500000, guid: 06a9ac4ce3cfabb4ea680585db9ec3ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsEmpty: 1
-  MaxBlockX: 0
-  MaxBlockY: 1
+  IsEmpty: 0
+  IsOnBlockPlace: 0
+  _maxBlockX: 0
+  _maxBlockY: 1
   _blockInfo:
     IsLiftable: 0
     ModuleName: 
@@ -107,7 +108,6 @@ MonoBehaviour:
     _blockShape: 14
     _blockPlace: {x: -1, y: -1}
   BlockSize: {x: 180, y: 180}
-  BlockColor: {r: 0, g: 1, b: 0, a: 1}
   _caseNum: {x: -1, y: -1}
 --- !u!61 &-5666966851539292646
 BoxCollider2D:

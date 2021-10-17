@@ -70,8 +70,8 @@ namespace ToronPuzzle
             
             //케이스 생성
             GameObject CaseObject = 
-                Instantiate(_blockCase_PlaceCase, Master_BlockPlace.instance.GetCellPosByOrder(_inputInfo._blockPlace), 
-                Quaternion.identity, Master_BlockPlace.instance._blockHolder);
+                Instantiate(_blockCase_PlaceCase, Global_BlockPlaceMaster.instance.GetCellPosByOrder(_inputInfo._blockPlace), 
+                Quaternion.identity, Global_BlockPlaceMaster.instance._blockHolder);
             BlockCase_BlockPlace _current_Case = CaseObject.GetComponent<BlockCase_BlockPlace>();
 
 
@@ -112,7 +112,7 @@ namespace ToronPuzzle
                 }
             }
 
-            Master_BlockPlace.instance.AddBlockOnPlace(_current_Case);
+            Global_BlockPlaceMaster.instance.AddBlockOnPlace(_current_Case);
 
             _current_Case.SetCaseToCenter();
             _current_Case._blockInfo = new BlockInfo(_lastBlockInfo);

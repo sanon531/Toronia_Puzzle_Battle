@@ -100,7 +100,7 @@ namespace ToronPuzzle
                     {
                         PreserveData(temptCase.LiftBlock());
                         Global_SoundManager.Instance.PlaySFX(SFXName.BlockLift);
-                        Master_BlockPlace.instance.ActivateHoldingPanel(false);
+                        Global_BlockPlaceMaster.instance.ActivateHoldingPanel(false);
                     }
                 }
             }
@@ -249,8 +249,8 @@ namespace ToronPuzzle
                 Destroy(_HoldingObject);
 
             }
-            if (Master_BlockPlace.instance != null)
-                Master_BlockPlace.instance.ActivateHoldingPanel(true);
+            if (Global_BlockPlaceMaster.instance != null)
+                Global_BlockPlaceMaster.instance.ActivateHoldingPanel(true);
             //if (m_blockInventoryCase != null)
                 //m_blockInventoryCase.ActivateInventoryPlace(false);
 
@@ -276,8 +276,8 @@ namespace ToronPuzzle
         {
             if (_pickOriginCase != null && _pickOriginCase.IsEmpty)// 엄한데 타겟팅 + 케이스가 비어있을 경우.
             {
-                if (_pickOriginCase.IsOnBlockPlace && Master_BlockPlace.instance != null)
-                    Master_BlockPlace.instance.RemoveBlockOnPlace((BlockCase_BlockPlace)_pickOriginCase);
+                if (_pickOriginCase.IsOnBlockPlace && Global_BlockPlaceMaster.instance != null)
+                    Global_BlockPlaceMaster.instance.RemoveBlockOnPlace((BlockCase_BlockPlace)_pickOriginCase);
 
                 _pickOriginCase.DeleteBlock();
             }
