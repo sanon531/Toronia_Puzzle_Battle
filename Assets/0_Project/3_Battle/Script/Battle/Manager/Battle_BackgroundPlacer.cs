@@ -1,18 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ToronPuzzle.Data;
 
-public class Battle_BackgroundPlacer : MonoBehaviour
+namespace ToronPuzzle.Battle
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Battle_BackgroundPlacer : MonoBehaviour
     {
-        
+
+        public static Battle_BackgroundPlacer Instance;
+        public BackgroundObjectDictionary _currentBGDic;
+
+        public void BeginBackgound(BGImageKind _bGkind)
+        {
+            Instance = this;
+
+            foreach (KeyValuePair< BGImageKind ,GameObject> pair in _currentBGDic)
+            {
+                if (pair.Key == _bGkind)
+                    pair.Value.SetActive(true);
+                else
+                    pair.Value.SetActive(false);
+
+            }
+
+        }
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

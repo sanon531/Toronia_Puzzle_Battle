@@ -13,7 +13,7 @@ namespace ToronPuzzle
         public string ModuleName = "";
         public BlockElement _blockElement;
         public int _blockStength = 0;
-        public ShapeEnum _blockShape;
+        public BlockShape _blockShape;
         public int[,] _blockShapeArr = new int[1, 1];
         //블록의 판내부의 배치 공간.(만약 없을 경우 -1)
         public Vector2Int _blockPlace = new Vector2Int(-1,-1);
@@ -27,12 +27,12 @@ namespace ToronPuzzle
         {
             _blockElement = BlockElement.Emptiness;
             _blockStength = 0;
-            _blockShape = ShapeEnum.UnDefined;
+            _blockShape = BlockShape.UnDefined;
             _blockShapeArr = new int[1, 1];
             _blockPlace = new Vector2Int(-1, -1);
         }
 
-        public BlockInfo(BlockElement arg_element, ShapeEnum arg_Shape)
+        public BlockInfo(BlockElement arg_element, BlockShape arg_Shape)
         {
             _blockElement = arg_element;
             _blockShapeArr = (int[,])BlockShapePool.shapeDic[arg_Shape].Clone();
@@ -40,7 +40,7 @@ namespace ToronPuzzle
             _blockStength = 0;
             CheckBlockNum();
         }
-        public BlockInfo(BlockElement arg_element, ShapeEnum arg_Shape, Vector2Int SetPos)
+        public BlockInfo(BlockElement arg_element, BlockShape arg_Shape, Vector2Int SetPos)
         {
             _blockElement = arg_element;
             _blockShapeArr = (int[,])BlockShapePool.shapeDic[arg_Shape].Clone();
@@ -49,7 +49,7 @@ namespace ToronPuzzle
             _blockPlace = SetPos;
             CheckBlockNum();
         }
-        public BlockInfo(BlockElement arg_element, ShapeEnum arg_Shape, Vector2Int arg_SetPos, string arg_name)
+        public BlockInfo(BlockElement arg_element, BlockShape arg_Shape, Vector2Int arg_SetPos, string arg_name)
         {
             _blockElement = arg_element;
             ModuleName = arg_name;

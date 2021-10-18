@@ -116,7 +116,7 @@ namespace ToronPuzzle
 
             _current_Case.SetCaseToCenter();
             _current_Case._blockInfo = new BlockInfo(_lastBlockInfo);
-            TestCaller.instance.DebugArrayShape(_current_Case._blockInfo._blockShapeArr);
+            //TestCaller.instance.DebugArrayShape(_current_Case._blockInfo._blockShapeArr);
             Global_InWorldEventSystem.CallOn블록배치();
             Global_SoundManager.Instance.PlaySFX(SFXName.BlockPlaced);
             return CaseObject;

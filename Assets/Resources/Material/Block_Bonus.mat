@@ -193,7 +193,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Glow: 10
+    - _Glow: 0
     - _GlowTexUsed: 0
     - _GradBlend: 0.102
     - _GradBoostX: 1.32

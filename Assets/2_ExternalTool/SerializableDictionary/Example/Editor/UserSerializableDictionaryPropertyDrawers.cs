@@ -15,6 +15,7 @@ using UnityEngine.Events;
 [CustomPropertyDrawer(typeof(KeyAimDictionary))]
 [CustomPropertyDrawer(typeof(AudioSFXEnumDictionary))]
 [CustomPropertyDrawer(typeof(SFXEnumFloatDictionary))]
+[CustomPropertyDrawer(typeof(BackgroundObjectDictionary))]
 [CustomPropertyDrawer(typeof(BGMAudioDictionary))]
 [CustomPropertyDrawer(typeof(SFXAudioDictionary))]
 [CustomPropertyDrawer(typeof(StatusObjectDictionary))]

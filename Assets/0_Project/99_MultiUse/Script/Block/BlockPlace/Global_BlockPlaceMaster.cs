@@ -8,32 +8,32 @@ namespace ToronPuzzle.Battle
 {
     public class Global_BlockPlaceMaster : MonoBehaviour
     {
+
+
+
+        //시작 초기화 관련
+        #region
         public static Global_BlockPlaceMaster instance;
         [ReadOnly] [SerializeField] int _maxX = 4;
         [ReadOnly] [SerializeField] int _maxY = 6;
         float _currentHeigth, _occupyHeigth, _widthInterval, _heightInterval = 0;
         float _cellSizeY = 0;
         Vector3 _showPos, _hidePos = new Vector3();
-        [SerializeField]
-        GameObject Dot, _placeCellPrefab,_bonusLine,_bonusFull;
+        GameObject Dot, _placeCellPrefab, _bonusLine, _bonusFull;
         string _placingCellAddress = "BlockPlace/";
         [SerializeField]
-        string _placingCellSkin , _bonusSkin;
+        string _placingCellSkin, _bonusSkin;
 
         [SerializeField] SpriteRenderer _placingSprite = default;
         public Transform _cellHolder;
         public Transform _blockHolder;
         public Transform _bonusHolder;
-
         BlockCalculator _blockCalculator;
-
         Vector2 _screenSize;
         Global_PlacingCell[,] placingCellArray;
 
         List<BlockCase_BlockPlace> _placedBlocks = new List<BlockCase_BlockPlace>();
 
-        //시작 초기화 관련
-        #region
         //BattleInitialtor 에 의해 선언된다.
         public void BeginBlockPlace(int argX, int argY, string argCellSkin,string argBnsSkin)
         {
@@ -44,6 +44,8 @@ namespace ToronPuzzle.Battle
             _bonusSkin += argBnsSkin;
             _maxX = argX;
             _maxY = argY;
+            _blockPlacedArr = new int[_maxX, _maxY];
+            _blockTemptArr = new int[_maxX, _maxY];
             instance = this;
             SetBlockPlacePos();
             SetBlockCellOnPannel();
@@ -85,10 +87,9 @@ namespace ToronPuzzle.Battle
         }
 
         /// <summary>
-        /// 3
         /// 2
         /// 1
-        /// 0 123 
+        /// 0 12 
         /// 과 같은 순서로 작동한다.
         /// </summary>
         void SetBlockCellOnPannel()
@@ -162,9 +163,37 @@ namespace ToronPuzzle.Battle
         }
 
         #endregion
+        //블럭 추가 전의 계산 관련
+        //블록의 배치 위치를 int 형의 구조물에 올린다.
+        int[,] _blockPlacedArr;
+        int[,] _blockTemptArr;
+
+
+        public void SetPreviewOnBlock(Vector2Int TargetNum, BlockInfo blockInfo)
+        {
 
 
 
+        }
+
+        public bool CheckBlockSettable(Vector2Int TargetNum, BlockInfo blockInfo)
+        {
+            int[,] _blockBoolArr = new int[1, 1] { { 1 } };
+
+
+
+
+
+            TestCaller.instance.DebugArrayShape(_blockPlacedArr);
+
+            return true;
+        }
+
+
+
+
+
+        //블럭 추가 후 관련
         public void AddBlockOnPlace(BlockCase_BlockPlace _Block)
         {
             _placedBlocks.Add(_Block);

@@ -586,10 +586,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxX: 4
   _maxY: 6
-  Dot: {fileID: 0}
-  _placeCellPrefab: {fileID: 0}
-  _bonusLine: {fileID: 0}
-  _bonusFull: {fileID: 0}
   _placingCellSkin: 
   _bonusSkin: 
   _placingSprite: {fileID: 1092951943}
@@ -4823,7 +4819,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591ac0057f51eba4ea585465ec06383c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentBG: 0
+  currentBGM: 0
+  currentBGImage: 1
 --- !u!1 &1633813064
 GameObject:
   m_ObjectHideFlags: 0
@@ -5785,7 +5782,7 @@ GameObject:
   - component: {fileID: 2131452066}
   - component: {fileID: 2131452067}
   m_Layer: 0
-  m_Name: Battle_BackGround
+  m_Name: Battle_BackgroundPlacer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5819,6 +5816,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1be1db0e9f7e1ed4c8a23f124e4f86d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _currentBGDic:
+    m_keys: 0100000000000000
+    m_values:
+    - {fileID: 328868870}
+    - {fileID: 1633813064}
 --- !u!1 &2147145151
 GameObject:
   m_ObjectHideFlags: 0

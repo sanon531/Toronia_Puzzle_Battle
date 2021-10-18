@@ -8,9 +8,6 @@ namespace ToronPuzzle.Battle
 {
     public class Battle_BlockCalculator : BlockCalculator
     {
-      
-
-
 
         //계산 관련
         int AggressiveNum, CynicalNum, FriendlyNum, EmptinessNum = 0;

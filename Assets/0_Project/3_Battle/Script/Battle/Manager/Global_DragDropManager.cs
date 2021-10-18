@@ -119,7 +119,6 @@ namespace ToronPuzzle
             _savedCase._blockInfo = new BlockInfo(_argCase._blockInfo);
 
 
-            //Debug.Log("preserve");
             //TestCaller.instance.DebugArrayShape(_argCase._blockInfo._blockShapeArr);
         }
 
@@ -127,10 +126,18 @@ namespace ToronPuzzle
         //여기서는 이제 블록들이 판에 올라갔을 때 배치 그림자를 보여줄 것.
         void HoldingBlock()
         {
+            Debug.Log("Holding Now");
 
+            Vector3 _mouseWorldPos = _inputCamera.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(_mouseWorldPos, Vector3.forward, 200f);
+            //Debug.DrawRay(_mouseWorldPos, Vector3.forward *15f,Color.cyan,0.5f);
+            if (hit)
+            {
+
+
+            }
 
         }
-
         void RotateProtocol(bool spindirr)
         {
             if (_savedCase != null)

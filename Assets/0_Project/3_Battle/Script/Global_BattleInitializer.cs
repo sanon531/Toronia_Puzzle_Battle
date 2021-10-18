@@ -11,8 +11,10 @@ namespace ToronPuzzle.Battle
     {
         //배틀사전 설정은 여기서 한다용
         [SerializeField]
-        BGMName currentBG = BGMName.Normal_Battle;
-     
+        BGMName currentBGM = BGMName.Normal_Battle;
+        [SerializeField]
+        BGImageKind currentBGImage = BGImageKind.CYN_1;
+
 
         public void BattleBegin()
         {
@@ -24,7 +26,9 @@ namespace ToronPuzzle.Battle
             battle_CameraAimer.BeginCameraAimer();
             Battle_SoundManager battle_SoundManager = GameObject.Find("Battle_SoundManager").GetComponent<Battle_SoundManager>();
             battle_SoundManager.BeginSoundManager();
-            battle_SoundManager.PlayBGM(currentBG);
+            battle_SoundManager.PlayBGM(currentBGM);
+            Battle_BackgroundPlacer battle_BackgroundPlacer = GameObject.Find("Battle_BackgroundPlacer").GetComponent<Battle_BackgroundPlacer>();
+            battle_BackgroundPlacer.BeginBackgound(currentBGImage);
 
         }
 

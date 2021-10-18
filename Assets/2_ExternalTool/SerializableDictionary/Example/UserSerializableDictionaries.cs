@@ -34,6 +34,8 @@ public class KeyAimDictionary : SerializableDictionary<KeyCode, CameraAimEnum> {
 public class AudioSFXEnumDictionary : SerializableDictionary<AudioSource,SoundKind> { }
 [Serializable]
 public class SFXEnumFloatDictionary : SerializableDictionary<SoundKind, float> { }
+[Serializable]
+public class BackgroundObjectDictionary : SerializableDictionary<BGImageKind, GameObject> { }
 
 [Serializable]
 public class SFXAudioDictionary : SerializableDictionary<SFXName, AudioSource> { }
