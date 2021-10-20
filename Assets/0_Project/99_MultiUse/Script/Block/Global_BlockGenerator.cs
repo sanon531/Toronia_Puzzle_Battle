@@ -14,6 +14,7 @@ namespace ToronPuzzle
         BlockInfo _lastBlockInfo;
         #region
         GameObject _spawned;//매개로 사용되는 변수
+        [SerializeField]
         GameObject _blockCase_PlaceCase, _blockCase_World, _worldBlock, _UIBlock, _outLinerWorld, _outlinerUI;
         [SerializeField]
         Material _mat_Agr, _mat_Agr_Module, _mat_Cyn, _mat_Cyn_Module, 
@@ -57,7 +58,7 @@ namespace ToronPuzzle
             _mat_Emp = Resources.Load("Material/Block_Emptiness") as Material;
             _mat_Emp_Module = Resources.Load("Material/Module_Emptiness") as Material;
             _mat_Bonus = Resources.Load("Material/Block_Bonus") as Material;
-            _mat_Bonus_Module = Resources.Load("Material/Module_Bonus") as Material;
+            _mat_Bonus_Module = Resources.Load("Material/Module_Block_Bonus") as Material;
 
         }
 
@@ -112,11 +113,11 @@ namespace ToronPuzzle
                 }
             }
 
-            Global_BlockPlaceMaster.instance.AddBlockOnPlace(_current_Case);
 
             _current_Case.SetCaseToCenter();
             _current_Case._blockInfo = new BlockInfo(_lastBlockInfo);
             //TestCaller.instance.DebugArrayShape(_current_Case._blockInfo._blockShapeArr);
+            Global_BlockPlaceMaster.instance.AddBlockOnPlace(_current_Case);
             Global_InWorldEventSystem.CallOn블록배치();
             Global_SoundManager.Instance.PlaySFX(SFXName.BlockPlaced);
             return CaseObject;

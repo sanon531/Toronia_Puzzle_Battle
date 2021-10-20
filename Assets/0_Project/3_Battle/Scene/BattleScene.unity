@@ -592,6 +592,7 @@ MonoBehaviour:
   _cellHolder: {fileID: 1899467674}
   _blockHolder: {fileID: 1773979925}
   _bonusHolder: {fileID: 123886660}
+  _placedBlocks: []
 --- !u!1 &313222172
 GameObject:
   m_ObjectHideFlags: 0
@@ -1661,6 +1662,12 @@ MonoBehaviour:
     _blockStength: 0
     _blockShape: 14
     _blockPlace: {x: -1, y: -1}
+  _blockCase_PlaceCase: {fileID: 0}
+  _blockCase_World: {fileID: 0}
+  _worldBlock: {fileID: 0}
+  _UIBlock: {fileID: 0}
+  _outLinerWorld: {fileID: 0}
+  _outlinerUI: {fileID: 0}
   _mat_Agr: {fileID: 0}
   _mat_Agr_Module: {fileID: 0}
   _mat_Cyn: {fileID: 0}
@@ -1797,7 +1804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1826b11b0f9d13647bd46da56295b450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsEmpty: 1
+  IsEmpty: 0
   IsOnBlockPlace: 0
   _maxBlockX: 0
   _maxBlockY: 1
@@ -4216,7 +4223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1826b11b0f9d13647bd46da56295b450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsEmpty: 1
+  IsEmpty: 0
   IsOnBlockPlace: 0
   _maxBlockX: 0
   _maxBlockY: 1
@@ -6002,7 +6009,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1826b11b0f9d13647bd46da56295b450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsEmpty: 1
+  IsEmpty: 0
   IsOnBlockPlace: 0
   _maxBlockX: 0
   _maxBlockY: 1

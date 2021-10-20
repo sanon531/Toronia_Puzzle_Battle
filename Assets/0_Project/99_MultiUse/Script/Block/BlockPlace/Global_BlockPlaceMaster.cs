@@ -4,7 +4,7 @@ using UnityEngine;
 using ToronPuzzle.Data;
 using ToronPuzzle.Event;
 
-namespace ToronPuzzle.Battle
+namespace ToronPuzzle
 {
     public class Global_BlockPlaceMaster : MonoBehaviour
     {
@@ -31,7 +31,7 @@ namespace ToronPuzzle.Battle
         BlockCalculator _blockCalculator;
         Vector2 _screenSize;
         Global_PlacingCell[,] placingCellArray;
-
+        [SerializeField]
         List<BlockCase_BlockPlace> _placedBlocks = new List<BlockCase_BlockPlace>();
 
         //BattleInitialtor 에 의해 선언된다.
@@ -45,7 +45,6 @@ namespace ToronPuzzle.Battle
             _maxX = argX;
             _maxY = argY;
             _blockPlacedArr = new int[_maxX, _maxY];
-            _blockTemptArr = new int[_maxX, _maxY];
             instance = this;
             SetBlockPlacePos();
             SetBlockCellOnPannel();
@@ -163,54 +162,204 @@ namespace ToronPuzzle.Battle
         }
 
         #endregion
+
+
         //블럭 추가 전의 계산 관련
+        #region
         //블록의 배치 위치를 int 형의 구조물에 올린다.
+        //없음 = 0, 일반 블럭 = 1, , 모듈 = 3 , 트리거 공간 = 4,
         int[,] _blockPlacedArr;
         int[,] _blockTemptArr;
 
 
-        public void SetPreviewOnBlock(Vector2Int TargetNum, BlockInfo blockInfo)
+        //블럭만 대상으로 세팅함.
+        public void SetPreviewOnBlock(Vector2Int arg_tagetNum, BlockInfo arg_blockInfo)
         {
+            // 
+            int[,] _blockArr= (int[,])arg_blockInfo._blockShapeArr.Clone();
+            List<Global_PlacingCell> _cellList = new List<Global_PlacingCell> ();
+
+            int _blockX = _blockArr.GetLength(0);
+            int _blockY = _blockArr.GetLength(1);
+            for (int i_y = _blockY - 1; i_y >=0; i_y--)
+            {
+                int posYOnPlace = i_y + arg_tagetNum.y;
+                if (posYOnPlace >= _maxY) continue;
+
+                for (int j_x = 0; j_x < _blockX; j_x++)
+                {
+                    int posXOnPlace = arg_tagetNum.x- _blockX + j_x + 1;
+                    if (posXOnPlace < 0) continue;
+
+                    //블럭의 위치상
+                    if (_blockArr[j_x, i_y] == 1)
+                        _cellList.Add(placingCellArray[posXOnPlace, posYOnPlace]);
+                }
+            }
 
 
+            foreach (Global_PlacingCell _PlacingCell in placingCellArray)
+            {
+                if(_cellList.Contains(_PlacingCell))
+                    _PlacingCell.SetColorOnCell(Color.green);
+                else
+                    _PlacingCell.SetColorOnCell(Color.white);
+
+            }
+
+            //TestCaller.instance.DebugArrayShape(_blockArr);
+        }
+
+        public void ResetPreview()
+        {
+            foreach (Global_PlacingCell _PlacingCell in placingCellArray)
+            {
+                _PlacingCell.SetColorOnCell(Color.white);
+            }
+        }
+
+        public bool CheckBlockSettable(Vector2Int arg_targetNum, BlockInfo arg_blockInfo)
+        {
+            int[,] _blockArr = (int[,])arg_blockInfo._blockShapeArr.Clone();
+            //여기서는 세팅을 할지 말지 고민 함
+            bool returnVal = true; 
+
+            int _blockX = _blockArr.GetLength(0);
+            int _blockY = _blockArr.GetLength(1);
+            for (int i_y = _blockY - 1; i_y >= 0; i_y--)
+            {
+                int posYOnPlace = i_y + arg_targetNum.y;
+                if (posYOnPlace >= _maxY)
+                    return false;
+
+                for (int j_x = 0; j_x < _blockX; j_x++)
+                {
+                    int posXOnPlace = arg_targetNum.x - _blockX + j_x + 1;
+                    if (posXOnPlace < 0)
+                        return false;
+                    //블럭의 위치상
+                    if (_blockArr[j_x, i_y] == 1)
+                    {
+                        if (_blockPlacedArr[posXOnPlace, posYOnPlace] == 1 || _blockPlacedArr[posXOnPlace, posYOnPlace] == 3)
+                        {
+                            returnVal = false;
+                        }
+
+                    }
+                }
+            }
+
+            //Debug.Log("Settable : " + returnVal);
+            return returnVal;
+        }
+
+        public void PlaceBlockDataOnArray(BlockInfo arg_blockInfo)
+        {
+            Vector2Int _targetNum = arg_blockInfo._blockPlace;
+
+            if (!CheckBlockSettable(_targetNum, arg_blockInfo))
+                return;
+
+            int[,] _blockArr = (int[,])arg_blockInfo._blockShapeArr.Clone();
+
+            int _blockX = _blockArr.GetLength(0);
+            int _blockY = _blockArr.GetLength(1);
+            for (int i_y = _blockY - 1; i_y >= 0; i_y--)
+            {
+                int posYOnPlace = i_y + _targetNum.y;
+                if (posYOnPlace >= _maxY)
+                {
+                    return;
+                }
+
+                for (int j_x = 0; j_x < _blockX; j_x++)
+                {
+                    int posXOnPlace = _targetNum.x - _blockX + j_x + 1;
+                    if (posXOnPlace < 0)
+                    {
+                        return;
+                    }
+
+
+                    //블럭의 위치상
+                    if (_blockArr[j_x, i_y] == 1)
+                    {
+                        _blockPlacedArr[posXOnPlace, posYOnPlace]=1;
+                    }
+                }
+            }
+            TestCaller.instance.DebugArrayShape("Added", _blockPlacedArr);
+
+        }
+        public void RemoveBlockDataOnArray(BlockInfo arg_blockInfo)
+        {
+            Vector2Int _targetNum = arg_blockInfo._blockPlace;
+            int[,] _blockArr = (int[,])arg_blockInfo._blockShapeArr.Clone();
+
+            int _blockX = _blockArr.GetLength(0);
+            int _blockY = _blockArr.GetLength(1);
+            for (int i_y = _blockY - 1; i_y >= 0; i_y--)
+            {
+                int posYOnPlace = i_y + _targetNum.y;
+                if (posYOnPlace >= _maxY)
+                {
+                    return;
+                }
+
+                for (int j_x = 0; j_x < _blockX; j_x++)
+                {
+                    int posXOnPlace = _targetNum.x - _blockX + j_x + 1;
+                    //블럭의 위치상
+                    if (posXOnPlace < 0)
+                    {
+                        return;
+                    }
+                    if (_blockArr[j_x, i_y] == 1)
+                    {
+                        _blockPlacedArr[posXOnPlace, posYOnPlace] = 0;
+                    }
+                }
+            }
+
+            //TestCaller.instance.DebugArrayShape("Removed", _blockPlacedArr);
 
         }
 
-        public bool CheckBlockSettable(Vector2Int TargetNum, BlockInfo blockInfo)
+        private void Update()
         {
-            int[,] _blockBoolArr = new int[1, 1] { { 1 } };
-
-
-
-
-
-            TestCaller.instance.DebugArrayShape(_blockPlacedArr);
-
-            return true;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                //TestCaller.instance.DebugArrayShape("current", _blockPlacedArr);
+            }
         }
 
+        #endregion
 
 
-
-
-        //블럭 추가 후 관련
+        //블럭 추가 후 관련, 모듈과 별도
         public void AddBlockOnPlace(BlockCase_BlockPlace _Block)
         {
             _placedBlocks.Add(_Block);
+            PlaceBlockDataOnArray(_Block._blockInfo);
+            ResetPreview();
         }
         public void RemoveBlockOnPlace(BlockCase_BlockPlace _Block)
         {
+            Debug.Log("call delete");
+
             _placedBlocks.Remove(_Block);
+
+            ResetPreview();
+
         }
         public void ActivateHoldingPanel(bool turnOn)
         {
             if (turnOn)
                 foreach (BlockCase_BlockPlace _Block in _placedBlocks)
-                    _Block.ResetBlock();
+                    _Block.ShowBlock();
             else
                 foreach (BlockCase_BlockPlace _Block in _placedBlocks)
-                    _Block.LiftBlock();
-
+                    _Block.HideBlock();
         }
 
         

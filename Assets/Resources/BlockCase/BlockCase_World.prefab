@@ -43,7 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1826b11b0f9d13647bd46da56295b450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsEmpty: 1
+  IsEmpty: 0
+  IsOnBlockPlace: 0
   _maxBlockX: 0
   _maxBlockY: 1
   _blockInfo:

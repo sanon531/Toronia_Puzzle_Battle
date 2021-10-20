@@ -24,20 +24,28 @@ namespace ToronPuzzle
             return _blockInfo.IsLiftable;
         }
 
-        public override bool CheckPlaceable(BlockInfo blockinfo)
+        public override bool CheckPlaceable(BlockInfo arg_blockinfo)
         {
-            return true;
+            Global_BlockPlaceMaster.instance.SetPreviewOnBlock(_caseNum, arg_blockinfo);
+
+            return Global_BlockPlaceMaster.instance.CheckBlockSettable(_caseNum, arg_blockinfo);
         }
 
-        public override void PlaceBlock(BlockInfo blockInfo)
+        public override void PlaceBlock(BlockInfo arg_blockInfo)
         {
-            blockInfo._blockPlace = _caseNum;
-            int _maxX = blockInfo._blockShapeArr.GetLength(0);
-            int _maxY = blockInfo._blockShapeArr.GetLength(1);
+            arg_blockInfo._blockPlace = _caseNum;
+            int _maxX = arg_blockInfo._blockShapeArr.GetLength(0);
+            int _maxY = arg_blockInfo._blockShapeArr.GetLength(1);
 
 
-            Global_BlockGenerator.instance.GenerateOnBlockPlace(blockInfo);
+            Global_BlockGenerator.instance.GenerateOnBlockPlace(arg_blockInfo);
         }
+
+        public void SetColorOnCell(Color _argColor)
+        {
+            _spriteRenderer.color = _argColor;
+        }
+
 
     }
 

@@ -18,6 +18,12 @@ namespace ToronPuzzle
         {
             return _blockInfo.IsLiftable;
         }
+        public override BlockCase LiftBlock()
+        {
+            _parentCase.LiftBlock();
+            return _parentCase;
+        }
+
         public override void SetMaterial(Material _mat)
         {
             //Debug.Log("SetMaterial on "+gameObject.name);

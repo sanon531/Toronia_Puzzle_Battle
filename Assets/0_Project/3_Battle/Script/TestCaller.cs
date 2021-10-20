@@ -32,7 +32,7 @@ public class TestCaller : MonoBehaviour
         {
             _paused = _paused ? false : true;
             if (_paused)
-                Time.timeScale = 0;
+                Time.timeScale = 1;
             else
                 Time.timeScale = 1;
 
@@ -81,7 +81,6 @@ public class TestCaller : MonoBehaviour
     {
         int _maxX = _ints.GetLength(0);
         int _maxY = _ints.GetLength(1);
-        Debug.Log(_maxX + "+" + _maxY);
         string Lines = "";
         for (int i_y = _maxY - 1; i_y >= 0; i_y--)
         {
@@ -94,5 +93,24 @@ public class TestCaller : MonoBehaviour
         Debug.Log(Lines);
 
     }
+
+    public void DebugArrayShape(string _beforeStr,int[,] _ints)
+    {
+        int _maxX = _ints.GetLength(0);
+        int _maxY = _ints.GetLength(1);
+        string Lines = _beforeStr;
+        Lines += ": \n";
+        for (int i_y = _maxY - 1; i_y >= 0; i_y--)
+        {
+            for (int j_x = 0; j_x < _maxX; j_x++)
+            {
+                Lines += _ints[j_x, i_y].ToString();
+            }
+            Lines += "\n";
+        }
+        Debug.Log(Lines);
+
+    }
+
 
 }

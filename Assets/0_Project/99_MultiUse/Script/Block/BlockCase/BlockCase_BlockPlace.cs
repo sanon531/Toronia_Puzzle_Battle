@@ -45,24 +45,34 @@ namespace ToronPuzzle
 
         public override BlockCase LiftBlock()
         {
+            HideBlock();
+            Global_BlockPlaceMaster.instance.RemoveBlockDataOnArray(_blockInfo);
+            return this;
+        }
+
+        public void HideBlock()
+        {
             foreach (BlockCaseCell _childcell in _childCase)
             {
                 _childcell.LiftCell();
             }
-            return this;
         }
 
         public override void ResetBlock()
         {
-
+        }
+        public void ShowBlock()
+        {
             foreach (BlockCaseCell _childcell in _childCase)
                 _childcell.ResetCell();
 
         }
+
         public override void ResetBlock(BlockInfo blockInfo)
         {
-            DeleteBlock();
-            PlaceBlock(blockInfo);
+            Global_BlockPlaceMaster.instance.PlaceBlockDataOnArray(_blockInfo);
+            TestCaller.instance.DebugArrayShape("Resetted", blockInfo._blockShapeArr);
+
         }
 
 
@@ -90,6 +100,7 @@ namespace ToronPuzzle
             }
             _childObjects.Clear();
             IsEmpty = true;
+            Destroy(gameObject);
         }
 
 

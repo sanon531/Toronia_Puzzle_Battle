@@ -98,7 +98,8 @@ namespace ToronPuzzle
 
                     if (temptCase.CheckLiftable())
                     {
-                        PreserveData(temptCase.LiftBlock());
+                        _pickOriginCase = temptCase.LiftBlock();
+                        SetBlockOnPointer(_pickOriginCase);
                         Global_SoundManager.Instance.PlaySFX(SFXName.BlockLift);
                         Global_BlockPlaceMaster.instance.ActivateHoldingPanel(false);
                     }
@@ -107,34 +108,49 @@ namespace ToronPuzzle
 
         }
         //저장한다음 손으로 올림.
-        void PreserveData(BlockCase _argCase)
+        void SetBlockOnPointer(BlockCase _argCase)
         {
             _isPicked = true;
             //Debug.Log("Preserved FroM"+_argCase.transform.name);
-
-            _pickOriginCase = _argCase;
             //TestCaller.instance.DebugArrayShape(_pickOriginCase._blockInfo._blockShapeArr);
             _HoldingObject = Global_BlockGenerator.instance.GenerateOnPointer(_argCase._blockInfo,_dragPointer);
             _savedCase = _HoldingObject.GetComponent<BlockCase>();
             _savedCase._blockInfo = new BlockInfo(_argCase._blockInfo);
-
-
             //TestCaller.instance.DebugArrayShape(_argCase._blockInfo._blockShapeArr);
         }
 
 
+
+        BlockCase _hoveredCase;
         //여기서는 이제 블록들이 판에 올라갔을 때 배치 그림자를 보여줄 것.
         void HoldingBlock()
         {
-            Debug.Log("Holding Now");
 
             Vector3 _mouseWorldPos = _inputCamera.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(_mouseWorldPos, Vector3.forward, 200f);
             //Debug.DrawRay(_mouseWorldPos, Vector3.forward *15f,Color.cyan,0.5f);
             if (hit)
             {
+                if (hit.transform.GetComponent<BlockCase>())
+                {
+                    BlockCase temptCase = hit.transform.GetComponent<BlockCase>();
+                    //이미 체킹 한거면 그냥 스킵
+                    if (temptCase == _hoveredCase)
+                        return;
+                    else
+                        _hoveredCase = temptCase;
+
+                    if (temptCase.CheckPlaceable(_savedCase._blockInfo))
+                    {
+                        //Global_SoundManager.Instance.PlaySFX(SFXName.BlockLift);
+                        //Global_BlockPlaceMaster.instance.ActivateHoldingPanel(false);
+                    }
+
+                    if(!temptCase.IsOnBlockPlace)
+                        Global_BlockPlaceMaster.instance.ResetPreview();
 
 
+                }
             }
 
         }
@@ -189,14 +205,14 @@ namespace ToronPuzzle
                     //시계반대방향회전의 알고리즘.
 
                 }
-                _pickOriginCase._blockInfo._blockShapeArr = (int[,])FinalTarget.Clone();
+                //_pickOriginCase._blockInfo._blockShapeArr = (int[,])FinalTarget.Clone();
                 _savedCase._blockInfo._blockShapeArr = (int[,])FinalTarget.Clone();
                 // 이부분 트위닝으로 바꾸기
                 //m_cursor.RotateTween(spindirr);
 
                 // 기존의 블럭들의 초기화
                 Destroy(_HoldingObject);
-                PreserveData(_pickOriginCase);
+                SetBlockOnPointer(_savedCase);
                 Global_SoundManager.Instance.PlaySFX(SFXName.BlockRotate);
 
             }
@@ -223,9 +239,11 @@ namespace ToronPuzzle
                         //세팅 가능하면 바로 세팅함.
                         if (targetCase.CheckPlaceable(_savedCase._blockInfo))
                         {
+                            //먼저 지우고 그다음에 설치 한다. 배치의 문제 때문에
                             targetCase.PlaceBlock(_savedCase._blockInfo);
-                            //Debug.Log("Placable :"+targetCase.CheckPlaceable(_savedCase._blockInfo));
                             OriginBlockDelete();
+
+                            //Debug.Log("Placable :"+targetCase.CheckPlaceable(_savedCase._blockInfo));
                         }
                         else
                         {
@@ -257,21 +275,23 @@ namespace ToronPuzzle
 
             }
             if (Global_BlockPlaceMaster.instance != null)
+            {
                 Global_BlockPlaceMaster.instance.ActivateHoldingPanel(true);
+                Global_BlockPlaceMaster.instance.ResetPreview();
+            }
             //if (m_blockInventoryCase != null)
-                //m_blockInventoryCase.ActivateInventoryPlace(false);
+            //m_blockInventoryCase.ActivateInventoryPlace(false);
 
         }
 
         void OriginBlockReset()
         {
-
-            if (_pickOriginCase != null && _pickOriginCase.IsEmpty)// 엄한데 타겟팅 + 케이스가 비어있을 경우.
+            if (_pickOriginCase != null )// 엄한데 타겟팅 + 케이스가 비어있을 경우.
             {
-                Debug.Log("BlockReset"+ _pickOriginCase.IsOnBlockPlace);
+                //Debug.Log("BlockReset"+ _pickOriginCase.IsOnBlockPlace);
 
                 if (_pickOriginCase.IsOnBlockPlace)
-                    _pickOriginCase.ResetBlock();
+                    _pickOriginCase.ResetBlock(_pickOriginCase._blockInfo);
                 else
                     _pickOriginCase.ResetBlock(_savedCase._blockInfo);
             }
@@ -281,12 +301,19 @@ namespace ToronPuzzle
 
         void OriginBlockDelete()
         {
-            if (_pickOriginCase != null && _pickOriginCase.IsEmpty)// 엄한데 타겟팅 + 케이스가 비어있을 경우.
+            //다음에 재활용할 때 다른 케이스가 들면 비어있게 만들고 비었으면 삭제 하고 안비었으면 그대로 냅둔다이.
+            Debug.Log(_pickOriginCase.IsOnBlockPlace);
+
+            if (_pickOriginCase != null )
             {
                 if (_pickOriginCase.IsOnBlockPlace && Global_BlockPlaceMaster.instance != null)
+                {
                     Global_BlockPlaceMaster.instance.RemoveBlockOnPlace((BlockCase_BlockPlace)_pickOriginCase);
 
+                }
+
                 _pickOriginCase.DeleteBlock();
+
             }
 
         }

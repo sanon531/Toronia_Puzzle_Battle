@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsEmpty: 0
-  IsOnBlockPlace: 0
+  IsOnBlockPlace: 1
   _maxBlockX: 0
   _maxBlockY: 1
   _blockInfo:
