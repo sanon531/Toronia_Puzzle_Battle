@@ -98,7 +98,7 @@ namespace ToronPuzzle.Battle
         }
     }
 
-    //±âÅ¸ ½ºÆÄÀÎÀÌ ¾Æ´Ñ °³°³ÀÎÀÇ Å»Áø ÀÌÆåÆ®ÀÇ ¿Â¿ÀÇÁ¸¦ ¿©±â¼­ ´ã´çÇÑ´Ù.
+    //ê¸°íƒ€ ìŠ¤íŒŒì¸ì´ ì•„ë‹Œ ê°œê°œì¸ì˜ íƒˆì§„ ì´íŽ™íŠ¸ì˜ ì˜¨ì˜¤í”„ë¥¼ ì—¬ê¸°ì„œ ë‹´ë‹¹í•œë‹¤.
     [Serializable]
     public class CharacterStatusFX
     {

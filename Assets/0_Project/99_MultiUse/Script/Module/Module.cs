@@ -4,14 +4,18 @@ using UnityEngine;
 
 
 namespace ToronPuzzle
-{
-    /// <summary>
-    /// ����� ��Ʋ���� �� Ȱ��Ǵ� ���� �ƴ϶�
-    /// Ž�� �ϸ鼭 ��� �ؼ� ȹ���ϰ�  ������ �Ҽ��־�� �Ѵ�.
-    /// ����ó�� Ȱ��Ǹ�
-    /// </summary>
-    public class Module
+{/// <summary>
+ /// 모듈은 배틀에서 만 활용되는 것이 아니라
+ /// 탐험 하면서 계속 해서 획득하고  버리고 할수있어야 한다.
+ /// 유물처럼 활용되며 
+ /// </summary>
+    public class ModuleInfo : Affector
     {
 
     }
+    public class BlockModule : BlockCase
+    {
+        public ModuleInfo _moduleInfo;
+    }
+
 }

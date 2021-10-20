@@ -28,9 +28,9 @@ namespace ToronPuzzle
             public static void SetAlive() { IsDead = false; }
 
             public static int TurnCount { get; private set; }
-            public static void OwnTurnStart(bool isÇàµ¿ºÒ´É)
+            public static void OwnTurnStart(bool isí–‰ë™ë¶ˆëŠ¥)
             {
-                if (isÇàµ¿ºÒ´É)
+                if (isí–‰ë™ë¶ˆëŠ¥)
                 {
                     TurnCount++;
                 }
@@ -56,7 +56,7 @@ namespace ToronPuzzle
         {
           
 
-            //ÇÃ·¹ÀÌ¾îÀÇ À§Ä¡¿Í ÀûÀÇ À§Ä¡¸¦ °¡Á®¿Â´Ù.
+            //í”Œë ˆì´ì–´ì˜ ìœ„ì¹˜ì™€ ì ì˜ ìœ„ì¹˜ë¥¼ ê°€ì ¸ì˜¨ë‹¤.
             Data_OnlyInBattle._alliesPos = _alliesPos;
             Data_OnlyInBattle._enemiesPos = _enemiesPos;
             Data_OnlyInBattle._alliesHUDPos = _alliesHUDPos;

@@ -32,14 +32,14 @@ namespace ToronPuzzle
 
 
 
-        //ÃÊ±âÈ­
+        //ì´ˆê¸°í™”
 
         public void SetCaseToCenter()
         {
             _blockInfo._blockShapeArr = new int[_maxBlockX, _maxBlockY];
         }
         /// <summary>
-        /// µé¾úÀ»¶§
+        /// ë“¤ì—ˆì„ë•Œ
         /// </summary>
         #region
         public override bool CheckLiftable()
@@ -77,7 +77,7 @@ namespace ToronPuzzle
 
 
         /// <summary>
-        /// ¹èÄ¡ °ü·Ã
+        /// ë°°ì¹˜ ê´€ë ¨
         /// </summary>
 
         public override void PlaceBlock(BlockInfo _argInfo)

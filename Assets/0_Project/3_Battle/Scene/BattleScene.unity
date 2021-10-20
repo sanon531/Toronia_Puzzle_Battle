@@ -592,6 +592,7 @@ MonoBehaviour:
   _cellHolder: {fileID: 1899467674}
   _blockHolder: {fileID: 1773979925}
   _bonusHolder: {fileID: 123886660}
+  _blockCalculator: {fileID: 0}
   _placedBlocks: []
 --- !u!1 &313222172
 GameObject:
@@ -1399,13 +1400,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _FXDictionary:
-    m_keys: 0000000001000000020000000300000004000000
+    m_keys: 00000000010000000200000003000000040000000500000006000000
     m_values:
     - {fileID: 2446996066179108411, guid: e6023aa5faa3e8849a2f5c035761d427, type: 3}
     - {fileID: 2446996066179108411, guid: a9064b5dbe2200447994818243d7b2ed, type: 3}
     - {fileID: 2446996066179108411, guid: 94430b78dfd4f5f4d9df9ba5ad068f75, type: 3}
     - {fileID: 2446996066179108411, guid: b30a9df5e1f4ef7478205e7e9a5ebad0, type: 3}
     - {fileID: 2446996066179108411, guid: a5a0b72bc12ab7a48b40e9e54e73f000, type: 3}
+    - {fileID: 131410, guid: 336dcb8e80cbdfe4380b048ee5c38b34, type: 3}
+    - {fileID: 131410, guid: 336dcb8e80cbdfe4380b048ee5c38b34, type: 3}
 --- !u!1 &522260082
 GameObject:
   m_ObjectHideFlags: 0
@@ -2936,7 +2939,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4b488e9031dc07a45a27afc6679b6edf, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 43ab048c1efc76a4b9cb274577af14bd, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -3608,7 +3611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   global_BattleInitializer: {fileID: 1603129940}
-  SizeOfPannel: {x: 4, y: 6}
+  SizeOfPannel: {x: 4, y: 7}
   _caseSkin: PlacingCell
   _bonusSkin: Bonus_Basic_
 --- !u!1 &1324837032
@@ -3781,7 +3784,7 @@ MonoBehaviour:
     ModuleName: 
     _blockElement: 2
     _blockStength: 1
-    _blockShape: 13
+    _blockShape: 8
     _blockPlace: {x: 1, y: 1}
   BlockSize: {x: 180, y: 180}
   _cellPos: {x: 1, y: 1}
@@ -4232,7 +4235,7 @@ MonoBehaviour:
     ModuleName: 
     _blockElement: 0
     _blockStength: 1
-    _blockShape: 11
+    _blockShape: 8
     _blockPlace: {x: -1, y: -1}
   BlockSize: {x: 180, y: 180}
   centerData: {x: 0, y: 0, z: 0}
@@ -4951,7 +4954,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 43ab048c1efc76a4b9cb274577af14bd, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 4b488e9031dc07a45a27afc6679b6edf, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

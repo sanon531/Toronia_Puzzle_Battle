@@ -4,8 +4,8 @@ using UnityEngine;
 
 
 /// <summary>
-/// ½ÃÃò¿¡ÀÌ¼ÇÀº »óÈ²À» ÀÇ¹ÌÇÏ¸ç
-/// °ÔÀÓ³»¿¡¼­ ÃÖÃÊ ½ÃÀÛ, ¸ðµâ Ã¼Å·, ÀüÅõ ´ë±â, ºí·Ï ¼öÁý, °è»êµîÀÇ »óÈ²À» ÁöÄªÇÒ¶§ »ç¿ëÇÑ´Ù.
+/// ì‹œì¸„ì—ì´ì…˜ì€ ìƒí™©ì„ ì˜ë¯¸í•˜ë©°
+/// ê²Œìž„ë‚´ì—ì„œ ìµœì´ˆ ì‹œìž‘, ëª¨ë“ˆ ì²´í‚¹, ì „íˆ¬ ëŒ€ê¸°, ë¸”ë¡ ìˆ˜ì§‘, ê³„ì‚°ë“±ì˜ ìƒí™©ì„ ì§€ì¹­í• ë•Œ ì‚¬ìš©í•œë‹¤.
 /// </summary>
 namespace ToronPuzzle.Battle
 {

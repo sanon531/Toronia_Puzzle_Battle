@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ToronPuzzle
 {
-    //ºí·ÏµéÀ» ÇÑ´ë·Î ¹­´Â ÄÉÀÌ½º ºí·ÏÀÇ Á¤º¸°¡ µé¾îÀÖ´Ù.
+    //ë¸”ë¡ë“¤ì„ í•œëŒ€ë¡œ ë¬¶ëŠ” ì¼€ì´ìŠ¤ ë¸”ë¡ì˜ ì •ë³´ê°€ ë“¤ì–´ìˆë‹¤.
     public class BlockCase : MonoBehaviour
     {
         public bool IsEmpty=false;
@@ -19,7 +19,7 @@ namespace ToronPuzzle
             return IsEmpty;
         }
 
-        //ÄÉÀÌ½º°¡ µé·ÈÀ»¶§ÀÇ ¾÷¹«.
+        //ì¼€ì´ìŠ¤ê°€ ë“¤ë ¸ì„ë•Œì˜ ì—…ë¬´.
         public virtual BlockCase LiftBlock()
         {
             return this;

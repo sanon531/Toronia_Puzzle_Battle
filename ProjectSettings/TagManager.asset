@@ -47,7 +47,7 @@ TagManager:
   - name: Object
     uniqueID: 3761733257
     locked: 0
-  - name: UpperFX
+  - name: LowerFX
     uniqueID: 3073578369
     locked: 0
   - name: PlacingCell
@@ -58,6 +58,9 @@ TagManager:
     locked: 0
   - name: PickedCell
     uniqueID: 1022360703
+    locked: 0
+  - name: BlockFX
+    uniqueID: 821356771
     locked: 0
   - name: Block
     uniqueID: 2681527273

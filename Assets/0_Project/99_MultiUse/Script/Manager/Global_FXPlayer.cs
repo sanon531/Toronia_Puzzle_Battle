@@ -39,7 +39,7 @@ namespace ToronPuzzle
 
         private void DelayedFX(Data.FXKind _kind, Vector3 _pos, float _delayTime)
         {
-            StartCoroutine(DelayedInstantiate( Instance._FXDictionary[_kind], _pos, Instance.transform, new Vector2(),_delayTime));
+            StartCoroutine(DelayedInstantiate( Instance._FXDictionary[_kind], _pos, Instance.transform, new Vector2(1,1),_delayTime));
         }
         private void DelayedFX(Data.FXKind _kind, Vector3 _pos,Vector2 _size, float _delayTime)
         {

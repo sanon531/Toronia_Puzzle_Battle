@@ -15,13 +15,11 @@ namespace ToronPuzzle
         public int _blockStength = 0;
         public BlockShape _blockShape;
         public int[,] _blockShapeArr = new int[1, 1];
-        //블록의 판내부의 배치 공간.(만약 없을 경우 -1)
         public Vector2Int _blockPlace = new Vector2Int(-1,-1);
 
 
 
 
-        //생성자.
 
         public BlockInfo()
         {

@@ -21,13 +21,14 @@ namespace ToronPuzzle
         Vector3 _showPos, _hidePos = new Vector3();
         GameObject Dot, _placeCellPrefab, _bonusLine, _bonusFull;
         string _placingCellAddress = "BlockPlace/";
-        [SerializeField]
+        [ReadOnly] [SerializeField]
         string _placingCellSkin, _bonusSkin;
 
         [SerializeField] SpriteRenderer _placingSprite = default;
         public Transform _cellHolder;
         public Transform _blockHolder;
         public Transform _bonusHolder;
+        [ReadOnly] [SerializeField]
         BlockCalculator _blockCalculator;
         Vector2 _screenSize;
         Global_PlacingCell[,] placingCellArray;
@@ -124,15 +125,21 @@ namespace ToronPuzzle
             _bonusLine = Resources.Load(_bonusSkin+"Line") as GameObject;
             _bonusFull = Resources.Load(_bonusSkin + "Full") as GameObject;
 
+
             //x축(세로보너스들)의 보너스 블럭 세팅.
             for (int i_x = 0; i_x < _maxX; i_x++)
             {
                 Vector2 targetpos = new Vector3(firstSpot.x + i_x* _cellSizeY, firstSpot.y - 1.25f* _heightInterval, -1);
                 GameObject bnsLine= Instantiate(_bonusLine, targetpos, Quaternion.identity, _bonusHolder);
                 _blockCalculator._bonusXColumnLines.Add(bnsLine);
-                bnsLine.transform.localScale = new Vector2(_cellSizeY * 1f, _cellSizeY * 0.5f);
+
                 Transform bns_child = bnsLine.transform.GetChild(0);
-                bns_child.localPosition = new Vector2(0, 2 * (_cellSizeY * (_maxY + 2.4f)));
+                bns_child.localPosition = new Vector2(0, (_cellSizeY * (_maxY + 0.25f)));
+                bns_child.localScale = new Vector2(_cellSizeY * 1f, _cellSizeY * 0.5f);
+                bns_child = bnsLine.transform.GetChild(1);
+                bns_child.localScale = new Vector2(_cellSizeY * 1f, _cellSizeY * 0.5f);
+
+
             }
 
             for (int i_y = 0; i_y < _maxY; i_y++)
@@ -141,24 +148,37 @@ namespace ToronPuzzle
                 GameObject bnsLine = Instantiate(_bonusLine, targetpos, Quaternion.identity, _bonusHolder);
                 _blockCalculator._bonusYRowLines.Add(bnsLine);
                 bnsLine.transform.rotation = Quaternion.Euler(0, 0, -90);
-                bnsLine.transform.localScale = new Vector2(_cellSizeY * 1f, _cellSizeY * 0.5f);
+
+
                 Transform bns_child = bnsLine.transform.GetChild(0);
-                bns_child.localPosition = new Vector2(0, 2 * (_cellSizeY * (_maxX + 2f)));
+                bns_child.localScale = new Vector2(_cellSizeY * 1f, _cellSizeY * 0.5f);
+                bns_child.localPosition = new Vector2(0, (_cellSizeY * (_maxX +0.5f)));
+                bns_child = bnsLine.transform.GetChild(1);
+                bns_child.localScale = new Vector2(_cellSizeY * 1f, _cellSizeY * 0.5f);
 
             }
 
             firstSpot = new Vector3(LUAnchor.x + (_cellSizeY * 0.25f), LUAnchor.y + (_heightInterval * 0.25f));
             GameObject bnsFull = Instantiate(_bonusFull, firstSpot, Quaternion.identity, _bonusHolder);
             _blockCalculator.PerfectSetting = bnsFull;
-            bnsFull.transform.localScale = new Vector2(_cellSizeY*0.5f, _cellSizeY * 0.5f);
-            Transform bns_LU = bnsFull.transform.GetChild(1);
-            bns_LU.localPosition = new Vector2(0, 2 * (_cellSizeY * (_maxY + 2.4f)));
-            Transform bns_RD = bnsFull.transform.GetChild(2);
-            bns_RD.localPosition = new Vector2(2 * (_cellSizeY * (_maxX + 2f)),0);
-            Transform bns_RU = bnsFull.transform.GetChild(3);
-            bns_RU.localPosition = new Vector2(2 * (_cellSizeY * (_maxX + 2f)), 2 * (_cellSizeY * (_maxY + 2.4f)));
-            _blockCalculator._fullFXpos = ((Vector3)firstSpot + bns_LU.position + bns_RD.position + bns_RU.position)/4;
 
+            Vector2 _bnsSize = new Vector2(_cellSizeY * 0.5f, _cellSizeY * 0.5f);
+
+
+            bnsFull.transform.GetChild(0).localScale = _bnsSize;
+            Transform bns_LU = bnsFull.transform.GetChild(1);
+            bns_LU.localPosition = new Vector2(0, (_cellSizeY * (_maxY + 0.25f)));
+            bns_LU.localScale = _bnsSize;
+            Transform bns_RD = bnsFull.transform.GetChild(2);
+            bns_RD.localPosition = new Vector2((_cellSizeY * (_maxX + 0.5f)),0);
+            bns_RD.localScale = _bnsSize;
+
+            Transform bns_RU = bnsFull.transform.GetChild(3);
+            bns_RU.localPosition = new Vector2((_cellSizeY * (_maxX + 0.5f)), (_cellSizeY * (_maxY + 0.25f)));
+            bns_RU.localScale = _bnsSize;
+
+            _blockCalculator._fullFXpos = ((Vector3)firstSpot + bns_LU.position + bns_RD.position + bns_RU.position)/4;
+            _blockCalculator.CalcBonusLine(_blockPlacedArr);
         }
 
         #endregion
@@ -329,7 +349,7 @@ namespace ToronPuzzle
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                //TestCaller.instance.DebugArrayShape("current", _blockPlacedArr);
+                TestCaller.instance.DebugArrayShape("current", _blockPlacedArr);
             }
         }
 
@@ -342,13 +362,13 @@ namespace ToronPuzzle
             _placedBlocks.Add(_Block);
             PlaceBlockDataOnArray(_Block._blockInfo);
             ResetPreview();
+            _blockCalculator.CalcBonusLine(_blockPlacedArr);
+
         }
         public void RemoveBlockOnPlace(BlockCase_BlockPlace _Block)
         {
             Debug.Log("call delete");
-
             _placedBlocks.Remove(_Block);
-
             ResetPreview();
 
         }

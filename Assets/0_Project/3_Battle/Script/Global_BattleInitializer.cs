@@ -9,7 +9,7 @@ namespace ToronPuzzle.Battle
 {
     public class Global_BattleInitializer : MonoBehaviour
     {
-        //¹èÆ²»çÀü ¼³Á¤Àº ¿©±â¼­ ÇÑ´Ù¿ë
+        //ë°°í‹€ì‚¬ì „ ì„¤ì •ì€ ì—¬ê¸°ì„œ í•œë‹¤ìš©
         [SerializeField]
         BGMName currentBGM = BGMName.Normal_Battle;
         [SerializeField]
@@ -35,7 +35,7 @@ namespace ToronPuzzle.Battle
 
         private void Start()
         {
-            Global_InWorldEventSystem.CallOn¹èÆ²½ÃÀÛ();
+            Global_InWorldEventSystem.CallOnë°°í‹€ì‹œì‘();
         }
 
     }

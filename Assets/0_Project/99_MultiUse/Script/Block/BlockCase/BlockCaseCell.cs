@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace ToronPuzzle
 {
-    //ºí·Ï ÄÉÀÌ½º ¼¿Àº °¢ ¼¿À» ÀÇ¹ÌÇÑ´Ù.
-    //UI ¿ùµå·Î ³ª´µ¸ç
-    //¸ðµâ¿¡¼­µµ È°¿ëµÇ¸ç ÇöÀç´Â »çÀÌÁî¸¸ Á¶Àý °¡´ÉÇÑ ¼öÁØÀ¸·Î ¸¸µéÀÚ.
+    //ë¸”ë¡ ì¼€ì´ìŠ¤ ì…€ì€ ê° ì…€ì„ ì˜ë¯¸í•œë‹¤.
+    //UI ì›”ë“œë¡œ ë‚˜ë‰˜ë©°
+    //ëª¨ë“ˆì—ì„œë„ í™œìš©ë˜ë©° í˜„ìž¬ëŠ” ì‚¬ì´ì¦ˆë§Œ ì¡°ì ˆ ê°€ëŠ¥í•œ ìˆ˜ì¤€ìœ¼ë¡œ ë§Œë“¤ìž.
     public class BlockCaseCell : BlockCase
     {
         public Vector2Int _cellPos=new Vector2Int(-1,-1);
@@ -28,7 +28,7 @@ namespace ToronPuzzle
         {
 
         }
-        //°¡½Ã¼º+ ºÐ¾÷¸¦ À§ÇÑ ºÐ¸®
+        //ê°€ì‹œì„±+ ë¶„ì—…ë¥¼ ìœ„í•œ ë¶„ë¦¬
         public virtual void LiftCell() { }
         public virtual void ResetCell() { }
 

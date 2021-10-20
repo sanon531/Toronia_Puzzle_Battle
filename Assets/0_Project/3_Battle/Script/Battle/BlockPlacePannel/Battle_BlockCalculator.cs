@@ -13,7 +13,7 @@ namespace ToronPuzzle.Battle
         int AggressiveNum, CynicalNum, FriendlyNum, EmptinessNum = 0;
         int _bonusNum = 0;
 
-        public void CalcBonusLine(int[,] _arg_Arr)
+        public override void CalcBonusLine(int[,] _arg_Arr)
         {
             _filledLineX.Clear();
             _filledLineY.Clear();

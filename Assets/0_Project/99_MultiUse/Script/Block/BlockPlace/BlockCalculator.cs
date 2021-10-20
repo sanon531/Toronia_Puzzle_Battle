@@ -24,5 +24,7 @@ namespace ToronPuzzle
 
         }
 
+        public virtual void CalcBonusLine(int[,] _arg_Arr) { }
+
     }
 }

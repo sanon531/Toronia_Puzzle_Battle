@@ -13,7 +13,7 @@ namespace ToronPuzzle
         [SerializeField]
         BlockInfo _lastBlockInfo;
         #region
-        GameObject _spawned;//¸Å°³·Î »ç¿ëµÇ´Â º¯¼ö
+        GameObject _spawned;//ë§¤ê°œë¡œ ì‚¬ìš©ë˜ëŠ” ë³€ìˆ˜
         [SerializeField]
         GameObject _blockCase_PlaceCase, _blockCase_World, _worldBlock, _UIBlock, _outLinerWorld, _outlinerUI;
         [SerializeField]
@@ -62,14 +62,14 @@ namespace ToronPuzzle
 
         }
 
-        //ºí·Ï ÇÃ·¹ÀÌ¼­¿¡ ¹¹°¡ µÇ¾úµç ÀÏ´Ü ³õ´Â´Ù.
+        //ë¸”ë¡ í”Œë ˆì´ì„œì— ë­ê°€ ë˜ì—ˆë“  ì¼ë‹¨ ë†“ëŠ”ë‹¤.
         public GameObject GenerateOnBlockPlace(BlockInfo _inputInfo)
         {
             _lastBlockInfo = _inputInfo;
             int[,] _tempt_BlockArray = (int[,])_lastBlockInfo._blockShapeArr.Clone();
             Vector2 InputSize = Master_Battle.Data_OnlyInBattle._cellsize;
             
-            //ÄÉÀÌ½º »ı¼º
+            //ì¼€ì´ìŠ¤ ìƒì„±
             GameObject CaseObject = 
                 Instantiate(_blockCase_PlaceCase, Global_BlockPlaceMaster.instance.GetCellPosByOrder(_inputInfo._blockPlace), 
                 Quaternion.identity, Global_BlockPlaceMaster.instance._blockHolder);
@@ -80,7 +80,7 @@ namespace ToronPuzzle
             int _maxX = _tempt_BlockArray.GetLength(0);
             int _maxY = _tempt_BlockArray.GetLength(1);
 
-            //ÄÉÀÌ½º ¿ÀºêÁ§Æ® ·ÎÄÃ À§Ä¡ ¼³Á¤(Æ÷Áö¼ÇÀ¸·Î ÇÔ ¿À·ù ¾Æ´Ô) 
+            //ì¼€ì´ìŠ¤ ì˜¤ë¸Œì íŠ¸ ë¡œì»¬ ìœ„ì¹˜ ì„¤ì •(í¬ì§€ì…˜ìœ¼ë¡œ í•¨ ì˜¤ë¥˜ ì•„ë‹˜) 
             CaseObject.transform.position += new Vector3(InputSize.x * (1 - _maxX), 0,0);
           
 
@@ -118,7 +118,7 @@ namespace ToronPuzzle
             _current_Case._blockInfo = new BlockInfo(_lastBlockInfo);
             //TestCaller.instance.DebugArrayShape(_current_Case._blockInfo._blockShapeArr);
             Global_BlockPlaceMaster.instance.AddBlockOnPlace(_current_Case);
-            Global_InWorldEventSystem.CallOnºí·Ï¹èÄ¡();
+            Global_InWorldEventSystem.CallOnë¸”ë¡ë°°ì¹˜(_lastBlockInfo);
             Global_SoundManager.Instance.PlaySFX(SFXName.BlockPlaced);
             return CaseObject;
         }
@@ -129,7 +129,7 @@ namespace ToronPuzzle
             int[,] _tempt_BlockArray = (int[,])_inputInfo._blockShapeArr.Clone();
             Vector2 InputSize = Master_Battle.Data_OnlyInBattle._cellsize;
 
-            //ÄÉÀÌ½º »ı¼º
+            //ì¼€ì´ìŠ¤ ìƒì„±
             GameObject CaseObject =Instantiate(_blockCase_World, _pointerTranform.position, 
                 Quaternion.identity, _pointerTranform);
 
@@ -138,7 +138,7 @@ namespace ToronPuzzle
             _current_Case._blockInfo = new BlockInfo(_inputInfo);
             int _maxX = _tempt_BlockArray.GetLength(0);
             int _maxY = _tempt_BlockArray.GetLength(1);
-            //ÄÉÀÌ½ºÀÇ ·ÎÄÃÀ§Ä¡ ¼³Á¤
+            //ì¼€ì´ìŠ¤ì˜ ë¡œì»¬ìœ„ì¹˜ ì„¤ì •
             CaseObject.transform.localPosition = new Vector2(InputSize.x * (1-_maxX),0);
 
 
@@ -175,7 +175,7 @@ namespace ToronPuzzle
             _current_Case.SetCaseToCenter();
 
 
-            Global_InWorldEventSystem.CallOnºí·Ï¹èÄ¡();
+            Global_InWorldEventSystem.CallOnë¸”ë¡ë°°ì¹˜(_lastBlockInfo);
 
             return CaseObject;
         }
@@ -185,7 +185,7 @@ namespace ToronPuzzle
             _lastBlockInfo = _inputInfo;
             int[,] _tempt_BlockArray = (int[,])_lastBlockInfo._blockShapeArr.Clone();
 
-            //³»ºÎ¿¡¼­ »ç¿ëµÉ ºí·ÏÀÇ »çÀÌÁî
+            //ë‚´ë¶€ì—ì„œ ì‚¬ìš©ë  ë¸”ë¡ì˜ ì‚¬ì´ì¦ˆ
             int _maxX = _tempt_BlockArray.GetLength(0);
             int _maxY = _tempt_BlockArray.GetLength(1);
             int _longerMax = _maxX > _maxY ? _maxX : _maxY;
@@ -195,11 +195,11 @@ namespace ToronPuzzle
             Vector2 InputSize = new Vector2(_length, _length);
             //TestCaller.instance.DebugArrayShape(_tempt_BlockArray);
 
-            //ÄÉÀÌ½º »ı¼º
+            //ì¼€ì´ìŠ¤ ìƒì„±
             GameObject CaseObject = _casePos.gameObject;
             BlockCase_World _current_Case = CaseObject.GetComponent<BlockCase_World>();
 
-            //ÄÉÀÌ½º ¿ÀºêÁ§Æ® ·ÎÄÃ À§Ä¡ ¼³Á¤
+            //ì¼€ì´ìŠ¤ ì˜¤ë¸Œì íŠ¸ ë¡œì»¬ ìœ„ì¹˜ ì„¤ì •
             //CaseObject.transform.localPosition += new Vector3(InputSize.x * (1 - _maxX), 0, 0);
 
 
@@ -237,7 +237,7 @@ namespace ToronPuzzle
             _current_Case._blockInfo = new BlockInfo(_lastBlockInfo);
 
 
-            Global_InWorldEventSystem.CallOnºí·Ï¹èÄ¡();
+            Global_InWorldEventSystem.CallOnë¸”ë¡ë°°ì¹˜(_lastBlockInfo);
             return CaseObject;
         }
 

@@ -5,51 +5,51 @@ using ToronPuzzle.Battle;
 
 namespace ToronPuzzle.Event
 {
-    public delegate void OnÀÌº¥Æ®();
+    public delegate void Onì´ë²¤íŠ¸();
 
-    public delegate void OnCalcµ¥ÀÌÅÍ_0Çü½Ä(DataEntity Á¤º¸Ã¼);
-    public delegate void OnCalcµ¥ÀÌÅÍ_1Çü½Ä(Data_Character ´ë»ó, DataEntity Á¤º¸Ã¼);
-    public delegate void OnCalcµ¥ÀÌÅÍ_2Çü½Ä(Data_Character Á¤º¸°è»êÁÖÃ¼, Data_Character ºÎÃ¼, DataEntity Á¤º¸Ã¼);
+    public delegate void OnCalcë°ì´í„°_0í˜•ì‹(DataEntity ì •ë³´ì²´);
+    public delegate void OnCalcë°ì´í„°_1í˜•ì‹(Data_Character ëŒ€ìƒ, DataEntity ì •ë³´ì²´);
+    public delegate void OnCalcë°ì´í„°_2í˜•ì‹(Data_Character ì •ë³´ê³„ì‚°ì£¼ì²´, Data_Character ë¶€ì²´, DataEntity ì •ë³´ì²´);
+    //ë¸”ë¡ì— ì˜í•œ ì´ë²¤íŠ¸ì„
+    public delegate void Onëª¨ë“ˆì´ë²¤íŠ¸(BlockInfo ë¸”ë¡ì •ë³´);
+    public delegate void Onë°°í‹€ì´ë²¤íŠ¸();
 
-    public delegate void On¸ğµâÀÌº¥Æ®(Module module);
-    public delegate void On¹èÆ²ÀÌº¥Æ®();
-
-    public delegate void OnÈŞ½ÄÈ¸º¹(DataEntity Á¤º¸Ã¼);
-    public delegate void OnÀÌº¥Æ®With¼öÄ¡°ª(int ¼öÄ¡°ª);
-    public delegate void OnÀÌº¥Æ®With´ë»ó¼öÄ¡°ª(Data_Character ´ë»óÀÚ, int ¼öÄ¡°ª);
+    public delegate void Oníœ´ì‹íšŒë³µ(DataEntity ì •ë³´ì²´);
+    public delegate void Onì´ë²¤íŠ¸Withìˆ˜ì¹˜ê°’(int ìˆ˜ì¹˜ê°’);
+    public delegate void Onì´ë²¤íŠ¸WithëŒ€ìƒìˆ˜ì¹˜ê°’(Data_Character ëŒ€ìƒì, int ìˆ˜ì¹˜ê°’);
 
 
     public static class Global_InWorldEventSystem 
     {
-        //¸Ê
-        public static event OnÀÌº¥Æ® on¸ÊÀÔÀå;
-        public static void CallOn¸ÊÀÔÀå() { on¸ÊÀÔÀå?.Invoke(); }
+        //ë§µ
+        public static event Onì´ë²¤íŠ¸ onë§µì…ì¥;
+        public static void CallOnë§µì…ì¥() { onë§µì…ì¥?.Invoke(); }
 
-        public static event OnÀÌº¥Æ® on³ëµå¼±ÅÃ;
-        public static void CallOn³ëµå¼±ÅÃ() { on³ëµå¼±ÅÃ?.Invoke(); }
-        public static event OnÀÌº¥Æ® on³ëµå·Îµå¿Ï·á;
-        public static void CallOn³ëµå·Îµå¿Ï·á() { on³ëµå·Îµå¿Ï·á?.Invoke(); }
+        public static event Onì´ë²¤íŠ¸ onë…¸ë“œì„ íƒ;
+        public static void CallOnë…¸ë“œì„ íƒ() { onë…¸ë“œì„ íƒ?.Invoke(); }
+        public static event Onì´ë²¤íŠ¸ onë…¸ë“œë¡œë“œì™„ë£Œ;
+        public static void CallOnë…¸ë“œë¡œë“œì™„ë£Œ() { onë…¸ë“œë¡œë“œì™„ë£Œ?.Invoke(); }
 
 
-        //¹èÆ² Áß ÀÌº¥Æ® 
-        public static event OnÀÌº¥Æ® onTouchMain;
+        //ë°°í‹€ ì¤‘ ì´ë²¤íŠ¸ 
+        public static event Onì´ë²¤íŠ¸ onTouchMain;
         public static void CallOnTouchMain() { onTouchMain?.Invoke(); }
 
 
-        public static event OnÀÌº¥Æ® on¹èÆ²½ÃÀÛ;
-        public static void CallOn¹èÆ²½ÃÀÛ() { on¹èÆ²½ÃÀÛ?.Invoke(); }
+        public static event Onì´ë²¤íŠ¸ onë°°í‹€ì‹œì‘;
+        public static void CallOnë°°í‹€ì‹œì‘() { onë°°í‹€ì‹œì‘?.Invoke(); }
 
-        public static event OnÀÌº¥Æ® onÆÇ»ı¼º;
-        public static void CallOnÆÇ»ı¼º() { onÆÇ»ı¼º?.Invoke(); }
+        public static event Onì´ë²¤íŠ¸ oníŒìƒì„±;
+        public static void CallOníŒìƒì„±() { oníŒìƒì„±?.Invoke(); }
 
-        public static event OnÀÌº¥Æ® onºí·Ï¹èÄ¡;
-        public static void CallOnºí·Ï¹èÄ¡() { onºí·Ï¹èÄ¡?.Invoke(); }
+        public static event Onëª¨ë“ˆì´ë²¤íŠ¸ onë¸”ë¡ë°°ì¹˜;
+        public static void CallOnë¸”ë¡ë°°ì¹˜(BlockInfo module) { onë¸”ë¡ë°°ì¹˜?.Invoke(module); }
 
 
-        public static event OnÀÌº¥Æ® on°è»êÁ÷Àü;
-        public static void CallOn°è»êÁ÷Àü() { on°è»êÁ÷Àü?.Invoke(); }
-        public static event OnÀÌº¥Æ® onÆÇ°è»ê;
-        public static void CallOnÆÇ°è»ê() { onÆÇ°è»ê?.Invoke(); }
+        public static event Onì´ë²¤íŠ¸ onê³„ì‚°ì§ì „;
+        public static void CallOnê³„ì‚°ì§ì „() { onê³„ì‚°ì§ì „?.Invoke(); }
+        public static event Onì´ë²¤íŠ¸ oníŒê³„ì‚°;
+        public static void CallOníŒê³„ì‚°() { oníŒê³„ì‚°?.Invoke(); }
 
 
     }
