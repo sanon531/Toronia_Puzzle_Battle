@@ -13,6 +13,11 @@ namespace ToronPuzzle.Data
         Two_H, Two_V,
         Three_V, Three_H, Three_G, Three_AG,
         Four_D, Four_V, Four_S, Four_AS, Four_T, Four_G, Four_AG,
+
+
+
+
+        Full_Four_Six,
         UnDefined
 
     }
@@ -20,9 +25,9 @@ namespace ToronPuzzle.Data
     {
         public static Dictionary<BlockShape, int[,]> shapeDic = new Dictionary<BlockShape, int[,]>()
     {
-        //°¡·Î Á÷¼±Àº V, ¼¼·Î Á÷¼±Àº H, ±â¿ªÀÚ´Â G, ¿ª±â¿ªÀÚ´Â AG
-        //Á¡ ¶Ç´Â ³×¸ğ´Â D, TÀÚ´Â T, ½ÊÀÚ°¡´Â C, ¼Ò¹®ÀÚb ÇüÀº b , ¼Ò¹®ÀÚ dÇüÀº d , 
-        //¹ø°³ ¸ğ¾çÀº S, ¹İ´ë ¹ø°³ ¸ğ¾çÀº AS
+        //ê°€ë¡œ ì§ì„ ì€ V, ì„¸ë¡œ ì§ì„ ì€ H, ê¸°ì—­ìëŠ” G, ì—­ê¸°ì—­ìëŠ” AG
+        //ì  ë˜ëŠ” ë„¤ëª¨ëŠ” D, TìëŠ” T, ì‹­ìê°€ëŠ” C, ì†Œë¬¸ìb í˜•ì€ b , ì†Œë¬¸ì dí˜•ì€ d , 
+        //ë²ˆê°œ ëª¨ì–‘ì€ S, ë°˜ëŒ€ ë²ˆê°œ ëª¨ì–‘ì€ AS
 
         {BlockShape.One_D, new int[,]{ {1} } },
         {BlockShape.Two_H, new int[,]{ {1,1}}},
@@ -38,6 +43,7 @@ namespace ToronPuzzle.Data
         {BlockShape.Four_T, new int[,]{ { 1, 1, 1 },{ 0,1,0 }}},
         {BlockShape.Four_G, new int[,]{ { 1,1,1 },{0,0,1 }}},
         {BlockShape.Four_AG, new int[,]{ { 1,1,1 },{1,0,0 }}},
+        {BlockShape.Full_Four_Six, new int[,]{ { 1,1,1,1 },{ 1,1,1,1 },{ 1,1,1,1 },{ 1,1,1,1 },{ 1,1,1,1 },{ 1,1,1,1 },}},
 
 
 

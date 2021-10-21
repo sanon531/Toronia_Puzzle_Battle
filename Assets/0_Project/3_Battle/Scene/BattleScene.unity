@@ -1816,7 +1816,7 @@ MonoBehaviour:
     ModuleName: 
     _blockElement: 4
     _blockStength: 1
-    _blockShape: 10
+    _blockShape: 14
     _blockPlace: {x: -1, y: -1}
   BlockSize: {x: 180, y: 180}
   centerData: {x: 0, y: 0, z: 0}
@@ -2564,7 +2564,7 @@ MonoBehaviour:
     ModuleName: 
     _blockElement: 2
     _blockStength: 1
-    _blockShape: 0
+    _blockShape: 14
     _blockPlace: {x: 1, y: 1}
   BlockSize: {x: 180, y: 180}
   _cellPos: {x: 1, y: 1}

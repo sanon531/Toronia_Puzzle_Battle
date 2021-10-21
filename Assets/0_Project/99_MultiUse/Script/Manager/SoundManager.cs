@@ -37,7 +37,7 @@ namespace ToronPuzzle
         }
         public virtual void PlaySFX(SFXName name,float _delayedTime)
         {
-            _currentSFXManager[name].Play();
+            StartCoroutine(DelayedPlay(_currentSFXManager[name],_delayedTime));
         }
 
         IEnumerator DelayedPlay(AudioSource source, float delayedtime)

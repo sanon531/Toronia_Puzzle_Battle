@@ -12,12 +12,13 @@ namespace ToronPuzzle
 
         [SerializeField]
         protected List<int> _filledLineX = new List<int>();
-
         [SerializeField]
         protected List<int> _filledLineY = new List<int>();
         public GameObject PerfectSetting;
-
         public Vector2 _fullFXpos = new Vector2();
+
+        public ElementVectorDictionary _currentElementValue;
+
         public virtual void BeginBlockcCalculaor()
         {
 

@@ -4,18 +4,17 @@ using UnityEngine;
 
 namespace ToronPuzzle
 {
+
     public class BlockCase_Module : BlockCase
     {
-        // Start is called before the first frame update
-        void Start()
+        public ModuleInfo _moduleInfo;
+
+        public BlockCase_Module(BlockInfo argBlockinfo, ModuleInfo argModuleinfo)
         {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            _blockInfo = new BlockInfo(argBlockinfo);
+            _moduleInfo = argModuleinfo;
         }
     }
+
+
 }

@@ -28,28 +28,28 @@ namespace ToronPuzzle.Data
         Ally,
         Enemy
     }
-    // ÅÏ¼ö°¡ Áö³²¿¡µû¶ó °¨¼ÒÇÏ´Â »óÅÂÀÌ»ó°ú ¾Æ´Ñ »óÅÂÀÌ»óÀ¸·Î ³ª´¸ 
-    // ÇØ´çÇÏ´Â »óÅÂ¿¡ µû¶ó ÀÌÆåÆ®°¡ ´Þ¶óÁü 
+    // í„´ìˆ˜ê°€ ì§€ë‚¨ì—ë”°ë¼ ê°ì†Œí•˜ëŠ” ìƒíƒœì´ìƒê³¼ ì•„ë‹Œ ìƒíƒœì´ìƒìœ¼ë¡œ ë‚˜ë‰¨ 
+    // í•´ë‹¹í•˜ëŠ” ìƒíƒœì— ë”°ë¼ ì´íŽ™íŠ¸ê°€ ë‹¬ë¼ì§ 
     public enum CharStatusEffect
     {
-        //ÇÕ¸® Æ÷ÀÎÆ® Àý¹ÝÀÏ¶§
+        //í•©ë¦¬ í¬ì¸íŠ¸ ì ˆë°˜ì¼ë•Œ
         Tired = 0,
-        //¹æ¾î·Â°¨¼Ò
+        //ë°©ì–´ë ¥ê°ì†Œ
         Confused = 1,
-        //°ø°Ý·Â °¨¼Ò
+        //ê³µê²©ë ¥ ê°ì†Œ
         Depressed = 2,
-        //¹æ¾î·Â Áõ°¡ °¨¼Ò¶û ÁßÃ¸ ºÒ°¡
+        //ë°©ì–´ë ¥ ì¦ê°€ ê°ì†Œëž‘ ì¤‘ì²© ë¶ˆê°€
         Concentrate = 3,
-        //°ø°Ý·Â Áõ°¡ °¨¼Ò¶û ÁßÃ¸ ºÒ°¡
+        //ê³µê²©ë ¥ ì¦ê°€ ê°ì†Œëž‘ ì¤‘ì²© ë¶ˆê°€
         Boasted = 4,
         Surprised = 5,
         Rage,
         Compassion,
         Horror,
         Brave,
-        //µ¶µ©
+        //ë…ëŽ€
         Painful,
-        //È¸º¹
+        //íšŒë³µ
         Relaxed
 
 
