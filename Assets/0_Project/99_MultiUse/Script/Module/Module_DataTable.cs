@@ -40,6 +40,11 @@ public class Module_DataTable
     bool isonoff;
     public bool Isonoff { get { return isonoff; } set { this.isonoff = value; } }
 
+    [SerializeField]
+    bool isRight;
+    public bool IsRight { get { return isRight; } set { this.isRight = value; } }
+
+
     public Module_DataTable()
     {
 

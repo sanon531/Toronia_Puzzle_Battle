@@ -189,7 +189,6 @@ namespace ToronPuzzle
         //블록의 배치 위치를 int 형의 구조물에 올린다.
         //없음 = 0, 일반 블럭 = 1, , 모듈 = 3 , 트리거 공간 = 4,
         int[,] _blockPlacedArr;
-        int[,] _blockTemptArr;
 
 
         //블럭만 대상으로 세팅함.

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ToronPuzzle
 {
-
+    [System.Serializable]
     public class BlockCase_Module : BlockCase
     {
         public ModuleInfo _moduleInfo;

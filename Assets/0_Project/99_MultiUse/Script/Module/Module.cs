@@ -36,6 +36,8 @@ namespace ToronPuzzle
             Disable();
         }
 
+
+        public bool IsRightness= true;
         protected int[] _artifactEffectValues;
         protected Property _properties;
         public Property properties { get { return _properties; } }

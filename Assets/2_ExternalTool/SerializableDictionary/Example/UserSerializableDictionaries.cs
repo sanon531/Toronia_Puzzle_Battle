@@ -26,6 +26,11 @@ public class FXObjectDictionary : SerializableDictionary<FXKind, GameObject> { }
 
 [Serializable]
 public class StringAudioDictionary : SerializableDictionary<string, AudioSource> { }
+[Serializable]
+public class ModulePosDic : SerializableDictionary<ModuleID, Vector2Int> { }
+[Serializable]
+public class ModuleShapeDic : SerializableDictionary<ModuleID, int[,]> { }
+
 
 [Serializable]
 public class KeyAimDictionary : SerializableDictionary<KeyCode, CameraAimEnum> { }
