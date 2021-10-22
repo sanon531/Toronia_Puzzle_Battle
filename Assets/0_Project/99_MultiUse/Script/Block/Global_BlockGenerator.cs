@@ -242,6 +242,16 @@ namespace ToronPuzzle
         }
 
 
+        public GameObject GenerateModuleOnBlockPlace(BlockInfo _inputInfo)
+        {
+
+
+
+
+            //임시
+            return gameObject;
+        }
+
 
 
         Material SetElementToBlockMaterial(BlockElement _element)

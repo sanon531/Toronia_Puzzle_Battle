@@ -7,12 +7,11 @@ namespace ToronPuzzle
     [System.Serializable]
     public class BlockCase_Module : BlockCase
     {
-        public ModuleInfo _moduleInfo;
-
-        public BlockCase_Module(BlockInfo argBlockinfo, ModuleInfo argModuleinfo)
+        
+        public BlockCase_Module()
         {
-            _blockInfo = new BlockInfo(argBlockinfo);
-            _moduleInfo = argModuleinfo;
+            _blockInfo._type = BlockType.Module;
+            _blockInfo._isLiftable = false;
         }
     }
 

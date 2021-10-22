@@ -9,14 +9,15 @@ namespace ToronPuzzle
     [Serializable]
     public class BlockInfo
     {
-        public bool IsLiftable = false;
+        public bool _isLiftable = false;
         public string ModuleName = "";
         public BlockElement _blockElement;
         public int _blockStength = 0;
         public BlockShape _blockShape;
         public int[,] _blockShapeArr = new int[1, 1];
         public Vector2Int _blockPlace = new Vector2Int(-1,-1);
-
+        public BlockType _type = BlockType.Block;
+        public ModuleInfo _moduleInfo;
 
 
 
@@ -32,6 +33,7 @@ namespace ToronPuzzle
 
         public BlockInfo(BlockElement arg_element, BlockShape arg_Shape)
         {
+            _type = BlockType.Block;
             _blockElement = arg_element;
             _blockShapeArr = (int[,])BlockShapePool.shapeDic[arg_Shape].Clone();
             _blockShape = arg_Shape;
@@ -40,6 +42,7 @@ namespace ToronPuzzle
         }
         public BlockInfo(BlockElement arg_element, BlockShape arg_Shape, Vector2Int SetPos)
         {
+            _type = BlockType.Block;
             _blockElement = arg_element;
             _blockShapeArr = (int[,])BlockShapePool.shapeDic[arg_Shape].Clone();
             _blockShape = arg_Shape;
@@ -49,6 +52,7 @@ namespace ToronPuzzle
         }
         public BlockInfo(BlockElement arg_element, BlockShape arg_Shape, Vector2Int arg_SetPos, string arg_name)
         {
+            _type = BlockType.Block;
             _blockElement = arg_element;
             ModuleName = arg_name;
             _blockShapeArr = (int[,])BlockShapePool.shapeDic[arg_Shape].Clone();
@@ -56,15 +60,54 @@ namespace ToronPuzzle
             _blockStength = 0;
             CheckBlockNum();
         }
+        public BlockInfo(BlockElement arg_element, int[,] arg_blockShapeArr, Vector2Int arg_SetPos, string arg_name)
+        {
+            _type = BlockType.Block;
+            _blockElement = arg_element;
+            ModuleName = arg_name;
+            _blockShapeArr = (int[,])arg_blockShapeArr.Clone();
+            _blockShape = BlockShape.UnDefined;
+            _blockStength = 0;
+            CheckBlockNum();
+        }
         public BlockInfo(BlockInfo blockInfo)
         {
-            IsLiftable = blockInfo.IsLiftable;
+            _type = BlockType.Block;
+            _isLiftable = blockInfo._isLiftable;
             ModuleName = blockInfo.ModuleName;
             _blockElement = blockInfo._blockElement;
             _blockStength = blockInfo._blockStength;
             _blockShape = blockInfo._blockShape;
             _blockShapeArr = (int[,])blockInfo._blockShapeArr.Clone();
             _blockPlace = blockInfo._blockPlace;
+        }
+
+        /// <summary>
+        /// 모듈의 데이터를 넣는데 활용하는 생성자.
+        /// </summary>
+        public BlockInfo(BlockElement arg_element, int[,] arg_blockShapeArr, Vector2Int arg_SetPos, ModuleInfo arg_ModuleInfo, string arg_name)
+        {
+            _type = BlockType.Module;
+            _blockElement = arg_element;
+            ModuleName = arg_name;
+            _blockShapeArr = (int[,])arg_blockShapeArr.Clone();
+            _blockShape = BlockShape.UnDefined;
+            _blockStength = 0;
+            CheckBlockNum();
+            _moduleInfo = arg_ModuleInfo;
+        }
+        public BlockInfo(BlockInfo blockInfo, ModuleInfo arg_ModuleInfo)
+        {
+            _type = BlockType.Module;
+
+            _isLiftable = blockInfo._isLiftable;
+            ModuleName = blockInfo.ModuleName;
+            _blockElement = blockInfo._blockElement;
+            _blockStength = blockInfo._blockStength;
+            _blockShape = blockInfo._blockShape;
+            _blockShapeArr = (int[,])blockInfo._blockShapeArr.Clone();
+            _blockPlace = blockInfo._blockPlace;
+            _moduleInfo = arg_ModuleInfo;
         }
 
 

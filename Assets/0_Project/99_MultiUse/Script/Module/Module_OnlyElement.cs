@@ -24,7 +24,41 @@ namespace ToronPuzzle.Data
     }
 
 
-    public sealed class Module_°­°æ¾÷±Û : ModuleInfo
+    public sealed class Module_ê°•ê²½ì—…ê¸€ : ModuleInfo
+    {
+        protected override void Enable()
+        {
+            base.Enable();
+
+
+        }
+        protected override void Disable()
+        {
+            base.Disable();
+
+
+        }
+
+
+    }
+    public sealed class Module_ëƒ‰ì†Œì—…ê¸€ : ModuleInfo
+    {
+        protected override void Enable()
+        {
+            base.Enable();
+
+
+        }
+        protected override void Disable()
+        {
+            base.Disable();
+
+
+        }
+
+
+    }
+    public sealed class Module_ìš°í˜¸ì—…ê¸€ : ModuleInfo
     {
         protected override void Enable()
         {

@@ -8,10 +8,18 @@ using ToronPuzzle.Data;
 
 namespace ToronPuzzle
 {
+    public enum BlockType
+    {
+        Block,Module
+    }
     public class Global_DragDropManager : MonoBehaviour
     {
-        // Update is called once per frame
+        
         public static Global_DragDropManager instance;
+        /// <summary>
+        /// 맵에서는 모듈을 만들고. 모듈의 저장과 분리가 가능해지도록, 
+        /// </summary>
+        BlockType _genBlockType;
         bool _isPicked;
         
         [SerializeField]
@@ -41,6 +49,12 @@ namespace ToronPuzzle
 
 
         }
+        public void SetCurrentSceneData(BlockType _type)
+        {
+            _genBlockType = _type;
+
+        }
+
 
 
         void Update()

@@ -39,7 +39,7 @@ namespace ToronPuzzle
         #region
         public override bool CheckLiftable()
         {
-            return _blockInfo.IsLiftable;
+            return _blockInfo._isLiftable;
         }
 
 

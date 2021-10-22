@@ -598,6 +598,7 @@ MonoBehaviour:
   _bonusHolder: {fileID: 123886660}
   _blockCalculator: {fileID: 0}
   _placedBlocks: []
+  _moduleBlocks: []
 --- !u!1 &313222172
 GameObject:
   m_ObjectHideFlags: 0
@@ -1663,12 +1664,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lastBlockInfo:
-    IsLiftable: 0
+    _isLiftable: 0
     ModuleName: 
     _blockElement: 3
     _blockStength: 0
     _blockShape: 14
     _blockPlace: {x: -1, y: -1}
+    _type: 0
+    _moduleInfo:
+      IsRightness: 1
+      _properties: 0
+      _rarity: 0
+      _artifactID: 0
+      _value: 0
   _blockCase_PlaceCase: {fileID: 0}
   _blockCase_World: {fileID: 0}
   _worldBlock: {fileID: 0}
@@ -1816,12 +1824,19 @@ MonoBehaviour:
   _maxBlockX: 0
   _maxBlockY: 1
   _blockInfo:
-    IsLiftable: 1
+    _isLiftable: 0
     ModuleName: 
     _blockElement: 4
     _blockStength: 1
     _blockShape: 14
     _blockPlace: {x: -1, y: -1}
+    _type: 0
+    _moduleInfo:
+      IsRightness: 1
+      _properties: 0
+      _rarity: 0
+      _artifactID: 0
+      _value: 0
   BlockSize: {x: 180, y: 180}
   centerData: {x: 0, y: 0, z: 0}
   OriginCenter: {x: 0, y: 0, z: 0}
@@ -2564,12 +2579,19 @@ MonoBehaviour:
   _maxBlockX: 1
   _maxBlockY: 1
   _blockInfo:
-    IsLiftable: 1
+    _isLiftable: 0
     ModuleName: 
     _blockElement: 2
     _blockStength: 1
     _blockShape: 14
     _blockPlace: {x: 1, y: 1}
+    _type: 0
+    _moduleInfo:
+      IsRightness: 1
+      _properties: 0
+      _rarity: 0
+      _artifactID: 0
+      _value: 0
   BlockSize: {x: 180, y: 180}
   _cellPos: {x: 1, y: 1}
   _parentCase: {fileID: 608021859}
@@ -3615,7 +3637,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   global_BattleInitializer: {fileID: 1603129940}
-  SizeOfPannel: {x: 4, y: 7}
   _caseSkin: PlacingCell
   _bonusSkin: Bonus_Basic_
 --- !u!1 &1324837032
@@ -3784,12 +3805,19 @@ MonoBehaviour:
   _maxBlockX: 1
   _maxBlockY: 1
   _blockInfo:
-    IsLiftable: 1
+    _isLiftable: 0
     ModuleName: 
     _blockElement: 2
     _blockStength: 1
     _blockShape: 8
     _blockPlace: {x: 1, y: 1}
+    _type: 0
+    _moduleInfo:
+      IsRightness: 1
+      _properties: 0
+      _rarity: 0
+      _artifactID: 0
+      _value: 0
   BlockSize: {x: 180, y: 180}
   _cellPos: {x: 1, y: 1}
   _parentCase: {fileID: 1526321145}
@@ -4235,12 +4263,19 @@ MonoBehaviour:
   _maxBlockX: 0
   _maxBlockY: 1
   _blockInfo:
-    IsLiftable: 1
+    _isLiftable: 0
     ModuleName: 
     _blockElement: 0
     _blockStength: 1
     _blockShape: 8
     _blockPlace: {x: -1, y: -1}
+    _type: 0
+    _moduleInfo:
+      IsRightness: 1
+      _properties: 0
+      _rarity: 0
+      _artifactID: 0
+      _value: 0
   BlockSize: {x: 180, y: 180}
   centerData: {x: 0, y: 0, z: 0}
   OriginCenter: {x: 0, y: 0, z: 0}
@@ -5117,8 +5152,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1081b3a378df41e4cbfaa6c185bd49f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDebug: 0
-  _debug_ModuleIDs: 00000000
+  _placePannelData:
+    _maxX: 4
+    _maxY: 6
+    _moduleBlockInfos:
+    - _isLiftable: 0
+      ModuleName: 
+      _blockElement: 0
+      _blockStength: 0
+      _blockShape: 0
+      _blockPlace: {x: 0, y: 0}
+      _type: 0
+      _moduleInfo:
+        IsRightness: 0
+        _properties: 0
+        _rarity: 0
+        _artifactID: 0
+        _value: 0
+  isDebug: 1
+  _debug_ModuleIDs: 01000000
+  _currentPlacement:
+    gridSize: {x: 4, y: 6}
+    cellSize: {x: 64, y: 16}
+    cells:
+    - row: 01000000000000000000000000000000
+    - row: 00000000000000000000000000000000
+    - row: 00000000000000000000000000000000
+    - row: 00000000000000000000000000000000
+    - row: 00000000000000000000000000000000
+    - row: 00000000000000000000000000000000
 --- !u!1 &1801562949
 GameObject:
   m_ObjectHideFlags: 0
@@ -5780,12 +5842,19 @@ MonoBehaviour:
   _maxBlockX: 0
   _maxBlockY: 1
   _blockInfo:
-    IsLiftable: 0
+    _isLiftable: 0
     ModuleName: 
     _blockElement: 3
     _blockStength: 0
     _blockShape: 14
     _blockPlace: {x: -1, y: -1}
+    _type: 0
+    _moduleInfo:
+      IsRightness: 1
+      _properties: 0
+      _rarity: 0
+      _artifactID: 0
+      _value: 0
   BlockSize: {x: 180, y: 180}
 --- !u!1 &2116029434
 GameObject:
@@ -6066,12 +6135,19 @@ MonoBehaviour:
   _maxBlockX: 0
   _maxBlockY: 1
   _blockInfo:
-    IsLiftable: 1
+    _isLiftable: 0
     ModuleName: 
     _blockElement: 3
     _blockStength: 1
     _blockShape: 13
     _blockPlace: {x: -1, y: -1}
+    _type: 0
+    _moduleInfo:
+      IsRightness: 1
+      _properties: 0
+      _rarity: 0
+      _artifactID: 0
+      _value: 0
   BlockSize: {x: 180, y: 180}
   centerData: {x: 0, y: 0, z: 0}
   OriginCenter: {x: 0, y: 0, z: 0}
@@ -6287,12 +6363,19 @@ MonoBehaviour:
   _maxBlockX: 1
   _maxBlockY: 1
   _blockInfo:
-    IsLiftable: 1
+    _isLiftable: 0
     ModuleName: 
     _blockElement: 2
     _blockStength: 1
     _blockShape: 13
     _blockPlace: {x: 1, y: 1}
+    _type: 0
+    _moduleInfo:
+      IsRightness: 1
+      _properties: 0
+      _rarity: 0
+      _artifactID: 0
+      _value: 0
   BlockSize: {x: 180, y: 180}
   _cellPos: {x: 1, y: 1}
   _parentCase: {fileID: 4898867344186024950}

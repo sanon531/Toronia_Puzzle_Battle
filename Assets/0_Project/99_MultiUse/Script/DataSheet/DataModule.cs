@@ -18,13 +18,15 @@ namespace ToronPuzzle.Data
             new Dictionary<ModuleID, BlockCase_Module>()
             {
                 { ModuleID.기선제압,
-                    new BlockCase_Module(
-                        new BlockInfo(BlockElement.Aggressive,BlockShape.Two_H),
-                        ModuleEffectDic[ModuleID.기선제압])}
+                    new BlockCase_Module()}
             };
         public static Dictionary<ModuleID, ModuleInfo> ModuleEffectDic =
             new Dictionary<ModuleID, ModuleInfo>()
             {
+                { ModuleID.카리스마Lv1,new Module_강경업글()},
+                { ModuleID.분석력Lv1,new Module_냉소업글()},
+                { ModuleID.따뜻함Lv1,new Module_우호업글()},
+                { ModuleID.기선제압,new Module_ActBegin()}
 
 
             };

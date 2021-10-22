@@ -11,8 +11,14 @@ namespace ToronPuzzle
     {
         [SerializeField]
         Global_BattleInitializer global_BattleInitializer;
-        [SerializeField]
-        Vector2Int SizeOfPannel = new Vector2Int(3, 6);
+
+        Global_CanvasData global_CanvasData;
+        Global_SoundManager global_SoundManager;
+        Global_InGameData global_InGameData;
+        Global_FXPlayer global_FXPlayer;
+        Global_DragDropManager global_DragDropManager;
+        Global_BlockGenerator global_BlockGenerator;
+        Global_BlockPlaceMaster global_BlockPlaceMaster;
         [SerializeField]
         string _caseSkin = "PlacingCell";
         [SerializeField]
@@ -30,26 +36,28 @@ namespace ToronPuzzle
         }
         private void GlobalBegin()
         {
-            Global_CanvasData global_CanvasData = GameObject.Find("Global_Canvas").GetComponent<Global_CanvasData>();
+            global_CanvasData = GameObject.Find("Global_Canvas").GetComponent<Global_CanvasData>();
             global_CanvasData.BeginCanvasData();
-            Global_SoundManager global_SoundManager = GameObject.Find("Global_SoundManager").GetComponent<Global_SoundManager>();
+            global_SoundManager = GameObject.Find("Global_SoundManager").GetComponent<Global_SoundManager>();
             global_SoundManager.BeginSoundManager();
-            Global_FXPlayer global_FXPlayer = GameObject.Find("Global_FXPlayer").GetComponent<Global_FXPlayer>();
+            global_FXPlayer = GameObject.Find("Global_FXPlayer").GetComponent<Global_FXPlayer>();
             global_FXPlayer.BeginFXPlayer();
-            Global_DragDropManager battle_DragDropManager = GameObject.Find("Global_DragDropManager").GetComponent<Global_DragDropManager>();
-            battle_DragDropManager.BeginDragDrap();
-            Global_BlockGenerator global_BlockGenerator = GameObject.Find("Global_BlockGenerator").GetComponent<Global_BlockGenerator>();
+            global_InGameData = GameObject.Find("Global_InGameData").GetComponent<Global_InGameData>();
+            global_InGameData.BeginInGameData();
+            global_DragDropManager = GameObject.Find("Global_DragDropManager").GetComponent<Global_DragDropManager>();
+            global_DragDropManager.BeginDragDrap();
+
+            global_BlockGenerator = GameObject.Find("Global_BlockGenerator").GetComponent<Global_BlockGenerator>();
             global_BlockGenerator.BeginBlockGenerator();
-            Global_BlockPlaceMaster global_BlockPlaceMaster = GameObject.Find("Global_BlockPlaceMaster").GetComponent<Global_BlockPlaceMaster>();
-            global_BlockPlaceMaster.BeginBlockPlace(SizeOfPannel.x, SizeOfPannel.y, _caseSkin, _bonusSkin);
-
-
+            SetBlockPlace();
         }
 
-        private void CheckScene()
+        // 제거한다음 새로 만드는 것.
+        public void SetBlockPlace()
         {
-            if (SceneManager.GetActiveScene().name == "BattleScene")
-                global_BattleInitializer.BattleBegin();
+            global_BlockPlaceMaster = GameObject.Find("Global_BlockPlaceMaster").GetComponent<Global_BlockPlaceMaster>();
+            global_BlockPlaceMaster.BeginBlockPlace( _caseSkin, _bonusSkin);
+
 
         }
 
@@ -58,10 +66,15 @@ namespace ToronPuzzle
             if (next.name == "BattleScene")
             {
                 global_BattleInitializer.BattleBegin();
-
-
+                global_DragDropManager.SetCurrentSceneData(BlockType.Block);
+            }
+            else if (next.name == "MapScene")
+            {
+                global_DragDropManager.SetCurrentSceneData(BlockType.Module);
             }
         }
+
+
 
     }
 }

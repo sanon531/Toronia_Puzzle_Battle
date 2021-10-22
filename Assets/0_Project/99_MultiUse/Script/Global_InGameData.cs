@@ -17,8 +17,7 @@ namespace ToronPuzzle
     public class Global_InGameData : MonoBehaviour
     {
         public static Global_InGameData Instance;
-
-        PlacePannelData _placePannelData;
+        public PlacePannelData _placePannelData;
         List<BlockCase_Module> _ownedModule = new List<BlockCase_Module>();
 
 
@@ -43,6 +42,8 @@ namespace ToronPuzzle
                 // 여기서 대충 
 
             }
+
+
         }
 
 
@@ -53,9 +54,11 @@ namespace ToronPuzzle
     [System.Serializable]
     public class PlacePannelData
     {
-        int _maxX = 4;
-        int _maxY = 6;
-        int[,] _blockPlacedArr = new int[4, 6];
+        public int _maxX = 4;
+        public int _maxY = 6;
+        public int[,] _blockPlacedArr = new int[4, 6];
+        public List<BlockInfo> _moduleBlockInfos = new List<BlockInfo>();
+
 
     }
 }

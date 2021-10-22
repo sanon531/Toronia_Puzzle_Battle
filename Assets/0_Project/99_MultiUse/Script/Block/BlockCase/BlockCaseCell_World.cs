@@ -16,7 +16,7 @@ namespace ToronPuzzle
 
         public override bool CheckLiftable()
         {
-            return _blockInfo.IsLiftable;
+            return _blockInfo._isLiftable;
         }
         public override BlockCase LiftBlock()
         {

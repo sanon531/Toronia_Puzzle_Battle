@@ -10,6 +10,9 @@ namespace ToronPuzzle
  /// 탐험 하면서 계속 해서 획득하고  버리고 할수있어야 한다.
  /// 유물처럼 활용되며 
  /// </summary>
+
+
+    [System.Serializable]
     public class ModuleInfo : Affector
     {
         [Flags]
@@ -39,12 +42,16 @@ namespace ToronPuzzle
 
         public bool IsRightness= true;
         protected int[] _artifactEffectValues;
+        [SerializeField]
         protected Property _properties;
         public Property properties { get { return _properties; } }
-        protected readonly Rarity _rarity;
+        [SerializeField]
+        protected Rarity _rarity;
         public Rarity rarity { get { return _rarity; } }
-        protected readonly ModuleID _artifactID;
+        [SerializeField]
+        protected ModuleID _artifactID;
         public ModuleID artifactID { get { return _artifactID; } }
+        [SerializeField]
         protected int _value;
         public virtual int Value
         {

@@ -34,24 +34,44 @@ namespace ToronPuzzle
         Global_PlacingCell[,] placingCellArray;
         [SerializeField]
         List<BlockCase_BlockPlace> _placedBlocks = new List<BlockCase_BlockPlace>();
+        [SerializeField]
+        List<BlockCase_Module> _moduleBlocks = new List<BlockCase_Module>();
 
         //BattleInitialtor 에 의해 선언된다.
-        public void BeginBlockPlace(int argX, int argY, string argCellSkin,string argBnsSkin)
+        public void BeginBlockPlace(string argCellSkin,string argBnsSkin)
         {
+            Vector2Int _pannel_Size = 
+                new Vector2Int( 
+                    Global_InGameData.Instance._placePannelData._maxX
+                    ,Global_InGameData.Instance._placePannelData._maxY);
+
             _blockCalculator = GetComponent<BlockCalculator>();
             _placingCellSkin = _placingCellAddress;
             _placingCellSkin += argCellSkin;
             _bonusSkin = _placingCellAddress; ;
             _bonusSkin += argBnsSkin;
-            _maxX = argX;
-            _maxY = argY;
+            _maxX = _pannel_Size.x;
+            _maxY = _pannel_Size.y;
             _blockPlacedArr = new int[_maxX, _maxY];
             instance = this;
             SetBlockPlacePos();
             SetBlockCellOnPannel();
             SetBonusOnPannel();
             Dot = Resources.Load("Debug/Dot") as GameObject;
+            
+        }
 
+        private void SetModuleFromData()
+        {
+            List<BlockInfo> tempt_BlockInfos = Global_InGameData.Instance._placePannelData._moduleBlockInfos;
+            foreach (BlockInfo _Info in tempt_BlockInfos )
+            {
+
+                //데이터가 있으면일단 만들고 봄
+                
+                //GameObject _moduleObj = Global_BlockGenerator.instance.GenerateModuleOnBlockPlace(_Info);
+                //_moduleBlocks.Add(_moduleObj.GetComponent<BlockCase_Module>());
+            }
         }
 
         private void SetBlockPlacePos()
