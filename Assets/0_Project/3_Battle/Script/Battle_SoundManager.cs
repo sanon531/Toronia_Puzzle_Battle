@@ -14,7 +14,6 @@ namespace ToronPuzzle.Battle
         public void BeginSoundManager()
         {
             Instance = this;
-            _masterMixer = Resources.Load("MasterMixer") as AudioMixer;
         }
         public override void PlayBGM(BGMName name)
         {
