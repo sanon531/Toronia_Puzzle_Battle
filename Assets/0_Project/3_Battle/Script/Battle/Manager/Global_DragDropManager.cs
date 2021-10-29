@@ -100,15 +100,15 @@ namespace ToronPuzzle
             Vector3 _mouseWorldPos = _inputCamera.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(_mouseWorldPos, Vector3.forward,200f);
 
-            //Debug.DrawRay(_mouseWorldPos, Vector3.forward *15f,Color.cyan,0.5f);
+            Debug.DrawRay(_mouseWorldPos, Vector3.forward *15f,Color.cyan,0.5f);
             if (hit)
             {
                 if (hit.transform.GetComponent<BlockCase>())
                 {
                     //Debug.Log(hit.transform.gameObject.name);
                     BlockCase temptCase = hit.transform.GetComponent<BlockCase>();
-                    //Debug.Log("Clicked Case");
                     //TestCaller.instance.DebugArrayShape(temptCase._blockInfo._blockShapeArr);
+                    Debug.Log("Clicked Case" + hit.collider.name);
 
                     if (temptCase.CheckLiftable())
                     {

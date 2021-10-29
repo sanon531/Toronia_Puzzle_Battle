@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: 110469662}
   - component: {fileID: 110469661}
   m_Layer: 5
-  m_Name: NextSequenceButton
+  m_Name: SetBlockButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -344,8 +344,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300052, guid: f85524137d1263e44bdfe94447efb296, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -432,7 +432,7 @@ AudioSource:
   m_GameObject: {fileID: 162000877}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5441840831265296279, guid: d8b3c90945aceb949aaf32926a738f8e, type: 2}
   m_audioClip: {fileID: 8300000, guid: 09a4a89eac5045c48aafb7d61e7cb88e, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -598,7 +598,7 @@ MonoBehaviour:
   _bonusHolder: {fileID: 123886660}
   _blockCalculator: {fileID: 0}
   _placedBlocks: []
-  _moduleBlocks: []
+  _placedModules: []
 --- !u!1 &313222172
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,7 +765,7 @@ AudioSource:
   m_GameObject: {fileID: 318077563}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6615143940385260243, guid: d8b3c90945aceb949aaf32926a738f8e, type: 2}
   m_audioClip: {fileID: 8300000, guid: 275959222d35c024fac8c42e521db7cf, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0
@@ -1148,7 +1148,7 @@ AudioSource:
   m_GameObject: {fileID: 399829361}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5441840831265296279, guid: d8b3c90945aceb949aaf32926a738f8e, type: 2}
   m_audioClip: {fileID: 8300000, guid: 5274665b728149a4b980a9330a1f86b7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -1533,7 +1533,7 @@ AudioSource:
   m_GameObject: {fileID: 565638040}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5441840831265296279, guid: d8b3c90945aceb949aaf32926a738f8e, type: 2}
   m_audioClip: {fileID: 8300000, guid: 073c09b0ee736bd48a43ac27b791a92a, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -1663,6 +1663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10f9f85f3e43bc74abcef83eecfa66dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isModuleLiftable: 0
   _lastBlockInfo:
     _isLiftable: 0
     ModuleName: 
@@ -1677,22 +1678,6 @@ MonoBehaviour:
       _rarity: 0
       _artifactID: 0
       _value: 0
-  _blockCase_PlaceCase: {fileID: 0}
-  _blockCase_World: {fileID: 0}
-  _worldBlock: {fileID: 0}
-  _UIBlock: {fileID: 0}
-  _outLinerWorld: {fileID: 0}
-  _outlinerUI: {fileID: 0}
-  _mat_Agr: {fileID: 0}
-  _mat_Agr_Module: {fileID: 0}
-  _mat_Cyn: {fileID: 0}
-  _mat_Cyn_Module: {fileID: 0}
-  _mat_Frn: {fileID: 0}
-  _mat_Frn_Module: {fileID: 0}
-  _mat_Emp: {fileID: 0}
-  _mat_Emp_Module: {fileID: 0}
-  _mat_Bonus: {fileID: 0}
-  _mat_Bonus_Module: {fileID: 0}
   BlockSize: {x: 0, y: 0}
   OutlinePercent: {x: 1.2, y: 1.2, z: 1.2}
   this_BlockElement: 0
@@ -1824,11 +1809,11 @@ MonoBehaviour:
   _maxBlockX: 0
   _maxBlockY: 1
   _blockInfo:
-    _isLiftable: 0
+    _isLiftable: 1
     ModuleName: 
     _blockElement: 4
     _blockStength: 1
-    _blockShape: 14
+    _blockShape: 9
     _blockPlace: {x: -1, y: -1}
     _type: 0
     _moduleInfo:
@@ -2509,7 +2494,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 791640176}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.02, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 608021858}
@@ -2583,7 +2568,7 @@ MonoBehaviour:
     ModuleName: 
     _blockElement: 2
     _blockStength: 1
-    _blockShape: 14
+    _blockShape: 4
     _blockPlace: {x: 1, y: 1}
     _type: 0
     _moduleInfo:
@@ -2964,7 +2949,7 @@ AudioSource:
   m_GameObject: {fileID: 975226552}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5441840831265296279, guid: d8b3c90945aceb949aaf32926a738f8e, type: 2}
   m_audioClip: {fileID: 8300000, guid: 43ab048c1efc76a4b9cb274577af14bd, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -3084,6 +3069,7 @@ Transform:
   - {fileID: 1743892120}
   - {fileID: 565638041}
   - {fileID: 162000878}
+  - {fileID: 1279908780}
   m_Father: {fileID: 833921654}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3099,28 +3085,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7326d1dee5eaa94da8ad1568658fda6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentStatus:
-    m_keys: 00000000020000000100000003000000
-    m_values:
-    - 1
-    - 1
-    - 1
-    - 1
-  _currentSoundManager:
-    m_keys:
-    - {fileID: 399829363}
-    - {fileID: 975226554}
-    - {fileID: 1743892121}
-    - {fileID: 565638042}
-    m_values: 02000000020000000200000002000000
   _currentSFXManager:
-    m_keys: 0000000001000000020000000300000004000000
+    m_keys: 010000000200000003000000040000000500000000000000
     m_values:
     - {fileID: 399829363}
     - {fileID: 565638042}
     - {fileID: 975226554}
     - {fileID: 1743892121}
     - {fileID: 162000879}
+    - {fileID: 1279908781}
   _currentBGMManager:
     m_keys: 
     m_values: []
@@ -3385,7 +3358,7 @@ AudioSource:
   m_GameObject: {fileID: 1262448593}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6615143940385260243, guid: d8b3c90945aceb949aaf32926a738f8e, type: 2}
   m_audioClip: {fileID: 8300000, guid: a536e077f06fc2549bcb2af092297da1, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.67
@@ -3639,6 +3612,133 @@ MonoBehaviour:
   global_BattleInitializer: {fileID: 1603129940}
   _caseSkin: PlacingCell
   _bonusSkin: Bonus_Basic_
+--- !u!1 &1279908779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1279908780}
+  - component: {fileID: 1279908781}
+  m_Layer: 0
+  m_Name: SFX_ModuleSetted
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1279908780
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279908779}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 975464721}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1279908781
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279908779}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 5441840831265296279, guid: d8b3c90945aceb949aaf32926a738f8e, type: 2}
+  m_audioClip: {fileID: 8300000, guid: adaa7a735597800438bf51f7ba73d42e, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1324837032
 GameObject:
   m_ObjectHideFlags: 0
@@ -3685,19 +3785,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c976d197204d9e5488e61e7ab66f7599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentStatus:
-    m_keys: 00000000010000000200000003000000
-    m_values:
-    - 0
-    - 0
-    - 0
-    - 0
-  _currentSoundManager:
-    m_keys:
-    - {fileID: 318077565}
-    - {fileID: 1262448595}
-    - {fileID: 1562892703}
-    m_values: 010000000100000001000000
   _currentSFXManager:
     m_keys: 
     m_values: []
@@ -3735,7 +3822,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1325094807}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.01, y: 0, z: 0.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1526321144}
@@ -4263,7 +4350,7 @@ MonoBehaviour:
   _maxBlockX: 0
   _maxBlockY: 1
   _blockInfo:
-    _isLiftable: 0
+    _isLiftable: 1
     ModuleName: 
     _blockElement: 0
     _blockStength: 1
@@ -4502,7 +4589,7 @@ AudioSource:
   m_GameObject: {fileID: 1562892701}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6615143940385260243, guid: d8b3c90945aceb949aaf32926a738f8e, type: 2}
   m_audioClip: {fileID: 8300000, guid: b2319ed98bf2cd340a05e58bb8afe9b0, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -4748,7 +4835,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: GoNext
+  m_text: "Send \nPannel"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4775,7 +4862,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 58.9
+  m_fontSize: 64.15
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4992,7 +5079,7 @@ AudioSource:
   m_GameObject: {fileID: 1743892119}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5441840831265296279, guid: d8b3c90945aceb949aaf32926a738f8e, type: 2}
   m_audioClip: {fileID: 8300000, guid: 4b488e9031dc07a45a27afc6679b6edf, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -5169,17 +5256,18 @@ MonoBehaviour:
         _rarity: 0
         _artifactID: 0
         _value: 0
+  _ownedModule: []
   isDebug: 1
-  _debug_ModuleIDs: 01000000
+  _debug_ModuleIDs: 1c000000010000000600000002000000
   _currentPlacement:
     gridSize: {x: 4, y: 6}
     cellSize: {x: 64, y: 16}
     cells:
-    - row: 01000000000000000000000000000000
+    - row: 1c000000000000000000000000000000
     - row: 00000000000000000000000000000000
+    - row: 00000000020000000000000000000000
     - row: 00000000000000000000000000000000
-    - row: 00000000000000000000000000000000
-    - row: 00000000000000000000000000000000
+    - row: 00000000000000000000000006000000
     - row: 00000000000000000000000000000000
 --- !u!1 &1801562949
 GameObject:
@@ -6135,7 +6223,7 @@ MonoBehaviour:
   _maxBlockX: 0
   _maxBlockY: 1
   _blockInfo:
-    _isLiftable: 0
+    _isLiftable: 1
     ModuleName: 
     _blockElement: 3
     _blockStength: 1
@@ -6363,7 +6451,7 @@ MonoBehaviour:
   _maxBlockX: 1
   _maxBlockY: 1
   _blockInfo:
-    _isLiftable: 0
+    _isLiftable: 1
     ModuleName: 
     _blockElement: 2
     _blockStength: 1

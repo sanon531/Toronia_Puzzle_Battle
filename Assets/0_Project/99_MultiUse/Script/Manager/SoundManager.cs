@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ToronPuzzle.Data;
-
+using UnityEngine.Audio;
 namespace ToronPuzzle
 {
 
@@ -10,12 +10,8 @@ namespace ToronPuzzle
     // 그리고 시작 할때 세이브, 로드 해서 해당 값이 저장 될 수 있도록 만들기.
     public class SoundManager : MonoBehaviour
     {
+        protected AudioMixer _masterMixer ;
 
-        [SerializeField]
-        protected SFXEnumFloatDictionary _currentStatus = new SFXEnumFloatDictionary();
-
-        [SerializeField]
-        protected AudioSFXEnumDictionary _currentSoundManager = new AudioSFXEnumDictionary() { };
         [SerializeField]
         protected SFXAudioDictionary _currentSFXManager = new SFXAudioDictionary() { };
 

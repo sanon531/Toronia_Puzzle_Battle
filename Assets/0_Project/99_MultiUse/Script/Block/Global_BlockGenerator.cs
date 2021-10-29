@@ -10,13 +10,22 @@ namespace ToronPuzzle
     public class Global_BlockGenerator : MonoBehaviour
     {
         public static Global_BlockGenerator instance;
+
+        [SerializeField]
+        bool _isModuleLiftable = false;
         [SerializeField]
         BlockInfo _lastBlockInfo;
         #region
         GameObject _spawned;//매개로 사용되는 변수
-        [SerializeField]
-        GameObject _blockCase_PlaceCase, _blockCase_World, _worldBlock, _UIBlock, _outLinerWorld, _outlinerUI;
-        [SerializeField]
+
+
+        GameObject 
+            _blockCase_PlaceCase, _blockCase_World, _blockCase_Module, 
+            _worldBlock, _UIBlock, _outLinerWorld, _outlinerUI
+            ;
+
+
+
         Material _mat_Agr, _mat_Agr_Module, _mat_Cyn, _mat_Cyn_Module, 
             _mat_Frn, _mat_Frn_Module,
             _mat_Emp, _mat_Emp_Module,
@@ -48,6 +57,7 @@ namespace ToronPuzzle
             _outlinerUI = Resources.Load("BlockCase/BlockCaseOutLiner_UI") as GameObject;
             _blockCase_PlaceCase = Resources.Load("BlockCase/BlockCase_PlaceCase") as GameObject;
             _blockCase_World = Resources.Load("BlockCase/BlockCase_World") as GameObject;
+            _blockCase_Module = Resources.Load("BlockCase/BlockCase_Module") as GameObject;
 
             _mat_Agr = Resources.Load("Material/Block_Aggresive") as Material;
             _mat_Agr_Module = Resources.Load("Material/Module_Aggresive") as Material;
@@ -241,15 +251,68 @@ namespace ToronPuzzle
             return CaseObject;
         }
 
-
+        //모듈을 세팅하는 곳.
         public GameObject GenerateModuleOnBlockPlace(BlockInfo _inputInfo)
         {
+            _lastBlockInfo = _inputInfo;
+            int[,] _tempt_BlockArray = (int[,])_lastBlockInfo._blockShapeArr.Clone();
+            Vector2 InputSize = Master_Battle.Data_OnlyInBattle._cellsize;
+
+            //케이스 생성
+            GameObject CaseObject =
+                Instantiate(_blockCase_Module, Global_BlockPlaceMaster.instance.GetCellPosByOrder(_inputInfo._blockPlace),
+                Quaternion.identity, Global_BlockPlaceMaster.instance._blockHolder);
+            BlockCase_Module _current_Case = CaseObject.GetComponent<BlockCase_Module>();
+            //블록의은 현재 게임의 설정에 따라서 달라진다.
+            _current_Case._blockInfo._isLiftable = _isModuleLiftable;
 
 
+            int _maxX = _tempt_BlockArray.GetLength(0);
+            int _maxY = _tempt_BlockArray.GetLength(1);
+
+            //케이스 오브젝트 로컬 위치 설정(포지션으로 함 오류 아님) 
+            CaseObject.transform.position += new Vector3(InputSize.x * (1 - _maxX), 0, 0);
 
 
-            //임시
-            return gameObject;
+            for (int i_y = _maxY - 1; i_y >= 0; i_y--)
+            {
+                for (int j_x = 0; j_x < _maxX; j_x++)
+                {
+                    if (_tempt_BlockArray[j_x, i_y] == 3)
+                    {
+                        _spawned = Instantiate(_outLinerWorld, new Vector3(0, 0, 0), Quaternion.identity, CaseObject.transform);
+                        Vector3 spawnedvector = new Vector3(InputSize.x * j_x, (InputSize.y * i_y), 0);
+                        _spawned.transform.localPosition = spawnedvector;
+                        _spawned.transform.localPosition = spawnedvector + new Vector3(0, 0, 0.1f);
+                        _spawned.transform.localScale = InputSize * OutlinePercent;
+                        _current_Case._childObjects.Add(_spawned);
+
+                        _spawned = Instantiate(_worldBlock, new Vector3(0, 0, 0), Quaternion.identity, CaseObject.transform);
+                        BlockCaseCell _current_Cell = _spawned.GetComponent<BlockCaseCell>();
+                        _current_Cell.SetMaterial(SetElementToBlockMaterial(_inputInfo._blockElement));
+                        _current_Cell.SetParentCase(_current_Case);
+                        _spawned.transform.localScale = InputSize;
+
+                        _current_Case._childCase.Add(_current_Cell);
+
+                        _spawned.transform.localPosition = spawnedvector;
+                        _current_Case._childObjects.Add(_spawned);
+
+                        Global_FXPlayer.PlayFX(ElementToBlockFX[_inputInfo._blockElement], _spawned.transform.position, _spawned.transform);
+                    }
+                }
+            }
+
+
+            _current_Case.SetCaseToCenter();
+            _current_Case._blockInfo = new BlockInfo(_lastBlockInfo);
+            //TestCaller.instance.DebugArrayShape(_current_Case._blockInfo._blockShapeArr);
+            Global_BlockPlaceMaster.instance.AddModuleOnPlace(_current_Case);
+            Global_InWorldEventSystem.CallOn모듈생성();
+            Global_SoundManager.Instance.PlaySFX(SFXName.ModulePlaced);
+            return CaseObject;
+
+
         }
 
 

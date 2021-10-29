@@ -35,7 +35,7 @@ namespace ToronPuzzle
         [SerializeField]
         List<BlockCase_BlockPlace> _placedBlocks = new List<BlockCase_BlockPlace>();
         [SerializeField]
-        List<BlockCase_Module> _moduleBlocks = new List<BlockCase_Module>();
+        List<BlockCase_Module> _placedModules = new List<BlockCase_Module>();
 
         //BattleInitialtor 에 의해 선언된다.
         public void BeginBlockPlace(string argCellSkin,string argBnsSkin)
@@ -321,9 +321,48 @@ namespace ToronPuzzle
 
 
                     //블럭의 위치상
-                    if (_blockArr[j_x, i_y] == 1)
+                    if (_blockArr[j_x, i_y] != 0)
                     {
-                        _blockPlacedArr[posXOnPlace, posYOnPlace]=1;
+                        _blockPlacedArr[posXOnPlace, posYOnPlace] = _blockArr[j_x, i_y];
+                    }
+
+                }
+            }
+            TestCaller.instance.DebugArrayShape("Added", _blockPlacedArr);
+
+        }
+        public void PlaceModuleDataOnArray(BlockInfo arg_blockInfo)
+        {
+            Vector2Int _targetNum = arg_blockInfo._blockPlace;
+
+            if (!CheckBlockSettable(_targetNum, arg_blockInfo))
+                return;
+
+            int[,] _blockArr = (int[,])arg_blockInfo._blockShapeArr.Clone();
+
+            int _blockX = _blockArr.GetLength(0);
+            int _blockY = _blockArr.GetLength(1);
+            for (int i_y = _blockY - 1; i_y >= 0; i_y--)
+            {
+                int posYOnPlace = i_y + _targetNum.y;
+                if (posYOnPlace >= _maxY)
+                {
+                    return;
+                }
+
+                for (int j_x = 0; j_x < _blockX; j_x++)
+                {
+                    int posXOnPlace = _targetNum.x - _blockX + j_x + 1;
+                    if (posXOnPlace < 0)
+                    {
+                        return;
+                    }
+
+
+                    //블럭의 위치상
+                    if (_blockArr[j_x, i_y] !=0)
+                    {
+                        _blockPlacedArr[posXOnPlace, posYOnPlace]= _blockArr[j_x, i_y];
                     }
                 }
             }
@@ -384,6 +423,14 @@ namespace ToronPuzzle
             _blockCalculator.CalcBonusLine(_blockPlacedArr);
 
         }
+        public void AddModuleOnPlace(BlockCase_Module _Block)
+        {
+            _placedModules.Add(_Block);
+            PlaceModuleDataOnArray(_Block._blockInfo);
+            ResetPreview();
+            _blockCalculator.CalcBonusLine(_blockPlacedArr);
+
+        }
         public void RemoveBlockOnPlace(BlockCase_BlockPlace _Block)
         {
             Debug.Log("call delete");
@@ -400,6 +447,9 @@ namespace ToronPuzzle
                 foreach (BlockCase_BlockPlace _Block in _placedBlocks)
                     _Block.HideBlock();
         }
+
+        //오직 1만 제거한다 1, 3은 무시한다.
+        public void RefreshBlock() { }
 
         
     }

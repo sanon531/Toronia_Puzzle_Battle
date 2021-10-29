@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ToronPuzzle.Data;
+using UnityEngine.Audio;
 
 namespace ToronPuzzle.Battle
 {
@@ -13,16 +14,8 @@ namespace ToronPuzzle.Battle
         public void BeginSoundManager()
         {
             Instance = this;
+            _masterMixer = Resources.Load("MasterMixer") as AudioMixer;
         }
-        public static void SetAudioByEnum(SoundKind _sfxKind, float _amount)
-        {
-            Instance._currentStatus[_sfxKind] = _amount;
-            foreach (KeyValuePair<AudioSource, SoundKind> _audiotarget in Instance._currentSoundManager)
-            {
-                _audiotarget.Key.volume = Instance._currentStatus[SoundKind.All] * Instance._currentStatus[_audiotarget.Value];
-            }
-        }
-
         public override void PlayBGM(BGMName name)
         {
             base.PlayBGM(name);

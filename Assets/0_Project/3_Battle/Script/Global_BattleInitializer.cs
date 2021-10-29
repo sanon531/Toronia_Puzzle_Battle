@@ -29,7 +29,7 @@ namespace ToronPuzzle.Battle
             battle_SoundManager.PlayBGM(currentBGM);
             Battle_BackgroundPlacer battle_BackgroundPlacer = GameObject.Find("Battle_BackgroundPlacer").GetComponent<Battle_BackgroundPlacer>();
             battle_BackgroundPlacer.BeginBackgound(currentBGImage);
-
+            Global_InGameData.Instance.BegingModuleData();
         }
 
 

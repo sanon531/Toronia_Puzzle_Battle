@@ -14,6 +14,7 @@ namespace ToronPuzzle.Data
     }
     public enum SFXName
     {
+        ModulePlaced,
         BlockPlaced,
         BlockLift,
         Bonus_Small,

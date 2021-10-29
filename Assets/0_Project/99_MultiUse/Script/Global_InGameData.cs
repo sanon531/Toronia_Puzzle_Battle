@@ -18,9 +18,8 @@ namespace ToronPuzzle
     {
         public static Global_InGameData Instance;
         public PlacePannelData _placePannelData;
+        [SerializeField]
         List<BlockCase_Module> _ownedModule = new List<BlockCase_Module>();
-
-
 
         /// <summary>
         /// 디버그 시에만 활용되는 것.
@@ -37,13 +36,33 @@ namespace ToronPuzzle
         public void BeginInGameData()
         {
             Instance= this;
+        }
+
+        public void BegingModuleData()
+        {
             if (isDebug)
             {
-                // 여기서 대충 
+                // 여기서 모듈들을 디버깅 용으로 모듈 설치를 한다. 
+                // 일반적으로는 저장된 블록의 데이터를 기반으로 새로이 저장된 데이터를 따로 저장해서 그걸 기반으로 만든다.
+                foreach (ModuleID moduleID in _debug_ModuleIDs)
+                {
+                    for (int i_y = 0; i_y < _currentPlacement.GridSize.y; i_y++)
+                    {
+                        for (int j_x = 0; j_x < _currentPlacement.GridSize.x; j_x++)
+                        {
+                            if (_currentPlacement.GetCell(j_x, i_y) == moduleID)
+                            {
+                                BlockInfo _temptBlockInfo =ModuleDic._IDModuleBlockDic[moduleID];
+                                _temptBlockInfo._blockPlace = new Vector2Int(j_x, i_y);
 
+                                Global_BlockGenerator.instance.GenerateModuleOnBlockPlace(_temptBlockInfo);
+
+
+                            }
+                        }
+                    }
+                }
             }
-
-
         }
 
 

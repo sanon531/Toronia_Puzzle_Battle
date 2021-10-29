@@ -12,6 +12,7 @@ namespace ToronPuzzle
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _boxCollider = GetComponent<BoxCollider2D>();
+            _blockInfo = _parentCase._blockInfo;
         }
 
         public override bool CheckLiftable()

@@ -42,6 +42,10 @@ namespace ToronPuzzle.Event
         public static event On이벤트 on판생성;
         public static void CallOn판생성() { on판생성?.Invoke(); }
 
+
+        public static event On이벤트 on모듈생성;
+        public static void CallOn모듈생성() { on모듈생성?.Invoke(); }
+
         public static event On모듈이벤트 on블록배치;
         public static void CallOn블록배치(BlockInfo module) { on블록배치?.Invoke(module); }
 

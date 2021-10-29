@@ -14,8 +14,9 @@ namespace ToronPuzzle.Data
         Three_V, Three_H, Three_G, Three_AG,
         Four_D, Four_V, Four_S, Four_AS, Four_T, Four_G, Four_AG,
 
-
-
+        One_D_모듈,
+        Three_G_쇄빙,
+        Four_D_모듈,
 
         Full_Four_Six,
         UnDefined
@@ -30,13 +31,17 @@ namespace ToronPuzzle.Data
         //번개 모양은 S, 반대 번개 모양은 AS
 
         {BlockShape.One_D, new int[,]{ {1} } },
+        {BlockShape.One_D_모듈, new int[,]{ {3} } },
+
         {BlockShape.Two_H, new int[,]{ {1,1}}},
         {BlockShape.Two_V, new int[,]{ {1},{1} }},
         {BlockShape.Three_H, new int[,]{ {1,1,1} }},
         {BlockShape.Three_V, new int[,]{ { 1 },{ 1 },{ 1 } }},
         {BlockShape.Three_G, new int[,]{ { 1,1 },{ 0,1 } }},
+        {BlockShape.Three_G_쇄빙, new int[,]{ { 3,3 },{ 3,4 } }},
         {BlockShape.Three_AG, new int[,]{ { 1,1 },{ 1,0 } }},
         {BlockShape.Four_D, new int[,]{ { 1,1 },{ 1,1 } }},
+        {BlockShape.Four_D_모듈, new int[,]{ { 3,3 },{ 3,3 } }},
         {BlockShape.Four_V, new int[,]{ { 1,1,1,1 } }},
         {BlockShape.Four_S, new int[,]{ { 1,1,0 },{0,1,1 } }},
         {BlockShape.Four_AS, new int[,]{ { 0,1,1 },{1,1,0 }}},

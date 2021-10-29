@@ -82,10 +82,27 @@ namespace ToronPuzzle
             _blockPlace = blockInfo._blockPlace;
         }
 
+        // 모듈의 데이터를 넣는데 활용하는 생성자.
+        
         /// <summary>
-        /// 모듈의 데이터를 넣는데 활용하는 생성자.
+        /// 
         /// </summary>
-        public BlockInfo(BlockElement arg_element, int[,] arg_blockShapeArr, Vector2Int arg_SetPos, ModuleInfo arg_ModuleInfo, string arg_name)
+        /// <param name="arg_element"> 블록 속성</param>
+        /// <param name="arg_Shape">블록 모양</param>
+        /// <param name="arg_ModuleInfo"></param>
+        /// <param name="arg_name">구분용 이름</param>
+        public BlockInfo(BlockElement arg_element, BlockShape arg_Shape, ModuleInfo arg_ModuleInfo, string arg_name)
+        {
+            _type = BlockType.Module;
+            _blockElement = arg_element;
+            ModuleName = arg_name;
+            _blockShapeArr = (int[,])BlockShapePool.shapeDic[arg_Shape].Clone();
+            _blockShape = BlockShape.UnDefined;
+            _blockStength = 0;
+            CheckBlockNum();
+            _moduleInfo = arg_ModuleInfo;
+        }
+        public BlockInfo(BlockElement arg_element, int[,] arg_blockShapeArr, ModuleInfo arg_ModuleInfo, string arg_name)
         {
             _type = BlockType.Module;
             _blockElement = arg_element;

@@ -28,6 +28,8 @@ namespace ToronPuzzle.Data
         경멸감Lv1 = 5,//방어 공격
         책임감Lv1 = 6, //회복
         천방지축 = 7,
+        쇄빙,
+
 
         //희귀 유물
         카리스마Lv2 = 21,
