@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: NonBlock
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: c28cdff2ed24e6f49b825aaafa34659a, type: 3}
+    - {fileID: 2800000, guid: 39c260b13a694d14fb0bccf65357f1e3, type: 3}
+    - {fileID: 2800000, guid: c315a8ab3365286499fe397a9bc8502e, type: 3}
+    - {fileID: 2800000, guid: 3bbffddec18081f43b8ecb28758129bd, type: 3}
+    - {fileID: 2800000, guid: a185fd80ae3cdc64baff7631582b346e, type: 3}
+    - {fileID: 2800000, guid: 6384b71af7529054a85392e715b68f7a, type: 3}
+    - {fileID: 2800000, guid: 46162ea48965a6647942ab6959857642, type: 3}
+    - {fileID: 2800000, guid: 3a07a3f0386bddb4e97e59405d8273f0, type: 3}
+    - {fileID: 2800000, guid: 4b39babac7dffde4e80eb088cbcb8a25, type: 3}
+    - {fileID: 2800000, guid: 1e8b8164f303e454d8aca944f0db4628, type: 3}
+    - {fileID: 2800000, guid: 5b12956a65504ae4aad7217f165421da, type: 3}
+    - {fileID: 2800000, guid: 0c87acaa12e30aa41877850614a9c96a, type: 3}
+    totalSpriteSurfaceArea: 2484136
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: a185fd80ae3cdc64baff7631582b346e, type: 3}
+  - {fileID: 21300000, guid: 3a07a3f0386bddb4e97e59405d8273f0, type: 3}
+  - {fileID: 21300000, guid: 39c260b13a694d14fb0bccf65357f1e3, type: 3}
+  - {fileID: 21300000, guid: c28cdff2ed24e6f49b825aaafa34659a, type: 3}
+  - {fileID: 21300000, guid: 1e8b8164f303e454d8aca944f0db4628, type: 3}
+  - {fileID: 21300000, guid: 46162ea48965a6647942ab6959857642, type: 3}
+  - {fileID: 21300000, guid: 6384b71af7529054a85392e715b68f7a, type: 3}
+  - {fileID: 21300000, guid: 5b12956a65504ae4aad7217f165421da, type: 3}
+  - {fileID: 21300000, guid: 0c87acaa12e30aa41877850614a9c96a, type: 3}
+  - {fileID: 21300000, guid: 4b39babac7dffde4e80eb088cbcb8a25, type: 3}
+  - {fileID: 21300000, guid: c315a8ab3365286499fe397a9bc8502e, type: 3}
+  - {fileID: 21300000, guid: 3bbffddec18081f43b8ecb28758129bd, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - hanok
+  - Switch
+  - bandage
+  - Back
+  - shield
+  - swords
+  - ice
+  - NormalCursor
+  - korea-folk-village-5930480_1920
+  - snow-4936679_1920
+  - fire
+  - Friendly
+  m_RenderDataMap: {}
+  m_Tag: NonBlock
+  m_IsVariant: 0

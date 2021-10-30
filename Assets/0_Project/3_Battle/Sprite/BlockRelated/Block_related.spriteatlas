@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Block_related
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 512
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: d8639bb195743c3419f475ca56065eb6, type: 3}
+    - {fileID: 2800000, guid: c198c302820c5a54c97416a85a1ecf1d, type: 3}
+    - {fileID: 2800000, guid: 45e5476904e64a5468fb8e9c1ed4e8da, type: 3}
+    - {fileID: 2800000, guid: 460558e48413b584cb3b22180d81ec08, type: 3}
+    - {fileID: 2800000, guid: 2a895218f0e4efc49b2607bc743c269b, type: 3}
+    - {fileID: 2800000, guid: a8e8f2ff17f8a844c9d2c00e5627fa0b, type: 3}
+    totalSpriteSurfaceArea: 20596
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: d8639bb195743c3419f475ca56065eb6, type: 3}
+  - {fileID: 21300000, guid: c198c302820c5a54c97416a85a1ecf1d, type: 3}
+  - {fileID: 21300000, guid: 460558e48413b584cb3b22180d81ec08, type: 3}
+  - {fileID: 21300000, guid: 2a895218f0e4efc49b2607bc743c269b, type: 3}
+  - {fileID: 21300000, guid: 45e5476904e64a5468fb8e9c1ed4e8da, type: 3}
+  - {fileID: 21300000, guid: a8e8f2ff17f8a844c9d2c00e5627fa0b, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - area_default_top_left
+  - arrow_point_up
+  - circle
+  - RoomBasic
+  - BasicBlockData
+  - Selection
+  m_RenderDataMap: {}
+  m_Tag: Block_related
+  m_IsVariant: 0
