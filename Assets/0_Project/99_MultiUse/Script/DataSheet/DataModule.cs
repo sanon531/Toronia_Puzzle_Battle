@@ -18,15 +18,15 @@ namespace ToronPuzzle.Data
             new Dictionary<ModuleID, BlockInfo>()
             {
                 { ModuleID.기선제압,
-                    new BlockInfo(BlockElement.Aggressive,BlockShape.One_D_모듈,new Module_ActBegin(), "기선제압")},
+                    new BlockInfo(BlockElement.Aggressive,BlockShape.One_D_모듈,new Module_ActBegin(), "기선제압",1)},
                 { ModuleID.카리스마Lv1,
-                    new BlockInfo(BlockElement.Aggressive,BlockShape.Four_D_모듈,new Module_강경업글(), "카리스마 Lv.1")},
+                    new BlockInfo(BlockElement.Aggressive,BlockShape.Four_D_모듈,new Module_강경업글(), "카리스마 Lv.1",4)},
                 { ModuleID.분석력Lv1,
-                    new BlockInfo(BlockElement.Cynical,BlockShape.Four_D_모듈,new Module_냉소업글(), "카리스마 Lv.1")},
+                    new BlockInfo(BlockElement.Cynical,BlockShape.Four_D_모듈,new Module_냉소업글(), "카리스마 Lv.1",4)},
                 { ModuleID.책임감Lv1,
-                    new BlockInfo(BlockElement.Friendly,BlockShape.Four_D_모듈,new Module_우호업글(), "책임감 Lv.1")},
+                    new BlockInfo(BlockElement.Friendly,BlockShape.Four_D_모듈,new Module_우호업글(), "책임감 Lv.1",4)},
                 { ModuleID.쇄빙,
-                    new BlockInfo(BlockElement.Cynical,BlockShape.Three_G_쇄빙,new Module_ActBegin(), "기선제압")},
+                    new BlockInfo(BlockElement.Cynical,BlockShape.Three_G_쇄빙,new Module_ActBegin(), "기선제압",3)},
 
 
 

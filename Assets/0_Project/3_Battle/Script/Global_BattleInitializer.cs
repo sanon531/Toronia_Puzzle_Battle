@@ -20,15 +20,24 @@ namespace ToronPuzzle.Battle
         {
             Master_Battle master_Battle = GameObject.Find("Master_Battle").GetComponent<Master_Battle>();
             master_Battle.BeginMasterData();
+
             Battle_ConveyerManager battle_ConveyerManager = GameObject.Find("Battle_ConveyerBelt").GetComponent<Battle_ConveyerManager>();
             battle_ConveyerManager.BeginConveyer();
+
             Battle_CameraAimer battle_CameraAimer = GameObject.Find("Battle_CameraAimer").GetComponent<Battle_CameraAimer>();
             battle_CameraAimer.BeginCameraAimer();
+
             Battle_SoundManager battle_SoundManager = GameObject.Find("Battle_SoundManager").GetComponent<Battle_SoundManager>();
             battle_SoundManager.BeginSoundManager();
             battle_SoundManager.PlayBGM(currentBGM);
+
             Battle_BackgroundPlacer battle_BackgroundPlacer = GameObject.Find("Battle_BackgroundPlacer").GetComponent<Battle_BackgroundPlacer>();
             battle_BackgroundPlacer.BeginBackgound(currentBGImage);
+
+            Global_ToolTip global_ToolTip = GameObject.Find("Global_ToolTip").GetComponent<Global_ToolTip>();
+            global_ToolTip.BeginGlobalTooltip();
+
+
             Global_InGameData.Instance.BegingModuleData();
         }
 

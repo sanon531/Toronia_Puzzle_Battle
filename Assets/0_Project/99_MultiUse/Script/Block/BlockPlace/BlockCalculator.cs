@@ -14,9 +14,8 @@ namespace ToronPuzzle
         protected List<int> _filledLineX = new List<int>();
         [SerializeField]
         protected List<int> _filledLineY = new List<int>();
-        public GameObject PerfectSetting;
+        public GameObject _perfectSetting;
         public Vector2 _fullFXpos = new Vector2();
-
         public ElementVectorDictionary _currentElementValue;
 
         public virtual void BeginBlockcCalculaor()
@@ -24,7 +23,7 @@ namespace ToronPuzzle
 
 
         }
-
+        public virtual void CalcPannelData(List<BlockInfo> _argBlockInfos) { }
         public virtual void CalcBonusLine(int[,] _arg_Arr) { }
 
     }

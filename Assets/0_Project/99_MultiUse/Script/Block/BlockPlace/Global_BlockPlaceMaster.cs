@@ -180,7 +180,7 @@ namespace ToronPuzzle
 
             firstSpot = new Vector3(LUAnchor.x + (_cellSizeY * 0.25f), LUAnchor.y + (_heightInterval * 0.25f));
             GameObject bnsFull = Instantiate(_bonusFull, firstSpot, Quaternion.identity, _bonusHolder);
-            _blockCalculator.PerfectSetting = bnsFull;
+            _blockCalculator._perfectSetting = bnsFull;
 
             Vector2 _bnsSize = new Vector2(_cellSizeY * 0.5f, _cellSizeY * 0.5f);
 
@@ -366,7 +366,7 @@ namespace ToronPuzzle
                     }
                 }
             }
-            TestCaller.instance.DebugArrayShape("Added", _blockPlacedArr);
+            //TestCaller.instance.DebugArrayShape("Added", _blockPlacedArr);
 
         }
         public void RemoveBlockDataOnArray(BlockInfo arg_blockInfo)
@@ -420,24 +420,39 @@ namespace ToronPuzzle
             _placedBlocks.Add(_Block);
             PlaceBlockDataOnArray(_Block._blockInfo);
             ResetPreview();
-            _blockCalculator.CalcBonusLine(_blockPlacedArr);
-
+            SendDataToCalc();
         }
         public void AddModuleOnPlace(BlockCase_Module _Block)
         {
             _placedModules.Add(_Block);
             PlaceModuleDataOnArray(_Block._blockInfo);
             ResetPreview();
-            _blockCalculator.CalcBonusLine(_blockPlacedArr);
-
+            SendDataToCalc();
         }
         public void RemoveBlockOnPlace(BlockCase_BlockPlace _Block)
         {
             Debug.Log("call delete");
             _placedBlocks.Remove(_Block);
             ResetPreview();
+            SendDataToCalc();
+        }
+
+        void SendDataToCalc()
+        {
+            List<BlockInfo> _totalblockInfos =new List<BlockInfo>();
+            foreach (BlockCase_BlockPlace _block in _placedBlocks)
+                _totalblockInfos.Add(new BlockInfo(_block._blockInfo));
+
+            foreach (BlockCase_Module _block in _placedModules)
+                _totalblockInfos.Add(new BlockInfo(_block._blockInfo));
+
+
+            _blockCalculator.CalcPannelData(_totalblockInfos);
+            _blockCalculator.CalcBonusLine(_blockPlacedArr);
 
         }
+
+
         public void ActivateHoldingPanel(bool turnOn)
         {
             if (turnOn)

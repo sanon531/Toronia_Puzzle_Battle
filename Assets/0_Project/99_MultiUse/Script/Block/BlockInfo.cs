@@ -91,14 +91,14 @@ namespace ToronPuzzle
         /// <param name="arg_Shape">블록 모양</param>
         /// <param name="arg_ModuleInfo"></param>
         /// <param name="arg_name">구분용 이름</param>
-        public BlockInfo(BlockElement arg_element, BlockShape arg_Shape, ModuleInfo arg_ModuleInfo, string arg_name)
+        public BlockInfo(BlockElement arg_element, BlockShape arg_Shape, ModuleInfo arg_ModuleInfo, string arg_name,int arg_strength)
         {
             _type = BlockType.Module;
             _blockElement = arg_element;
             ModuleName = arg_name;
             _blockShapeArr = (int[,])BlockShapePool.shapeDic[arg_Shape].Clone();
             _blockShape = BlockShape.UnDefined;
-            _blockStength = 0;
+            _blockStength = arg_strength;
             CheckBlockNum();
             _moduleInfo = arg_ModuleInfo;
         }

@@ -5,56 +5,56 @@ namespace ToronPuzzle.Event
     public enum UIEventID
     {
 
-        //-> Å¸ÀÌÆ² UIÀÌº¥Æ®
-        Title_Open·ÎµùUI,
-        Title_Close·ÎµùUI,
+        //-> íƒ€ì´í‹€ UIì´ë²¤íŠ¸
+        Title_Openë¡œë”©UI,
+        Title_Closeë¡œë”©UI,
 
-        Title_Open·Î±×ÀÎUI,
-        Title_Close·Î±×ÀÎUI,
+        Title_Openë¡œê·¸ì¸UI,
+        Title_Closeë¡œê·¸ì¸UI,
 
-        Tield_OpenÇÁ·ÎÇÊÀ§Á¬,
+        Tield_Opení”„ë¡œí•„ìœ„ì ¯,
 
-        Title_OpenÄ·ÆäÀÎ¸ðµå¼±ÅÃUI,
-        Title_CloseÄ·ÆäÀÎ¸ðµå¼±ÅÃUI,
+        Title_Openìº íŽ˜ì¸ëª¨ë“œì„ íƒUI,
+        Title_Closeìº íŽ˜ì¸ëª¨ë“œì„ íƒUI,
 
-        Title_OpenÄ·ÆäÀÎ¼³Á¤UI,
-        Title_CloseÄ·ÆäÀÎ¼³Á¤UI,
+        Title_Openìº íŽ˜ì¸ì„¤ì •UI,
+        Title_Closeìº íŽ˜ì¸ì„¤ì •UI,
 
-        Title_Open·ÎºñUI,
-        Title_Close·ÎºñUI,
-        Title_Open·Îºñ¸Þ´ºUI,
-        Title_Open»óÁ¡¾ÆÀÌÅÛÁ¤º¸UI,
-        Title_Close»óÁ¡¾ÆÀÌÅÛÁ¤º¸UI,
-        Title_On±¸¸Å¼º°ø,
+        Title_Openë¡œë¹„UI,
+        Title_Closeë¡œë¹„UI,
+        Title_Openë¡œë¹„ë©”ë‰´UI,
+        Title_Openìƒì ì•„ì´í…œì •ë³´UI,
+        Title_Closeìƒì ì•„ì´í…œì •ë³´UI,
+        Title_Onêµ¬ë§¤ì„±ê³µ,
 
-        Title_OpenÃâ¼®UI,
-        Title_OpenÃâ¼®UI_WithCloseEvent,
-        Title_CloseÃâ¼®UI,
-        Title_Open¾÷ÀûUI,
-        Title_Close¾÷ÀûUI,
-        Title_OpenÀÌº¥Æ®UI,
-        Title_CloseÀÌº¥Æ®UI,
+        Title_Openì¶œì„UI,
+        Title_Openì¶œì„UI_WithCloseEvent,
+        Title_Closeì¶œì„UI,
+        Title_Openì—…ì UI,
+        Title_Closeì—…ì UI,
+        Title_Openì´ë²¤íŠ¸UI,
+        Title_Closeì´ë²¤íŠ¸UI,
 
-        Title_OpenÇÁ·ÎÇÊUI,
-        Title_OpenÇÁ·ÎÇÊWith·©Å·±â·ÏUI,
-        Title_CloseÇÁ·ÎÇÊUI,
-        Title_OpenÇÁ·ÎÇÊ¸Þ´ºUI,
-        Title_CloseÇÁ·ÎÇÊ¸Þ´ºUI,
-        Title_Open·©Å·±â·ÏUI,
-        Title_Open±â·ÏUI,
-        Title_Open±â·ÏÁ¡¼öUI,
-        Title_Close±â·ÏÁ¡¼öUI,
-        Title_Open±â·Ï¼±ÅÃUI,
-        Title_Close±â·Ï¼±ÅÃUI,
+        Title_Opení”„ë¡œí•„UI,
+        Title_Opení”„ë¡œí•„Withëž­í‚¹ê¸°ë¡UI,
+        Title_Closeí”„ë¡œí•„UI,
+        Title_Opení”„ë¡œí•„ë©”ë‰´UI,
+        Title_Closeí”„ë¡œí•„ë©”ë‰´UI,
+        Title_Openëž­í‚¹ê¸°ë¡UI,
+        Title_Openê¸°ë¡UI,
+        Title_Openê¸°ë¡ì ìˆ˜UI,
+        Title_Closeê¸°ë¡ì ìˆ˜UI,
+        Title_Openê¸°ë¡ì„ íƒUI,
+        Title_Closeê¸°ë¡ì„ íƒUI,
 
-        Title_Open¾ÆÀÌÄÜº¯°æUI,
-        Title_¾ÆÀÌÄÜº¯°æ,
+        Title_Openì•„ì´ì½˜ë³€ê²½UI,
+        Title_ì•„ì´ì½˜ë³€ê²½,
 
-        Title_OpenÄ³¸¯ÅÍ¼±ÅÃUI,
-        Title_CloseÄ³¸¯ÅÍ¼±ÅÃUI,
-        Title_Open½ÃÀÛÀ¯¹°¼±ÅÃUI,
-        Title_Open½ÃÀÛ¼Ò¸ðÇ°¼±ÅÃUI,
-        Title_Close½ÃÀÛ¾ÆÀÌÅÛ¼±ÅÃUI,
+        Title_Openìºë¦­í„°ì„ íƒUI,
+        Title_Closeìºë¦­í„°ì„ íƒUI,
+        Title_Openì‹œìž‘ìœ ë¬¼ì„ íƒUI,
+        Title_Openì‹œìž‘ì†Œëª¨í’ˆì„ íƒUI,
+        Title_Closeì‹œìž‘ì•„ì´í…œì„ íƒUI,
 
         Title_OpenCashShopUI,
         Title_CloseCashShopUI,
@@ -70,58 +70,58 @@ namespace ToronPuzzle.Event
         Title_OpenRankingDetail,
         Title_CloseRankingDetail,
 
-        Title_Open½ÃÀÛ¼±ÅÃ,
-        Title_½ÃÀÛ¼±ÅÃEnd,
+        Title_Openì‹œìž‘ì„ íƒ,
+        Title_ì‹œìž‘ì„ íƒEnd,
 
-        Title_OpenÄÆ¾À,
-        Title_CloseÄÆ¾À,
+        Title_Openì»·ì”¬,
+        Title_Closeì»·ì”¬,
 
         Title_OpenUnlockGachaChoice,
         Title_OpenStuffGachaResult,
 
-        Title_Open°¡Ã­È®·üUI,
-        Title_Close°¡Ã­È®·üUI,
+        Title_Openê°€ì± í™•ë¥ UI,
+        Title_Closeê°€ì± í™•ë¥ UI,
 
-        Title_Refresh°¡Ã­UI,
-        Title_ÀÎº¥Åä¸®°»½Å,
-        Title_OnÀçÈ­¼Ò¸ðÅ¬¶óÀÌ¾ðÆ®´«¼ÓÀÓ¿¬Ãâ,
+        Title_Refreshê°€ì± UI,
+        Title_ì¸ë²¤í† ë¦¬ê°±ì‹ ,
+        Title_Onìž¬í™”ì†Œëª¨í´ë¼ì´ì–¸íŠ¸ëˆˆì†ìž„ì—°ì¶œ,
 
-        Global_OnÀ¯¹°È¿°ú¹ßµ¿,
+        Global_Onìœ ë¬¼íš¨ê³¼ë°œë™,
 
-        //-> ÀüÅõÈ­¸é ÀÎ°ÔÀÓUI ÀÌº¥Æ®
-        Combat_On¹æ¾îµµº¯µ¿,
+        //-> ì „íˆ¬í™”ë©´ ì¸ê²Œìž„UI ì´ë²¤íŠ¸
+        Combat_Onë°©ì–´ë„ë³€ë™,
 
-        Combat_On»ý¸í·Âº¯µ¿,
+        Combat_Onìƒëª…ë ¥ë³€ë™,
 
-        Combat_OnÈ¿°úº¯µ¿,
+        Combat_Oníš¨ê³¼ë³€ë™,
 
-        Combat_OnÄ³¸¯ÅÍ¼±ÅÃµÊ,
-        Combat_OnÄ³¸¯ÅÍ¼±ÅÃ³¡³²,
+        Combat_Onìºë¦­í„°ì„ íƒë¨,
+        Combat_Onìºë¦­í„°ì„ íƒëë‚¨,
 
-        Combat_OnÇàµ¿·Âº¯µ¿,
+        Combat_Oní–‰ë™ë ¥ë³€ë™,
 
-        Combat_ShowÀå±âÀü¿¬Ãâ,
+        Combat_Showìž¥ê¸°ì „ì—°ì¶œ,
 
-        //->Ä·ÆäÀÎ µ¥ÀÌÅÍ º¯µ¿ UIµ¿±âÈ­
-        World_OnÀüÁ÷,
+        //->ìº íŽ˜ì¸ ë°ì´í„° ë³€ë™ UIë™ê¸°í™”
+        World_Onì „ì§,
 
-        Global_OnSPº¯µ¿,
-        World_On»ý¸í·Âº¯µ¿,
-        World_On½ºÅ×¹Ì³Êº¯µ¿,
-        World_On±ÝÈ­º¯µ¿,
-        World_OnSPº¯µ¿,
-        Global_On¼ºÇâ¼öÄ¡º¯µ¿,
-        Global_On¼ºÇâ´Ü°èº¯µ¿,
-        Global_OnÀ¯¹°¼öÄ¡º¯µ¿, //ÀÌº¥Æ®·Î º¸³½ °ªÀ¸·Î °»½Å
-        Global_OnÀ¯¹°°»½Å, //ÇöÀç µ¥ÀÌÅÍ ±â¹ÝÀ¸·Î °»½Å
-        Global_OnÀ¯¹°°»½Å_WithµîÀå¿¬Ãâ,
-        Global_OnÀ¯¹°Á¦°Å,
+        Global_OnSPë³€ë™,
+        World_Onìƒëª…ë ¥ë³€ë™,
+        World_OnìŠ¤í…Œë¯¸ë„ˆë³€ë™,
+        World_Onê¸ˆí™”ë³€ë™,
+        World_OnSPë³€ë™,
+        Global_Onì„±í–¥ìˆ˜ì¹˜ë³€ë™,
+        Global_Onì„±í–¥ë‹¨ê³„ë³€ë™,
+        Global_Onìœ ë¬¼ìˆ˜ì¹˜ë³€ë™, //ì´ë²¤íŠ¸ë¡œ ë³´ë‚¸ ê°’ìœ¼ë¡œ ê°±ì‹ 
+        Global_Onìœ ë¬¼ê°±ì‹ , //í˜„ìž¬ ë°ì´í„° ê¸°ë°˜ìœ¼ë¡œ ê°±ì‹ 
+        Global_Onìœ ë¬¼ê°±ì‹ _Withë“±ìž¥ì—°ì¶œ,
+        Global_Onìœ ë¬¼ì œê±°,
 
-        Global_On¼Ò¸ðÇ°°»½Å,
-        Global_On¼Ò¸ðÇ°°»½Å_WithµîÀå¿¬Ãâ,
+        Global_Onì†Œëª¨í’ˆê°±ì‹ ,
+        Global_Onì†Œëª¨í’ˆê°±ì‹ _Withë“±ìž¥ì—°ì¶œ,
 
-        //-> ÀüÅõÈ­¸é UIÀÌº¥Æ®
-        Combat_OnÀüÅõ¾À·Îµå,
+        //-> ì „íˆ¬í™”ë©´ UIì´ë²¤íŠ¸
+        Combat_Onì „íˆ¬ì”¬ë¡œë“œ,
 
         Combat_OpenActionUI,
         Combat_ShowSkillDescription,
@@ -141,33 +141,33 @@ namespace ToronPuzzle.Event
         Combat_OpenTurnCount,
         Combat_CloseTurnCount,
 
-        //-> ¿ùµåÈ­¸é UIÀÌº¥Æ®
-        World_On¿ùµå¾À·Îµå,
-        World_On¿ùµåÄ³¸¯ÅÍ·Îµå,
+        //-> ì›”ë“œí™”ë©´ UIì´ë²¤íŠ¸
+        World_Onì›”ë“œì”¬ë¡œë“œ,
+        World_Onì›”ë“œìºë¦­í„°ë¡œë“œ,
 
-        World_On½Ã°£º¯µ¿,
-        World_On½Ã°£ÇÑ¹ÙÄûµ¹¸®±â,
+        World_Onì‹œê°„ë³€ë™,
+        World_Onì‹œê°„í•œë°”í€´ëŒë¦¬ê¸°,
         World_OnTileEventEnd,
 
-        World_Àü¿ªÈ¿°úº¯µ¿,
+        World_ì „ì—­íš¨ê³¼ë³€ë™,
 
         World_OpenDiceUI,
         World_CloseDiceUI,
-        World_OnÁÖ»çÀ§¼±ÅÃ,
-        World_OnÅ¸ÀÏÁÂÇ¥¼±ÅÃ,
-        World_¿¹»óµµÂøÁöÁ¡º¸ÀÌ±â,
-        World_¿¹»óµµÂøÁöÁ¡¼û±â±â,
-        World_¹æÇâ¼±ÅÃ¹öÆ°º¸ÀÌ±â,
-        World_Å¸ÀÏÀÌ¹ÌÁö±³Ã¼,
-        World_Å¸ÀÏ¹ãÀÌ¹ÌÁöº¸ÀÌ±â,
-        World_Å¸ÀÏ¹ãÀÌ¹ÌÁö¼û±â±â,
-        World_TileGizmoºñÈ°¼ºÈ­,
-        World_TileGizmoÈ°¼ºÈ­,
+        World_Onì£¼ì‚¬ìœ„ì„ íƒ,
+        World_Oníƒ€ì¼ì¢Œí‘œì„ íƒ,
+        World_ì˜ˆìƒë„ì°©ì§€ì ë³´ì´ê¸°,
+        World_ì˜ˆìƒë„ì°©ì§€ì ìˆ¨ê¸°ê¸°,
+        World_ë°©í–¥ì„ íƒë²„íŠ¼ë³´ì´ê¸°,
+        World_íƒ€ì¼ì´ë¯¸ì§€êµì²´,
+        World_íƒ€ì¼ë°¤ì´ë¯¸ì§€ë³´ì´ê¸°,
+        World_íƒ€ì¼ë°¤ì´ë¯¸ì§€ìˆ¨ê¸°ê¸°,
+        World_TileGizmoë¹„í™œì„±í™”,
+        World_TileGizmoí™œì„±í™”,
 
 
-        World_OpenÀüÁ÷UI,
-        World_CloseÀüÁ÷UI,
-        World_Open³ë¼÷UI,
+        World_Openì „ì§UI,
+        World_Closeì „ì§UI,
+        World_Openë…¸ìˆ™UI,
 
         World_OpenShopTileUI,
         World_CloseShopTileUI,
@@ -185,10 +185,10 @@ namespace ToronPuzzle.Event
 
         Share_OpenChangeConsumableUI,
 
-        World_OnRefresh¼ºÇâ¼öÄ¡,
+        World_OnRefreshì„±í–¥ìˆ˜ì¹˜,
         World_CloseVPChange,
 
-        World_On»óÅÂÅÇ¾Ë¸²,
+        World_Onìƒíƒœíƒ­ì•Œë¦¼,
 
         World_RecommendSkill,
         World_CloseRecommendSkill,
@@ -196,7 +196,7 @@ namespace ToronPuzzle.Event
         World_OpenCheckAdUI,
         World_CloseCheckAdUI,
 
-        //-> °ø¿ë UI ÀÌº¥Æ®
+        //-> ê³µìš© UI ì´ë²¤íŠ¸
         Share_OnCloseSkillTab,
         Share_OnCloseStatusTab,
 
@@ -226,25 +226,25 @@ namespace ToronPuzzle.Event
         Share_CloseSettingUI,
         Share_OpenHelpUI,
         Share_CloseHelpUI,
-        Share_OpenÄíÆùUI,
-        Share_CloseÄíÆùUI,
+        Share_Openì¿ í°UI,
+        Share_Closeì¿ í°UI,
 
-        Share_Ä³¸¯ÅÍÃÊ»óÈ­°»½Å,
-        Share_³ëÄ¡´ëÀÀ,
+        Share_ìºë¦­í„°ì´ˆìƒí™”ê°±ì‹ ,
+        Share_ë…¸ì¹˜ëŒ€ì‘,
 
-        Share_OpenYesNoPopUp,   //¿¹,¾Æ´Ï¿À ¼±ÅÃ
+        Share_OpenYesNoPopUp,   //ì˜ˆ,ì•„ë‹ˆì˜¤ ì„ íƒ
         Share_CloseYesNoPopUp,
-        Share_OpenNoticePopUp,  //È®ÀÎ¸¸ ¼±ÅÃ
+        Share_OpenNoticePopUp,  //í™•ì¸ë§Œ ì„ íƒ
         Share_CloseNoticePopUp,
 
-        Share_OpenPurchasePopUp,   //¿¹,¾Æ´Ï¿À ¼±ÅÃ
+        Share_OpenPurchasePopUp,   //ì˜ˆ,ì•„ë‹ˆì˜¤ ì„ íƒ
         Share_ClosePurchasePopUp,
 
-        Share_NetworkError,     //³×Æ®¿öÅ© ¿À·ù
-        Share_AbnormalAccessDetected,   //ºñÁ¤»óÀûÀÎ Á¢±Ù
-        Share_ErrorGenerated,   //¿À·ù ¹ß»ý
+        Share_NetworkError,     //ë„¤íŠ¸ì›Œí¬ ì˜¤ë¥˜
+        Share_AbnormalAccessDetected,   //ë¹„ì •ìƒì ì¸ ì ‘ê·¼
+        Share_ErrorGenerated,   //ì˜¤ë¥˜ ë°œìƒ
 
-        //-> ÅøÆÁº¸ÀÌ±â ÀÌº¥Æ®
+        //-> íˆ´íŒë³´ì´ê¸° ì´ë²¤íŠ¸
         ToolTipShow_Reward,     // <- Data_Reward
         ToolTipShow_Skill,      // <- SkillID
         ToolTipShow_SkillInfo,  // <- SkillID
@@ -259,23 +259,23 @@ namespace ToronPuzzle.Event
 
         ToolTipHide_Current,
 
-        //-> ÆË¾÷ ÀÌº¥Æ®
-        PopUpOpen_LegacyUnlock,     // <- °í´ëÀ¯»ê ÇØ±Ý
-        PopUpOpen_LegacyExlore,     // <- °í´ëÀ¯»ê Å½»ö
+        //-> íŒì—… ì´ë²¤íŠ¸
+        PopUpOpen_LegacyUnlock,     // <- ê³ ëŒ€ìœ ì‚° í•´ê¸ˆ
+        PopUpOpen_LegacyExlore,     // <- ê³ ëŒ€ìœ ì‚° íƒìƒ‰
 
         PopUpClose_Current,
 
-        //-> ±Û·Î¹ú UI ÀÌº¥Æ®
-        Global_ÀÔ·ÂÂ÷´Ü,
-        Global_ÀÔ·ÂÂ÷´ÜÇØÁ¦,
+        //-> ê¸€ë¡œë²Œ UI ì´ë²¤íŠ¸
+        Global_ìž…ë ¥ì°¨ë‹¨,
+        Global_ìž…ë ¥ì°¨ë‹¨í•´ì œ,
 
-        Global_³×Æ®¿öÅ©´ë±â,
-        Global_³×Æ®¿öÅ©´ë±âÇØÁ¦,
+        Global_ë„¤íŠ¸ì›Œí¬ëŒ€ê¸°,
+        Global_ë„¤íŠ¸ì›Œí¬ëŒ€ê¸°í•´ì œ,
 
-        Global_¾ÏÀü,
-        Global_¾ÏÀüÇØÁ¦,
-        Global_¾ÏÀüÁï½ÃÇØÁ¦,
-        Global_ÀÏÁ¤½Ã°£µ¿¾È¾ÏÀü,
+        Global_ì•”ì „,
+        Global_ì•”ì „í•´ì œ,
+        Global_ì•”ì „ì¦‰ì‹œí•´ì œ,
+        Global_ì¼ì •ì‹œê°„ë™ì•ˆì•”ì „,
 
         Global_ShowMsg,
         Global_ShowMsg_Error,
@@ -290,50 +290,50 @@ namespace ToronPuzzle.Event
 
         Global_EnqueueMiniGuide,
 
-        Global_¾ÀÀÌµ¿,
-        Global_¾ÀÀÌµ¿´ë±â,
-        Global_¾ÀÀÌµ¿´ë±âÇØÁ¦,
-        Global_¾ÀÀÌµ¿Â÷´Ü,
+        Global_ì”¬ì´ë™,
+        Global_ì”¬ì´ë™ëŒ€ê¸°,
+        Global_ì”¬ì´ë™ëŒ€ê¸°í•´ì œ,
+        Global_ì”¬ì´ë™ì°¨ë‹¨,
 
-        //-> Æ©Åä¸®¾ó Àü¿ë ÀÌº¥Æ®
-        Tutorial_On¿ùµå¾À·Îµå,
-        Tutorial_Open¿ùµåÆ©Åä¸®¾óUI,
+        //-> íŠœí† ë¦¬ì–¼ ì „ìš© ì´ë²¤íŠ¸
+        Tutorial_Onì›”ë“œì”¬ë¡œë“œ,
+        Tutorial_Openì›”ë“œíŠœí† ë¦¬ì–¼UI,
 
-        Tutorial_OnÀüÅõ¾À·Îµå,
+        Tutorial_Onì „íˆ¬ì”¬ë¡œë“œ,
 
         Tutorial_HideWorldUI,
         Tutorial_AppearWorldUI,
 
         Tutorial_OpenDiceUI_WithPreset,
 
-        Tutorial_ShowWorld¸»Ç³¼±_¾Æ¹«°÷ÀÌ³ªÅÍÄ¡½ÃÁøÇà,
-        Tutorial_ShowWorld¸»Ç³¼±_ÀÚµ¿ÁøÇà,
-        Tutorial_ShowWorld¸»Ç³¼±_´ë»ç¹Ýº¹,
-        Tutorial_HideWorld¸»Ç³¼±,
-        Tutorial_WorldÀÔ·ÂÂ÷´Ü,
-        Tutorial_WorldÀÔ·ÂÂ÷´ÜÇØÁ¦,
-        Tutorial_World¹öÆ°Å¬¸¯°­Á¦ÇÏ±â,
+        Tutorial_ShowWorldë§í’ì„ _ì•„ë¬´ê³³ì´ë‚˜í„°ì¹˜ì‹œì§„í–‰,
+        Tutorial_ShowWorldë§í’ì„ _ìžë™ì§„í–‰,
+        Tutorial_ShowWorldë§í’ì„ _ëŒ€ì‚¬ë°˜ë³µ,
+        Tutorial_HideWorldë§í’ì„ ,
+        Tutorial_Worldìž…ë ¥ì°¨ë‹¨,
+        Tutorial_Worldìž…ë ¥ì°¨ë‹¨í•´ì œ,
+        Tutorial_Worldë²„íŠ¼í´ë¦­ê°•ì œí•˜ê¸°,
 
-        Tutorial_ShowCombatButtle_Quen¾Æ¹«°÷ÀÌ³ªÅÍÄ¡½ÃÁøÇà,
-        Tutorial_ShowCombatButtle_QuenÀÚµ¿ÁøÇà,
+        Tutorial_ShowCombatButtle_Quenì•„ë¬´ê³³ì´ë‚˜í„°ì¹˜ì‹œì§„í–‰,
+        Tutorial_ShowCombatButtle_Quenìžë™ì§„í–‰,
         Tutorial_ShowCombatButtle_Cube,
         Tutorial_HideCombatBubble,
-        Tutorial_CombatÀÔ·ÂÂ÷´Ü,
-        Tutorial_CombatÀÔ·ÂÂ÷´ÜÇØÁ¦,
-        Tutorial_Combat½ºÅ³»ç¿ë°­Á¦ÇÏ±â,
-        Tutorial_Combat½ºÅ³»ç¿ë°­Á¦ÇØÁ¦,
-        Tutorial_Combat¾×¼ÇUIµô·¹ÀÌ,
-        Tutorial_CombatÇàµ¿·ÂÀüºÎ¼Ò¸ð°­Á¦ÇÏ±â,
-        Tutorial_CombatÇàµ¿·ÂÀüºÎ¼Ò¸ð°­Á¦ÇØÁ¦,
+        Tutorial_Combatìž…ë ¥ì°¨ë‹¨,
+        Tutorial_Combatìž…ë ¥ì°¨ë‹¨í•´ì œ,
+        Tutorial_CombatìŠ¤í‚¬ì‚¬ìš©ê°•ì œí•˜ê¸°,
+        Tutorial_CombatìŠ¤í‚¬ì‚¬ìš©ê°•ì œí•´ì œ,
+        Tutorial_Combatì•¡ì…˜UIë”œë ˆì´,
+        Tutorial_Combatí–‰ë™ë ¥ì „ë¶€ì†Œëª¨ê°•ì œí•˜ê¸°,
+        Tutorial_Combatí–‰ë™ë ¥ì „ë¶€ì†Œëª¨ê°•ì œí•´ì œ,
 
         Tutorial_ShowGuideHand,
         Tutorial_HideGuideHand,
 
-        //-> ·Îºñ Æ©Åä¸®¾ó ÀÌº¥Æ®
-        Tutorial_Lobby_ÅøÆÁ·Îµå,
+        //-> ë¡œë¹„ íŠœí† ë¦¬ì–¼ ì´ë²¤íŠ¸
+        Tutorial_Lobby_íˆ´íŒë¡œë“œ,
 
-        Tutorial_Lobby_¾Æ¹«°÷ÀÌ³ªÅÍÄ¡,
-        Tutorial_Lobby_´ë»ó¹öÆ°Å¬¸¯°­Á¦,
+        Tutorial_Lobby_ì•„ë¬´ê³³ì´ë‚˜í„°ì¹˜,
+        Tutorial_Lobby_ëŒ€ìƒë²„íŠ¼í´ë¦­ê°•ì œ,
 
     }
 }

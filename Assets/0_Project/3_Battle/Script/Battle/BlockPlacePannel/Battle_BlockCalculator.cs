@@ -8,11 +8,94 @@ namespace ToronPuzzle.Battle
 {
     public class Battle_BlockCalculator : BlockCalculator
     {
-
         //계산 관련
-        int AggressiveNum, CynicalNum, FriendlyNum, EmptinessNum = 0;
-        int _bonusNum = 0;
+        [SerializeField]
+        int _aggressiveNum, _cynicalNum, _friendlyNum, _emptinessNum, _bonusNum = 0;
+        float _attackNum, _defendNum=0;
+        [SerializeField]
+        ToolTipCurrentPannelData _tooltipPannel;
 
+        public string GetCurrentNum()
+        {
+            string temptContentStr = "<sprite=0> : ";
+            temptContentStr += (_aggressiveNum.ToString() + " ");
+            temptContentStr += ((Vector2)_currentElementValue[BlockElement.Aggressive]).ToString();
+            temptContentStr += "\n";
+            temptContentStr += "<sprite=1> : ";
+            temptContentStr += (_cynicalNum.ToString() + " ");
+            temptContentStr += ((Vector2)_currentElementValue[BlockElement.Cynical]).ToString();
+            temptContentStr += "\n";
+            temptContentStr += "<sprite=2> : ";
+            temptContentStr += (_friendlyNum.ToString() + " ");
+            temptContentStr += ((Vector2)_currentElementValue[BlockElement.Friendly]).ToString();
+            temptContentStr += "\n";
+            temptContentStr += "<sprite=3> : ";
+            temptContentStr += (_emptinessNum.ToString() + " ");
+            temptContentStr += ((Vector2)_currentElementValue[BlockElement.Emptiness]).ToString();
+            temptContentStr += "\n";
+            temptContentStr += "<sprite=4> : ";
+            temptContentStr += (_bonusNum.ToString() + " ");
+            temptContentStr += ((Vector2)_currentElementValue[BlockElement.Bonus]).ToString();
+
+
+
+            return temptContentStr;
+        }
+
+        private void ResetNum()
+        {
+            _aggressiveNum = 0;
+            _cynicalNum = 0;
+            _friendlyNum = 0;
+            _emptinessNum = 0;
+            _bonusNum = 0;
+            _attackNum = 0;
+            _defendNum = 0;
+        }
+        private void SetElementToPower()
+        {
+            _attackNum = _aggressiveNum * _currentElementValue[BlockElement.Aggressive].x
+                + _cynicalNum * _currentElementValue[BlockElement.Cynical].x
+                + _friendlyNum * _currentElementValue[BlockElement.Friendly].x
+                + _emptinessNum * _currentElementValue[BlockElement.Emptiness].x
+                + _bonusNum * _currentElementValue[BlockElement.Bonus].x;
+
+            _defendNum = _aggressiveNum * _currentElementValue[BlockElement.Aggressive].y
+                + _cynicalNum * _currentElementValue[BlockElement.Cynical].y
+                + _friendlyNum * _currentElementValue[BlockElement.Friendly].y
+                + _emptinessNum * _currentElementValue[BlockElement.Emptiness].y
+                + _bonusNum * _currentElementValue[BlockElement.Bonus].y;
+
+
+        }
+        public override void CalcPannelData(List<BlockInfo> _argBlockInfos)
+        {
+            ResetNum();
+            foreach (BlockInfo _blockInfo in _argBlockInfos)
+                switch (_blockInfo._blockElement)
+                {
+                    case BlockElement.Aggressive:
+                        _aggressiveNum += _blockInfo._blockStength;
+                        break;
+                    case BlockElement.Cynical:
+                        _cynicalNum += _blockInfo._blockStength;
+                        break;
+                    case BlockElement.Friendly:
+                        _friendlyNum += _blockInfo._blockStength;
+                        break;
+                    case BlockElement.Emptiness:
+                        _emptinessNum += _blockInfo._blockStength;
+                        break;
+                    case BlockElement.Bonus:
+                        _bonusNum += _blockInfo._blockStength;
+                        break;
+                    default:
+                        Debug.LogError("Calc: default error ");
+                        break;
+                }
+            SetElementToPower();
+            _tooltipPannel.SetNumberOnText(_attackNum, _defendNum);
+        }
         public override void CalcBonusLine(int[,] _arg_Arr)
         {
             _filledLineX.Clear();
@@ -22,7 +105,7 @@ namespace ToronPuzzle.Battle
             foreach (GameObject gameObject in _bonusYRowLines)
                 gameObject.SetActive(false);
 
-            PerfectSetting.SetActive(false);
+            _perfectSetting.SetActive(false);
 
 
 
@@ -80,12 +163,15 @@ namespace ToronPuzzle.Battle
 
             if (_filledLineX.Count == _bonusXColumnLines.Count && _filledLineY.Count == _bonusYRowLines.Count)
             {
-                PerfectSetting.SetActive(true);
+                _perfectSetting.SetActive(true);
                 _bonusNum += 8;
                 Global_FXPlayer.PlayFX(FXKind.BlockBns_Full , _fullFXpos, new Vector2((int)(_filledLineX.Count * 0.75f), (int)(_filledLineY.Count * 0.75f)), lowestY * 0.25f);
                 Global_SoundManager.Instance.PlaySFX(SFXName.Bonus_Big, lowestY * 0.25f);
             }
 
         }
+
+        
+
     }
 }
