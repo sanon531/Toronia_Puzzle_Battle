@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using ToronPuzzle.Event;
 using ToronPuzzle.Data;
+using ToronPuzzle.UI;
 
 namespace ToronPuzzle.Battle
 {
@@ -37,8 +38,7 @@ namespace ToronPuzzle.Battle
             Global_ToolTip global_ToolTip = GameObject.Find("Global_ToolTip").GetComponent<Global_ToolTip>();
             global_ToolTip.BeginGlobalTooltip();
 
-
-            Global_InGameData.Instance.BegingModuleData();
+            //모듈은 끝나고 재 설치된다.
         }
 
 

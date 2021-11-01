@@ -19,6 +19,8 @@ namespace ToronPuzzle
         Global_DragDropManager global_DragDropManager;
         Global_BlockGenerator global_BlockGenerator;
         Global_BlockPlaceMaster global_BlockPlaceMaster;
+        Global_CoroutineManager global_CoroutineManager;
+        Global_SceneManager global_SceneManager;
         [SerializeField]
         string _caseSkin = "PlacingCell";
         [SerializeField]
@@ -47,6 +49,11 @@ namespace ToronPuzzle
             global_DragDropManager = GameObject.Find("Global_DragDropManager").GetComponent<Global_DragDropManager>();
             global_DragDropManager.BeginDragDrap();
 
+            global_CoroutineManager = GameObject.Find("Global_GameManager").GetComponent<Global_CoroutineManager>();
+            global_CoroutineManager.BeginCoroutineManager();
+            global_SceneManager = GameObject.Find("Global_GameManager").GetComponent<Global_SceneManager>();
+            global_SceneManager.BeginSceneManager();
+
             global_BlockGenerator = GameObject.Find("Global_BlockGenerator").GetComponent<Global_BlockGenerator>();
             global_BlockGenerator.BeginBlockGenerator();
             SetBlockPlace();
@@ -57,8 +64,7 @@ namespace ToronPuzzle
         {
             global_BlockPlaceMaster = GameObject.Find("Global_BlockPlaceMaster").GetComponent<Global_BlockPlaceMaster>();
             global_BlockPlaceMaster.BeginBlockPlace( _caseSkin, _bonusSkin);
-
-
+            Global_InGameData.Instance.BegingModuleData();
         }
 
         private void CheckScene(Scene current, Scene next)

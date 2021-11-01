@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 using ToronPuzzle.Data;
+using ToronPuzzle.UI;
 
 namespace ToronPuzzle.Battle
 {
@@ -12,6 +12,8 @@ namespace ToronPuzzle.Battle
         [SerializeField]
         int _aggressiveNum, _cynicalNum, _friendlyNum, _emptinessNum, _bonusNum = 0;
         float _attackNum, _defendNum=0;
+
+        // 이런식 말고 델리 게이트 사용해보자
         [SerializeField]
         ToolTipCurrentPannelData _tooltipPannel;
 
@@ -71,6 +73,8 @@ namespace ToronPuzzle.Battle
         public override void CalcPannelData(List<BlockInfo> _argBlockInfos)
         {
             ResetNum();
+
+
             foreach (BlockInfo _blockInfo in _argBlockInfos)
                 switch (_blockInfo._blockElement)
                 {

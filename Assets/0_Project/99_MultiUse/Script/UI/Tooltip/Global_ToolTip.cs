@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-namespace ToronPuzzle
+using ToronPuzzle.Event;
+
+namespace ToronPuzzle.UI
 {
 
-    public class Global_ToolTip : MonoBehaviour
+    public class Global_ToolTip : UI_Object, IGameListenerUI
     {
         public static Global_ToolTip instance;
         [SerializeField]
         Camera _currentCamera;
-
         [SerializeField]
         GameObject _tooltipObj;
         [SerializeField]
@@ -28,9 +29,11 @@ namespace ToronPuzzle
             _canvaslocalScale = _canvasRect.localScale.x;
         }
 
+        //약간의 딜레이를 준채로 하고싶음.
         public void DisableTooltip()
         {
             _tooltipObj.SetActive(false);
+
         }
 
         public void SetToolTipData(string _arg_title,string _arg_Content)
@@ -39,6 +42,10 @@ namespace ToronPuzzle
             _title.SetText(_arg_title);
             _content.SetText(_arg_Content);
         }
+
+
+
+
         private void Update()
         {
             SetMousePointerPos();
@@ -48,8 +55,6 @@ namespace ToronPuzzle
         {
             Vector3 _worldMPos = _currentCamera.ScreenToWorldPoint(Input.mousePosition);
             //transform.position = _worldMPos + new Vector3(0, 0, 10);
-
-
             Vector3 _half_Size = new Vector3(_tooltip_rect.sizeDelta.x * _canvaslocalScale * 0.5f, _tooltip_rect.sizeDelta.y * _canvaslocalScale * 0.5f);
 
             //툴팁 가두기 술법
@@ -63,6 +68,11 @@ namespace ToronPuzzle
             //Vector3 _rect_Pos = Camera.main.ScreenToWorldPoint(Input.mousePosition +new Vector3(localx, localy) ); 
             //tooltip_rect.position = _rect_Pos;
 
+
+        }
+
+        public void AssignGameListener()
+        {
 
         }
     }

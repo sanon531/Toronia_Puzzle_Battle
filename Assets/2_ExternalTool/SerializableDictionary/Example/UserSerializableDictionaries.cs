@@ -107,12 +107,10 @@ public enum GameSequence
 {
     VeryFirstStart,
     WaitForStart,
-    ConveyerToInventory,
-    InventoryToHoldingPanel,
-    ConveyerToHoldingPanel,
+    BattleSequence,
     CalcDamage,
     BackToBegin,
-    EndOfGame,
+    EndOfGame
 }
 public enum CalledSituation
 {

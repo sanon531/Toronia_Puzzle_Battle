@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace ToronPuzzle
+namespace ToronPuzzle.UI
 {
     public class TooltipReturner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {

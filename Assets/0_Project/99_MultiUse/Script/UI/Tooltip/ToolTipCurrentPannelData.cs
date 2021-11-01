@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using ToronPuzzle.Battle;
 using TMPro;
-namespace ToronPuzzle.Battle
+
+namespace ToronPuzzle.UI
 {
-    public class ToolTipCurrentPannelData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    public class ToolTipCurrentPannelData : UI_Object, IPointerEnterHandler, IPointerExitHandler
     {
         [SerializeField] Battle_BlockCalculator _blockCalculator;
         [SerializeField] TextMeshProUGUI _attackText, _defendText;

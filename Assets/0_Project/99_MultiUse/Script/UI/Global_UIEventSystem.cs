@@ -1,244 +1,253 @@
-ï»¿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ToronPuzzle.UI;
 using System;
 
-namespace ToronPuzzle.Event{
-	[Flags]
-	public enum EventRegistOption {
-		None = 0,
-		Permanent = 1,	//Sceneë³€ê²½ì—ë„ ì‚¬ë¼ì§€ì§€ ì•ŠìŒ.
-	}
-	public static class Global_UIEventSystem {
-		// delegate ë³€ìˆ˜ë¡œ ì‚¬ìš©í•  ê²ƒë“¤.
-		public delegate void EventFunc();
-		public delegate void EventFunc<T>(T param1);
-		public delegate void EventFunc<T1, T2>(T1 param1, T2 param2);
-		public delegate void EventFunc<T1, T2, T3>(T1 param1, T2 param2, T3 param3);
 
-		// ì‹¤ì œ ui event í•¨ìˆ˜ë“¤ì„ ë“¤ê³ ìˆëŠ” dictionary
-		private static Dictionary<UIEventID, DelegateList> _uiEvents = new Dictionary<UIEventID, DelegateList>();
-		private static Dictionary<UIEventID, DelegateList> _permanentEvents = new Dictionary<UIEventID, DelegateList>();
+namespace ToronPuzzle.Event
+{
+    public delegate void EventFunc();
+    public delegate void EventFunc<T>(T param1);
+    public delegate void EventFunc<T1, T2>(T1 param1, T2 param2);
 
-		//UIë¥¼ ì¼œê³  ë²„íŠ¼ì„ ëˆ„ë¥´ê³  í‘œê¸°ë˜ëŠ” ê°’ì„ ë³€ê²½í•˜ëŠ” ë“±, ì¸ê²Œì„ ì›”ë“œì™€ ìƒê´€ì—†ì´ UIì— ê´€ë ¨ëœ ì´ë²¤íŠ¸ (ì•„ì›ƒê²Œì„ ì´ë²¤íŠ¸)
-		#region UIEvent
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		// ì£¼ì˜ : ì”¬ì´ ë°”ë€” ë•Œ ui event ëŠ” ëª¨ë‘ í´ë¦¬ì–´ë˜ì–´ì•¼ í•œë‹¤.
-		public static void Clear_SceneLocalUIEvent() {
-			_uiEvents = new Dictionary<UIEventID, DelegateList>(_permanentEvents);
-			Debug.Log("UI Event Cleared");
-		}
+    public enum EventRegistOption
+    {
+        None = 0,
+        Permanent = 1,  //Sceneº¯°æ¿¡µµ »ç¶óÁöÁö ¾ÊÀ½.
+    }
+    public static class Global_UIEventSystem 
+    {
+        public static event EventFunc onTooltipShow;
+        public static void CallOnTooltipShow() { onTooltipShow.Invoke(); }
 
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		// UI ì´ë²¤íŠ¸ í˜¸ì¶œ ë¶€ë¶„. ì›í•˜ëŠ” ì´ë²¤íŠ¸ ì´ë¦„ê³¼ ì¸ìë¡œ ì „ë‹¬í•  ë‚´ìš©ì„ ì „ë‹¬í•˜ë©´ ëœë‹¤.
-		public static void Call_UIEvent(UIEventID eventID) {
-			if (null == _uiEvents) {
-				return;
-			}
 
-			if (false == _uiEvents.ContainsKey(eventID)) {
-				Debug.Log("ë“±ë¡ë˜ì§€ ì•Šì€ ì´ë²¤íŠ¸ì…ë‹ˆë‹¤ : " + eventID);
-				return;
-			}
 
-			// í•´ë‹¹ ì´ë²¤íŠ¸ì— ë‹¬ë¦° ëª¨ë“  í•¨ìˆ˜ë¥¼ ì‹¤í–‰.
-			List<Delegate> eventList = _uiEvents[eventID].GetEventList();
-			foreach (EventFunc func in eventList) {
-				func();
-			}
-		}
+        private static Dictionary<UIEventID, DelegateList> _uiEvents = new Dictionary<UIEventID, DelegateList>();
+        private static Dictionary<UIEventID, DelegateList> _permanentEvents = new Dictionary<UIEventID, DelegateList>();
 
-		public static void Call_UIEvent<T>(UIEventID eventID, T param) {
-			if (null == _uiEvents) {
-				return;
-			}
 
-			if (false == _uiEvents.ContainsKey(eventID)) {
-				Debug.Log("ë“±ë¡ë˜ì§€ ì•Šì€ ì´ë²¤íŠ¸ì…ë‹ˆë‹¤ : " + eventID);
-				return;
-			}
+        //////////////////////////////////////////////////////////////////////////////////////////////////
+        // ÁÖÀÇ : ¾ÀÀÌ ¹Ù²ğ ¶§ ui event ´Â ¸ğµÎ Å¬¸®¾îµÇ¾î¾ß ÇÑ´Ù.
+        public static void Clear_SceneLocalUIEvent()
+        {
+            _uiEvents = new Dictionary<UIEventID, DelegateList>(_permanentEvents);
+            Debug.Log("UI Event Cleared");
+        }
 
-			// í•´ë‹¹ ì´ë²¤íŠ¸ì— ë‹¬ë¦° ëª¨ë“  í•¨ìˆ˜ë¥¼ ì‹¤í–‰.
-			List<Delegate> eventList = _uiEvents[eventID].GetEventList();
-			foreach (EventFunc<T> func in eventList) {
-				func(param);
-			}
-		}
 
-		public static void Call_UIEvent<T1, T2>(UIEventID eventID, T1 param1, T2 param2) {
-			if (null == _uiEvents) {
-				return;
-			}
+        public static void Call_UIEvent(UIEventID eventID)
+        {
+            if (null == _uiEvents)
+            {
+                return;
+            }
 
-			if (false == _uiEvents.ContainsKey(eventID)) {
-				Debug.Log("ë“±ë¡ë˜ì§€ ì•Šì€ ì´ë²¤íŠ¸ì…ë‹ˆë‹¤ : " + eventID);
-				return;
-			}
+            if (false == _uiEvents.ContainsKey(eventID))
+            {
+                Debug.Log("µî·ÏµÇÁö ¾ÊÀº ÀÌº¥Æ®ÀÔ´Ï´Ù : " + eventID);
+                return;
+            }
 
-			// í•´ë‹¹ ì´ë²¤íŠ¸ì— ë‹¬ë¦° ëª¨ë“  í•¨ìˆ˜ë¥¼ ì‹¤í–‰.
-			List<Delegate> eventList = _uiEvents[eventID].GetEventList();
-			foreach (EventFunc<T1, T2> func in eventList) {
-				func(param1, param2);
-			}
+            // ÇØ´ç ÀÌº¥Æ®¿¡ ´Ş¸° ¸ğµç ÇÔ¼ö¸¦ ½ÇÇà.
+            List<Delegate> eventList = _uiEvents[eventID].GetEventList();
+            foreach (EventFunc func in eventList)
+            {
+                func();
+            }
+        }
 
-		}
+        public static void Call_UIEvent<T>(UIEventID eventID, T param)
+        {
+            if (null == _uiEvents)
+            {
+                return;
+            }
 
-		public static void Call_UIEvent<T1, T2, T3>(UIEventID eventID, T1 param1, T2 param2, T3 param3) {
-			if (null == _uiEvents) {
-				return;
-			}
+            if (false == _uiEvents.ContainsKey(eventID))
+            {
+                Debug.Log("µî·ÏµÇÁö ¾ÊÀº ÀÌº¥Æ®ÀÔ´Ï´Ù : " + eventID);
+                return;
+            }
 
-			if (false == _uiEvents.ContainsKey(eventID)) {
-				Debug.Log("ë“±ë¡ë˜ì§€ ì•Šì€ ì´ë²¤íŠ¸ì…ë‹ˆë‹¤ : " + eventID);
-				return;
-			}
+            // ÇØ´ç ÀÌº¥Æ®¿¡ ´Ş¸° ¸ğµç ÇÔ¼ö¸¦ ½ÇÇà.
+            List<Delegate> eventList = _uiEvents[eventID].GetEventList();
+            foreach (EventFunc<T> func in eventList)
+            {
+                func(param);
+            }
+        }
 
-			// í•´ë‹¹ ì´ë²¤íŠ¸ì— ë‹¬ë¦° ëª¨ë“  í•¨ìˆ˜ë¥¼ ì‹¤í–‰.
-			List<Delegate> eventList = _uiEvents[eventID].GetEventList();
-			foreach (EventFunc<T1, T2, T3> func in eventList) {
-				func(param1, param2, param3);
-			}
+        public static void Call_UIEvent<T1, T2>(UIEventID eventID, T1 param1, T2 param2)
+        {
+            if (null == _uiEvents)
+            {
+                return;
+            }
 
-		}
+            if (false == _uiEvents.ContainsKey(eventID))
+            {
+                Debug.Log("µî·ÏµÇÁö ¾ÊÀº ÀÌº¥Æ®ÀÔ´Ï´Ù : " + eventID);
+                return;
+            }
 
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		// UI ì´ë²¤íŠ¸ ë“±ë¡ ë¶€ë¶„. ì¸ì ê°œìˆ˜ì— ë”°ë¼ì„œ ë‹¤ë¥¸ RegisterUIEvent í•¨ìˆ˜ë¡œ ë“±ë¡í•˜ë©´ ëœë‹¤.
-		public static void Register_UIEvent(UIEventID eventID, EventFunc func, EventRegistOption option = EventRegistOption.None) {
-			// ì´ë²¤íŠ¸ê°€ ì•„ì˜ˆ ì—†ì—ˆìœ¼ë©´ ìƒˆë¡œ í• ë‹¹í•´ì£¼ì–´ì•¼ í•œë‹¤.
-			if (false == _uiEvents.ContainsKey(eventID)) {
-				DelegateList list = new DelegateList();
-				list.AddFunction<EventFunc>(func);
+            // ÇØ´ç ÀÌº¥Æ®¿¡ ´Ş¸° ¸ğµç ÇÔ¼ö¸¦ ½ÇÇà.
+            List<Delegate> eventList = _uiEvents[eventID].GetEventList();
+            foreach (EventFunc<T1, T2> func in eventList)
+            {
+                func(param1, param2);
+            }
 
-				_uiEvents.Add(eventID, list);
-			} else {
-				// ì´ë²¤íŠ¸ì— í•¨ìˆ˜ ì¶”ê°€.
-				_uiEvents[eventID].AddFunction<EventFunc>(func);
-			}
+        }
 
-			if (option.HasFlag(EventRegistOption.Permanent)) {
-				// ì´ë²¤íŠ¸ê°€ ì•„ì˜ˆ ì—†ì—ˆìœ¼ë©´ ìƒˆë¡œ í• ë‹¹í•´ì£¼ì–´ì•¼ í•œë‹¤.
-				if (false == _permanentEvents.ContainsKey(eventID)) {
-					DelegateList list = new DelegateList();
-					list.AddFunction<EventFunc>(func);
 
-					_permanentEvents.Add(eventID, list);
-				} else {
-					// ì´ë²¤íŠ¸ì— í•¨ìˆ˜ ì¶”ê°€.
-					_permanentEvents[eventID].AddFunction<EventFunc>(func);
-				}
-			}
-		}
+        ////////////////////////////////////////////////////////////////////////////////////////////////
+        // UI ÀÌº¥Æ® µî·Ï ºÎºĞ. ÀÎÀÚ °³¼ö¿¡ µû¶ó¼­ ´Ù¸¥ RegisterUIEvent ÇÔ¼ö·Î µî·ÏÇÏ¸é µÈ´Ù.
+        public static void Register_UIEvent(UIEventID eventID, EventFunc func, EventRegistOption option = EventRegistOption.None)
+        {
+            // ÀÌº¥Æ®°¡ ¾Æ¿¹ ¾ø¾úÀ¸¸é »õ·Î ÇÒ´çÇØÁÖ¾î¾ß ÇÑ´Ù.
+            if (false == _uiEvents.ContainsKey(eventID))
+            {
+                DelegateList list = new DelegateList();
+                list.AddFunction<EventFunc>(func);
 
-		public static void Register_UIEvent<T>(UIEventID eventID, EventFunc<T> func, EventRegistOption option = EventRegistOption.None) {
-			// ì´ë²¤íŠ¸ê°€ ì•„ì˜ˆ ì—†ì—ˆìœ¼ë©´ ìƒˆë¡œ í• ë‹¹í•´ì£¼ì–´ì•¼ í•œë‹¤.
-			if (false == _uiEvents.ContainsKey(eventID)) {
-				DelegateList list = new DelegateList();
-				list.AddFunction<EventFunc<T>>(func);
+                _uiEvents.Add(eventID, list);
+            }
+            else
+            {
+                // ÀÌº¥Æ®¿¡ ÇÔ¼ö Ãß°¡.
+                _uiEvents[eventID].AddFunction<EventFunc>(func);
+            }
 
-				_uiEvents.Add(eventID, list);
-			} else {
-				// ì´ë²¤íŠ¸ì— í•¨ìˆ˜ ì¶”ê°€.
-				_uiEvents[eventID].AddFunction<EventFunc<T>>(func);
-			}
+            if (option.HasFlag(EventRegistOption.Permanent))
+            {
+                // ÀÌº¥Æ®°¡ ¾Æ¿¹ ¾ø¾úÀ¸¸é »õ·Î ÇÒ´çÇØÁÖ¾î¾ß ÇÑ´Ù.
+                if (false == _permanentEvents.ContainsKey(eventID))
+                {
+                    DelegateList list = new DelegateList();
+                    list.AddFunction<EventFunc>(func);
 
-			if (option.HasFlag(EventRegistOption.Permanent)) {
-				// ì´ë²¤íŠ¸ê°€ ì•„ì˜ˆ ì—†ì—ˆìœ¼ë©´ ìƒˆë¡œ í• ë‹¹í•´ì£¼ì–´ì•¼ í•œë‹¤.
-				if (false == _permanentEvents.ContainsKey(eventID)) {
-					DelegateList list = new DelegateList();
-					list.AddFunction<EventFunc<T>>(func);
+                    _permanentEvents.Add(eventID, list);
+                }
+                else
+                {
+                    // ÀÌº¥Æ®¿¡ ÇÔ¼ö Ãß°¡.
+                    _permanentEvents[eventID].AddFunction<EventFunc>(func);
+                }
+            }
+        }
 
-					_permanentEvents.Add(eventID, list);
-				} else {
-					// ì´ë²¤íŠ¸ì— í•¨ìˆ˜ ì¶”ê°€.
-					_permanentEvents[eventID].AddFunction<EventFunc<T>>(func);
-				}
-			}
-		}
+        public static void Register_UIEvent<T>(UIEventID eventID, EventFunc<T> func, EventRegistOption option = EventRegistOption.None)
+        {
+            // ÀÌº¥Æ®°¡ ¾Æ¿¹ ¾ø¾úÀ¸¸é »õ·Î ÇÒ´çÇØÁÖ¾î¾ß ÇÑ´Ù.
+            if (false == _uiEvents.ContainsKey(eventID))
+            {
+                DelegateList list = new DelegateList();
+                list.AddFunction<EventFunc<T>>(func);
 
-		public static void Register_UIEvent<T1, T2>(UIEventID eventID, EventFunc<T1, T2> func, EventRegistOption option = EventRegistOption.None) {
-			// ì´ë²¤íŠ¸ê°€ ì•„ì˜ˆ ì—†ì—ˆìœ¼ë©´ ìƒˆë¡œ í• ë‹¹í•´ì£¼ì–´ì•¼ í•œë‹¤.
-			if (false == _uiEvents.ContainsKey(eventID)) {
-				DelegateList list = new DelegateList();
-				list.AddFunction<EventFunc<T1, T2>>(func);
+                _uiEvents.Add(eventID, list);
+            }
+            else
+            {
+                // ÀÌº¥Æ®¿¡ ÇÔ¼ö Ãß°¡.
+                _uiEvents[eventID].AddFunction<EventFunc<T>>(func);
+            }
 
-				_uiEvents.Add(eventID, list);
-			} else {
-				// ì´ë²¤íŠ¸ì— í•¨ìˆ˜ ì¶”ê°€.
-				_uiEvents[eventID].AddFunction<EventFunc<T1, T2>>(func);
-			}
+            if (option.HasFlag(EventRegistOption.Permanent))
+            {
+                // ÀÌº¥Æ®°¡ ¾Æ¿¹ ¾ø¾úÀ¸¸é »õ·Î ÇÒ´çÇØÁÖ¾î¾ß ÇÑ´Ù.
+                if (false == _permanentEvents.ContainsKey(eventID))
+                {
+                    DelegateList list = new DelegateList();
+                    list.AddFunction<EventFunc<T>>(func);
 
-			if (option.HasFlag(EventRegistOption.Permanent)) {
-				// ì´ë²¤íŠ¸ê°€ ì•„ì˜ˆ ì—†ì—ˆìœ¼ë©´ ìƒˆë¡œ í• ë‹¹í•´ì£¼ì–´ì•¼ í•œë‹¤.
-				if (false == _permanentEvents.ContainsKey(eventID)) {
-					DelegateList list = new DelegateList();
-					list.AddFunction<EventFunc<T1, T2>>(func);
+                    _permanentEvents.Add(eventID, list);
+                }
+                else
+                {
+                    // ÀÌº¥Æ®¿¡ ÇÔ¼ö Ãß°¡.
+                    _permanentEvents[eventID].AddFunction<EventFunc<T>>(func);
+                }
+            }
+        }
 
-					_permanentEvents.Add(eventID, list);
-				} else {
-					// ì´ë²¤íŠ¸ì— í•¨ìˆ˜ ì¶”ê°€.
-					_permanentEvents[eventID].AddFunction<EventFunc<T1, T2>>(func);
-				}
-			}
-		}
+        public static void Register_UIEvent<T1, T2>(UIEventID eventID, EventFunc<T1, T2> func, EventRegistOption option = EventRegistOption.None)
+        {
+            // ÀÌº¥Æ®°¡ ¾Æ¿¹ ¾ø¾úÀ¸¸é »õ·Î ÇÒ´çÇØÁÖ¾î¾ß ÇÑ´Ù.
+            if (false == _uiEvents.ContainsKey(eventID))
+            {
+                DelegateList list = new DelegateList();
+                list.AddFunction<EventFunc<T1, T2>>(func);
 
-		public static void Register_UIEvent<T1, T2, T3>(UIEventID eventID, EventFunc<T1, T2, T3> func, EventRegistOption option = EventRegistOption.None) {
-			// ì´ë²¤íŠ¸ê°€ ì•„ì˜ˆ ì—†ì—ˆìœ¼ë©´ ìƒˆë¡œ í• ë‹¹í•´ì£¼ì–´ì•¼ í•œë‹¤.
-			if (false == _uiEvents.ContainsKey(eventID)) {
-				DelegateList list = new DelegateList();
-				list.AddFunction<EventFunc<T1, T2, T3>>(func);
+                _uiEvents.Add(eventID, list);
+            }
+            else
+            {
+                // ÀÌº¥Æ®¿¡ ÇÔ¼ö Ãß°¡.
+                _uiEvents[eventID].AddFunction<EventFunc<T1, T2>>(func);
+            }
 
-				_uiEvents.Add(eventID, list);
-			} else {
-				// ì´ë²¤íŠ¸ì— í•¨ìˆ˜ ì¶”ê°€.
-				_uiEvents[eventID].AddFunction<EventFunc<T1, T2, T3>>(func);
-			}
+            if (option.HasFlag(EventRegistOption.Permanent))
+            {
+                // ÀÌº¥Æ®°¡ ¾Æ¿¹ ¾ø¾úÀ¸¸é »õ·Î ÇÒ´çÇØÁÖ¾î¾ß ÇÑ´Ù.
+                if (false == _permanentEvents.ContainsKey(eventID))
+                {
+                    DelegateList list = new DelegateList();
+                    list.AddFunction<EventFunc<T1, T2>>(func);
 
-			if (option.HasFlag(EventRegistOption.Permanent)) {
-				// ì´ë²¤íŠ¸ê°€ ì•„ì˜ˆ ì—†ì—ˆìœ¼ë©´ ìƒˆë¡œ í• ë‹¹í•´ì£¼ì–´ì•¼ í•œë‹¤.
-				if (false == _permanentEvents.ContainsKey(eventID)) {
-					DelegateList list = new DelegateList();
-					list.AddFunction<EventFunc<T1, T2, T3>>(func);
+                    _permanentEvents.Add(eventID, list);
+                }
+                else
+                {
+                    // ÀÌº¥Æ®¿¡ ÇÔ¼ö Ãß°¡.
+                    _permanentEvents[eventID].AddFunction<EventFunc<T1, T2>>(func);
+                }
+            }
+        }
 
-					_permanentEvents.Add(eventID, list);
-				} else {
-					// ì´ë²¤íŠ¸ì— í•¨ìˆ˜ ì¶”ê°€.
-					_permanentEvents[eventID].AddFunction<EventFunc<T1, T2, T3>>(func);
-				}
-			}
-		}
-		#endregion
-	}
 
-	/// <summary>
-	/// delegate í•¨ìˆ˜ ë¦¬ìŠ¤íŠ¸ë¥¼ ë“¤ê³ ìˆëŠ” êµ¬ì¡°ì²´.
-	/// </summary>
-	public struct DelegateList {
-		private List<Delegate> _funcList;
-		public List<Delegate> GetEventList() { return _funcList; }
 
-		public void AddFunction<T>(T func) {
-			if (null == _funcList) {
-				_funcList = new List<Delegate>();
-			}
 
-			_funcList.Add(func as Delegate);
-		}
 
-		public void DeleteFunction<T>(T func) {
-			_funcList.Remove(func as Delegate);
-		}
 
-		public bool IsEmpty() {
-			if (null == _funcList) {
-				return true;
-			}
 
-			if (_funcList.Count <= 0) {
-				return true;
-			}
 
-			return false;
-		}
-	}
+    }
+
+    public struct DelegateList
+    {
+        private List<Delegate> _funcList;
+        public List<Delegate> GetEventList() { return _funcList; }
+
+        public void AddFunction<T>(T func)
+        {
+            if (null == _funcList)
+            {
+                _funcList = new List<Delegate>();
+            }
+
+            _funcList.Add(func as Delegate);
+        }
+
+        public void DeleteFunction<T>(T func)
+        {
+            _funcList.Remove(func as Delegate);
+        }
+
+        public bool IsEmpty()
+        {
+            if (null == _funcList)
+            {
+                return true;
+            }
+
+            if (_funcList.Count <= 0)
+            {
+                return true;
+            }
+
+            return false;
+        }
+    }
+
 }
-

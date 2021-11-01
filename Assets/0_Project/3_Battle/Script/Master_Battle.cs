@@ -15,7 +15,7 @@ namespace ToronPuzzle
             public static bool _batletIsEnd = false;
             public static bool _canGetReward = true;
             public static bool _playerIsDead;
-
+            public static GameSequence _currentSequenece = GameSequence.VeryFirstStart;
             public static Transform[] _alliesPos = default;
             public static Transform[] _enemiesPos = default;
 
@@ -38,24 +38,18 @@ namespace ToronPuzzle
 
         }
 
-
-     
-
         protected CharacterID _characterID;
         public CharacterID characterID { get { return _characterID; } }
         [SerializeField] Canvas _vfxCanvas = default;
     
         [SerializeField] Transform[] _alliesPos = default;
         [SerializeField] Transform[] _enemiesPos = default;
-
         [SerializeField] Transform[] _alliesHUDPos = default;
         [SerializeField] Transform[] _enemiesHUDPos = default;
 
 
         public void BeginMasterData()
         {
-          
-
             //플레이어의 위치와 적의 위치를 가져온다.
             Data_OnlyInBattle._alliesPos = _alliesPos;
             Data_OnlyInBattle._enemiesPos = _enemiesPos;
@@ -64,22 +58,44 @@ namespace ToronPuzzle
         }
 
 
-        void Awake()
+        bool _isequenceChanged = false;
+
+        private void Update()
         {
+            if (_isequenceChanged)
+            {
+                switch (Data_OnlyInBattle._currentSequenece)
+                {
+                    case GameSequence.VeryFirstStart:
+                        
+                        break;
+                    case GameSequence.WaitForStart:
+
+                        break;
+                    case GameSequence.BattleSequence:
+
+                        break;
+                    case GameSequence.CalcDamage:
+
+                        break;
+                    case GameSequence.BackToBegin:
+
+                        break;
+                    case GameSequence.EndOfGame:
+
+                        break;
+                    default:
+                        break;
+                }
+
+
+
+            }
+
+
         }
 
-        void Start()
-        {
 
-        }
-
-        void Update()
-        {
-
-
-
-
-        }
     }
 
 }

@@ -2,21 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelfDestructCode : MonoBehaviour
+namespace ToronPuzzle
 {
-    [SerializeField]
-    private float _destoyTime = 2f;
-    // Start is called before the first frame update
-    void OnEnable()
+    public class SelfDestructCode : MonoBehaviour
     {
-        StartCoroutine(DelayedDestroyCode());
+        [SerializeField]
+        private float _destoyTime = 2f;
+        // Start is called before the first frame update
+        void OnEnable()
+        {
+            Global_CoroutineManager.Run(DelayedDestroyCode());
+        }
+
+
+        IEnumerator DelayedDestroyCode()
+        {
+            yield return new WaitForSeconds(_destoyTime);
+            Destroy(gameObject);
+        }
+
     }
-
-
-    IEnumerator DelayedDestroyCode()
-    {
-        yield return new WaitForSeconds(_destoyTime);
-        Destroy(gameObject);
-    }
-
 }
