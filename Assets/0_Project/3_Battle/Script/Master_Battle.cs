@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ToronPuzzle.Data;
-using ToronPuzzle.Battle;
+using ToronPuzzle.Event;
 
-namespace ToronPuzzle
+namespace ToronPuzzle.Battle
 {
     public class Master_Battle : MonoBehaviour
     {
@@ -38,6 +38,8 @@ namespace ToronPuzzle
 
         }
 
+        public static Master_Battle Instance;
+
         protected CharacterID _characterID;
         public CharacterID characterID { get { return _characterID; } }
         [SerializeField] Canvas _vfxCanvas = default;
@@ -50,15 +52,17 @@ namespace ToronPuzzle
 
         public void BeginMasterData()
         {
+            Instance = this;
             //플레이어의 위치와 적의 위치를 가져온다.
             Data_OnlyInBattle._alliesPos = _alliesPos;
             Data_OnlyInBattle._enemiesPos = _enemiesPos;
             Data_OnlyInBattle._alliesHUDPos = _alliesHUDPos;
             Data_OnlyInBattle._enemiesHUDPos = _enemiesHUDPos;
+            _isequenceChanged = true;
         }
 
 
-        bool _isequenceChanged = false;
+        public bool _isequenceChanged = false;
 
         private void Update()
         {
@@ -67,10 +71,11 @@ namespace ToronPuzzle
                 switch (Data_OnlyInBattle._currentSequenece)
                 {
                     case GameSequence.VeryFirstStart:
-                        
+                        Global_UIEventSystem.Call_UIEvent<int>(UIEventID.Battle_현재턴표시, 0);
                         break;
                     case GameSequence.WaitForStart:
-
+                        Debug.Log("Wait Start");
+                        Global_UIEventSystem.Call_UIEvent<int>(UIEventID.Battle_현재턴표시, Data_OnlyInBattle._currentTurn);
                         break;
                     case GameSequence.BattleSequence:
 
@@ -88,8 +93,7 @@ namespace ToronPuzzle
                         break;
                 }
 
-
-
+                _isequenceChanged = false;
             }
 
 

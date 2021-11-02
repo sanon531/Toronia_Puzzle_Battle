@@ -4,13 +4,13 @@ using UnityEngine;
 using ToronPuzzle.Battle;
 using UnityEngine.SceneManagement;
 using ToronPuzzle.Event;
+using ToronPuzzle.UI;
 
 namespace ToronPuzzle
 {
     public class Global_SceneInitializer : MonoBehaviour
     {
-        [SerializeField]
-        Global_BattleInitializer global_BattleInitializer;
+        Battle_Initializer global_BattleInitializer;
 
         Global_CanvasData global_CanvasData;
         Global_SoundManager global_SoundManager;
@@ -21,6 +21,7 @@ namespace ToronPuzzle
         Global_BlockPlaceMaster global_BlockPlaceMaster;
         Global_CoroutineManager global_CoroutineManager;
         Global_SceneManager global_SceneManager;
+        Global_CanvasUI global_CanvasUI;
         [SerializeField]
         string _caseSkin = "PlacingCell";
         [SerializeField]
@@ -40,6 +41,9 @@ namespace ToronPuzzle
         {
             global_CanvasData = GameObject.Find("Global_Canvas").GetComponent<Global_CanvasData>();
             global_CanvasData.BeginCanvasData();
+            global_CanvasUI = global_CanvasData.gameObject.GetComponent<Global_CanvasUI>();
+            global_CanvasUI.BeginUIManager();
+
             global_SoundManager = GameObject.Find("Global_SoundManager").GetComponent<Global_SoundManager>();
             global_SoundManager.BeginSoundManager();
             global_FXPlayer = GameObject.Find("Global_FXPlayer").GetComponent<Global_FXPlayer>();
@@ -49,9 +53,10 @@ namespace ToronPuzzle
             global_DragDropManager = GameObject.Find("Global_DragDropManager").GetComponent<Global_DragDropManager>();
             global_DragDropManager.BeginDragDrap();
 
+
             global_CoroutineManager = GameObject.Find("Global_GameManager").GetComponent<Global_CoroutineManager>();
             global_CoroutineManager.BeginCoroutineManager();
-            global_SceneManager = GameObject.Find("Global_GameManager").GetComponent<Global_SceneManager>();
+            global_SceneManager = global_CoroutineManager.gameObject.GetComponent<Global_SceneManager>();
             global_SceneManager.BeginSceneManager();
 
             global_BlockGenerator = GameObject.Find("Global_BlockGenerator").GetComponent<Global_BlockGenerator>();
@@ -71,6 +76,7 @@ namespace ToronPuzzle
         {
             if (next.name == "BattleScene")
             {
+                global_BattleInitializer = GameObject.Find("Battle_World").GetComponent<Battle_Initializer>();
                 global_BattleInitializer.BattleBegin();
                 global_DragDropManager.SetCurrentSceneData(BlockType.Block);
             }

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using ToronPuzzle.Data;
 using ToronPuzzle.Event;
+using ToronPuzzle.UI;
+using ToronPuzzle.Battle;
 
 namespace ToronPuzzle
 {
     public class Global_BlockPlaceMaster : MonoBehaviour
     {
-
-
 
         //시작 초기화 관련
         #region
@@ -18,16 +18,13 @@ namespace ToronPuzzle
         [ReadOnly] [SerializeField] int _maxY = 6;
         float _currentHeigth, _occupyHeigth, _widthInterval, _heightInterval = 0;
         float _cellSizeY = 0;
-        Vector3 _showPos, _hidePos = new Vector3();
-        GameObject Dot, _placeCellPrefab, _bonusLine, _bonusFull;
+        GameObject _placeCellPrefab, _bonusLine, _bonusFull;
         string _placingCellAddress = "BlockPlace/";
         [ReadOnly] [SerializeField]
         string _placingCellSkin, _bonusSkin;
 
         [SerializeField] SpriteRenderer _placingSprite = default;
-        public Transform _cellHolder;
-        public Transform _blockHolder;
-        public Transform _bonusHolder;
+        Transform _cellHolder,_blockHolder,_bonusHolder;
         [ReadOnly] [SerializeField]
         BlockCalculator _blockCalculator;
         Vector2 _screenSize;
@@ -36,14 +33,25 @@ namespace ToronPuzzle
         List<BlockCase_BlockPlace> _placedBlocks = new List<BlockCase_BlockPlace>();
         [SerializeField]
         List<BlockCase_Module> _placedModules = new List<BlockCase_Module>();
-
+        ObjectTweener _showFunctions, _hideFunctions;
         //BattleInitialtor 에 의해 선언된다.
+        //
         public void BeginBlockPlace(string argCellSkin,string argBnsSkin)
         {
-            Vector2Int _pannel_Size = 
-                new Vector2Int( 
+            instance = this;
+            // 순서 바꾸지 말것.
+            PresetBlockPlaceData(argCellSkin, argBnsSkin);
+            SetBlockPlacePos();
+            SetBlockCellOnPannel();
+            SetBonusOnPannel();
+            SetBlockTweenEvent();
+        }
+        private void PresetBlockPlaceData(string argCellSkin, string argBnsSkin)
+        {
+            Vector2Int _pannel_Size =
+                new Vector2Int(
                     Global_InGameData.Instance._placePannelData._maxX
-                    ,Global_InGameData.Instance._placePannelData._maxY);
+                    , Global_InGameData.Instance._placePannelData._maxY);
 
             _blockCalculator = GetComponent<BlockCalculator>();
             _placingCellSkin = _placingCellAddress;
@@ -53,14 +61,12 @@ namespace ToronPuzzle
             _maxX = _pannel_Size.x;
             _maxY = _pannel_Size.y;
             _blockPlacedArr = new int[_maxX, _maxY];
-            instance = this;
-            SetBlockPlacePos();
-            SetBlockCellOnPannel();
-            SetBonusOnPannel();
-            Dot = Resources.Load("Debug/Dot") as GameObject;
-            
+            _cellHolder = GameObject.Find("BP_CellHolder").transform;
+            _blockHolder = GameObject.Find("BP_BlockHolder").transform;
+            _bonusHolder = GameObject.Find("BP_BonusHolder").transform;
+            _showFunctions = GameObject.Find("BP_ShowBP").GetComponent<ObjectTweener>();
+            _hideFunctions = GameObject.Find("BP_HideBP").GetComponent<ObjectTweener>();
         }
-
         private void SetModuleFromData()
         {
             List<BlockInfo> tempt_BlockInfos = Global_InGameData.Instance._placePannelData._moduleBlockInfos;
@@ -73,7 +79,6 @@ namespace ToronPuzzle
                 //_moduleBlocks.Add(_moduleObj.GetComponent<BlockCase_Module>());
             }
         }
-
         private void SetBlockPlacePos()
         {
             if (Global_CanvasData.CanvasData._screenWorldSize != null)
@@ -87,12 +92,14 @@ namespace ToronPuzzle
                 _occupyHeigth = _currentHeigth * 0.9f;
                 _heightInterval = _occupyHeigth / (2 * _maxY);
                 _cellSizeY = 2 * _heightInterval;
-                _showPos = new Vector3(LDAnchor.x + (_maxX + 1) * _cellSizeY * 0.5f, LDAnchor.y + _currentHeigth * 0.5f);
-                _hidePos = new Vector3(LDAnchor.x - (_maxX + 1) * _cellSizeY * 0.5f, LDAnchor.y + _currentHeigth * 0.5f);
+                Vector2 _showPos = new Vector3(LDAnchor.x + (_maxX + 1) * _cellSizeY * 0.5f, LDAnchor.y + _currentHeigth * 0.5f);
+                Vector2 _hidePos = new Vector3(LDAnchor.x - (_maxX + 1) * _cellSizeY * 0.5f, LDAnchor.y + _currentHeigth * 0.5f);
 
                 Master_Battle.Data_OnlyInBattle._cellsize = new Vector2(_cellSizeY, _cellSizeY);
 
                 transform.position = _showPos;
+                _showFunctions._targetpos = _showPos;;
+                _hideFunctions._targetpos = _hidePos;
                 _placingSprite.transform.localScale = new Vector2((-LDAnchor.x + _showPos.x) * 2, _screenSize.y / 2);
 
             }
@@ -201,8 +208,23 @@ namespace ToronPuzzle
             _blockCalculator.CalcBonusLine(_blockPlacedArr);
         }
 
-        #endregion
+        private void SetBlockTweenEvent()
+        {
+            Global_UIEventSystem.Register_UIEvent(UIEventID.Global_블록판숨기기, HideBlockPannel, EventRegistOption.Permanent);
+            Global_UIEventSystem.Register_UIEvent(UIEventID.Global_블록판보이기, ShowBlockPannel, EventRegistOption.Permanent);
+        }
+        private void HideBlockPannel()
+        {
+            _hideFunctions.CallTween();
+        }
+        private void ShowBlockPannel()
+        {
+            _showFunctions.CallTween();
 
+        }
+
+
+        #endregion
 
         //블럭 추가 전의 계산 관련
         #region
@@ -415,6 +437,7 @@ namespace ToronPuzzle
 
 
         //블럭 추가 후 관련, 모듈과 별도
+        #region
         public void AddBlockOnPlace(BlockCase_BlockPlace _Block)
         {
             _placedBlocks.Add(_Block);
@@ -465,8 +488,17 @@ namespace ToronPuzzle
 
         //오직 1만 제거한다 1, 3은 무시한다.
         public void RefreshBlock() { }
+        #endregion
 
-        
+
+
+        // 내부 변수 리턴 관련
+        #region
+        public Transform GetBlockHolder() { return _blockHolder; }
+
+        #endregion
+
+
     }
 
 }

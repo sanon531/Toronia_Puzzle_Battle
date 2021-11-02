@@ -9,16 +9,14 @@ namespace ToronPuzzle.UI
 {
     public class Global_CanvasUI : UIManager
     {
-        public static Global_CanvasUI Ins;
+        public static Global_CanvasUI Instance;
         [SerializeField] Image _globalDim = default;
-
-        protected override void Awake()
+        public override void BeginUIManager()
         {
-            base.Awake();
-            Ins = this;
-            Global_UIEventSystem.Register_UIEvent(UIEventID.Global_¾ÏÀü, GlobalDimOn, EventRegistOption.Permanent);
-            Global_UIEventSystem.Register_UIEvent(UIEventID.Global_¾ÏÀüÇØÁ¦, GlobalDimOff, EventRegistOption.Permanent);
-
+            base.BeginUIManager();
+            Instance = this;
+            Global_UIEventSystem.Register_UIEvent(UIEventID.Global_ì•”ì „, GlobalDimOn, EventRegistOption.Permanent);
+            Global_UIEventSystem.Register_UIEvent(UIEventID.Global_ì•”ì „í•´ì œ, GlobalDimOff, EventRegistOption.Permanent);
         }
         public void SetInGameListeners()
         {
@@ -36,7 +34,6 @@ namespace ToronPuzzle.UI
             _globalDim.color = Color.clear;
             _globalDim.DOColor(Color.black, 0.8f).SetUpdate(true);
         }
-
         private void GlobalDimOff()
         {
             _dimRequest--;
@@ -50,9 +47,12 @@ namespace ToronPuzzle.UI
             else if (_dimRequest < 0)
             {
                 _dimRequest = 0;
-                Debug.LogError("Blocking On Off Â¦ÀÌ ¸ÂÁö¾ÊÀ½");
+                Debug.LogError("Blocking On Off ì§ì´ ë§žì§€ì•ŠìŒ");
             }
         }
+
+      
+
 
 
 

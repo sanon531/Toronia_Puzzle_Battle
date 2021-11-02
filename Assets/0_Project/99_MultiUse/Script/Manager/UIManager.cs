@@ -9,7 +9,9 @@ namespace ToronPuzzle.UI
         [SerializeField]
         protected List<UI_Object> uI_Objects = new List<UI_Object>();
         private Dictionary<string, UI_Object> _dictionary;
-        protected virtual void Awake()
+
+        //여기서 저장된 것들의 선언들을 불러온다. 
+        public virtual void BeginUIManager()
         {
             _dictionary = uI_Objects
                 .ToDictionary(v => v.name, v => v);

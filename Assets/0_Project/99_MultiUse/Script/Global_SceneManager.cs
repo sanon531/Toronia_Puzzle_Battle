@@ -42,8 +42,8 @@ namespace ToronPuzzle
 
         private IEnumerator ChangeSceneRoutine(SceneType targetSceneType)
         {
+            Global_UIEventSystem.Call_UIEvent(UIEventID.Global_블록판숨기기);
             Global_UIEventSystem.Call_UIEvent(UIEventID.Global_암전);
-
             Global_CoroutineManager.InvokeDelay(() => {
                 switch (targetSceneType)
                 {
@@ -59,7 +59,6 @@ namespace ToronPuzzle
                 }
             }, 1f);
             yield return new WaitForSeconds(1f);
-
             Global_UIEventSystem.Call_UIEvent(UIEventID.Global_암전해제);
 
         }

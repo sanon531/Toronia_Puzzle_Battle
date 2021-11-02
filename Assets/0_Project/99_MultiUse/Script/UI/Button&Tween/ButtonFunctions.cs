@@ -6,6 +6,25 @@ using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 
+namespace ToronPuzzle
+{
+    public enum BtnType
+    {
+        None,
+        disableTarget,
+        enableTarget,
+        pauseGame,
+        unPauseGame,
+        showMenu,
+        hideMenu,
+        fadeInMenu,
+        fadeOutMenu,
+        setSizeBigMenu,
+        setSizeSmallMenu
+
+    }
+}
+
 namespace ToronPuzzle.UI
 {
 
@@ -15,29 +34,16 @@ namespace ToronPuzzle.UI
         [SerializeField]
         bool _onButton = false;
 
-        public enum BtnType
-        {
-            None,
-            disableTarget,
-            enableTarget,
-            pauseGame,
-            unPauseGame,
-            showMenu,
-            hideMenu,
-            fadeInMenu,
-            fadeOutMenu,
-            setSizeBigMenu,
-            setSizeSmallMenu
-
-        }
+      
         public BtnType function;
 
         public float _fadeInAmount = 0;
+        public float _waitTime = 0;
 
         // Dotween 적용
         public RectTransform arg_RectTransform;
         [SerializeField]
-        Ease current_Ease = Ease.InBounce;
+        Ease current_Ease = Ease.InSine;
         [SerializeField]
         Vector3 _targetPos;
         [SerializeField]
@@ -50,8 +56,13 @@ namespace ToronPuzzle.UI
                 GetComponent<Button>().onClick.AddListener(() => OnClick());
         }
 
-        private void OnClick()
+        public void OnClick()
         {
+            Global_CoroutineManager.Run(ClickCoroutine());
+        }
+        IEnumerator ClickCoroutine()
+        {
+            yield return new WaitForSeconds(_waitTime);
             switch (function)
             {
                 case BtnType.disableTarget:
@@ -99,8 +110,10 @@ namespace ToronPuzzle.UI
                     Debug.LogError("Button Function Not Setted");
                     break;
             }
-        }
 
+
+
+        }
 
 
     }
