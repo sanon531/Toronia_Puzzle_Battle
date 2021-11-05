@@ -37,16 +37,26 @@ namespace ToronPuzzle.Event
         public static event On이벤트 onTouchMain;
         public static void CallOnTouchMain() { onTouchMain?.Invoke(); }
 
-
+        // 진짜 시작 되었을때 발동 waitforStart 때
         public static event On이벤트 on배틀시작;
         public static void CallOn배틀시작() { on배틀시작?.Invoke(); }
 
-        public static event On이벤트 on판생성;
-        public static void CallOn판생성() { on판생성?.Invoke(); }
+        public static event On이벤트 on발언비활성화;
+        public static void CallOn발언비활성화() { on발언비활성화?.Invoke(); }
+        public static event On이벤트 on발언활성화;
+        public static void CallOn발언활성화() { on발언활성화?.Invoke(); }
 
 
         public static event On이벤트 on모듈생성;
         public static void CallOn모듈생성() { on모듈생성?.Invoke(); }
+
+
+        
+        public static event On이벤트 on토론시작;
+        public static void CallOn토론시작() { on토론시작?.Invoke(); }
+        public static event On이벤트 on토론휴식;
+        public static void CallOn토론휴식() { on토론휴식?.Invoke(); }
+
 
         public static event On모듈이벤트 on블록배치;
         public static void CallOn블록배치(BlockInfo module) { on블록배치?.Invoke(module); }
@@ -64,6 +74,8 @@ namespace ToronPuzzle.Event
         public static event On이벤트 on시퀀스넘기기;
         public static void CallOn시퀀스넘기기() { on시퀀스넘기기?.Invoke(); }
 
+        public static event On이벤트 on게임종료;
+        public static void CallOn게임종료() { on게임종료?.Invoke(); }
 
 
     }

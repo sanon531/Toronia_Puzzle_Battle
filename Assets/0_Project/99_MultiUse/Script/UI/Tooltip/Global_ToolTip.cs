@@ -73,6 +73,7 @@ namespace ToronPuzzle.UI
             _worldRUPos = Global_CanvasData.CanvasData.RUAchorPos;
             _tooltip_rect = _tooltipObj.GetComponent<RectTransform>();
             _canvaslocalScale = _canvasRect.localScale.x;
+            DisableTooltip();
 
         }
     }

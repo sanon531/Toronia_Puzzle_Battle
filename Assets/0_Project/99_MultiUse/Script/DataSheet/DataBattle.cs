@@ -23,6 +23,8 @@ namespace ToronPuzzle.Data
     {
         //그냥 스테이지 데이터
         public float _battleTime;
+        public float _spawnSpeed;
+
         public List<BlockInfo> _blockList;
 
 
@@ -30,9 +32,10 @@ namespace ToronPuzzle.Data
         public List<CharacterID> _stageEnemys;
 
 
-        public StageInfo(float _argBattleTime, List<BlockInfo> _argBlockList,List<CharacterID> _argStageEnemys)
+        public StageInfo(float _argBattleTime, float _argSpawnSpeed, List<BlockInfo> _argBlockList,List<CharacterID> _argStageEnemys)
         {
             _battleTime = _argBattleTime;
+            _spawnSpeed = _argSpawnSpeed;
             _blockList = _argBlockList;
             _stageEnemys = _argStageEnemys;
         } 
@@ -45,6 +48,7 @@ namespace ToronPuzzle.Data
                 { "Basic",
                     new StageInfo(
                         20f,
+                        2f,
                         new List<BlockInfo>(){
                             new BlockInfo(BlockElement.Aggressive, BlockShape.One_D,1),
                         },

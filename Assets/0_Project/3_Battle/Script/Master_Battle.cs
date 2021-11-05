@@ -17,13 +17,14 @@ namespace ToronPuzzle.Battle
             public static GameSequence _currentSequenece = GameSequence.VeryFirstStart;
             public static Transform[] _alliesPos = default;
             public static Transform[] _enemiesPos = default;
-
             public static Transform[] _alliesHUDPos = default;
             public static Transform[] _enemiesHUDPos = default;
             public static Vector2 _cellsize = default;
 
             public static StageInfo _currentStageData;
             public static float _battleTime = 10f;
+            public static float _spawnSpeed = 10f;
+
 
             public static bool IsDead { get; private set; }
             public static void SetDead() { IsDead = true; }
@@ -32,6 +33,7 @@ namespace ToronPuzzle.Battle
             public static void SetStageDataToinfo()
             {
                 _battleTime = _currentStageData._battleTime;
+                _spawnSpeed = _currentStageData._spawnSpeed;
             }
 
             public static void OwnTurnStart(bool is행동불능)
@@ -71,7 +73,6 @@ namespace ToronPuzzle.Battle
             Data_OnlyInBattle._currentStageData = Global_InGameData.Instance._currentStageData;
             Data_OnlyInBattle.SetStageDataToinfo();
             Global_InWorldEventSystem.on시퀀스넘기기 += ShiftSequence;
-
             SetBattleTimer();
         }
 
@@ -91,14 +92,18 @@ namespace ToronPuzzle.Battle
                         Global_CoroutineManager.InvokeDelay(ShiftSequence,1f);
                         break;
                     case GameSequence.WaitForStart:
+                        Global_InWorldEventSystem.CallOn배틀시작();
+
                         Debug.Log("WaitForStart");
                         _currentBattleTimer = 0;
                         Global_UIEventSystem.Call_UIEvent<int>(UIEventID.Battle_현재턴표시, Data_OnlyInBattle._currentTurn);
                         break;
                     case GameSequence.BattleSequence:
+                        Global_InWorldEventSystem.CallOn토론시작();
                         Debug.Log("BattleSequence");
                         break;
                     case GameSequence.BackToBegin:
+                        Global_InWorldEventSystem.CallOn토론휴식();
                         Debug.Log("BackToBegin");
                         break;
                     case GameSequence.EndOfGame:
@@ -172,6 +177,14 @@ namespace ToronPuzzle.Battle
 
 
         #endregion 
+
+
+        //씬 나갈 때
+        void ExitFunction()
+        {
+            Global_InWorldEventSystem.on시퀀스넘기기 -= ShiftSequence;
+
+        }
     }
 
 }

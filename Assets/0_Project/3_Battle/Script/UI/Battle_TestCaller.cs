@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using ToronPuzzle.Event;
 namespace ToronPuzzle.Battle
 {
     public class Battle_TestCaller : MonoBehaviour
@@ -14,9 +15,7 @@ namespace ToronPuzzle.Battle
 
         void TestAction()
         {
-            Master_Battle.Data_OnlyInBattle._currentSequenece = GameSequence.WaitForStart;
-            Master_Battle.Data_OnlyInBattle._currentTurn = 3;
-
+            Global_InWorldEventSystem.CallOn게임종료();
 
         }
 
