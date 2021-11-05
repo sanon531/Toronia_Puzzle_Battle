@@ -108,7 +108,6 @@ public enum GameSequence
     VeryFirstStart,
     WaitForStart,
     BattleSequence,
-    CalcDamage,
     BackToBegin,
     EndOfGame
 }

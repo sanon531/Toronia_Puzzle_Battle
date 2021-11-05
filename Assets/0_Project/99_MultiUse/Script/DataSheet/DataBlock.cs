@@ -10,10 +10,13 @@ namespace ToronPuzzle.Data
     public enum BlockShape
     {
         One_D,
-        Two_H, Two_V,
-        Three_V, Three_H, Three_G, Three_AG,
-        Four_D, Four_V, Four_S, Four_AS, Four_T, Four_G, Four_AG,
+        Two_HL, Two_VL, Two_Dia,
+        Three_VL, Three_HL, Three_V, Three_G, Three_AG,
+        Four_D, Four_VL, Four_S, Four_AS, Four_T, Four_G, Four_AG,
+        Five_Cross,Five_Bridge,
 
+
+        //모듈 정보
         One_D_모듈,
         Three_G_쇄빙,
         Four_D_모듈,
@@ -33,21 +36,29 @@ namespace ToronPuzzle.Data
         {BlockShape.One_D, new int[,]{ {1} } },
         {BlockShape.One_D_모듈, new int[,]{ {3} } },
 
-        {BlockShape.Two_H, new int[,]{ {1,1}}},
-        {BlockShape.Two_V, new int[,]{ {1},{1} }},
-        {BlockShape.Three_H, new int[,]{ {1,1,1} }},
-        {BlockShape.Three_V, new int[,]{ { 1 },{ 1 },{ 1 } }},
+        {BlockShape.Two_HL, new int[,]{ {1,1}}},
+        {BlockShape.Two_VL, new int[,]{ {1},{1} }},
+        {BlockShape.Two_Dia, new int[,]{ {1,0},{0,1} }},
+
+        {BlockShape.Three_HL, new int[,]{ {1,1,1} }},
+        {BlockShape.Three_VL, new int[,]{ { 1 },{ 1 },{ 1 } }},
+        {BlockShape.Three_V, new int[,]{ { 1,0,1 },{ 0,1,0 }}},
         {BlockShape.Three_G, new int[,]{ { 1,1 },{ 0,1 } }},
         {BlockShape.Three_G_쇄빙, new int[,]{ { 3,3 },{ 3,4 } }},
         {BlockShape.Three_AG, new int[,]{ { 1,1 },{ 1,0 } }},
         {BlockShape.Four_D, new int[,]{ { 1,1 },{ 1,1 } }},
         {BlockShape.Four_D_모듈, new int[,]{ { 3,3 },{ 3,3 } }},
-        {BlockShape.Four_V, new int[,]{ { 1,1,1,1 } }},
+        {BlockShape.Four_VL, new int[,]{ { 1,1,1,1 } }},
         {BlockShape.Four_S, new int[,]{ { 1,1,0 },{0,1,1 } }},
         {BlockShape.Four_AS, new int[,]{ { 0,1,1 },{1,1,0 }}},
         {BlockShape.Four_T, new int[,]{ { 1, 1, 1 },{ 0,1,0 }}},
         {BlockShape.Four_G, new int[,]{ { 1,1,1 },{0,0,1 }}},
         {BlockShape.Four_AG, new int[,]{ { 1,1,1 },{1,0,0 }}},
+
+        {BlockShape.Five_Cross, new int[,]{ { 0,1,0 },{1,1,1 },{ 0,1,0} }},
+        {BlockShape.Five_Bridge, new int[,]{ { 1,1,1 },{1,0,1 }}},
+
+
         {BlockShape.Full_Four_Six, new int[,]{ { 1,1,1,1 },{ 1,1,1,1 },{ 1,1,1,1 },{ 1,1,1,1 },{ 1,1,1,1 },{ 1,1,1,1 },}},
 
 

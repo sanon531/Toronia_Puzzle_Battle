@@ -15,7 +15,9 @@ namespace ToronPuzzle.Event
     public delegate void On배틀이벤트();
 
     public delegate void On휴식회복(DataEntity 정보체);
-    public delegate void On이벤트With수치값(int 수치값);
+    public delegate void On이벤트With정수수치값(int 수치값);
+    public delegate void On이벤트WithFloat수치값(float 수치값);
+
     public delegate void On이벤트With대상수치값(Data_Character 대상자, int 수치값);
 
 
@@ -50,10 +52,18 @@ namespace ToronPuzzle.Event
         public static void CallOn블록배치(BlockInfo module) { on블록배치?.Invoke(module); }
 
 
+        public static event On이벤트WithFloat수치값 on계산쿨타임변동;
+        public static void CallOn계산쿨타임변동(float _changeVal) { on계산쿨타임변동?.Invoke(_changeVal); }
+
+        //계산(발언)을 할때 활용 할것. 계산 직전은 계산 하기 전에 발동
         public static event On이벤트 on계산직전;
         public static void CallOn계산직전() { on계산직전?.Invoke(); }
         public static event On이벤트 on판계산;
         public static void CallOn판계산() { on판계산?.Invoke(); }
+
+        public static event On이벤트 on시퀀스넘기기;
+        public static void CallOn시퀀스넘기기() { on시퀀스넘기기?.Invoke(); }
+
 
 
     }

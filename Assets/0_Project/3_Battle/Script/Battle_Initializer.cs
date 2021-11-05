@@ -41,10 +41,7 @@ namespace ToronPuzzle.Battle
             Battle_BackgroundPlacer battle_BackgroundPlacer = GameObject.Find("Battle_BackgroundPlacer").GetComponent<Battle_BackgroundPlacer>();
             battle_BackgroundPlacer.BeginBackgound(currentBGImage);
 
-            Global_ToolTip global_ToolTip = GameObject.Find("Global_ToolTip").GetComponent<Global_ToolTip>();
-            global_ToolTip.BeginGlobalTooltip();
-
-
+          
             Master_Battle master_Battle = GameObject.Find("Master_Battle").GetComponent<Master_Battle>();
             master_Battle.BeginMasterData();
 

@@ -24,8 +24,17 @@ namespace ToronPuzzle.Event
         Global_암전해제,
         Global_암전즉시해제,
         Global_일정시간동안암전,
+        Global_계산표시,
+        Global_계산툴팁,
 
         Battle_게임시작표시,
+        Battle_계산허용,
+        
+        Battle_계산불가,
+        Battle_방어도표시,
+
+        Battle_시퀀스넘기기,
+
         Battle_현재턴표시,
 
 

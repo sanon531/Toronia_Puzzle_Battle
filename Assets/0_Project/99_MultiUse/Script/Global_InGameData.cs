@@ -20,6 +20,8 @@ namespace ToronPuzzle
         public PlacePannelData _placePannelData;
         [SerializeField]
         List<BlockCase_Module> _ownedModule = new List<BlockCase_Module>();
+        public StageInfo _currentStageData ;
+
 
         /// <summary>
         /// 디버그 시에만 활용되는 것.
@@ -36,6 +38,7 @@ namespace ToronPuzzle
         public void BeginInGameData()
         {
             Instance= this;
+            _currentStageData = StageDataPool.StageinfoDic["Basic"];
         }
 
         public void BegingModuleData()

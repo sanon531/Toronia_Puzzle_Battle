@@ -23,10 +23,6 @@ namespace ToronPuzzle.UI
 
         public void BeginGlobalTooltip()
         {
-            instance = this;
-            _worldRUPos = Global_CanvasData.CanvasData.RUAchorPos;
-            _tooltip_rect = _tooltipObj.GetComponent<RectTransform>();
-            _canvaslocalScale = _canvasRect.localScale.x;
         }
 
         //약간의 딜레이를 준채로 하고싶음.
@@ -73,6 +69,10 @@ namespace ToronPuzzle.UI
 
         public void AssignGameListener()
         {
+            instance = this;
+            _worldRUPos = Global_CanvasData.CanvasData.RUAchorPos;
+            _tooltip_rect = _tooltipObj.GetComponent<RectTransform>();
+            _canvaslocalScale = _canvasRect.localScale.x;
 
         }
     }

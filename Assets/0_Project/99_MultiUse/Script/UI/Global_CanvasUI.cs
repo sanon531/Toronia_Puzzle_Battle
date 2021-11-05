@@ -25,8 +25,8 @@ namespace ToronPuzzle.UI
                 ui.AssignGameListener();
             }
         }
-        private int _dimRequest = 0;
-        private void GlobalDimOn()
+        int _dimRequest = 0;
+        void GlobalDimOn()
         {
             _dimRequest++;
             _globalDim.gameObject.SetActive(true);
@@ -34,7 +34,7 @@ namespace ToronPuzzle.UI
             _globalDim.color = Color.clear;
             _globalDim.DOColor(Color.black, 0.8f).SetUpdate(true);
         }
-        private void GlobalDimOff()
+        void GlobalDimOff()
         {
             _dimRequest--;
             if (_dimRequest == 0)
@@ -51,7 +51,13 @@ namespace ToronPuzzle.UI
             }
         }
 
-      
+
+
+        void SetCalcData(int _argAttack, int _argDefence)
+        {
+
+        }
+
 
 
 

@@ -8,23 +8,17 @@ namespace ToronPuzzle.UI
     {
         [SerializeField]
         protected List<UI_Object> uI_Objects = new List<UI_Object>();
-        private Dictionary<string, UI_Object> _dictionary;
 
         //여기서 저장된 것들의 선언들을 불러온다. 
         public virtual void BeginUIManager()
         {
-            _dictionary = uI_Objects
-                .ToDictionary(v => v.name, v => v);
+            foreach (UI_Object _Object in uI_Objects)
+            {
+                _Object.gameObject.GetComponent<IGameListenerUI>().AssignGameListener();
+            }
+
         }
 
-        public UI_Object Get(string val)
-        {
-            return _dictionary[val];
-        }
-        public T Get<T>(string val) where T : UI_Object
-        {
-            return _dictionary[val] as T;
-        }
 
     }
 

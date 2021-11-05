@@ -16,7 +16,6 @@ namespace ToronPuzzle.Battle
         {
             Master_Battle.Data_OnlyInBattle._currentSequenece = GameSequence.WaitForStart;
             Master_Battle.Data_OnlyInBattle._currentTurn = 3;
-            Master_Battle.Instance._isequenceChanged = true;
 
 
         }

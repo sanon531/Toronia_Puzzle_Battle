@@ -42,6 +42,7 @@ namespace ToronPuzzle
 
         public static void Stop(Coroutine coroutine)
         {
+            Debug.Log("StopCoroutine");
             Instance.StopCoroutine(coroutine);
         }
 

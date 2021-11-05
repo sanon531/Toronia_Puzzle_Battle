@@ -108,7 +108,7 @@ namespace ToronPuzzle
                     //Debug.Log(hit.transform.gameObject.name);
                     BlockCase temptCase = hit.transform.GetComponent<BlockCase>();
                     //TestCaller.instance.DebugArrayShape(temptCase._blockInfo._blockShapeArr);
-                    Debug.Log("Clicked Case" + hit.collider.name);
+                    //Debug.Log("Clicked Case" + hit.collider.name);
 
                     if (temptCase.CheckLiftable())
                     {

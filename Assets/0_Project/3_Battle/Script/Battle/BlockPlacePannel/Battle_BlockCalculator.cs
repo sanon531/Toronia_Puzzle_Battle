@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ToronPuzzle.Data;
 using ToronPuzzle.UI;
+using ToronPuzzle.Event;
 
 namespace ToronPuzzle.Battle
 {
@@ -13,9 +14,6 @@ namespace ToronPuzzle.Battle
         int _aggressiveNum, _cynicalNum, _friendlyNum, _emptinessNum, _bonusNum = 0;
         float _attackNum, _defendNum=0;
 
-        // 이런식 말고 델리 게이트 사용해보자
-        [SerializeField]
-        ToolTipCurrentPannelData _tooltipPannel;
 
         public string GetCurrentNum()
         {
@@ -98,7 +96,7 @@ namespace ToronPuzzle.Battle
                         break;
                 }
             SetElementToPower();
-            _tooltipPannel.SetNumberOnText(_attackNum, _defendNum);
+            Global_UIEventSystem.Call_UIEvent(UIEventID.Global_계산표시, _attackNum, _defendNum);
         }
         public override void CalcBonusLine(int[,] _arg_Arr)
         {
