@@ -12,12 +12,18 @@ namespace ToronPuzzle.Battle
 
         private void OnEnable()
         {
+            StartCoroutine(LateStart());
+        }
+
+        IEnumerator LateStart()
+        {
+            yield return new WaitForEndOfFrame();
+            Battle_ConveyerManager.instance.SetCaseOnConveyer(this);
             _rectTransform = GetComponent<RectTransform>();
-            _caseCollider = GetComponent <BoxCollider2D>();
+            _caseCollider = GetComponent<BoxCollider2D>();
             //_rectTransform.localPosition += new Vector3(0, _rectTransform.sizeDelta.x);
             _caseCollider.size = _rectTransform.sizeDelta;
         }
-
 
     }
 

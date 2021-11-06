@@ -15,7 +15,7 @@ SpriteAtlas:
       compressionQuality: 50
       maxTextureSize: 2048
       textureCompression: 0
-      filterMode: 1
+      filterMode: 0
       generateMipMaps: 0
       readable: 0
       crunchedCompression: 0
@@ -49,8 +49,7 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 460558e48413b584cb3b22180d81ec08, type: 3}
     - {fileID: 2800000, guid: 2a895218f0e4efc49b2607bc743c269b, type: 3}
     - {fileID: 2800000, guid: a8e8f2ff17f8a844c9d2c00e5627fa0b, type: 3}
-    - {fileID: 2800000, guid: b7dcc03e988192048883b04393f1b478, type: 3}
-    totalSpriteSurfaceArea: 23096
+    totalSpriteSurfaceArea: 20596
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -61,7 +60,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 460558e48413b584cb3b22180d81ec08, type: 3}
   - {fileID: 21300000, guid: 2a895218f0e4efc49b2607bc743c269b, type: 3}
   - {fileID: 21300000, guid: 45e5476904e64a5468fb8e9c1ed4e8da, type: 3}
-  - {fileID: 21300000, guid: b7dcc03e988192048883b04393f1b478, type: 3}
   - {fileID: 21300000, guid: a8e8f2ff17f8a844c9d2c00e5627fa0b, type: 3}
   m_PackedSpriteNamesToIndex:
   - area_default_top_left
@@ -69,7 +67,6 @@ SpriteAtlas:
   - circle
   - RoomBasic
   - BasicBlockData
-  - Blankpanel
   - Selection
   m_RenderDataMap: {}
   m_Tag: Block_related

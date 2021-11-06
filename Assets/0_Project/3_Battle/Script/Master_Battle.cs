@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using ToronPuzzle.Data;
 using ToronPuzzle.Event;
 using TMPro;
@@ -61,7 +62,7 @@ namespace ToronPuzzle.Battle
 
         public void BeginMasterData()
         {
-            Debug.Log("_currentStageData" + StageDataPool.StageinfoDic["Basic"]._battleTime.ToString());
+            //Debug.Log("_currentStageData" + StageDataPool.StageinfoDic["Basic"]._battleTime.ToString());
 
             Instance = this;
             //플레이어의 위치와 적의 위치를 가져온다.
@@ -87,24 +88,22 @@ namespace ToronPuzzle.Battle
                 switch (Data_OnlyInBattle._currentSequenece)
                 {
                     case GameSequence.VeryFirstStart:
-                        Debug.Log("VeryFirstStart");
+                        //Debug.Log("VeryFirstStart");
                         _currentBattleTimer = 0;
                         Global_CoroutineManager.InvokeDelay(ShiftSequence,1f);
                         break;
                     case GameSequence.WaitForStart:
-                        Global_InWorldEventSystem.CallOn배틀시작();
-
-                        Debug.Log("WaitForStart");
+                        //Debug.Log("WaitForStart");
                         _currentBattleTimer = 0;
                         Global_UIEventSystem.Call_UIEvent<int>(UIEventID.Battle_현재턴표시, Data_OnlyInBattle._currentTurn);
                         break;
                     case GameSequence.BattleSequence:
                         Global_InWorldEventSystem.CallOn토론시작();
-                        Debug.Log("BattleSequence");
+                        //Debug.Log("BattleSequence");
                         break;
                     case GameSequence.BackToBegin:
                         Global_InWorldEventSystem.CallOn토론휴식();
-                        Debug.Log("BackToBegin");
+                        //Debug.Log("BackToBegin");
                         break;
                     case GameSequence.EndOfGame:
                         break;
@@ -125,11 +124,12 @@ namespace ToronPuzzle.Battle
 
         void ShiftSequence()
         {
-            Debug.Log("sequence Changed ");
+            //Debug.Log("sequence Changed ");
             switch (Data_OnlyInBattle._currentSequenece)
             {
                 case GameSequence.VeryFirstStart:
                     Data_OnlyInBattle._currentSequenece = GameSequence.WaitForStart;
+                    Global_InWorldEventSystem.CallOn배틀시작();
                     break;
                 case GameSequence.WaitForStart:
                     Data_OnlyInBattle._currentSequenece = GameSequence.BattleSequence;
@@ -153,10 +153,12 @@ namespace ToronPuzzle.Battle
 
         #region
         TextMeshProUGUI _timerText;
+        Image _timerImage;
 
         void SetBattleTimer()
         {
             _timerText = GameObject.Find("BC_BattleTimer").GetComponent<TextMeshProUGUI>();
+            _timerImage = GameObject.Find("BC_TimerGauge").GetComponent<Image>();
         }
         
         void BattleTimeCount()
@@ -167,6 +169,7 @@ namespace ToronPuzzle.Battle
                 ShiftSequence();
 
             _timerText.SetText("Time : "+ Mathf.Round((Data_OnlyInBattle._battleTime - _currentBattleTimer)).ToString());
+            _timerImage.fillAmount = (Data_OnlyInBattle._battleTime - _currentBattleTimer) / Data_OnlyInBattle._battleTime;
         }
 
 

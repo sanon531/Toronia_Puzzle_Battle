@@ -7,16 +7,16 @@ namespace ToronPuzzle.Battle
 {
     public class Battle_ConveyerManager : MonoBehaviour
     {
+        //초기화 관련
+        #region
 
         public static Battle_ConveyerManager instance;
 
         bool StartPlay, isPlaying = false;
-        [SerializeField]
-        List<GameObject> conveyerContainList;
+        List<Battle_Conveyer_Case> conveyerContainList= new List<Battle_Conveyer_Case>();
         RectTransform _currentRect, _beltRect;
 
-        [SerializeField]
-        Collider2D _spawnCollider, _resetCollider;
+        BoxCollider2D _spawnCollider, _resetCollider;
         [SerializeField]
         RectTransform _caseRect;
         float _rectwidth;
@@ -27,15 +27,23 @@ namespace ToronPuzzle.Battle
             instance = this;
             _currentRect = GetComponent<RectTransform>();
             _beltRect = GameObject.Find("BC_ConveyerBelt").GetComponent<RectTransform>();
+            _spawnCollider = GameObject.Find("BC_ConveyerSpawnCollider").GetComponent<BoxCollider2D>();
+            _resetCollider = GameObject.Find("BC_ConveyerResetCollider").GetComponent<BoxCollider2D>();
+
             _spawnCollider.enabled = false;
             _resetCollider.enabled = false;
-            _resetCollider.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(Screen.width * 0.35f, 0);
 
-            _rectwidth = Screen.height * 0.1f;
-            //_currentRect.anchoredPosition += new Vector2(0, _rectwidth * 0.5f);
+            _rectwidth = Screen.height * 0.125f;
+            _currentRect.anchoredPosition += new Vector2(0, _rectwidth * 0.5f);
             _currentRect.sizeDelta = new Vector2(0,_rectwidth);
 
-            _caseRect.sizeDelta= new Vector2(_rectwidth, _rectwidth);
+            Vector2 _rectsize = new Vector2(_rectwidth, _rectwidth);
+            _caseRect.sizeDelta = _rectsize;
+
+            _spawnCollider.gameObject.GetComponent<Battle_CollisionReturn>().BeginCollisionReturn(_rectsize);
+            _resetCollider.gameObject.GetComponent<Battle_CollisionReturn>().BeginCollisionReturn(_rectsize);
+
+
             Global_InWorldEventSystem.on토론시작 += StartConveyerMove;
             Global_InWorldEventSystem.on토론휴식 += StopInstantConveyerMove;
             Global_InWorldEventSystem.on게임종료 += StopInstantConveyerMove;
@@ -46,20 +54,39 @@ namespace ToronPuzzle.Battle
 
         public static void SetQueueOnConveyer()
         {
-
-            
         }
 
         public static void GetLatestBloakQueue()
         {
 
+        }
+        public void SetCaseOnConveyer(Battle_Conveyer_Case _Conveyer_Case){ conveyerContainList.Add(_Conveyer_Case); }
+
+        #endregion
+
+
+        //블럭 배치 관련
+        [SerializeField]
+        List<BlockInfo> _blockPlaceQueue = new List<BlockInfo>();
+        public void SetBlockOnConveyer(Battle_Conveyer_Case _Conveyer_Case)
+        {
+        }
+        public void DeleteBlockOnConveyer(Battle_Conveyer_Case _Conveyer_Case)
+        {
 
         }
 
 
+
+
+        //컨베이어 이동 관련
+        #region
         Coroutine _AutoScrollCoroutine;
         void StartConveyerMove()
         {
+            _spawnCollider.enabled = true;
+            _resetCollider.enabled = true;
+
             _AutoScrollCoroutine = Global_CoroutineManager.Run(AutoScroll());
         }
         void StopInstantConveyerMove()
@@ -67,11 +94,7 @@ namespace ToronPuzzle.Battle
             if(_AutoScrollCoroutine !=null)
                 Global_CoroutineManager.Stop(_AutoScrollCoroutine);
         }
-
-
         float _endTime,_spawnSpeed,_endLength;
-
-
         IEnumerator AutoScroll()
         {
             Vector2 _startPos = _beltRect.localPosition;
@@ -89,6 +112,9 @@ namespace ToronPuzzle.Battle
             }
 
         }
+        #endregion
+
+
 
     }
 

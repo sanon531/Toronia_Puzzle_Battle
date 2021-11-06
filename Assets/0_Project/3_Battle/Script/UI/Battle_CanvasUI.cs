@@ -133,8 +133,13 @@ namespace ToronPuzzle.UI
         void SendSpeech()
         {
             if (_currentCoolTime >= _maxCoolTime)
+            {
                 _currentCoolTime = 0;
+            }
+            else
+            {
 
+            }
         }
 
         void CoolTimeChecker()

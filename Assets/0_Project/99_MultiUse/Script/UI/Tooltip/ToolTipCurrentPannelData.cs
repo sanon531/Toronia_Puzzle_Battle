@@ -18,16 +18,26 @@ namespace ToronPuzzle.UI
             Global_UIEventSystem.Register_UIEvent<float, float>(UIEventID.Global_계산표시, SetCalcData, EventRegistOption.None);
 
         }
-
+        Coroutine _showCoroutine;
         public void OnPointerEnter(PointerEventData eventData)
         {
+             _showCoroutine = Global_CoroutineManager.Run(DelayedShow());
+        }
+
+        IEnumerator DelayedShow()
+        {
+            yield return new WaitForSeconds(0.75f);
             string _titleName = "현재 수치 당 비율";
             string _contentName = _blockCalculator.GetCurrentNum();
-
             Global_ToolTip.instance.SetToolTipData(_titleName, _contentName);
         }
+
+
         public void OnPointerExit(PointerEventData eventData)
         {
+            if (_showCoroutine != null)
+                Global_CoroutineManager.Stop(_showCoroutine);
+
             Global_ToolTip.instance.DisableTooltip();
         }
         public void SetCalcData(float _argAttackNum, float _argDefendNum )

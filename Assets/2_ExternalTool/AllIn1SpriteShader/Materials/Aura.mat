@@ -101,10 +101,10 @@ Material:
     - _DistortAmount: 1.459
     - _DistortTexXSpeed: -1
     - _DistortTexYSpeed: -11.6
-    - _FadeAmount: 0.406
-    - _FadeBurnGlow: 5.3
-    - _FadeBurnTransition: 0.359
-    - _FadeBurnWidth: 0
+    - _FadeAmount: 0.458
+    - _FadeBurnGlow: 6
+    - _FadeBurnTransition: 0.238
+    - _FadeBurnWidth: 0.157
     - _FishEyeUvAmount: 0.35
     - _FlickerAlpha: 0
     - _FlickerFreq: 0.2
