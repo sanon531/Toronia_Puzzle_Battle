@@ -50,6 +50,9 @@ TagManager:
   - name: LowerFX
     uniqueID: 3073578369
     locked: 0
+  - name: HighUI
+    uniqueID: 407947089
+    locked: 0
   - name: PlacingCell
     uniqueID: 3091899837
     locked: 0
@@ -64,7 +67,4 @@ TagManager:
     locked: 0
   - name: Block
     uniqueID: 2681527273
-    locked: 0
-  - name: HighUI
-    uniqueID: 407947089
     locked: 0

@@ -5,7 +5,7 @@ using ToronPuzzle;
 
 namespace ToronPuzzle.Battle
 {
-    public class Battle_Conveyer_Case : BlockCase
+    public class Battle_Conveyer_Case : BlockCase_BlockPlace
     {
         RectTransform _rectTransform;
         BoxCollider2D _caseCollider;
@@ -14,6 +14,24 @@ namespace ToronPuzzle.Battle
         {
             StartCoroutine(LateStart());
         }
+
+        public override void PlaceBlock(BlockInfo blockInfo)
+        {
+            Global_BlockGenerator.instance.GenerateOnConveyerCase(blockInfo,transform,_rectTransform.sizeDelta.x);
+        }
+        public override void DeleteBlock()
+        {
+            if (_childObjects.Count == 0)
+                return;
+
+            _childCase.Clear();
+            foreach (GameObject _object in _childObjects)
+                Destroy(_object);
+
+            _childObjects.Clear();
+            Debug.Log("deleted");
+        }
+
 
         IEnumerator LateStart()
         {

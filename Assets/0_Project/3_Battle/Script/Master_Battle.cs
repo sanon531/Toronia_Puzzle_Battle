@@ -74,6 +74,8 @@ namespace ToronPuzzle.Battle
             Data_OnlyInBattle._currentStageData = Global_InGameData.Instance._currentStageData;
             Data_OnlyInBattle.SetStageDataToinfo();
             Global_InWorldEventSystem.on시퀀스넘기기 += ShiftSequence;
+
+
             SetBattleTimer();
         }
 

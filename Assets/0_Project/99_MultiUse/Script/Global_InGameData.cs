@@ -19,6 +19,9 @@ namespace ToronPuzzle
         public static Global_InGameData Instance;
         public PlacePannelData _placePannelData;
         [SerializeField]
+        bool isDebug = false;
+
+        [SerializeField]
         List<BlockCase_Module> _ownedModule = new List<BlockCase_Module>();
         public StageInfo _currentStageData ;
 
@@ -26,19 +29,17 @@ namespace ToronPuzzle
         /// <summary>
         /// 디버그 시에만 활용되는 것.
         /// </summary>
-        [SerializeField]
-        bool isDebug=false;
         public List<ModuleID> _debug_ModuleIDs = new List<ModuleID>();
         [SerializeField]
         Array2DEditor.Array2DModuleID _currentPlacement ;
 
 
 
-
         public void BeginInGameData()
         {
             Instance= this;
-            _currentStageData = StageDataPool.StageinfoDic["Basic"];
+            if(!isDebug)
+                _currentStageData = StageDataPool.StageinfoDic["Basic"];
         }
 
         public void BegingModuleData()

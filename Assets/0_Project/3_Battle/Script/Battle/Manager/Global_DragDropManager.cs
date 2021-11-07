@@ -33,8 +33,9 @@ namespace ToronPuzzle
         List<GameObject> _current_Blocks = new List<GameObject>();
         //saved는 틀릭한 순간 복사된 데이터, _pickedorigin은 클릭해서 가져온 데이터
         [SerializeField]
-        BlockCase _savedCase, _pickOriginCase;
+        BlockCase _savedCase, _pickOriginCase = null;
 
+       
 
         public void BeginDragDrap()
         {
@@ -46,7 +47,7 @@ namespace ToronPuzzle
 
             if(_canvas==null)
                 _canvas = GameObject.Find("Global_Canvas").GetComponent<Canvas>();
-
+            instance = this;
 
         }
         public void SetCurrentSceneData(BlockType _type)
@@ -316,8 +317,6 @@ namespace ToronPuzzle
         void OriginBlockDelete()
         {
             //다음에 재활용할 때 다른 케이스가 들면 비어있게 만들고 비었으면 삭제 하고 안비었으면 그대로 냅둔다이.
-            Debug.Log(_pickOriginCase.IsOnBlockPlace);
-
             if (_pickOriginCase != null )
             {
                 if (_pickOriginCase.IsOnBlockPlace && Global_BlockPlaceMaster.instance != null)
@@ -332,6 +331,19 @@ namespace ToronPuzzle
 
         }
 
+        //컨베이어 케이스 관련
+        #region
+        public void ConveyerIsPickedOriginCase(Battle_Conveyer_Case _compare)
+        {
+            if (_pickOriginCase == null)
+                return;
+
+            if (_pickOriginCase == _compare)
+                _pickOriginCase = null;
+
+            return;
+        }
+        #endregion
     }
 
 }

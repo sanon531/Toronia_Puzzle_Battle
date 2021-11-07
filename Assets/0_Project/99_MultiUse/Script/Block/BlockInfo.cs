@@ -69,7 +69,8 @@ namespace ToronPuzzle
             _blockShape = BlockShape.UnDefined;
             _blockStength = 0;
             CheckBlockNum();
-        }public BlockInfo(BlockElement arg_element, BlockShape arg_Shape, int _argStrength)
+        }
+        public BlockInfo(BlockElement arg_element, BlockShape arg_Shape, int _argStrength)
         {
             _type = BlockType.Block;
             _blockElement = arg_element;
@@ -140,9 +141,6 @@ namespace ToronPuzzle
         }
 
 
-
-
-
         public void CheckBlockNum()
         {
             for (int i = 0; i < _blockShapeArr.GetLength(0); i++)
@@ -156,6 +154,11 @@ namespace ToronPuzzle
                     }
                 }
             }
+        }
+
+        public void SetArrByShape()
+        {
+            _blockShapeArr = (int[,])BlockShapePool.shapeDic[_blockShape].Clone();
         }
 
 
