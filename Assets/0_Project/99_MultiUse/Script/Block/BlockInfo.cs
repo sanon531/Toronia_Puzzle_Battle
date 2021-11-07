@@ -158,6 +158,13 @@ namespace ToronPuzzle
 
         public void SetArrByShape()
         {
+            if (_blockShape == BlockShape.UnDefined)
+            {
+                Debug.Log("UnDefined");
+                return;
+
+            }
+
             _blockShapeArr = (int[,])BlockShapePool.shapeDic[_blockShape].Clone();
         }
 

@@ -7,16 +7,31 @@ namespace ToronPuzzle.Battle
 {
     public class Battle_Conveyer_Case : BlockCase_BlockPlace
     {
+        BlockInfo _defaultInfo;
+
         RectTransform _rectTransform;
         BoxCollider2D _caseCollider;
 
         private void OnEnable()
         {
             StartCoroutine(LateStart());
+            _defaultInfo = new BlockInfo(_blockInfo);
+        }
+
+        public override BlockCase LiftBlock()
+        {
+            HideBlock();
+            return this;
+        }
+
+        public override bool CheckPlaceable(BlockInfo blockinfo)
+        {
+            return IsEmpty;
         }
 
         public override void PlaceBlock(BlockInfo blockInfo)
         {
+            IsEmpty = false;
             Global_BlockGenerator.instance.GenerateOnConveyerCase(blockInfo,transform,_rectTransform.sizeDelta.x);
         }
         public override void DeleteBlock()
@@ -24,12 +39,14 @@ namespace ToronPuzzle.Battle
             if (_childObjects.Count == 0)
                 return;
 
+            _blockInfo = new BlockInfo(_defaultInfo);
+            IsEmpty = true;
+
             _childCase.Clear();
             foreach (GameObject _object in _childObjects)
                 Destroy(_object);
 
             _childObjects.Clear();
-            Debug.Log("deleted");
         }
 
 

@@ -36,7 +36,6 @@ namespace ToronPuzzle.Battle
             _currentRect.anchoredPosition += new Vector2(0, _rectwidth * 0.5f);
             _currentRect.sizeDelta = new Vector2(0,_rectwidth);
 
-            SetQueueOnConveyer(Global_InGameData.Instance._currentStageData._blockList);
             //사이즈 정하는 부분
             Vector2 _rectsize = new Vector2(_rectwidth, _rectwidth);
             _caseRect.sizeDelta = _rectsize;
@@ -44,9 +43,9 @@ namespace ToronPuzzle.Battle
             _resetCollider.gameObject.GetComponent<Battle_CollisionReturn>().BeginCollisionReturn(_rectsize);
             Global_InWorldEventSystem.on토론시작 += StartConveyerMove;
             Global_InWorldEventSystem.on토론휴식 += StopInstantConveyerMove;
+            Global_InWorldEventSystem.on토론휴식 += ResetAllConveyer;
             Global_InWorldEventSystem.on게임종료 += StopInstantConveyerMove;
         }
-
 
         // Update is called once per frame
 
@@ -61,10 +60,6 @@ namespace ToronPuzzle.Battle
 
         }
 
-        public void GetLatestBloakQueue()
-        {
-            
-        }
         public void SetCaseOnConveyer(Battle_Conveyer_Case _Conveyer_Case){ conveyerContainList.Add(_Conveyer_Case); }
 
         #endregion
@@ -78,22 +73,22 @@ namespace ToronPuzzle.Battle
         public void SetBlockOnConveyer(Battle_Conveyer_Case _Conveyer_Case)
         {
             //여기서 다시 켠다.
-            _Conveyer_Case.PlaceBlock(_blockPlaceQueue[_placeNum]);
+            if(_blockPlaceQueue[_placeNum]._isLiftable)
+                _Conveyer_Case.PlaceBlock(_blockPlaceQueue[_placeNum]);
 
             _placeNum++;
             _placeNum =(_placeNum> (_blockPlaceQueue.Count-1))? 0: _placeNum;
 
         }
-
-
         public void DeleteBlockOnConveyer(Battle_Conveyer_Case _Conveyer_Case)
         {
             Global_DragDropManager.instance.ConveyerIsPickedOriginCase(_Conveyer_Case);
-
-
             _Conveyer_Case.DeleteBlock();
-
-
+        }
+        void ResetAllConveyer()
+        {
+            foreach (Battle_Conveyer_Case battle_Conveyer_Case in conveyerContainList)
+                DeleteBlockOnConveyer(battle_Conveyer_Case);
         }
 
 

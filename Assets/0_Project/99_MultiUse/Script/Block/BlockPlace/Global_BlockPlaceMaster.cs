@@ -328,29 +328,23 @@ namespace ToronPuzzle
             for (int i_y = _blockY - 1; i_y >= 0; i_y--)
             {
                 int posYOnPlace = i_y + _targetNum.y;
-                if (posYOnPlace >= _maxY)
-                {
-                    return;
-                }
+                if (posYOnPlace >= _maxY) return;
 
                 for (int j_x = 0; j_x < _blockX; j_x++)
                 {
                     int posXOnPlace = _targetNum.x - _blockX + j_x + 1;
-                    if (posXOnPlace < 0)
-                    {
-                        return;
-                    }
+                    if (posXOnPlace < 0) return;
 
 
                     //블럭의 위치상
                     if (_blockArr[j_x, i_y] != 0)
                     {
                         _blockPlacedArr[posXOnPlace, posYOnPlace] = _blockArr[j_x, i_y];
+                        //TestCaller.instance.DebugArrayShape("Added" + posXOnPlace + "+" + posYOnPlace, _blockPlacedArr);
                     }
 
                 }
             }
-            TestCaller.instance.DebugArrayShape("Added", _blockPlacedArr);
 
         }
         public void PlaceModuleDataOnArray(BlockInfo arg_blockInfo)
@@ -388,6 +382,8 @@ namespace ToronPuzzle
                     }
                 }
             }
+
+
             //TestCaller.instance.DebugArrayShape("Added", _blockPlacedArr);
 
         }
@@ -401,19 +397,14 @@ namespace ToronPuzzle
             for (int i_y = _blockY - 1; i_y >= 0; i_y--)
             {
                 int posYOnPlace = i_y + _targetNum.y;
-                if (posYOnPlace >= _maxY)
-                {
-                    return;
-                }
+                if (posYOnPlace >= _maxY) return;
 
                 for (int j_x = 0; j_x < _blockX; j_x++)
                 {
                     int posXOnPlace = _targetNum.x - _blockX + j_x + 1;
                     //블럭의 위치상
-                    if (posXOnPlace < 0)
-                    {
-                        return;
-                    }
+                    if (posXOnPlace < 0) return;
+
                     if (_blockArr[j_x, i_y] == 1)
                     {
                         _blockPlacedArr[posXOnPlace, posYOnPlace] = 0;

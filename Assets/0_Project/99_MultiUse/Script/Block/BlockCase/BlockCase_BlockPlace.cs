@@ -71,7 +71,7 @@ namespace ToronPuzzle
         public override void ResetBlock(BlockInfo blockInfo)
         {
             Global_BlockPlaceMaster.instance.PlaceBlockDataOnArray(_blockInfo);
-            TestCaller.instance.DebugArrayShape("Resetted", blockInfo._blockShapeArr);
+            //TestCaller.instance.DebugArrayShape("Resetted", blockInfo._blockShapeArr);
 
         }
 

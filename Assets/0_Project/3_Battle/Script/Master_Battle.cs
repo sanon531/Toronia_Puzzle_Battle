@@ -73,9 +73,9 @@ namespace ToronPuzzle.Battle
             _isequenceChanged = true;
             Data_OnlyInBattle._currentStageData = Global_InGameData.Instance._currentStageData;
             Data_OnlyInBattle.SetStageDataToinfo();
+
+            Battle_ConveyerManager.instance.SetQueueOnConveyer(Global_InGameData.Instance._currentStageData._blockList);
             Global_InWorldEventSystem.on시퀀스넘기기 += ShiftSequence;
-
-
             SetBattleTimer();
         }
 

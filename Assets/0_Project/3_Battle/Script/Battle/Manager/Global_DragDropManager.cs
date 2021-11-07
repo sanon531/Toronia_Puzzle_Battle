@@ -311,9 +311,7 @@ namespace ToronPuzzle
                     _pickOriginCase.ResetBlock(_savedCase._blockInfo);
             }
         }
-
-
-
+        
         void OriginBlockDelete()
         {
             //다음에 재활용할 때 다른 케이스가 들면 비어있게 만들고 비었으면 삭제 하고 안비었으면 그대로 냅둔다이.

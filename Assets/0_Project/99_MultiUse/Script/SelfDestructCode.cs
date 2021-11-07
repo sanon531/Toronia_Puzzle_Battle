@@ -18,7 +18,8 @@ namespace ToronPuzzle
         IEnumerator DelayedDestroyCode()
         {
             yield return new WaitForSeconds(_destoyTime);
-            Destroy(gameObject);
+            if(gameObject)
+                Destroy(gameObject);
         }
 
     }

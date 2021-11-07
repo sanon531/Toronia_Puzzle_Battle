@@ -72,20 +72,29 @@ namespace ToronPuzzle.UI
         Button _calcButton;
         Image _calcImage;
         GameObject _guardImage;
-        TextMeshProUGUI _guardText;
+        TextMeshProUGUI _guardText, _speechText;
         void CalculatePartsBegin()
         {
             _calcButton = GameObject.Find("BC_CalcBlockButton").GetComponent<Button>();
             _calcImage = GameObject.Find("BC_CalcButtonBackGround").GetComponent<Image>();
             _guardImage = GameObject.Find("BC_CurrentGuard");
             _guardText = GameObject.Find("BC_CurrentGuardText").GetComponent<TextMeshProUGUI>();
+            _speechText = GameObject.Find("BC_SpeakText").GetComponent<TextMeshProUGUI>();
+
             Global_UIEventSystem.Register_UIEvent<int>(UIEventID.Battle_방어도표시, SetGuardPower, EventRegistOption.None);
             _calcButton.onClick.AddListener(CallCalcButton);
-            Global_InWorldEventSystem.on배틀시작 += EnableSpeechButton;
 
+            Global_InWorldEventSystem.on배틀시작 += EnableSpeechButton;
+            Global_InWorldEventSystem.on배틀시작 += SetCalcTextToStart;
             Global_InWorldEventSystem.on토론시작 += IsBattleTrue;
+            Global_InWorldEventSystem.on토론시작 += SetCalcTextToSpeech;
             Global_InWorldEventSystem.on토론휴식 += IsBattleFalse;
+            Global_InWorldEventSystem.on토론휴식 += SetCalcTextToStart;
+
         }
+        void SetCalcTextToStart(){ _speechText.SetText("배틀\n시작"); }
+        void SetCalcTextToSpeech() { _speechText.SetText("발언"); }
+
         void ChangeCalcMaxCooltime(float _changeVal)
         {
             _maxCoolTime = _changeVal;
