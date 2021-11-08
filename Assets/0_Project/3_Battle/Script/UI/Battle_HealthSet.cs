@@ -36,13 +36,20 @@ namespace ToronPuzzle.Battle
         {
             float _changedVal = 0.5f;
             _targetChar.현재생명력 -= 계산정보체.FinalValue;
-            _changedVal = _targetChar.현재생명력 / _targetChar.최대생명력_Default;
-            Debug.Log(_targetChar.최대생명력); 
+            _changedVal = (float)_targetChar.현재생명력 / (float)_targetChar.최대생명력;
 
             if (_targetChar.소속진영 == CharacterSide.Ally)
+            {
+                DamageTextScript.Create(_playerHealthRect.transform.position, 1, 0.3f, -계산정보체.FinalValue, Color.red, 0.5f);
+
                 SetPlayerBar(_changedVal);
+            }
             else if (_targetChar.소속진영 == CharacterSide.Enemy)
+            {
+                DamageTextScript.Create(_enemyHealthRect.transform.position, 1, 0.3f, -계산정보체.FinalValue, Color.red,0.5f);
+
                 SetEnemyBar(_changedVal);
+            }
 
 
         }

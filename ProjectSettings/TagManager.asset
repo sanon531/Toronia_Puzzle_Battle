@@ -68,3 +68,6 @@ TagManager:
   - name: Block
     uniqueID: 2681527273
     locked: 0
+  - name: HighFX
+    uniqueID: 2327754701
+    locked: 0

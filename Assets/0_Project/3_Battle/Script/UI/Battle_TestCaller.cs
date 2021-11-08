@@ -7,6 +7,9 @@ namespace ToronPuzzle.Battle
 {
     public class Battle_TestCaller : MonoBehaviour
     {
+
+        [SerializeField]
+        int Damage;
         // Start is called before the first frame update
         void Start()
         {
@@ -16,7 +19,7 @@ namespace ToronPuzzle.Battle
         void TestAction()
         {
             //Global_InWorldEventSystem.CallOn게임종료();
-            Global_InWorldEventSystem.CallOnCalc데미지(Master_Battle.Data_OnlyInBattle._playerData,DataEntity.고유데이터(1));
+            Global_InWorldEventSystem.CallOnCalc데미지(Master_Battle.Data_OnlyInBattle._enemyData,DataEntity.고유데이터(Damage));
         }
 
     }
