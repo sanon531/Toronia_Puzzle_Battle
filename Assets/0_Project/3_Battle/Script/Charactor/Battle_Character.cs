@@ -4,19 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
 using ToronPuzzle.Data;
+using ToronPuzzle.Event;
 
 namespace ToronPuzzle.Battle
 {
     public class Battle_Character : Character
     {
-        [Header("Blink Parts")]
-        [SerializeField]
-        private CharacterBlink _characterBlink = new CharacterBlink();
-
+      
         [SerializeField]
         private CharacterStatusFX _characterStatusFX = new CharacterStatusFX();
 
-        void Awake()
+        void Start()
         {
             BeginCharactor();
         }
@@ -25,8 +23,33 @@ namespace ToronPuzzle.Battle
 
         public override void BeginCharactor()
         {
-            _skeletonAnimation.OnRebuild += ApplyBlink;
+            //정세진
+            if (_characterData.소속진영 == CharacterSide.Ally)
+            {
+                _skeletonAnimation = GetComponent<SkeletonAnimation>();
+                ApplyBlink();
+                Global_InWorldEventSystem.on플레이어애니메이션 += CharactorActionByString;
+            }
+            else
+                Global_InWorldEventSystem.on적애니메이션 += CharactorActionByString;
+
+            _characterData.현재생명력 = _characterData.최대생명력;
+
+
         }
+
+
+
+        //해당 캐릭터의 애니메이션은스트링 값으로 조절 한다.
+
+        void CharactorActionByString(string _action)
+        {
+            var state = _skeletonAnimation.AnimationState;
+
+
+
+        }
+
 
 
         public override void SetMaterialTweenAll()
@@ -37,16 +60,26 @@ namespace ToronPuzzle.Battle
 
             }
         }
-        
 
-        void ApplyBlink(SkeletonRenderer skeletonRenderer)
+
+        //눈 깜빡이는 액션
+        #region
+
+        [Header("Blink Parts")]
+        [SerializeField]
+        private CharacterBlink _characterBlink = new CharacterBlink();
+
+
+        void ApplyBlink()
         {
+
             StartCoroutine(Blink());
         }
         IEnumerator Blink()
         {
             while (true)
             {
+
                 yield return new WaitForSeconds(_characterBlink._blinkCooltime);
                 _characterBlink.SetBlinkTimeByStatus(_status_Effects);
                 _skeletonAnimation.Skeleton.SetAttachment(_characterBlink._eyesSlot, _characterBlink._blinkAttachment);
@@ -54,6 +87,7 @@ namespace ToronPuzzle.Battle
                 _skeletonAnimation.Skeleton.SetAttachment(_characterBlink._eyesSlot, _characterBlink._eyesOpenAttachment);
             }
         }
+        #endregion  
     }
 
     [Serializable]
@@ -82,6 +116,7 @@ namespace ToronPuzzle.Battle
 
         public void SetBlinkTimeByStatus(List <CharStatusEffect> _statusEffects)
         {
+
             if (_statusEffects.Contains(CharStatusEffect.Horror))
                 _blinkCooltime = UnityEngine.Random.Range(0.25f, 1f);
             else if (_statusEffects.Contains(CharStatusEffect.Brave))

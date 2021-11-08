@@ -16,10 +16,12 @@ namespace ToronPuzzle.Battle
             public static bool _canGetReward = true;
             public static bool _playerIsDead;
             public static GameSequence _currentSequenece = GameSequence.VeryFirstStart;
+
+            public static Data_Character _playerData, _enemyData;
+            public static Battle_Character _playerChar, _enemyChar;
+
             public static Transform[] _alliesPos = default;
             public static Transform[] _enemiesPos = default;
-            public static Transform[] _alliesHUDPos = default;
-            public static Transform[] _enemiesHUDPos = default;
             public static Vector2 _cellsize = default;
 
             public static StageInfo _currentStageData;
@@ -50,14 +52,11 @@ namespace ToronPuzzle.Battle
 
         public static Master_Battle Instance;
 
-        protected CharacterID _characterID;
-        public CharacterID characterID { get { return _characterID; } }
+
         [SerializeField] Canvas _vfxCanvas = default;
         [SerializeField] Transform[] _alliesPos = default;
         [SerializeField] Transform[] _enemiesPos = default;
-        [SerializeField] Transform[] _alliesHUDPos = default;
-        [SerializeField] Transform[] _enemiesHUDPos = default;
-
+        public Data_Character _playerData, _enemyData;
 
 
         public void BeginMasterData()
@@ -68,9 +67,12 @@ namespace ToronPuzzle.Battle
             //플레이어의 위치와 적의 위치를 가져온다.
             Data_OnlyInBattle._alliesPos = _alliesPos;
             Data_OnlyInBattle._enemiesPos = _enemiesPos;
-            Data_OnlyInBattle._alliesHUDPos = _alliesHUDPos;
-            Data_OnlyInBattle._enemiesHUDPos = _enemiesHUDPos;
             _isequenceChanged = true;
+            Data_OnlyInBattle._playerChar = GameObject.Find("Player_Character").GetComponent<Battle_Character>();
+            Data_OnlyInBattle._playerData = Data_OnlyInBattle._playerChar._characterData;
+            Data_OnlyInBattle._enemyChar = GameObject.Find("Enemy_Character").GetComponent<Battle_Character>();
+            Data_OnlyInBattle._enemyData = Data_OnlyInBattle._enemyChar._characterData;
+
             Data_OnlyInBattle._currentStageData = Global_InGameData.Instance._currentStageData;
             Data_OnlyInBattle.SetStageDataToinfo();
 

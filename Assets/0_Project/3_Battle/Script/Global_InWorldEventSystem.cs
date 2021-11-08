@@ -17,8 +17,12 @@ namespace ToronPuzzle.Event
     public delegate void On휴식회복(DataEntity 정보체);
     public delegate void On이벤트With정수수치값(int 수치값);
     public delegate void On이벤트WithFloat수치값(float 수치값);
+    public delegate void On이벤트WithString수치값(string 수치값);
+    public delegate void On이벤트WithElement수치값(BlockElement 수치값);
+
 
     public delegate void On이벤트With대상수치값(Data_Character 대상자, int 수치값);
+    public delegate void On이벤트With대상Float수치값(Data_Character 대상자, float 수치값);
 
 
     public static class Global_InWorldEventSystem 
@@ -57,6 +61,15 @@ namespace ToronPuzzle.Event
         public static event On이벤트 on토론휴식;
         public static void CallOn토론휴식() { on토론휴식?.Invoke(); }
 
+        public static event On이벤트WithString수치값 on플레이어애니메이션;
+        public static void CallOn플레이어애니메이션(string _name) { on플레이어애니메이션?.Invoke(_name); }
+
+        public static event On이벤트WithString수치값 on적애니메이션;
+        public static void CallOn적애니메이션(string _name) { on적애니메이션?.Invoke(_name); }
+
+
+        public static event On모듈이벤트 on블록생성;
+        public static void CallOn블록생성(BlockInfo module) { on블록생성?.Invoke(module); }
 
         public static event On모듈이벤트 on블록배치;
         public static void CallOn블록배치(BlockInfo module) { on블록배치?.Invoke(module); }
@@ -64,6 +77,21 @@ namespace ToronPuzzle.Event
 
         public static event On이벤트WithFloat수치값 on계산쿨타임변동;
         public static void CallOn계산쿨타임변동(float _changeVal) { on계산쿨타임변동?.Invoke(_changeVal); }
+
+
+        //데미지 계산
+        public static event OnCalc데이터_1형식 onCalc데미지;
+        public static void CallOnCalc데미지(Data_Character 피해대상, DataEntity 계산정보체)
+        { onCalc데미지?.Invoke(피해대상, 계산정보체); }
+
+
+
+        //생명력 계산
+        public static event OnCalc데이터_1형식 onCalc최대생명력;
+        public static void CallOnCalc최대생명력(Data_Character 대상, DataEntity 최대생명력계산정보체)
+        { onCalc최대생명력?.Invoke(대상, 최대생명력계산정보체); }
+
+
 
         //계산(발언)을 할때 활용 할것. 계산 직전은 계산 하기 전에 발동
         public static event On이벤트 on계산직전;

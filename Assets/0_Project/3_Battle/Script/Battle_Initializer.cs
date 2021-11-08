@@ -21,8 +21,6 @@ namespace ToronPuzzle.Battle
         public void BattleBegin()
         {
 
-            Battle_ConveyerManager battle_ConveyerManager = GameObject.Find("BC_ConveyingPlace").GetComponent<Battle_ConveyerManager>();
-            battle_ConveyerManager.BeginConveyer();
 
             _battleCanvas = GameObject.Find("BattleCanvas").GetComponent<Canvas>();
             _battleCanvas.worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();

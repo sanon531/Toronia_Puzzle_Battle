@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ToronPuzzle.Event;
+using ToronPuzzle.UI;
 
 namespace ToronPuzzle.Battle
 {
-    public class Battle_ConveyerManager : MonoBehaviour
+    public class Battle_ConveyerManager : UI_Object,IGameListenerUI
     {
         //초기화 관련
         #region
@@ -19,9 +20,7 @@ namespace ToronPuzzle.Battle
         [SerializeField]
         RectTransform _caseRect;
         float _rectwidth;
-
-
-        public void BeginConveyer()
+        public void AssignGameListener()
         {
             instance = this;
             _currentRect = GetComponent<RectTransform>();
@@ -34,7 +33,7 @@ namespace ToronPuzzle.Battle
 
             _rectwidth = Screen.height * 0.125f;
             _currentRect.anchoredPosition += new Vector2(0, _rectwidth * 0.5f);
-            _currentRect.sizeDelta = new Vector2(0,_rectwidth);
+            _currentRect.sizeDelta = new Vector2(0, _rectwidth);
 
             //사이즈 정하는 부분
             Vector2 _rectsize = new Vector2(_rectwidth, _rectwidth);
@@ -45,6 +44,12 @@ namespace ToronPuzzle.Battle
             Global_InWorldEventSystem.on토론휴식 += StopInstantConveyerMove;
             Global_InWorldEventSystem.on토론휴식 += ResetAllConveyer;
             Global_InWorldEventSystem.on게임종료 += StopInstantConveyerMove;
+        }
+
+
+        public void BeginConveyer()
+        {
+           
         }
 
         // Update is called once per frame
@@ -127,6 +132,7 @@ namespace ToronPuzzle.Battle
             }
 
         }
+
         #endregion
 
 

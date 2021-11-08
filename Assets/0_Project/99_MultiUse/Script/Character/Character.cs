@@ -8,6 +8,8 @@ namespace ToronPuzzle
 {
     public class Character : MonoBehaviour
     {
+        public Data_Character _characterData;
+
         public float _health = 100;
         [SerializeField]
         protected Material _character_material = default;
@@ -29,7 +31,7 @@ namespace ToronPuzzle
 
 
 
-        public virtual void SetSpineAnimation()
+        public virtual void SetSpineAnimation(string _name)
         {
 
         }
