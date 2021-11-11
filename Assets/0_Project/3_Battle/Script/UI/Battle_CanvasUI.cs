@@ -14,7 +14,6 @@ namespace ToronPuzzle.UI
         public override void BeginUIManager()
         {
             base.BeginUIManager();
-            BattleTurnBegin();
             CalculatePartsBegin();
             Instance = this;
         }
@@ -28,39 +27,7 @@ namespace ToronPuzzle.UI
         // 현재 알림 뜨는거
         #region
 
-        TextMeshProUGUI _turnPaneltext;
-        ButtonFunctions[] _showTurnFunctions, _hideTurnFunctions;
-        Coroutine _turnPannelCoroutine;
-        void BattleTurnBegin()
-        {
-            _turnPaneltext = GameObject.Find("BT_ShowText").GetComponent<TextMeshProUGUI>();
-            _showTurnFunctions = GameObject.Find("BT_ShowFunction").GetComponents<ButtonFunctions>();
-            _hideTurnFunctions = GameObject.Find("BT_HideFunction").GetComponents<ButtonFunctions>();
-            Global_UIEventSystem.Register_UIEvent<int>(UIEventID.Battle_현재턴표시, BattleTurnShow, EventRegistOption.None);
-
-        }
-
-        private void BattleTurnShow(int _currentTurn)
-        {
-            _turnPaneltext.SetText(_currentTurn.ToString() + "턴");
-
-            if (_turnPannelCoroutine != null)
-                Global_CoroutineManager.Stop(_turnPannelCoroutine);
-
-            _turnPannelCoroutine = Global_CoroutineManager.Run(ShowTurnCoroutine());
-        }
-
-        IEnumerator ShowTurnCoroutine()
-        {
-            foreach (ButtonFunctions _functions in _showTurnFunctions)
-                _functions.OnClick();
-            yield return new WaitForSeconds(1f);
-
-            foreach (ButtonFunctions _functions in _hideTurnFunctions)
-                _functions.OnClick();
-
-
-        }
+       
 
         #endregion
 
@@ -71,17 +38,13 @@ namespace ToronPuzzle.UI
 
         Button _calcButton;
         Image _calcImage;
-        GameObject _guardImage;
         TextMeshProUGUI _guardText, _speechText;
         void CalculatePartsBegin()
         {
-            _calcButton = GameObject.Find("BC_CalcBlockButton").GetComponent<Button>();
-            _calcImage = GameObject.Find("BC_CalcButtonBackGround").GetComponent<Image>();
-            _guardImage = GameObject.Find("BC_CurrentGuard");
-            _guardText = GameObject.Find("BC_CurrentGuardText").GetComponent<TextMeshProUGUI>();
-            _speechText = GameObject.Find("BC_SpeakText").GetComponent<TextMeshProUGUI>();
+            _calcButton = GameObject.Find("BC_SpeechButton").GetComponent<Button>();
+            _calcImage = GameObject.Find("BC_SpeechButtonSet").GetComponent<Image>();
+            _speechText = GameObject.Find("BC_SpeechText").GetComponent<TextMeshProUGUI>();
 
-            Global_UIEventSystem.Register_UIEvent<int>(UIEventID.Battle_방어도표시, SetGuardPower, EventRegistOption.None);
             _calcButton.onClick.AddListener(CallCalcButton);
 
             Global_InWorldEventSystem.on배틀시작 += EnableSpeechButton;
@@ -103,17 +66,6 @@ namespace ToronPuzzle.UI
         {
 
         }
-        void SetGuardPower(int _guardAmount)
-        {
-            if (_guardAmount <= 0)
-                _guardImage.SetActive(false);
-            else
-            {
-                _guardImage.SetActive(true);
-                _guardText.SetText(_guardAmount.ToString());
-            }
-        }
-
 
         bool isOnBattle = false;
         void CallCalcButton()
@@ -144,10 +96,13 @@ namespace ToronPuzzle.UI
             if (_currentCoolTime >= _maxCoolTime)
             {
                 _currentCoolTime = 0;
+                Global_InWorldEventSystem.CallOn판계산(
+                    Master_Battle.Data_OnlyInBattle._playerData, 
+                    Master_Battle.Data_OnlyInBattle._enemyData,DataEntity.고유데이터(1));
             }
             else
             {
-
+                //아직 충전 중이라는 알림이 뜬다.
             }
         }
 

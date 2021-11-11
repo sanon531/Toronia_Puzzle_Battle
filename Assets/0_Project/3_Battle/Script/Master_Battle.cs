@@ -62,8 +62,8 @@ namespace ToronPuzzle.Battle
         public void BeginMasterData()
         {
             //Debug.Log("_currentStageData" + StageDataPool.StageinfoDic["Basic"]._battleTime.ToString());
-
             Instance = this;
+            #region
             //플레이어의 위치와 적의 위치를 가져온다.
             Data_OnlyInBattle._alliesPos = _alliesPos;
             Data_OnlyInBattle._enemiesPos = _enemiesPos;
@@ -72,18 +72,17 @@ namespace ToronPuzzle.Battle
             Data_OnlyInBattle._playerData = Data_OnlyInBattle._playerChar._characterData;
             Data_OnlyInBattle._enemyChar = GameObject.Find("Enemy_Character").GetComponent<Battle_Character>();
             Data_OnlyInBattle._enemyData = Data_OnlyInBattle._enemyChar._characterData;
-
             Data_OnlyInBattle._currentStageData = Global_InGameData.Instance._currentStageData;
             Data_OnlyInBattle.SetStageDataToinfo();
 
+            #endregion
             Battle_ConveyerManager.instance.SetQueueOnConveyer(Global_InGameData.Instance._currentStageData._blockList);
             Global_InWorldEventSystem.on시퀀스넘기기 += ShiftSequence;
+
             SetBattleTimer();
+            SetBlockPanelCalc();
         }
 
-        public bool _isequenceChanged = false;
-
-        float _currentBattleTimer;
         private void Update()
         {
             //시퀀스 변경시의 행동과 비변동시의 행동을측정 
@@ -94,7 +93,7 @@ namespace ToronPuzzle.Battle
                     case GameSequence.VeryFirstStart:
                         //Debug.Log("VeryFirstStart");
                         _currentBattleTimer = 0;
-                        Global_CoroutineManager.InvokeDelay(ShiftSequence,1f);
+                        Global_CoroutineManager.InvokeDelay(ShiftSequence, 1f);
                         break;
                     case GameSequence.WaitForStart:
                         //Debug.Log("WaitForStart");
@@ -126,6 +125,10 @@ namespace ToronPuzzle.Battle
 
         }
 
+        //시퀀스 관련
+        #region
+        public bool _isequenceChanged = false;
+        float _currentBattleTimer;
         void ShiftSequence()
         {
             //Debug.Log("sequence Changed ");
@@ -155,6 +158,9 @@ namespace ToronPuzzle.Battle
         }
 
 
+        #endregion
+
+        //배틀 타이머 관련
         #region
         TextMeshProUGUI _timerText;
         Image _timerImage;
@@ -177,13 +183,26 @@ namespace ToronPuzzle.Battle
         }
 
 
+        #endregion 
 
-        void CalcDamageOnChar()
+        //판 계산 관련.
+
+        void SetBlockPanelCalc()
         {
+            Global_InWorldEventSystem.on판계산 += SetDamageOnEnemy;
+            Global_InWorldEventSystem.on판계산 += SetGuardOnPlayer;
+        }
+
+        void SetDamageOnEnemy(Data_Character 정보계산주체, Data_Character 부체, DataEntity 정보체)
+        {
+
+        }
+        void SetGuardOnPlayer(Data_Character 정보계산주체, Data_Character 부체, DataEntity 정보체)
+        {
+
         }
 
 
-        #endregion 
 
 
         //씬 나갈 때

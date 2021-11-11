@@ -31,8 +31,9 @@ namespace ToronPuzzle.Event
         Battle_계산허용,
         
         Battle_계산불가,
-        Battle_방어도표시,
-
+        Battle_플레이어방어도표시,
+        Battle_적방어도표시,
+         
         Battle_시퀀스넘기기,
 
         Battle_현재턴표시,
