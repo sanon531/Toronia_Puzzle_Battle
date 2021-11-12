@@ -98,8 +98,9 @@ namespace ToronPuzzle.Event
 
 
         //계산(발언)을 할때 활용 할것. 계산 직전은 계산 하기 전에 발동
-        public static event On이벤트 on계산직전;
-        public static void CallOn계산직전() { on계산직전?.Invoke(); }
+        public static event On이벤트 on판계산선언;
+        public static void CallOn판계산선언() { on판계산선언?.Invoke(); }
+
         public static event OnCalc데이터_2형식 on판계산;
         public static void CallOn판계산(Data_Character 정보계산주체, Data_Character 부체, DataEntity 정보체)
         { on판계산?.Invoke(정보계산주체, 부체,정보체); }

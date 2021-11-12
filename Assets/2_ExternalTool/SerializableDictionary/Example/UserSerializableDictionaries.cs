@@ -108,7 +108,7 @@ public enum GameSequence
     VeryFirstStart,
     WaitForStart,
     BattleSequence,
-    BackToBegin,
+    EnemyDamageCalc,
     EndOfGame
 }
 public enum CalledSituation

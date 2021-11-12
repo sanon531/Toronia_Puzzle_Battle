@@ -61,6 +61,7 @@ namespace ToronPuzzle
             _maxX = _pannel_Size.x;
             _maxY = _pannel_Size.y;
             _blockPlacedArr = new int[_maxX, _maxY];
+            _modulePlacedArr = new int[_maxX, _maxY];
             _cellHolder = GameObject.Find("BP_CellHolder").transform;
             _blockHolder = GameObject.Find("BP_BlockHolder").transform;
             _bonusHolder = GameObject.Find("BP_BonusHolder").transform;
@@ -124,7 +125,6 @@ namespace ToronPuzzle
             Vector2 LUAnchor = Global_CanvasData.CanvasData.LDAchorPos;
             Vector2 firstSpot = new Vector3(LUAnchor.x + (_cellSizeY), LUAnchor.y + (_heightInterval * 1.5f));
             placingCellArray = new Global_PlacingCell[_maxX, _maxY];
-
             for (int i_y = 0; i_y < _maxY; i_y++)
             {
                 for (int j_x = 0; j_x < _maxX; j_x++)
@@ -142,7 +142,7 @@ namespace ToronPuzzle
             }
 
 
-
+            Global_InWorldEventSystem.on판계산선언 += ResetBlockFromPannel;
         }
 
         void SetBonusOnPannel()
@@ -231,6 +231,7 @@ namespace ToronPuzzle
         //블록의 배치 위치를 int 형의 구조물에 올린다.
         //없음 = 0, 일반 블럭 = 1, , 모듈 = 3 , 트리거 공간 = 4,
         int[,] _blockPlacedArr;
+        int[,] _modulePlacedArr;
 
 
         //블럭만 대상으로 세팅함.
@@ -374,7 +375,6 @@ namespace ToronPuzzle
                         return;
                     }
 
-
                     //블럭의 위치상
                     if (_blockArr[j_x, i_y] !=0)
                     {
@@ -382,8 +382,8 @@ namespace ToronPuzzle
                     }
                 }
             }
-
-
+            //모듈의 배치는 일반 블롣이 사라짐에도 존재해야하기 때문 
+            _modulePlacedArr = (int[,]) _blockPlacedArr.Clone();
             //TestCaller.instance.DebugArrayShape("Added", _blockPlacedArr);
 
         }
@@ -445,7 +445,6 @@ namespace ToronPuzzle
         }
         public void RemoveBlockOnPlace(BlockCase_BlockPlace _Block)
         {
-            Debug.Log("call delete");
             _placedBlocks.Remove(_Block);
             ResetPreview();
             SendDataToCalc();
@@ -477,8 +476,29 @@ namespace ToronPuzzle
                     _Block.HideBlock();
         }
 
+        #endregion
+
+
+        //블럭 계산이후 제거함
+        #region
+        void ResetBlockFromPannel()
+        {
+            RefreshBlock();
+            //현재 블록들을 제거하고 해당 데이터를 플레이어, 적에게 부여한다.
+            foreach (BlockCase_BlockPlace _block in _placedBlocks)
+            {
+                _block.BlockDestroyWithFX();
+            }
+            _placedBlocks.Clear();
+        }
+
         //오직 1만 제거한다 1, 3은 무시한다.
-        public void RefreshBlock() { }
+        void RefreshBlock()
+        {
+            _blockPlacedArr = (int[,])_modulePlacedArr.Clone();
+        }
+
+
         #endregion
 
 

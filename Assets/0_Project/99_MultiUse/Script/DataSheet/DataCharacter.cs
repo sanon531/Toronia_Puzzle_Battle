@@ -49,12 +49,8 @@ namespace ToronPuzzle
                 return 최대생명력data.FinalValue;
             }
         }
-
         public int 현재생명력;
         public int 현재방어도;
-
-
-
 
 
     }

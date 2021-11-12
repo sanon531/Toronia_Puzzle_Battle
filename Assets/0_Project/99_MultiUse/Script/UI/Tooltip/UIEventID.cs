@@ -28,16 +28,13 @@ namespace ToronPuzzle.Event
         Global_계산툴팁,
 
         Battle_게임시작표시,
-        Battle_계산허용,
-        
-        Battle_계산불가,
+        Battle_계산버튼OnOff,
         Battle_플레이어방어도표시,
         Battle_적방어도표시,
          
         Battle_시퀀스넘기기,
-
         Battle_현재턴표시,
-
+        Battle_현재시퀀스표시
 
     }
 

@@ -93,19 +93,27 @@ namespace ToronPuzzle.Battle
                     case GameSequence.VeryFirstStart:
                         //Debug.Log("VeryFirstStart");
                         _currentBattleTimer = 0;
+                        Global_UIEventSystem.Call_UIEvent<bool>(UIEventID.Battle_계산버튼OnOff, false);
                         Global_CoroutineManager.InvokeDelay(ShiftSequence, 1f);
                         break;
                     case GameSequence.WaitForStart:
                         //Debug.Log("WaitForStart");
                         _currentBattleTimer = 0;
                         Global_UIEventSystem.Call_UIEvent<int>(UIEventID.Battle_현재턴표시, Data_OnlyInBattle._currentTurn);
+                        Global_UIEventSystem.Call_UIEvent<bool>(UIEventID.Battle_계산버튼OnOff, true);
                         break;
                     case GameSequence.BattleSequence:
                         Global_InWorldEventSystem.CallOn토론시작();
+                        Global_UIEventSystem.Call_UIEvent<string>(UIEventID.Battle_현재시퀀스표시, "발언 시작!");
                         //Debug.Log("BattleSequence");
                         break;
-                    case GameSequence.BackToBegin:
+                    case GameSequence.EnemyDamageCalc:
                         Global_InWorldEventSystem.CallOn토론휴식();
+                        Data_OnlyInBattle._currentTurn++;
+                        Global_UIEventSystem.Call_UIEvent<string>(UIEventID.Battle_현재시퀀스표시, "상대 발언!");
+                        Global_UIEventSystem.Call_UIEvent<bool>(UIEventID.Battle_계산버튼OnOff, false);
+                        //적의 행동이 완료 되었을 떄 발동 하는 방시으로 추후에 바꿀것 지금은 임시로 해둠
+                        Global_CoroutineManager.InvokeDelay(ShiftSequence,2f);
                         //Debug.Log("BackToBegin");
                         break;
                     case GameSequence.EndOfGame:
@@ -142,9 +150,9 @@ namespace ToronPuzzle.Battle
                     Data_OnlyInBattle._currentSequenece = GameSequence.BattleSequence;
                     break;
                 case GameSequence.BattleSequence:
-                    Data_OnlyInBattle._currentSequenece = GameSequence.BackToBegin;
+                    Data_OnlyInBattle._currentSequenece = GameSequence.EnemyDamageCalc;
                     break;
-                case GameSequence.BackToBegin:
+                case GameSequence.EnemyDamageCalc:
                     Data_OnlyInBattle._currentSequenece = GameSequence.WaitForStart;
                     break;
                 case GameSequence.EndOfGame:
@@ -154,7 +162,6 @@ namespace ToronPuzzle.Battle
                     break;
             }
             _isequenceChanged = true;
-
         }
 
 

@@ -105,7 +105,7 @@ namespace ToronPuzzle
                         _spawned.transform.localPosition = spawnedvector;
                         _spawned.transform.localPosition = spawnedvector + new Vector3(0, 0, 0.1f);
                         _spawned.transform.localScale = InputSize * OutlinePercent;
-                        _current_Case._childObjects.Add(_spawned);
+                        _current_Case.SetChildObjOnList(_spawned);
 
                         _spawned = Instantiate(_worldBlock, new Vector3(0, 0, 0), Quaternion.identity, CaseObject.transform);
                         BlockCaseCell _current_Cell = _spawned.GetComponent<BlockCaseCell>();
@@ -113,10 +113,10 @@ namespace ToronPuzzle
                         _current_Cell.SetParentCase(_current_Case);
                         _spawned.transform.localScale = InputSize;
 
-                        _current_Case._childCase.Add(_current_Cell);
+                        _current_Case.SetChildCaseOnList(_current_Cell);
 
                         _spawned.transform.localPosition = spawnedvector;
-                        _current_Case._childObjects.Add(_spawned);
+                        _current_Case.SetChildObjOnList(_spawned);
 
                         Global_FXPlayer.PlayFX(ElementToBlockFX[_inputInfo._blockElement], _spawned.transform.position, _spawned.transform);
                     }
@@ -285,7 +285,7 @@ namespace ToronPuzzle
                                                    (InputSize.y * (i_y - (_maxY - 1) * 0.5f)), 0);
                         _spawned.transform.localPosition = spawnedvector;
                         _spawned.transform.localScale = InputSize * OutlinePercent;
-                        _current_Case._childObjects.Add(_spawned);
+                        _current_Case.SetChildObjOnList(_spawned);
 
                         _spawned = Instantiate(_worldBlock, new Vector3(0, 0, 0), Quaternion.identity, CaseObject.transform);
                         BlockCaseCell _current_Cell = _spawned.GetComponent<BlockCaseCell>();
@@ -293,10 +293,10 @@ namespace ToronPuzzle
                         _current_Cell.SetParentCase(_current_Case);
                         _spawned.transform.localScale = InputSize;
 
-                        _current_Case._childCase.Add(_current_Cell);
+                        _current_Case.SetChildCaseOnList(_current_Cell);
 
                         _spawned.transform.localPosition = spawnedvector;
-                        _current_Case._childObjects.Add(_spawned);
+                        _current_Case.SetChildObjOnList(_spawned);
 
 
 
