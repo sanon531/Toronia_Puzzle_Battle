@@ -9,11 +9,15 @@ namespace ToronPuzzle
         [SerializeField]
         private float _destoyTime = 2f;
         // Start is called before the first frame update
+        Coroutine coroutine;
         void OnEnable()
         {
-            Global_CoroutineManager.Run(DelayedDestroyCode());
+            coroutine = Global_CoroutineManager.Run(DelayedDestroyCode());
         }
-
+        private void OnDestroy()
+        {
+            Global_CoroutineManager.Stop(coroutine);
+        }
 
         IEnumerator DelayedDestroyCode()
         {

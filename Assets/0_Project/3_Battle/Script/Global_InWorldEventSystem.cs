@@ -96,6 +96,17 @@ namespace ToronPuzzle.Event
         { onCalc최대생명력?.Invoke(대상, 최대생명력계산정보체); }
 
 
+        //계산하는데 걸리는 쿨타임과 관련됨
+        public static event OnCalc데이터_0형식 onCalc토론시작쿨타임;
+        public static void CallOnCalc토론시작쿨타임(DataEntity 계산정보체)
+        { onCalc토론시작쿨타임?.Invoke(계산정보체); }
+
+
+
+        public static event OnCalc데이터_0형식 onCalc쿨타임;
+        public static void CallOnCalc쿨타임(DataEntity 계산정보체)
+        { onCalc쿨타임?.Invoke(계산정보체); }
+
 
         //계산(발언)을 할때 활용 할것. 계산 직전은 계산 하기 전에 발동
         public static event On이벤트 on판계산선언;

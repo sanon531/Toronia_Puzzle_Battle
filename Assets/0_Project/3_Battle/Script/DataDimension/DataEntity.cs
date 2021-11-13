@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ToronPuzzle
 {
-    public class DataEntity
+    public partial class DataEntity
     {
         public void Add증가량(int amount) { _증가량 += amount; }
         public void Add증가량배수(float amount) { _증가량배수 *= amount; }
@@ -26,10 +26,7 @@ namespace ToronPuzzle
 
         public Type type { get; }
 
-
-
-
-
+                     
 
         public enum Type
         {
@@ -43,11 +40,9 @@ namespace ToronPuzzle
             방어도직접대입 = 5,   //방어도 획득이나 소모가아님.
                            //대표적으로 턴 시작시 방어도 초기화될때 사용.
 
-            이동 = 6,
+            시작쿨타임 =6,
+            발언쿨타임 =7,
 
-            SP변동 = 7,
-            AP변동 = 8,
-            기력변동 = 9,
             경험치 = 10,
 
             효과부여 = 11,
@@ -79,23 +74,7 @@ namespace ToronPuzzle
             연참고정감소 = 128, //아크로배틱류에 영향 받지 않는 고정 연참 감소의 경우 사용
         }
 
-        private DataEntity(Type type, int 기본값)
-        {
-            this.type = type;
-            _기본값 = 기본값;
-        }
-        private DataEntity(Type type, int 기본값, Property properties)
-        {
-            this.type = type;
-            _기본값 = 기본값;
-            this.properties = properties;
-        }
-
-
-        public static DataEntity 고유데이터(int 기본값)
-        {
-            return new DataEntity(Type.없음, 기본값);
-        }
+    
 
     }
 }

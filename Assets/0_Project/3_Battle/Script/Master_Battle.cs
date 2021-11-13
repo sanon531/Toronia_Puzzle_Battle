@@ -28,6 +28,10 @@ namespace ToronPuzzle.Battle
             public static float _battleTime = 10f;
             public static float _spawnSpeed = 10f;
 
+            public static float _startCoolTime = 10f;
+            public static float _battleCoolTime = 10f;
+
+
 
             public static bool IsDead { get; private set; }
             public static void SetDead() { IsDead = true; }
@@ -37,6 +41,8 @@ namespace ToronPuzzle.Battle
             {
                 _battleTime = _currentStageData._battleTime;
                 _spawnSpeed = _currentStageData._spawnSpeed;
+                _startCoolTime = _currentStageData._startCoolTime;
+                _battleCoolTime = _currentStageData._battleCoolTime;
             }
 
             public static void OwnTurnStart(bool is행동불능)
