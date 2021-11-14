@@ -26,5 +26,11 @@ namespace ToronPuzzle
         public virtual void CalcPannelData(List<BlockInfo> _argBlockInfos) { }
         public virtual void CalcBonusLine(int[,] _arg_Arr) { }
 
+
+        protected float _attackNum, _defendNum = 0;
+        public Vector2 GetCalcData() { return new Vector2(_attackNum, _defendNum); }
+
+
+
     }
 }

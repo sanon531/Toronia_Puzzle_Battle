@@ -112,10 +112,10 @@ namespace ToronPuzzle.Event
         public static event On이벤트 on판계산선언;
         public static void CallOn판계산선언() { on판계산선언?.Invoke(); }
 
-        public static event OnCalc데이터_2형식 on판계산;
-        public static void CallOn판계산(Data_Character 정보계산주체, Data_Character 부체, DataEntity 정보체)
-        { on판계산?.Invoke(정보계산주체, 부체,정보체); }
-
+        public static event OnCalc데이터_1형식 on판계산;
+        public static void CallOn판계산(Data_Character 정보계산타겟, DataEntity 정보체)
+        { on판계산?.Invoke(정보계산타겟, 정보체); }
+        
         public static event On이벤트 on시퀀스넘기기;
         public static void CallOn시퀀스넘기기() { on시퀀스넘기기?.Invoke(); }
 

@@ -86,7 +86,6 @@ namespace ToronPuzzle.Battle
             Global_InWorldEventSystem.on시퀀스넘기기 += ShiftSequence;
 
             SetBattleTimer();
-            SetBlockPanelCalc();
         }
 
         private void Update()
@@ -197,23 +196,6 @@ namespace ToronPuzzle.Battle
 
 
         #endregion 
-
-        //판 계산 관련.
-
-        void SetBlockPanelCalc()
-        {
-            Global_InWorldEventSystem.on판계산 += SetDamageOnEnemy;
-            Global_InWorldEventSystem.on판계산 += SetGuardOnPlayer;
-        }
-
-        void SetDamageOnEnemy(Data_Character 정보계산주체, Data_Character 부체, DataEntity 정보체)
-        {
-
-        }
-        void SetGuardOnPlayer(Data_Character 정보계산주체, Data_Character 부체, DataEntity 정보체)
-        {
-
-        }
 
 
 

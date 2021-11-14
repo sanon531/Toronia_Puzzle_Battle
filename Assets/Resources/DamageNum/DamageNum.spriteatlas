@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: DamageNum
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 25002e30b0d7d284cae7ec6b90bc2f76, type: 3}
+    - {fileID: 2800000, guid: 00c260ee9a506e343a092b513a19bb0f, type: 3}
+    - {fileID: 2800000, guid: dbfd6dd8a63a7e840b87a3a8fad1c836, type: 3}
+    - {fileID: 2800000, guid: 9448db07115bc614a9d629e98a7ead80, type: 3}
+    - {fileID: 2800000, guid: a12a34883018e5a449cfee09580ebdb3, type: 3}
+    - {fileID: 2800000, guid: c3904b8de1cb2914d92e142c1ca81fb5, type: 3}
+    - {fileID: 2800000, guid: 534dbeb03250080408962f59455aded6, type: 3}
+    - {fileID: 2800000, guid: a768c1e5295596747acb391001a78180, type: 3}
+    - {fileID: 2800000, guid: c9d08e8549b181b4dafcc66abc06e464, type: 3}
+    - {fileID: 2800000, guid: e29cfe4daddfb7b4b93a81ef99c2d866, type: 3}
+    - {fileID: 2800000, guid: edc6bcf56ee3d0949a2f003702662282, type: 3}
+    totalSpriteSurfaceArea: 110000
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 25002e30b0d7d284cae7ec6b90bc2f76, type: 3}
+  - {fileID: 21300000, guid: 534dbeb03250080408962f59455aded6, type: 3}
+  - {fileID: 21300000, guid: c9d08e8549b181b4dafcc66abc06e464, type: 3}
+  - {fileID: 21300000, guid: a768c1e5295596747acb391001a78180, type: 3}
+  - {fileID: 21300000, guid: edc6bcf56ee3d0949a2f003702662282, type: 3}
+  - {fileID: 21300000, guid: 9448db07115bc614a9d629e98a7ead80, type: 3}
+  - {fileID: 21300000, guid: a12a34883018e5a449cfee09580ebdb3, type: 3}
+  - {fileID: 21300000, guid: dbfd6dd8a63a7e840b87a3a8fad1c836, type: 3}
+  - {fileID: 21300000, guid: e29cfe4daddfb7b4b93a81ef99c2d866, type: 3}
+  - {fileID: 21300000, guid: c3904b8de1cb2914d92e142c1ca81fb5, type: 3}
+  - {fileID: 21300000, guid: 00c260ee9a506e343a092b513a19bb0f, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - '-'
+  - 5
+  - 7
+  - 6
+  - 9
+  - 2
+  - 3
+  - 1
+  - 8
+  - 4
+  - 0
+  m_RenderDataMap: {}
+  m_Tag: DamageNum
+  m_IsVariant: 0

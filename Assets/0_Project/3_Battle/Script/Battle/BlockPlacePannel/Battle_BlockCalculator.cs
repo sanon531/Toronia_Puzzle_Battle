@@ -12,9 +12,6 @@ namespace ToronPuzzle.Battle
         //계산 관련
         [SerializeField]
         int _aggressiveNum, _cynicalNum, _friendlyNum, _emptinessNum, _bonusNum = 0;
-        float _attackNum, _defendNum=0;
-
-
         public string GetCurrentNum()
         {
             string temptContentStr = "<sprite=0> : ";
@@ -71,8 +68,6 @@ namespace ToronPuzzle.Battle
         public override void CalcPannelData(List<BlockInfo> _argBlockInfos)
         {
             ResetNum();
-
-
             foreach (BlockInfo _blockInfo in _argBlockInfos)
                 switch (_blockInfo._blockElement)
                 {
@@ -172,7 +167,6 @@ namespace ToronPuzzle.Battle
             }
 
         }
-
         
 
     }

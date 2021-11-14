@@ -17,6 +17,14 @@ namespace ToronPuzzle.Battle
 
         public void AssignGameListener()
         {
+            BeginDatatoSize();
+            Global_InWorldEventSystem.onCalc데미지 += SetDamageOnHealth;
+            Global_InWorldEventSystem.onCalc방어도 += SetGuardOnCharactor;
+            SetPlayerGuardPower(0);
+            SetEnemyGuardPower(0);
+        }
+        void BeginDatatoSize()
+        {
             _playerHealthRect = GameObject.Find("BC_Player_Health").GetComponent<RectTransform>();
             _enemyHealthRect = GameObject.Find("BC_Enemy_Health").GetComponent<RectTransform>();
             _playerHealthBar = _playerHealthRect.gameObject.GetComponent<Slider>();
@@ -40,21 +48,44 @@ namespace ToronPuzzle.Battle
             Vector2 _guardRectVec2 = new Vector2(_rectHeight * 0.4f, _rectHeight * 0.4f);
             _playerGuard.sizeDelta = _guardRectVec2;
             _enemyGuard.sizeDelta = _guardRectVec2;
-            _playerGuard.anchoredPosition = new Vector2(_rectWidth * 1f + _rectHeight*0.25f , _playerHealthRect.anchoredPosition.y);
-            _enemyGuard.anchoredPosition = new Vector2(-(_rectWidth * 1f + _rectHeight*0.25f) , _playerHealthRect.anchoredPosition.y);  
+            _playerGuard.anchoredPosition = new Vector2(_rectWidth * 1f + _rectHeight * 0.25f, _playerHealthRect.anchoredPosition.y);
+            _enemyGuard.anchoredPosition = new Vector2(-(_rectWidth * 1f + _rectHeight * 0.25f), _playerHealthRect.anchoredPosition.y);
 
-
-
-
-            Global_InWorldEventSystem.onCalc데미지 += SetDamageOnHealth;
-            Global_InWorldEventSystem.onCalc방어도 += SetGuardOnCharactor;
 
         }
+
+
+
+        private void Start()
+        {
+            SetGuardOnCharactor(Master_Battle.Data_OnlyInBattle._enemyData, DataEntity.고유데이터(30));
+        }
+
 
         void SetDamageOnHealth(Data_Character _targetChar, DataEntity 계산정보체)
         {
             float _changedVal = 0.5f;
-            _targetChar.현재생명력 -= 계산정보체.FinalValue;
+            float _damage = 계산정보체.FinalValue;
+
+
+            //방어도 계산기.
+            if (_targetChar.현재방어도 > 0)
+            {
+                if (_targetChar.현재방어도 >= _damage)
+                {
+                    _targetChar.현재방어도 -= (int)_damage;
+                    _damage = 0;
+                }
+                else
+                {
+                    _damage -= _targetChar.현재방어도;
+                    _targetChar.현재방어도 = 0;
+                }
+
+                SetGuardByCharside(_targetChar.소속진영, _targetChar.현재방어도);
+            }
+
+            _targetChar.현재생명력 -= (int)_damage;
             _changedVal = (float)_targetChar.현재생명력 / (float)_targetChar.최대생명력;
 
             if (_targetChar.소속진영 == CharacterSide.Ally)
@@ -67,27 +98,30 @@ namespace ToronPuzzle.Battle
                 DamageTextScript.Create(_enemyHealthRect.transform.position, 1, 0.3f, -계산정보체.FinalValue, Color.red,0.5f);
                 SetEnemyBar(_changedVal);
             }
-
-
         }
+
         void SetPlayerBar(float to){_playerHealthBar.value = to;}
         void SetEnemyBar(float to){_enemyHealthBar.value = to;}
 
         void SetGuardOnCharactor(Data_Character _targetChar, DataEntity 계산정보체)
         {
-            if (_targetChar.소속진영 == CharacterSide.Ally)
+            _targetChar.현재방어도 += 계산정보체.FinalValue;
+            SetGuardByCharside(_targetChar.소속진영, _targetChar.현재방어도);
+        }
+        void SetGuardByCharside(CharacterSide _side,int _val)
+        {
+            if (_side == CharacterSide.Ally)
             {
-                DamageTextScript.Create(_playerHealthRect.transform.position, 1, 0.3f, -계산정보체.FinalValue, Color.blue, 0.5f);
-                SetPlayerGuardPower(계산정보체.FinalValue);
+                DamageTextScript.Create(_playerGuard.transform.position, 1, 0.3f, _val, Color.blue, 0.5f);
+                SetPlayerGuardPower(_val);
             }
-            else if (_targetChar.소속진영 == CharacterSide.Enemy)
+            else if (_side == CharacterSide.Enemy)
             {
-                DamageTextScript.Create(_enemyHealthRect.transform.position, 1, 0.3f, -계산정보체.FinalValue, Color.blue, 0.5f);
-                SetEnemyGuardPower(계산정보체.FinalValue);
+                DamageTextScript.Create(_enemyGuard.transform.position, 1, 0.3f, _val, Color.blue, 0.5f);
+                SetEnemyGuardPower(_val);
             }
 
         }
-
         void SetPlayerGuardPower(int _guardAmount)
         {
             if (_guardAmount <= 0)

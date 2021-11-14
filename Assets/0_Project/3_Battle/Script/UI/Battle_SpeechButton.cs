@@ -120,7 +120,6 @@ namespace ToronPuzzle.Battle
         float _startCoolTime = 3f;
         float _currentCoolTime = 10f;
 
-
         void DisableSpeechButton() { _calcButton.enabled = false; }
         void EnableSpeechButton() { _calcButton.enabled = true; }
 

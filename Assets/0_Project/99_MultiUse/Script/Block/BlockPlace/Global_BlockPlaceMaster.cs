@@ -141,8 +141,8 @@ namespace ToronPuzzle
                 }
             }
 
+            SetBlockPanelCalc();
 
-            Global_InWorldEventSystem.on판계산선언 += ResetBlockFromPannel;
         }
 
         void SetBonusOnPannel()
@@ -479,8 +479,21 @@ namespace ToronPuzzle
         #endregion
 
 
-        //블럭 계산이후 제거함
+        //블럭 계산과정
         #region
+
+        //판 계산 관련.
+
+        void SetBlockPanelCalc()
+        {
+            Global_InWorldEventSystem.on판계산선언 += ResetBlockFromPannel;
+            Global_InWorldEventSystem.on판계산선언 += CallCalculatorToCalc;
+            //Global_InWorldEventSystem.on판계산 += SetDamageOnEnemy;
+            //Global_InWorldEventSystem.on판계산 += SetGuardOnPlayer;
+        }
+
+        #region
+
         void ResetBlockFromPannel()
         {
             RefreshBlock();
@@ -491,12 +504,23 @@ namespace ToronPuzzle
             }
             _placedBlocks.Clear();
         }
-
         //오직 1만 제거한다 1, 3은 무시한다.
         void RefreshBlock()
         {
             _blockPlacedArr = (int[,])_modulePlacedArr.Clone();
         }
+        #endregion
+
+        void CallCalculatorToCalc()
+        {
+            Vector2 _calcData = _blockCalculator.GetCalcData();
+            Global_InWorldEventSystem.CallOnCalc데미지(Master_Battle.Data_OnlyInBattle._enemyData, DataEntity.고유데이터((int)_calcData.x));
+            Global_InWorldEventSystem.CallOnCalc방어도(Master_Battle.Data_OnlyInBattle._playerData, DataEntity.고유데이터((int)_calcData.y));
+        }
+
+
+
+
 
 
         #endregion
