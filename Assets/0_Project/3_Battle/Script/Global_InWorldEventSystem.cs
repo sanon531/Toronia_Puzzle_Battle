@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ToronPuzzle.Battle;
+using ToronPuzzle.Data;
 
 namespace ToronPuzzle.Event
 {
@@ -18,7 +19,8 @@ namespace ToronPuzzle.Event
     public delegate void On이벤트With정수수치값(int 수치값);
     public delegate void On이벤트WithFloat수치값(float 수치값);
     public delegate void On이벤트WithString수치값(string 수치값);
-    public delegate void On이벤트WithElement수치값(BlockElement 수치값);
+    public delegate void On이벤트WithElementAnim(BlockElement _element,CharAnimType _type);
+    public delegate void On이벤트WithCameraAim(CameraAimEnum _type);
 
 
     public delegate void On이벤트With대상수치값(Data_Character 대상자, int 수치값);
@@ -61,13 +63,19 @@ namespace ToronPuzzle.Event
         public static event On이벤트 on토론휴식;
         public static void CallOn토론휴식() { on토론휴식?.Invoke(); }
 
-        public static event On이벤트WithString수치값 on플레이어애니메이션;
-        public static void CallOn플레이어애니메이션(string _name) { on플레이어애니메이션?.Invoke(_name); }
+        //애니메이션 관련
+        #region
+        public static event On이벤트WithElementAnim on플레이어애니메이션;
+        public static void CallOn플레이어애니메이션(BlockElement _element, CharAnimType _type) { on플레이어애니메이션?.Invoke(_element, _type); }
+        public static event On이벤트WithElementAnim on적애니메이션;
+        public static void CallOn적애니메이션(BlockElement _element, CharAnimType _type) { on적애니메이션?.Invoke(_element, _type); }
+        public static event On이벤트WithCameraAim on카메라에임;
+        public static void CallOn카메라에임(CameraAimEnum _type) { on카메라에임?.Invoke(_type); }
 
-        public static event On이벤트WithString수치값 on적애니메이션;
-        public static void CallOn적애니메이션(string _name) { on적애니메이션?.Invoke(_name); }
+        #endregion
 
 
+        //블록 생성및 배치 관련
         public static event On모듈이벤트 on블록생성;
         public static void CallOn블록생성(BlockInfo module) { on블록생성?.Invoke(module); }
 
@@ -115,7 +123,13 @@ namespace ToronPuzzle.Event
         public static event OnCalc데이터_1형식 on판계산;
         public static void CallOn판계산(Data_Character 정보계산타겟, DataEntity 정보체)
         { on판계산?.Invoke(정보계산타겟, 정보체); }
-        
+
+
+
+
+        public static event On이벤트 on적턴시작;
+        public static void CallOn적턴시작() { on적턴시작?.Invoke(); }
+
         public static event On이벤트 on시퀀스넘기기;
         public static void CallOn시퀀스넘기기() { on시퀀스넘기기?.Invoke(); }
 

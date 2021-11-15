@@ -31,8 +31,6 @@ namespace ToronPuzzle.Battle
             public static float _startCoolTime = 10f;
             public static float _battleCoolTime = 10f;
 
-
-
             public static bool IsDead { get; private set; }
             public static void SetDead() { IsDead = true; }
             public static void SetAlive() { IsDead = false; }
@@ -52,7 +50,7 @@ namespace ToronPuzzle.Battle
                     _currentTurn++;
                 }
             }
-
+            public static List<CharactorActionInfo> _enemyActionQueue = new List<CharactorActionInfo>();
 
         }
 
@@ -62,8 +60,6 @@ namespace ToronPuzzle.Battle
         [SerializeField] Canvas _vfxCanvas = default;
         [SerializeField] Transform[] _alliesPos = default;
         [SerializeField] Transform[] _enemiesPos = default;
-        public Data_Character _playerData, _enemyData;
-
 
         public void BeginMasterData()
         {
@@ -75,8 +71,11 @@ namespace ToronPuzzle.Battle
             Data_OnlyInBattle._enemiesPos = _enemiesPos;
             _isequenceChanged = true;
             Data_OnlyInBattle._playerChar = GameObject.Find("Player_Character").GetComponent<Battle_Character>();
+            Data_OnlyInBattle._playerChar .BeginCharactor();
             Data_OnlyInBattle._playerData = Data_OnlyInBattle._playerChar._characterData;
             Data_OnlyInBattle._enemyChar = GameObject.Find("Enemy_Character").GetComponent<Battle_Character>();
+            Data_OnlyInBattle._enemyChar.BeginCharactor();
+
             Data_OnlyInBattle._enemyData = Data_OnlyInBattle._enemyChar._characterData;
             Data_OnlyInBattle._currentStageData = Global_InGameData.Instance._currentStageData;
             Data_OnlyInBattle.SetStageDataToinfo();
@@ -84,7 +83,7 @@ namespace ToronPuzzle.Battle
             #endregion
             Battle_ConveyerManager.instance.SetQueueOnConveyer(Global_InGameData.Instance._currentStageData._blockList);
             Global_InWorldEventSystem.on시퀀스넘기기 += ShiftSequence;
-
+            Global_InWorldEventSystem.on적턴시작 += EnemyTurnStart;
             SetBattleTimer();
         }
 
@@ -159,6 +158,7 @@ namespace ToronPuzzle.Battle
                     break;
                 case GameSequence.EnemyDamageCalc:
                     Data_OnlyInBattle._currentSequenece = GameSequence.WaitForStart;
+                    Global_InWorldEventSystem.CallOn적턴시작();
                     break;
                 case GameSequence.EndOfGame:
                     //GameDone
@@ -195,8 +195,20 @@ namespace ToronPuzzle.Battle
         }
 
 
-        #endregion 
+        #endregion
 
+
+        #region
+
+
+        //적의 데이터는 고정 되었고 해당하는 데이터를 뽑아와서 한다. 즉 액션을 정해야할것 같은디.
+        //액션 큐를 정해두고 다양한 행동을 할수있으면 좋겠다.
+        void EnemyTurnStart()
+        {
+           
+        }
+
+        #endregion
 
 
 

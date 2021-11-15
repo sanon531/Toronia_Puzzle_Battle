@@ -67,6 +67,18 @@ namespace ToronPuzzle.Data
 
             };
 
+        public static Dictionary<string, List<CharactorActionInfo>> StrActionListDic = 
+            new Dictionary<string, List<CharactorActionInfo>>() {
+                { "Basic",new List<CharactorActionInfo>() {new CharactorActionInfo()}
+                }
+            };
+
+        public static Dictionary<string, CharactorActionInfo> StrActionDic =
+            new Dictionary<string, CharactorActionInfo>() {
+                {"Attack_1", new CharactorActionInfo() }
+
+            };
+
     }
 
 }

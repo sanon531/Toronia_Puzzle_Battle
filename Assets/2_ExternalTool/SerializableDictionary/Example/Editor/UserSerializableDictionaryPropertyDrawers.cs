@@ -31,7 +31,7 @@ using UnityEngine.Events;
 
 [CustomPropertyDrawer(typeof(ElementVectorDictionary))]
 [CustomPropertyDrawer(typeof(ElementIntDictionary))]
-
+[CustomPropertyDrawer(typeof(StringSpineAnimDictionary))]
 [CustomPropertyDrawer(typeof(StringVector2IntDictionary))]
 
 [CustomPropertyDrawer(typeof(StringColorArrayDictionary))]

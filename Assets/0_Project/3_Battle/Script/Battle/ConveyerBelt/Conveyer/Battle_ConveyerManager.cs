@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ToronPuzzle.Event;
 using ToronPuzzle.UI;
+using ToronPuzzle.Data;
 
 namespace ToronPuzzle.Battle
 {
@@ -23,6 +24,19 @@ namespace ToronPuzzle.Battle
         public void AssignGameListener()
         {
             instance = this;
+            BeginConveyer();
+            Global_InWorldEventSystem.on토론시작 += StartConveyerMove;
+            Global_InWorldEventSystem.on토론휴식 += StopInstantConveyerMove;
+            Global_InWorldEventSystem.on토론휴식 += ResetAllConveyer;
+            Global_InWorldEventSystem.on게임종료 += StopInstantConveyerMove;
+
+
+
+        }
+
+
+        public void BeginConveyer()
+        {
             _currentRect = GetComponent<RectTransform>();
             _beltRect = GameObject.Find("BC_ConveyerBelt").GetComponent<RectTransform>();
             _spawnCollider = GameObject.Find("BC_ConveyerSpawnCollider").GetComponent<BoxCollider2D>();
@@ -40,16 +54,6 @@ namespace ToronPuzzle.Battle
             _caseRect.sizeDelta = _rectsize;
             _spawnCollider.gameObject.GetComponent<Battle_CollisionReturn>().BeginCollisionReturn(_rectsize);
             _resetCollider.gameObject.GetComponent<Battle_CollisionReturn>().BeginCollisionReturn(_rectsize);
-            Global_InWorldEventSystem.on토론시작 += StartConveyerMove;
-            Global_InWorldEventSystem.on토론휴식 += StopInstantConveyerMove;
-            Global_InWorldEventSystem.on토론휴식 += ResetAllConveyer;
-            Global_InWorldEventSystem.on게임종료 += StopInstantConveyerMove;
-        }
-
-
-        public void BeginConveyer()
-        {
-           
         }
 
         // Update is called once per frame
@@ -78,9 +82,12 @@ namespace ToronPuzzle.Battle
         public void SetBlockOnConveyer(Battle_Conveyer_Case _Conveyer_Case)
         {
             //여기서 다시 켠다.
-            if(_blockPlaceQueue[_placeNum]._isLiftable)
+            BlockInfo _info = _blockPlaceQueue[_placeNum];
+
+            if (_info._isLiftable)
                 _Conveyer_Case.PlaceBlock(_blockPlaceQueue[_placeNum]);
 
+            RandomAnim(_info._blockElement);
             _placeNum++;
             _placeNum =(_placeNum> (_blockPlaceQueue.Count-1))? 0: _placeNum;
 
@@ -96,6 +103,26 @@ namespace ToronPuzzle.Battle
                 DeleteBlockOnConveyer(battle_Conveyer_Case);
         }
 
+        void RandomAnim(BlockElement _blockElement)
+        {
+
+            //지금은 스피치지만 이후에 바꾼다.
+            if (Random.Range(0, 10) < 5)
+            {
+                Global_InWorldEventSystem.CallOn플레이어애니메이션(_blockElement, CharAnimType.Speech);
+            }
+            else
+            {
+                Global_InWorldEventSystem.CallOn적애니메이션(_blockElement, CharAnimType.Speech);
+            }
+
+        }
+
+        //블록의 수치에 따라서 에임의 정도가 변경된다
+        void AimByAmount()
+        {
+
+        }
 
 
 

@@ -90,22 +90,36 @@ namespace ToronPuzzle.Data
 
     }
 
-    public enum CharAction
+
+    //해당 행동이 생각인지, 행동인지 나눔
+    public enum CharAnimType
     {
-        Idle,
-        Agr_1,
-        Agr_2,
-        Agr_Skill_1,
-        Cyn_1,
-        Cyn_2,
-        Cyn_Skill_1,
-        Frn_1,
-        Frn_2,
-        Frn_Skill_1,
-        Damaged,
-        Dead
+        Think, 
+        Speech,
+        Extra,
 
     }
 
+
+
+
+    public static class CharacterLibrary
+    {
+
+    }
+
+    public struct CharactorActionInfo
+    {
+        string _name;
+        float _actionTime;
+        string _animationName;
+
+        public CharactorActionInfo(string name, float actionTime, string animationName)
+        {
+            _name = name;
+            _actionTime = actionTime;
+            _animationName = animationName;
+        }
+    }
 
 }

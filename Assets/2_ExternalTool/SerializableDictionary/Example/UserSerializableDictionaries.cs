@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using ToronPuzzle.Data;
 using ToronPuzzle;
+using Spine.Unity;
+
 
 [Serializable]
 public class StringStringDictionary : SerializableDictionary<string, string> {}
@@ -86,6 +88,8 @@ public class ElementVectorDictionary : SerializableDictionary<BlockElement, Vect
 [Serializable]
 public class ElementIntDictionary : SerializableDictionary<BlockElement, int> { }
 
+[Serializable]
+public class StringSpineAnimDictionary : SerializableDictionary<string, AnimationReferenceAsset> { }
 
 [Serializable]
 public class StringVector2IntDictionary : SerializableDictionary<string, Vector2Int> { }

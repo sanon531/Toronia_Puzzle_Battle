@@ -4,9 +4,12 @@ using UnityEngine;
 using Cinemachine;
 using DG.Tweening;
 using ToronPuzzle.Data;
+using ToronPuzzle.UI;
+using ToronPuzzle.Event;
+
 namespace ToronPuzzle.Battle
 {
-    public class Battle_CameraAimer : MonoBehaviour
+    public class Battle_CameraAimer : UI_Object, IGameListenerUI
     {
 
         public static Battle_CameraAimer instance;
@@ -17,10 +20,17 @@ namespace ToronPuzzle.Battle
         [SerializeField]
         Transform _WorldAim;
 
+        public void AssignGameListener()
+        {
+            BeginCameraAimer();
+        }
+
         //계산 중에 하는 것
         public void BeginCameraAimer()
         {
             instance = this;
+            Global_InWorldEventSystem.on카메라에임 += SetAimByData;
+
         }
       
         

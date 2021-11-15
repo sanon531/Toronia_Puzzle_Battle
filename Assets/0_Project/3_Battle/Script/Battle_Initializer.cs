@@ -28,10 +28,6 @@ namespace ToronPuzzle.Battle
             Battle_CanvasUI battle_CanvasUI = _battleCanvas.gameObject.GetComponent<Battle_CanvasUI>();
             battle_CanvasUI.BeginUIManager();
 
-
-            Battle_CameraAimer battle_CameraAimer = GameObject.Find("Battle_CameraAimer").GetComponent<Battle_CameraAimer>();
-            battle_CameraAimer.BeginCameraAimer();
-
             Battle_SoundManager battle_SoundManager = GameObject.Find("Battle_SoundManager").GetComponent<Battle_SoundManager>();
             battle_SoundManager.BeginSoundManager();
             battle_SoundManager.PlayBGM(currentBGM);
