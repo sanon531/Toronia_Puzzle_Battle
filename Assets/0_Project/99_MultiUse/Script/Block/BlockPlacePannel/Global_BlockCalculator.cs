@@ -5,13 +5,25 @@ using ToronPuzzle.Data;
 using ToronPuzzle.UI;
 using ToronPuzzle.Event;
 
-namespace ToronPuzzle.Battle
+namespace ToronPuzzle
 {
-    public class Battle_BlockCalculator : BlockCalculator
+    public class Global_BlockCalculator : BlockCalculator
     {
         //계산 관련
         [SerializeField]
         int _aggressiveNum, _cynicalNum, _friendlyNum, _emptinessNum, _bonusNum = 0;
+
+        public void BeginBlockCalc()
+        {
+            _currentElementValue = BlockElementPool._initialElementPowerDic;
+            Global_InWorldEventSystem.on속성배율변동 += ChangeBlockElement;
+        }
+        void ChangeBlockElement(BlockElement _element, Vector3 _amount)
+        {
+            _currentElementValue[_element] += _amount;
+            Debug.Log(_element+"+"+_amount);
+        } 
+
         public string GetCurrentNum()
         {
             string temptContentStr = "<sprite=0> : ";
@@ -38,7 +50,6 @@ namespace ToronPuzzle.Battle
 
             return temptContentStr;
         }
-
         private void ResetNum()
         {
             _aggressiveNum = 0;

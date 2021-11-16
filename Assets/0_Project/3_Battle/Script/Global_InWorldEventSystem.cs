@@ -20,8 +20,9 @@ namespace ToronPuzzle.Event
     public delegate void On이벤트WithFloat수치값(float 수치값);
     public delegate void On이벤트WithString수치값(string 수치값);
     public delegate void On이벤트WithElementAnim(BlockElement _element,CharAnimType _type);
-    public delegate void On이벤트WithCameraAim(CameraAimEnum _type);
+    public delegate void On이벤트WithElementVec3(BlockElement _element, Vector3 _amount);
 
+    public delegate void On이벤트WithCameraAim(CameraAimEnum _type);
 
     public delegate void On이벤트With대상수치값(Data_Character 대상자, int 수치값);
     public delegate void On이벤트With대상Float수치값(Data_Character 대상자, float 수치값);
@@ -46,6 +47,15 @@ namespace ToronPuzzle.Event
         // 진짜 시작 되었을때 발동 waitforStart 때
         public static event On이벤트 on배틀시작;
         public static void CallOn배틀시작() { on배틀시작?.Invoke(); }
+
+
+        //블록요소 업데이트
+        public static event On이벤트WithElementVec3 on속성배율변동;
+        public static void CallOn속성배율변동(BlockElement _element, Vector3 _amount)
+        { on속성배율변동?.Invoke(_element,_amount); }
+
+
+
 
         public static event On이벤트 on발언비활성화;
         public static void CallOn발언비활성화() { on발언비활성화?.Invoke(); }

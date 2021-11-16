@@ -22,7 +22,7 @@ namespace ToronPuzzle
         bool isDebug = false;
 
         [SerializeField]
-        List<BlockCase_Module> _ownedModule = new List<BlockCase_Module>();
+        List<BlockInfo> _ownedModule = new List<BlockInfo>();
         public StageInfo _currentStageData ;
 
 
@@ -58,7 +58,7 @@ namespace ToronPuzzle
                             {
                                 BlockInfo _temptBlockInfo =ModuleDic._IDModuleBlockDic[moduleID];
                                 _temptBlockInfo._blockPlace = new Vector2Int(j_x, i_y);
-
+                                _ownedModule.Add(_temptBlockInfo);
                                 Global_BlockGenerator.instance.GenerateModuleOnBlockPlace(_temptBlockInfo);
 
 
@@ -67,6 +67,15 @@ namespace ToronPuzzle
                     }
                 }
             }
+        }
+
+
+
+        //
+        private void Start()
+        {
+            foreach (BlockInfo blockInfo in _ownedModule)
+                blockInfo._moduleInfo.ActivateModuleEffect();
         }
 
 

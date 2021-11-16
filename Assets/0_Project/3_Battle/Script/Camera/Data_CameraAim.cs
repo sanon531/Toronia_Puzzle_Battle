@@ -30,7 +30,7 @@ namespace ToronPuzzle.Data
         { CameraAimEnum.Aim_Player_Zoom_Big,
                 new WorldMoveInfo(new Vector2(4f,-6f),2f) },
         { CameraAimEnum.Aim_Enemy,
-                new WorldMoveInfo(new Vector2(-2f,0f),1f)},
+                new WorldMoveInfo(new Vector2(-0.5f,0f),1f)},
         { CameraAimEnum.Aim_Enemy_Zoom_Little,
                 new WorldMoveInfo(new Vector2(-3.35f,-1f),1.2f) },
         { CameraAimEnum.Aim_Enemy_Zoom_Middle,

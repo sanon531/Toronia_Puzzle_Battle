@@ -981,7 +981,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 204463795}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f952759b0b41996409fd0bcb67ab27ad, type: 3}
+  m_Script: {fileID: 11500000, guid: baac7880370c4c842b573ea88e3236e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _bonusXColumnLines: []
@@ -10129,11 +10129,11 @@ MonoBehaviour:
     gridSize: {x: 4, y: 6}
     cellSize: {x: 64, y: 16}
     cells:
-    - row: 1c000000000000000000000000000000
+    - row: 00000000010000000000000000000000
     - row: 00000000000000000000000000000000
+    - row: 00000000000000000200000000000000
     - row: 00000000000000000000000000000000
-    - row: 00000000000000000000000000000000
-    - row: 00000000020000000000000006000000
+    - row: 00000000000000000600000000000000
     - row: 00000000000000000000000000000000
 --- !u!1 &1801562949
 GameObject:

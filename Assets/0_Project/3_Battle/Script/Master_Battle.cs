@@ -105,6 +105,8 @@ namespace ToronPuzzle.Battle
                         _currentBattleTimer = 0;
                         Global_UIEventSystem.Call_UIEvent<int>(UIEventID.Battle_현재턴표시, Data_OnlyInBattle._currentTurn);
                         Global_UIEventSystem.Call_UIEvent<bool>(UIEventID.Battle_계산버튼OnOff, true);
+                        Global_InWorldEventSystem.CallOn카메라에임(CameraAimEnum.Aim_Player);
+
                         break;
                     case GameSequence.BattleSequence:
                         Global_InWorldEventSystem.CallOn토론시작();
@@ -113,6 +115,7 @@ namespace ToronPuzzle.Battle
                         break;
                     case GameSequence.EnemyDamageCalc:
                         Global_InWorldEventSystem.CallOn토론휴식();
+                        Global_InWorldEventSystem.CallOn적턴시작();
                         Data_OnlyInBattle._currentTurn++;
                         Global_UIEventSystem.Call_UIEvent<string>(UIEventID.Battle_현재시퀀스표시, "상대 발언!");
                         Global_UIEventSystem.Call_UIEvent<bool>(UIEventID.Battle_계산버튼OnOff, false);
@@ -158,7 +161,6 @@ namespace ToronPuzzle.Battle
                     break;
                 case GameSequence.EnemyDamageCalc:
                     Data_OnlyInBattle._currentSequenece = GameSequence.WaitForStart;
-                    Global_InWorldEventSystem.CallOn적턴시작();
                     break;
                 case GameSequence.EndOfGame:
                     //GameDone

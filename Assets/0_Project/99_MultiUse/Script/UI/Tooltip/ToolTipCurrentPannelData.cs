@@ -10,7 +10,7 @@ namespace ToronPuzzle.UI
 {
     public class ToolTipCurrentPannelData : UI_Object, IGameListenerUI, IPointerEnterHandler, IPointerExitHandler
     {
-        [SerializeField] Battle_BlockCalculator _blockCalculator;
+        [SerializeField] Global_BlockCalculator _blockCalculator;
         [SerializeField] TextMeshProUGUI _attackText, _defendText;
 
         public void AssignGameListener()

@@ -26,7 +26,7 @@ namespace ToronPuzzle
         [SerializeField] SpriteRenderer _placingSprite = default;
         Transform _cellHolder,_blockHolder,_bonusHolder;
         [ReadOnly] [SerializeField]
-        BlockCalculator _blockCalculator;
+        Global_BlockCalculator _blockCalculator;
         Vector2 _screenSize;
         Global_PlacingCell[,] placingCellArray;
         [SerializeField]
@@ -53,7 +53,8 @@ namespace ToronPuzzle
                     Global_InGameData.Instance._placePannelData._maxX
                     , Global_InGameData.Instance._placePannelData._maxY);
 
-            _blockCalculator = GetComponent<BlockCalculator>();
+            _blockCalculator = GetComponent<Global_BlockCalculator>();
+            _blockCalculator.BeginBlockCalc();
             _placingCellSkin = _placingCellAddress;
             _placingCellSkin += argCellSkin;
             _bonusSkin = _placingCellAddress; ;

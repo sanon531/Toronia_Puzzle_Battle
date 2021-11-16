@@ -110,18 +110,19 @@ namespace ToronPuzzle.Battle
             if (Random.Range(0, 10) < 5)
             {
                 Global_InWorldEventSystem.CallOn플레이어애니메이션(_blockElement, CharAnimType.Speech);
+                Global_InWorldEventSystem.CallOn카메라에임(CameraAimEnum.Aim_Player);
             }
             else
             {
                 Global_InWorldEventSystem.CallOn적애니메이션(_blockElement, CharAnimType.Speech);
+                Global_InWorldEventSystem.CallOn카메라에임(CameraAimEnum.Aim_Enemy);
             }
 
         }
 
         //블록의 수치에 따라서 에임의 정도가 변경된다
-        void AimByAmount()
+        void AimByAmount(CameraAimEnum _cameraAim)
         {
-
         }
 
 
