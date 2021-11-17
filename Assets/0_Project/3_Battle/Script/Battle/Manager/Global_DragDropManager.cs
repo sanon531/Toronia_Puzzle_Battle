@@ -113,6 +113,7 @@ namespace ToronPuzzle
 
                     if (temptCase.CheckLiftable())
                     {
+                        //Debug.Log("isLiftable");
                         _pickOriginCase = temptCase.LiftBlock();
                         SetBlockOnPointer(_pickOriginCase);
                         Global_SoundManager.Instance.PlaySFX(SFXName.BlockLift);

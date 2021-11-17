@@ -19,7 +19,8 @@ namespace ToronPuzzle.Data
         BlockLift,
         Bonus_Small,
         Bonus_Big,
-        BlockRotate
+        BlockRotate,
+        Frozen_Crack
 
     }
 

@@ -19,20 +19,20 @@ namespace ToronPuzzle
         GameObject _spawned;//매개로 사용되는 변수
 
 
-        GameObject 
-            _blockCase_PlaceCase, _blockCase_World, _blockCase_Module, 
+        GameObject
+            _blockCase_PlaceCase, _blockCase_World, _blockCase_Module,
             _worldBlock, _UIBlock, _outLinerWorld, _outlinerUI
             ;
 
 
 
-        Material _mat_Agr, _mat_Agr_Module, _mat_Cyn, _mat_Cyn_Module, 
+        Material _mat_Agr, _mat_Agr_Module, _mat_Cyn, _mat_Cyn_Module,
             _mat_Frn, _mat_Frn_Module,
             _mat_Emp, _mat_Emp_Module,
             _mat_Bonus, _mat_Bonus_Module;
 
         public Vector2 BlockSize;
-        public Vector3 OutlinePercent =new Vector3(1.2f, 1.2f,1.2f);
+        public Vector3 OutlinePercent = new Vector3(1.2f, 1.2f, 1.2f);
         Dictionary<BlockElement, FXKind> ElementToBlockFX = new Dictionary<BlockElement, FXKind>()
         {
             {BlockElement.Aggressive , FXKind.BlockSetted_Agr},
@@ -78,21 +78,21 @@ namespace ToronPuzzle
             _lastBlockInfo = _inputInfo;
             int[,] _tempt_BlockArray = (int[,])_lastBlockInfo._blockShapeArr.Clone();
             Vector2 InputSize = Master_Battle.Data_OnlyInBattle._cellsize;
-            
+
             //케이스 생성
-            GameObject CaseObject = 
-                Instantiate(_blockCase_PlaceCase, Global_BlockPlaceMaster.instance.GetCellPosByOrder(_inputInfo._blockPlace), 
+            GameObject CaseObject =
+                Instantiate(_blockCase_PlaceCase, Global_BlockPlaceMaster.instance.GetCellPosByOrder(_inputInfo._blockPlace),
                 Quaternion.identity, Global_BlockPlaceMaster.instance.GetBlockHolder());
             BlockCase_BlockPlace _current_Case = CaseObject.GetComponent<BlockCase_BlockPlace>();
 
 
-            
+
             int _maxX = _tempt_BlockArray.GetLength(0);
             int _maxY = _tempt_BlockArray.GetLength(1);
 
             //케이스 오브젝트 로컬 위치 설정(포지션으로 함 오류 아님) 
-            CaseObject.transform.position += new Vector3(InputSize.x * (1 - _maxX), 0,0);
-          
+            CaseObject.transform.position += new Vector3(InputSize.x * (1 - _maxX), 0, 0);
+
 
             for (int i_y = _maxY - 1; i_y >= 0; i_y--)
             {
@@ -126,21 +126,25 @@ namespace ToronPuzzle
 
             _current_Case.SetCaseToCenter();
             _current_Case._blockInfo = new BlockInfo(_lastBlockInfo);
+            //CheckWhereToSet(_current_Case._blockInfo);
             //TestCaller.instance.DebugArrayShape(_current_Case._blockInfo._blockShapeArr);
             Global_BlockPlaceMaster.instance.AddBlockOnPlace(_current_Case);
-            Global_InWorldEventSystem.CallOn블록배치(_lastBlockInfo);
+            //블록 배치에 대한 내용은 마스터 쪽으로
+
             Global_SoundManager.Instance.PlaySFX(SFXName.BlockPlaced);
             return CaseObject;
         }
 
-        public GameObject GenerateOnPointer(BlockInfo _inputInfo,Transform _pointerTranform)
+
+
+        public GameObject GenerateOnPointer(BlockInfo _inputInfo, Transform _pointerTranform)
         {
-         
+
             int[,] _tempt_BlockArray = (int[,])_inputInfo._blockShapeArr.Clone();
             Vector2 InputSize = Master_Battle.Data_OnlyInBattle._cellsize;
 
             //케이스 생성
-            GameObject CaseObject =Instantiate(_blockCase_World, _pointerTranform.position, 
+            GameObject CaseObject = Instantiate(_blockCase_World, _pointerTranform.position,
                 Quaternion.identity, _pointerTranform);
 
 
@@ -149,7 +153,7 @@ namespace ToronPuzzle
             int _maxX = _tempt_BlockArray.GetLength(0);
             int _maxY = _tempt_BlockArray.GetLength(1);
             //케이스의 로컬위치 설정
-            CaseObject.transform.localPosition = new Vector2(InputSize.x * (1-_maxX),0);
+            CaseObject.transform.localPosition = new Vector2(InputSize.x * (1 - _maxX), 0);
 
 
             for (int i_y = _maxY - 1; i_y >= 0; i_y--)
@@ -162,7 +166,7 @@ namespace ToronPuzzle
                     {
                         _spawned = Instantiate(_outLinerWorld, new Vector3(0, 0, 0), Quaternion.identity, CaseObject.transform);
                         Vector3 spawnedvector = new Vector3(InputSize.x * j_x, (InputSize.y * i_y), 0);
-                        _spawned.transform.localPosition = spawnedvector+new Vector3(0,0,0.1f);
+                        _spawned.transform.localPosition = spawnedvector + new Vector3(0, 0, 0.1f);
                         _spawned.transform.localScale = InputSize * OutlinePercent;
                         _current_Case._childObjects.Add(_spawned);
 
@@ -185,12 +189,12 @@ namespace ToronPuzzle
             _current_Case.SetCaseToCenter();
 
 
-            Global_InWorldEventSystem.CallOn블록배치(_lastBlockInfo);
+            Global_InWorldEventSystem.CallOn블록생성(_lastBlockInfo);
 
             return CaseObject;
         }
 
-        public GameObject GenerateOnNormalCase(BlockInfo _inputInfo, Transform _casePos,float _caseSize)
+        public GameObject GenerateOnNormalCase(BlockInfo _inputInfo, Transform _casePos, float _caseSize)
         {
             _lastBlockInfo = _inputInfo;
             int[,] _tempt_BlockArray = (int[,])_lastBlockInfo._blockShapeArr.Clone();
@@ -200,7 +204,7 @@ namespace ToronPuzzle
             int _maxY = _tempt_BlockArray.GetLength(1);
             int _longerMax = _maxX > _maxY ? _maxX : _maxY;
             float _length = _caseSize * 0.9f;
-            _length = (_length/ _longerMax);
+            _length = (_length / _longerMax);
 
             Vector2 InputSize = new Vector2(_length, _length);
             //TestCaller.instance.DebugArrayShape(_tempt_BlockArray);
@@ -220,8 +224,8 @@ namespace ToronPuzzle
                     if (_tempt_BlockArray[j_x, i_y] == 1)
                     {
                         _spawned = Instantiate(_outLinerWorld, new Vector3(0, 0, 0), Quaternion.identity, CaseObject.transform);
-                        Vector3 spawnedvector = new Vector3(InputSize.x * (j_x -(_maxX-1)*0.5f), 
-                            (InputSize.y * (i_y - (_maxY - 1)*0.5f)), 0);
+                        Vector3 spawnedvector = new Vector3(InputSize.x * (j_x - (_maxX - 1) * 0.5f),
+                            (InputSize.y * (i_y - (_maxY - 1) * 0.5f)), 0);
                         _spawned.transform.localPosition = spawnedvector;
                         _spawned.transform.localScale = InputSize * OutlinePercent;
                         _current_Case._childObjects.Add(_spawned);
@@ -247,8 +251,7 @@ namespace ToronPuzzle
             _current_Case.SetCaseToCenter();
             _current_Case._blockInfo = new BlockInfo(_lastBlockInfo);
 
-
-            Global_InWorldEventSystem.CallOn블록배치(_lastBlockInfo);
+            Global_InWorldEventSystem.CallOn블록생성(_lastBlockInfo);
             return CaseObject;
         }
 
@@ -306,8 +309,14 @@ namespace ToronPuzzle
             _current_Case.SetCaseToCenter();
             _current_Case._blockInfo = new BlockInfo(_lastBlockInfo);
 
-            Global_InWorldEventSystem.CallOn블록배치(_lastBlockInfo);
+            Global_InWorldEventSystem.CallOn블록생성(_lastBlockInfo);
             return CaseObject;
+        }
+
+
+        void CheckWhereToSet(BlockInfo info)
+        {
+            TestCaller.instance.DebugArrayShape("BlockPlacedOn" + info._blockPlace, info._blockShapeArr);
         }
 
 
@@ -367,12 +376,12 @@ namespace ToronPuzzle
             _current_Case.SetCaseToCenter();
             _current_Case._blockInfo = new BlockInfo(_lastBlockInfo);
             //TestCaller.instance.DebugArrayShape(_current_Case._blockInfo._blockShapeArr);
+            //TestCaller.instance.DebugArrayShape(_current_Case._blockInfo._blockShapeArr);
             Global_BlockPlaceMaster.instance.AddModuleOnPlace(_current_Case);
+
             Global_InWorldEventSystem.CallOn모듈생성();
             Global_SoundManager.Instance.PlaySFX(SFXName.ModulePlaced);
             return CaseObject;
-
-
         }
 
 
@@ -415,7 +424,7 @@ namespace ToronPuzzle
                     return null;
             }
         }
-      
+
 
 
     }

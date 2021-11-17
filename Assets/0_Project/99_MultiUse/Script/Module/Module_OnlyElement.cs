@@ -64,14 +64,13 @@ namespace ToronPuzzle.Data
             float _amount = BlockElementPool._powerTofloatDic[Element_Power.약];
             Global_InWorldEventSystem.CallOn속성배율변동(
                 BlockElement.Friendly, new Vector3(_amount, _amount, 0f));
-
-
         }
         protected override void Disable()
         {
             base.Disable();
-
-
+            float _amount = BlockElementPool._powerTofloatDic[Element_Power.약];
+            Global_InWorldEventSystem.CallOn속성배율변동(
+                BlockElement.Friendly, new Vector3(-_amount, -_amount, 0f));
         }
 
 

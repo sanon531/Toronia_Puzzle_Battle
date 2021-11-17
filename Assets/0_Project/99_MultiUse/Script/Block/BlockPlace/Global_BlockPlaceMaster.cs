@@ -18,6 +18,7 @@ namespace ToronPuzzle
         [ReadOnly] [SerializeField] int _maxY = 6;
         float _currentHeigth, _occupyHeigth, _widthInterval, _heightInterval = 0;
         float _cellSizeY = 0;
+
         GameObject _placeCellPrefab, _bonusLine, _bonusFull;
         string _placingCellAddress = "BlockPlace/";
         [ReadOnly] [SerializeField]
@@ -29,6 +30,7 @@ namespace ToronPuzzle
         Global_BlockCalculator _blockCalculator;
         Vector2 _screenSize;
         Global_PlacingCell[,] placingCellArray;
+
         [SerializeField]
         List<BlockCase_BlockPlace> _placedBlocks = new List<BlockCase_BlockPlace>();
         [SerializeField]
@@ -226,6 +228,9 @@ namespace ToronPuzzle
 
 
         #endregion
+
+
+
 
         //블럭 추가 전의 계산 관련
         #region
@@ -430,10 +435,16 @@ namespace ToronPuzzle
 
         //블럭 추가 후 관련, 모듈과 별도
         #region
+        Dictionary<BlockInfo, BlockCase_BlockPlace> _infoCaseDic = new Dictionary<BlockInfo, BlockCase_BlockPlace>();
         public void AddBlockOnPlace(BlockCase_BlockPlace _Block)
         {
+            //저장 파트
             _placedBlocks.Add(_Block);
+            _infoCaseDic.Add(_Block._blockInfo, _Block);
+
+
             PlaceBlockDataOnArray(_Block._blockInfo);
+            Global_InWorldEventSystem.CallOn블록배치(_Block._blockInfo);
             ResetPreview();
             SendDataToCalc();
         }
@@ -447,9 +458,18 @@ namespace ToronPuzzle
         public void RemoveBlockOnPlace(BlockCase_BlockPlace _Block)
         {
             _placedBlocks.Remove(_Block);
+            _infoCaseDic.Remove(_Block._blockInfo);
+
+
             ResetPreview();
             SendDataToCalc();
         }
+
+        public void SetBlockCallByPos(Vector2Int _pos, BlockInfo _argInfo)
+        {
+            placingCellArray[_pos.x, _pos.y].PlaceBlock(_argInfo);
+        }
+
 
         void SendDataToCalc()
         {
@@ -480,11 +500,29 @@ namespace ToronPuzzle
         #endregion
 
 
-        //블럭 계산과정
+        //모듈 리턴 관련
         #region
+        public BlockInfo GetModuleFromIt(ModuleID _argID)
+        {
+            BlockInfo _return = new BlockInfo();
+
+            foreach (BlockCase_Module _Module in   _placedModules)
+            {
+                if (_Module._blockInfo._moduleID == _argID)
+                    _return = _Module._blockInfo;
+            }
+
+            if (_return._moduleID == ModuleID.없음)
+                Debug.LogError("No Data on Place");
+
+            return _return;
+        }
+
+        #endregion
+
 
         //판 계산 관련.
-
+        #region
         void SetBlockPanelCalc()
         {
             Global_InWorldEventSystem.on판계산선언 += ResetBlockFromPannel;
@@ -492,8 +530,6 @@ namespace ToronPuzzle
             //Global_InWorldEventSystem.on판계산 += SetDamageOnEnemy;
             //Global_InWorldEventSystem.on판계산 += SetGuardOnPlayer;
         }
-
-        #region
 
         void ResetBlockFromPannel()
         {
@@ -510,7 +546,6 @@ namespace ToronPuzzle
         {
             _blockPlacedArr = (int[,])_modulePlacedArr.Clone();
         }
-        #endregion
 
         void CallCalculatorToCalc()
         {
@@ -525,6 +560,16 @@ namespace ToronPuzzle
         // 내부 변수 리턴 관련
         #region
         public Transform GetBlockHolder() { return _blockHolder; }
+        //블럭의 위치를 탐색할때 사용함.
+        public BlockCase_BlockPlace GetBlockCaseByInfo(BlockInfo _info){return _infoCaseDic[_info];}
+
+        private void Start()
+        {
+            
+
+
+        }
+
 
         #endregion
 

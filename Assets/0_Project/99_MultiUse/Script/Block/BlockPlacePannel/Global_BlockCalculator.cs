@@ -21,7 +21,7 @@ namespace ToronPuzzle
         void ChangeBlockElement(BlockElement _element, Vector3 _amount)
         {
             _currentElementValue[_element] += _amount;
-            Debug.Log(_element+"+"+_amount);
+            //Debug.Log(_element+"+"+_amount);
         } 
 
         public string GetCurrentNum()

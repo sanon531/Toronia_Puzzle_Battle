@@ -123,6 +123,133 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &15634550
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 15634551}
+  - component: {fileID: 15634552}
+  m_Layer: 0
+  m_Name: SFX_FrozenCracked
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &15634551
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15634550}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 975464721}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &15634552
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15634550}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 5441840831265296279, guid: d8b3c90945aceb949aaf32926a738f8e, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 766e81a420642f34193449c74f3f92b6, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &23322338
 GameObject:
   m_ObjectHideFlags: 0
@@ -2105,7 +2232,7 @@ MonoBehaviour:
   _maxBlockY: 1
   _blockInfo:
     _isLiftable: 0
-    ModuleName: 
+    _moduleID: 0
     _blockElement: 2
     _blockStength: 1
     _blockShape: 8
@@ -2864,7 +2991,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _FXDictionary:
-    m_keys: 00000000010000000200000003000000040000000500000006000000
+    m_keys: 0000000001000000020000000300000004000000050000000600000007000000
     m_values:
     - {fileID: 2446996066179108411, guid: e6023aa5faa3e8849a2f5c035761d427, type: 3}
     - {fileID: 2446996066179108411, guid: a9064b5dbe2200447994818243d7b2ed, type: 3}
@@ -2873,6 +3000,7 @@ MonoBehaviour:
     - {fileID: 2446996066179108411, guid: a5a0b72bc12ab7a48b40e9e54e73f000, type: 3}
     - {fileID: 131410, guid: 336dcb8e80cbdfe4380b048ee5c38b34, type: 3}
     - {fileID: 131410, guid: 336dcb8e80cbdfe4380b048ee5c38b34, type: 3}
+    - {fileID: 5994203494003849669, guid: efde323f503adaf4d99873c267e55f94, type: 3}
 --- !u!1 &523647424
 GameObject:
   m_ObjectHideFlags: 3
@@ -3200,7 +3328,7 @@ MonoBehaviour:
   _isModuleLiftable: 0
   _lastBlockInfo:
     _isLiftable: 0
-    ModuleName: 
+    _moduleID: 0
     _blockElement: 3
     _blockStength: 0
     _blockShape: 14
@@ -3587,7 +3715,7 @@ MonoBehaviour:
   _maxBlockY: 1
   _blockInfo:
     _isLiftable: 1
-    ModuleName: 
+    _moduleID: 0
     _blockElement: 4
     _blockStength: 4
     _blockShape: 9
@@ -4631,7 +4759,7 @@ MonoBehaviour:
   _maxBlockY: 1
   _blockInfo:
     _isLiftable: 0
-    ModuleName: 
+    _moduleID: 0
     _blockElement: 2
     _blockStength: 1
     _blockShape: 4
@@ -5697,6 +5825,7 @@ Transform:
   - {fileID: 565638041}
   - {fileID: 162000878}
   - {fileID: 1279908780}
+  - {fileID: 15634551}
   m_Father: {fileID: 833921654}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5713,7 +5842,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentSFXManager:
-    m_keys: 010000000200000003000000040000000500000000000000
+    m_keys: 01000000020000000300000004000000050000000000000006000000
     m_values:
     - {fileID: 399829363}
     - {fileID: 565638042}
@@ -5721,6 +5850,7 @@ MonoBehaviour:
     - {fileID: 1743892121}
     - {fileID: 162000879}
     - {fileID: 1279908781}
+    - {fileID: 15634552}
   _currentBGMManager:
     m_keys: 
     m_values: []
@@ -7372,7 +7502,7 @@ MonoBehaviour:
   _maxBlockY: 1
   _blockInfo:
     _isLiftable: 0
-    ModuleName: 
+    _moduleID: 0
     _blockElement: 2
     _blockStength: 1
     _blockShape: 8
@@ -8297,7 +8427,7 @@ MonoBehaviour:
   _maxBlockY: 1
   _blockInfo:
     _isLiftable: 1
-    ModuleName: 
+    _moduleID: 0
     _blockElement: 0
     _blockStength: 4
     _blockShape: 8
@@ -10051,7 +10181,7 @@ MonoBehaviour:
     _maxY: 6
     _moduleBlockInfos:
     - _isLiftable: 0
-      ModuleName: 
+      _moduleID: 0
       _blockElement: 0
       _blockStength: 0
       _blockShape: 0
@@ -10072,7 +10202,7 @@ MonoBehaviour:
     _battleCoolTime: 10
     _blockList:
     - _isLiftable: 1
-      ModuleName: 
+      _moduleID: 0
       _blockElement: 0
       _blockStength: 4
       _blockShape: 1
@@ -10085,10 +10215,10 @@ MonoBehaviour:
         _artifactID: 0
         _value: 0
     - _isLiftable: 1
-      ModuleName: 
+      _moduleID: 0
       _blockElement: 1
       _blockStength: 2
-      _blockShape: 3
+      _blockShape: 14
       _blockPlace: {x: 0, y: 0}
       _type: 0
       _moduleInfo:
@@ -10098,7 +10228,7 @@ MonoBehaviour:
         _artifactID: 0
         _value: 0
     - _isLiftable: 1
-      ModuleName: 
+      _moduleID: 0
       _blockElement: 2
       _blockStength: 3
       _blockShape: 11
@@ -10111,7 +10241,7 @@ MonoBehaviour:
         _artifactID: 0
         _value: 0
     - _isLiftable: 0
-      ModuleName: 
+      _moduleID: 0
       _blockElement: 3
       _blockStength: 0
       _blockShape: 22
@@ -10124,16 +10254,16 @@ MonoBehaviour:
         _artifactID: 0
         _value: 0
     _stageEnemys: 
-  _debug_ModuleIDs: 1c000000010000000600000002000000
+  _debug_ModuleIDs: 0100000008000000
   _currentPlacement:
     gridSize: {x: 4, y: 6}
     cellSize: {x: 64, y: 16}
     cells:
     - row: 00000000010000000000000000000000
     - row: 00000000000000000000000000000000
-    - row: 00000000000000000200000000000000
+    - row: 00000000080000000000000000000000
     - row: 00000000000000000000000000000000
-    - row: 00000000000000000600000000000000
+    - row: 00000000000000000000000000000000
     - row: 00000000000000000000000000000000
 --- !u!1 &1801562949
 GameObject:
@@ -11728,7 +11858,7 @@ MonoBehaviour:
   _maxBlockY: 1
   _blockInfo:
     _isLiftable: 0
-    ModuleName: 
+    _moduleID: 0
     _blockElement: 3
     _blockStength: 0
     _blockShape: 14
@@ -12118,7 +12248,7 @@ MonoBehaviour:
   _maxBlockY: 1
   _blockInfo:
     _isLiftable: 1
-    ModuleName: 
+    _moduleID: 0
     _blockElement: 1
     _blockStength: 4
     _blockShape: 5
@@ -26503,7 +26633,7 @@ MonoBehaviour:
   _maxBlockY: 1
   _blockInfo:
     _isLiftable: 1
-    ModuleName: 
+    _moduleID: 0
     _blockElement: 3
     _blockStength: 4
     _blockShape: 13
@@ -26798,7 +26928,7 @@ MonoBehaviour:
   _maxBlockY: 1
   _blockInfo:
     _isLiftable: 1
-    ModuleName: 
+    _moduleID: 0
     _blockElement: 2
     _blockStength: 1
     _blockShape: 13

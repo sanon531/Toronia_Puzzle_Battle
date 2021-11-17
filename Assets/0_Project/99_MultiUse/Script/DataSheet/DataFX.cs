@@ -13,7 +13,11 @@ namespace ToronPuzzle.Data
         BlockSetted_Emp,
         BlockSetted_Bns,
         BlockBns_Line,
-        BlockBns_Full
+        BlockBns_Full,
+
+
+        Module_¼âºù
+
 
 
     }

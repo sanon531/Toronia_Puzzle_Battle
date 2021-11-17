@@ -34,20 +34,40 @@ namespace ToronPuzzle.Data
         //점 또는 네모는 D, T자는 T, 십자가는 C, 소문자b 형은 b , 소문자 d형은 d , 
         //번개 모양은 S, 반대 번개 모양은 AS
 
+        //고개를 90도 돌려서 계산 부탁
+
         {BlockShape.One_D, new int[,]{ {1} } },
 
-        {BlockShape.Two_HL, new int[,]{ {1,1}}},
-        {BlockShape.Two_VL, new int[,]{ {1},{1} }},
-        {BlockShape.Two_Dia, new int[,]{ {1,0},{0,1} }},
+        {BlockShape.Two_HL, new int[,]{ { 1 },{1}}},
+        {BlockShape.Two_VL, new int[,]{ {1,1} }},
+        {BlockShape.Two_Dia, new int[,]{ 
+            {1,0},
+            {0,1} }},
 
-        {BlockShape.Three_HL, new int[,]{ {1,1,1} }},
-        {BlockShape.Three_VL, new int[,]{ { 1 },{ 1 },{ 1 } }},
-        {BlockShape.Three_V, new int[,]{ { 1,0,1 },{ 0,1,0 }}},
-        {BlockShape.Three_G, new int[,]{ { 1,1 },{ 0,1 } }},
-        {BlockShape.Three_AG, new int[,]{ { 1,1 },{ 1,0 } }},
-        {BlockShape.Four_D, new int[,]{ { 1,1 },{ 1,1 } }},
-        {BlockShape.Four_VL, new int[,]{ { 1,1,1,1 } }},
-        {BlockShape.Four_S, new int[,]{ { 1,1,0 },{0,1,1 } }},
+        {BlockShape.Three_HL, new int[,]{
+            { 1 },{ 1 },{ 1 }
+        } },
+        {BlockShape.Three_VL, new int[,]{
+            {1,1,1}
+        } },
+        {BlockShape.Three_V, new int[,]{ 
+            { 0,1 },
+            { 1,0 },
+            { 0,1 }}},
+        {BlockShape.Three_G, new int[,]{ 
+            { 1,1 },
+            { 0,1 } }},
+        {BlockShape.Three_AG, new int[,]{ 
+            { 1,1 },
+            { 1,0 } }},
+        {BlockShape.Four_D, new int[,]{ 
+            { 1,1 },
+            { 1,1 } }},
+        {BlockShape.Four_VL, new int[,]{ 
+            { 1,1,1,1 } }},
+        {BlockShape.Four_S, new int[,]{ 
+            { 1,1,0 },
+            {0,1,1 } }},
         {BlockShape.Four_AS, new int[,]{ { 0,1,1 },{1,1,0 }}},
         {BlockShape.Four_T, new int[,]{ { 1, 1, 1 },{ 0,1,0 }}},
         {BlockShape.Four_G, new int[,]{ { 1,1,1 },{0,0,1 }}},
@@ -98,7 +118,7 @@ namespace ToronPuzzle.Data
         };
 
 
-        //여기 조작하면서 레벨링 가능
+        //여기 조작하면서 벨런싱 가능
         public static readonly Dictionary<Element_Power, float> _powerTofloatDic = new Dictionary<Element_Power, float>()
         {
             {Element_Power.약,0.5f},

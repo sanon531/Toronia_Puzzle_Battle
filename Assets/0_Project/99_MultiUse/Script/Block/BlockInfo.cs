@@ -10,12 +10,12 @@ namespace ToronPuzzle
     public class BlockInfo
     {
         public bool _isLiftable = false;
-        public string ModuleName = "";
+        public ModuleID _moduleID = ModuleID.없음;
         public BlockElement _blockElement;
         public int _blockStength = 0;
         public BlockShape _blockShape;
         public int[,] _blockShapeArr = new int[1, 1];
-        public Vector2Int _blockPlace = new Vector2Int(-1,-1);
+        public Vector2Int _blockPlace = new Vector2Int(-1, -1);
         public BlockType _type = BlockType.Block;
         public ModuleInfo _moduleInfo;
 
@@ -50,11 +50,23 @@ namespace ToronPuzzle
             _blockPlace = SetPos;
             CheckBlockNum();
         }
+        public BlockInfo(BlockElement arg_element, BlockShape arg_Shape, int _argStrength)
+        {
+            _isLiftable = true;
+            _type = BlockType.Block;
+            _blockElement = arg_element;
+            _moduleID = ModuleID.없음;
+            _blockShapeArr = (int[,])BlockShapePool.shapeDic[arg_Shape].Clone();
+            _blockShape = arg_Shape;
+            _blockStength = _argStrength;
+        }
+
+        //수정 필요
         public BlockInfo(BlockElement arg_element, BlockShape arg_Shape, Vector2Int arg_SetPos, string arg_name)
         {
             _type = BlockType.Block;
             _blockElement = arg_element;
-            ModuleName = arg_name;
+            _moduleID = ModuleID.없음;
             _blockShapeArr = (int[,])BlockShapePool.shapeDic[arg_Shape].Clone();
             _blockShape = arg_Shape;
             _blockStength = 0;
@@ -64,20 +76,10 @@ namespace ToronPuzzle
         {
             _type = BlockType.Block;
             _blockElement = arg_element;
-            ModuleName = arg_name;
+            _moduleID = ModuleID.없음;
             _blockShapeArr = (int[,])arg_blockShapeArr.Clone();
             _blockShape = BlockShape.UnDefined;
             _blockStength = 0;
-            CheckBlockNum();
-        }
-        public BlockInfo(BlockElement arg_element, BlockShape arg_Shape, int _argStrength)
-        {
-            _type = BlockType.Block;
-            _blockElement = arg_element;
-            ModuleName = "";
-            _blockShapeArr = (int[,])BlockShapePool.shapeDic[arg_Shape].Clone();
-            _blockShape = arg_Shape;
-            _blockStength = _argStrength;
             CheckBlockNum();
         }
 
@@ -87,7 +89,7 @@ namespace ToronPuzzle
         {
             _type = BlockType.Block;
             _isLiftable = blockInfo._isLiftable;
-            ModuleName = blockInfo.ModuleName;
+            _moduleID = blockInfo._moduleID;
             _blockElement = blockInfo._blockElement;
             _blockStength = blockInfo._blockStength;
             _blockShape = blockInfo._blockShape;
@@ -96,30 +98,30 @@ namespace ToronPuzzle
         }
 
         // 모듈의 데이터를 넣는데 활용하는 생성자.
-        
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="arg_element"> 블록 속성</param>
         /// <param name="arg_Shape">블록 모양</param>
         /// <param name="arg_ModuleInfo"></param>
-        /// <param name="arg_name">구분용 이름</param>
-        public BlockInfo(BlockElement arg_element, BlockShape arg_Shape, ModuleInfo arg_ModuleInfo, string arg_name,int arg_strength)
+        /// <param name="arg_ID">구분용 이름</param>
+        public BlockInfo(BlockElement arg_element, BlockShape arg_Shape, ModuleInfo arg_ModuleInfo, ModuleID arg_ID, int arg_strength)
         {
             _type = BlockType.Module;
             _blockElement = arg_element;
-            ModuleName = arg_name;
+            _moduleID = arg_ID;
             _blockShapeArr = (int[,])BlockShapePool.shapeDic[arg_Shape].Clone();
             _blockShape = BlockShape.UnDefined;
             _blockStength = arg_strength;
             CheckBlockNum();
             _moduleInfo = arg_ModuleInfo;
         }
-        public BlockInfo(BlockElement arg_element, int[,] arg_blockShapeArr, ModuleInfo arg_ModuleInfo, string arg_name)
+        public BlockInfo(BlockElement arg_element, int[,] arg_blockShapeArr, ModuleInfo arg_ModuleInfo, ModuleID arg_ID)
         {
             _type = BlockType.Module;
             _blockElement = arg_element;
-            ModuleName = arg_name;
+            _moduleID = arg_ID;
             _blockShapeArr = (int[,])arg_blockShapeArr.Clone();
             _blockShape = BlockShape.UnDefined;
             _blockStength = 0;
@@ -131,7 +133,7 @@ namespace ToronPuzzle
             _type = BlockType.Module;
 
             _isLiftable = blockInfo._isLiftable;
-            ModuleName = blockInfo.ModuleName;
+            _moduleID = blockInfo._moduleID;
             _blockElement = blockInfo._blockElement;
             _blockStength = blockInfo._blockStength;
             _blockShape = blockInfo._blockShape;
