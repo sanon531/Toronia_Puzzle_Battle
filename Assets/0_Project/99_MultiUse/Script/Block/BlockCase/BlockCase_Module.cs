@@ -16,9 +16,9 @@ namespace ToronPuzzle
         public List<GameObject> _childObjects = new List<GameObject>();
         [SerializeField]
         List<Vector2Int> localPosList = new List<Vector2Int>();
-
         [SerializeField]
         bool isDebug = false;
+        SpriteRenderer _moduleSprite;
 
         private void Awake()
         {
@@ -33,6 +33,20 @@ namespace ToronPuzzle
         public void SetCaseToCenter()
         {
             _blockInfo._blockShapeArr = new int[_maxBlockX, _maxBlockY];
+        }
+
+        public void InitializeModule(BlockInfo _argInfo,bool _argIsLiftable,float _size_x)
+        {
+            _blockInfo = new BlockInfo(_argInfo);
+            _blockInfo._isLiftable = _argIsLiftable;
+            _moduleSprite = GetComponentInChildren<SpriteRenderer>();
+            Debug.Log("Module/" + _blockInfo._moduleID.ToString());
+            _moduleSprite.sprite = Resources.Load<Sprite>("Module/"+_blockInfo._moduleID.ToString()) ;
+            _moduleSprite.transform.localScale = new Vector3(1/_size_x, 1 / _size_x, 1 / _size_x);
+        }
+        public void SetSpritePos(Vector3 _vector)
+        {
+            _moduleSprite.transform.position = _vector;
         }
         /// <summary>
         /// 들었을때

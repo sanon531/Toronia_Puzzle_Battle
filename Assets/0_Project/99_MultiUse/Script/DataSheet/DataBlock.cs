@@ -126,6 +126,16 @@ namespace ToronPuzzle.Data
             {Element_Power.강,2f}
         };
 
+        public static readonly Dictionary<BlockElement, Color> _ElementToColor = new Dictionary<BlockElement, Color>()
+        {
+            {BlockElement.Aggressive, Color.red },
+            {BlockElement.Cynical, new Color(0,139f,256f)},
+            {BlockElement.Friendly, new Color(255,230f,0f)},
+            {BlockElement.Emptiness, new Color(46f,255f,0f)},
+            {BlockElement.Bonus, Color.white}
+
+        };
+
 
     }
     enum Element_Power

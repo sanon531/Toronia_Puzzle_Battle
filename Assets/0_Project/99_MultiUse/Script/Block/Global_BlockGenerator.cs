@@ -20,7 +20,7 @@ namespace ToronPuzzle
 
 
         GameObject
-            _blockCase_PlaceCase, _blockCase_World, _blockCase_Module,
+            _blockCase_PlaceCase, _blockCase_World, _blockCase_Module,_moduleActivate,
             _worldBlock, _UIBlock, _outLinerWorld, _outlinerUI
             ;
 
@@ -58,6 +58,8 @@ namespace ToronPuzzle
             _blockCase_PlaceCase = Resources.Load("BlockCase/BlockCase_PlaceCase") as GameObject;
             _blockCase_World = Resources.Load("BlockCase/BlockCase_World") as GameObject;
             _blockCase_Module = Resources.Load("BlockCase/BlockCase_Module") as GameObject;
+            _moduleActivate = Resources.Load("BlockCase/Module_Activate") as GameObject;
+
 
             _mat_Agr = Resources.Load("Material/Block_Aggresive") as Material;
             _mat_Agr_Module = Resources.Load("Material/Module_Aggresive") as Material;
@@ -333,8 +335,7 @@ namespace ToronPuzzle
                 Quaternion.identity, Global_BlockPlaceMaster.instance.GetBlockHolder());
             BlockCase_Module _current_Case = CaseObject.GetComponent<BlockCase_Module>();
             //블록의은 현재 게임의 설정에 따라서 달라진다.
-            _current_Case._blockInfo._isLiftable = _isModuleLiftable;
-
+            _current_Case.InitializeModule(_inputInfo, _isModuleLiftable, InputSize.x);
 
             int _maxX = _tempt_BlockArray.GetLength(0);
             int _maxY = _tempt_BlockArray.GetLength(1);
@@ -342,7 +343,8 @@ namespace ToronPuzzle
             //케이스 오브젝트 로컬 위치 설정(포지션으로 함 오류 아님) 
             CaseObject.transform.position += new Vector3(InputSize.x * (1 - _maxX), 0, 0);
 
-
+            int _blockNum = 0;
+            Vector3 _totalPos = new Vector3();
             for (int i_y = _maxY - 1; i_y >= 0; i_y--)
             {
                 for (int j_x = 0; j_x < _maxX; j_x++)
@@ -351,7 +353,6 @@ namespace ToronPuzzle
                     {
                         _spawned = Instantiate(_outLinerWorld, new Vector3(0, 0, 0), Quaternion.identity, CaseObject.transform);
                         Vector3 spawnedvector = new Vector3(InputSize.x * j_x, (InputSize.y * i_y), 0);
-                        _spawned.transform.localPosition = spawnedvector;
                         _spawned.transform.localPosition = spawnedvector + new Vector3(0, 0, 0.1f);
                         _spawned.transform.localScale = InputSize * OutlinePercent;
                         _current_Case._childObjects.Add(_spawned);
@@ -368,13 +369,28 @@ namespace ToronPuzzle
                         _current_Case._childObjects.Add(_spawned);
 
                         Global_FXPlayer.PlayFX(ElementToBlockFX[_inputInfo._blockElement], _spawned.transform.position, _spawned.transform);
+                        _totalPos += _spawned.transform.position;
+                        _blockNum++;
+                    }
+                    else if(_tempt_BlockArray[j_x, i_y] == 4)
+                    {
+                        _spawned = Instantiate(_moduleActivate, new Vector3(0, 0, 0), Quaternion.identity, CaseObject.transform);
+                        Vector3 spawnedvector = new Vector3(InputSize.x * j_x, (InputSize.y * i_y), 0);
+                        _spawned.transform.localPosition = spawnedvector;
+                        _spawned.transform.localScale = InputSize;
+                        _current_Case._childObjects.Add(_spawned);
+
+                        _spawned.GetComponent<ModuleActivate_ParticleSetter>().SetAllParticleColor(BlockElementPool._ElementToColor[_inputInfo._blockElement]);
+
+                        _totalPos += _spawned.transform.position;
+                        _blockNum++;
                     }
                 }
             }
 
 
-            _current_Case.SetCaseToCenter();
-            _current_Case._blockInfo = new BlockInfo(_lastBlockInfo);
+            _current_Case.SetSpritePos(_totalPos/_blockNum);
+
             //TestCaller.instance.DebugArrayShape(_current_Case._blockInfo._blockShapeArr);
             //TestCaller.instance.DebugArrayShape(_current_Case._blockInfo._blockShapeArr);
             Global_BlockPlaceMaster.instance.AddModuleOnPlace(_current_Case);

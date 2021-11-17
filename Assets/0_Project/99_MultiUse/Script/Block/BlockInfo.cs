@@ -61,6 +61,8 @@ namespace ToronPuzzle
             _blockStength = _argStrength;
         }
 
+
+
         //수정 필요
         public BlockInfo(BlockElement arg_element, BlockShape arg_Shape, Vector2Int arg_SetPos, string arg_name)
         {

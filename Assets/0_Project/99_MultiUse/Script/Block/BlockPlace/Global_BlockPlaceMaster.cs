@@ -470,7 +470,6 @@ namespace ToronPuzzle
             placingCellArray[_pos.x, _pos.y].PlaceBlock(_argInfo);
         }
 
-
         void SendDataToCalc()
         {
             List<BlockInfo> _totalblockInfos =new List<BlockInfo>();
