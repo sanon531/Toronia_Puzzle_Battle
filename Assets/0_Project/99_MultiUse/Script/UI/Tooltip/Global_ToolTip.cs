@@ -17,7 +17,7 @@ namespace ToronPuzzle.UI
         [SerializeField]
         RectTransform _canvasRect,_tooltip_rect;
         [SerializeField]
-        TextMeshProUGUI _title, _content;
+        TextMeshProUGUI _title, _content,_devComment;
         Vector3 _worldRUPos ;
         float _canvaslocalScale;
 
@@ -37,9 +37,17 @@ namespace ToronPuzzle.UI
             _tooltipObj.SetActive(true);
             _title.SetText(_arg_title);
             _content.SetText(_arg_Content);
+            _devComment.SetText("");
+
         }
 
-
+        public void SetToolTipData(string _arg_title, string _arg_Content, string _arg_devComment)
+        {
+            _tooltipObj.SetActive(true);
+            _title.SetText(_arg_title);
+            _content.SetText(_arg_Content);
+            _devComment.SetText(_arg_devComment);
+        }
 
 
         private void Update()

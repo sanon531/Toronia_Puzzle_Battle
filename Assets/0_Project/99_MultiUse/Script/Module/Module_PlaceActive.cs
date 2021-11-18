@@ -107,6 +107,10 @@ namespace ToronPuzzle.Data
         protected override void Enable()
         {
             base.Enable();
+            float _amount = BlockElementPool._powerTofloatDic[Element_Power.약];
+            Global_InWorldEventSystem.CallOn속성배율변동(
+                BlockElement.Cynical, new Vector3(_amount, 0f , 0f));
+
             _moduleBlock = new BlockInfo(Global_BlockPlaceMaster.instance.GetModuleFromIt(ModuleID.쇄빙));
             SetTriggerPos();
 
@@ -226,6 +230,100 @@ namespace ToronPuzzle.Data
 
     }
 
+    //배치시 제거되고 1.25배 뎀으로 바로 공격 적용
+    public class Module_승화 : ModuleInfo
+    {
+        BlockInfo _moduleBlock;
+        List<Vector2Int> _triggerPos = new List<Vector2Int>();
+        protected override void Enable()
+        {
+            base.Enable();
+            _moduleBlock = new BlockInfo(Global_BlockPlaceMaster.instance.GetModuleFromIt(ModuleID.쇄빙));
+            SetTriggerPos();
+
+            //CheckActivePlace(_moduleBlock);
+            Global_InWorldEventSystem.on블록배치 += BreakBlock;
+        }
+
+        protected override void Disable()
+        {
+            base.Disable();
+
+        }
+        void SetTriggerPos()
+        {
+            int _maxX = _moduleBlock._blockShapeArr.GetLength(0);
+            int _maxY = _moduleBlock._blockShapeArr.GetLength(1);
+            for (int i_y = _maxY - 1; i_y >= 0; i_y--)
+                for (int j_x = 0; j_x < _maxX; j_x++)
+                    if (_moduleBlock._blockShapeArr[j_x, i_y] == 4)
+                        _triggerPos.Add(new Vector2Int(_moduleBlock._blockPlace.x - _maxX + j_x + 1, _moduleBlock._blockPlace.y + i_y));
+
+
+        }
+
+        //판을 기준으로
+        void PrintActivePlace(BlockInfo _info)
+        {
+            int _maxX = _info._blockShapeArr.GetLength(0);
+            int _maxY = _info._blockShapeArr.GetLength(1);
+            string _printStr = _info._blockPlace.ToString() + "Place Coordinate ";
+            for (int i_y = _maxY - 1; i_y >= 0; i_y--)
+            {
+                for (int j_x = 0; j_x < _maxX; j_x++)
+                {
+                    if (_info._blockShapeArr[j_x, i_y] != 0)
+                    {
+                        _printStr += " (";
+                        _printStr += (_info._blockPlace.x - _maxX + j_x + 1).ToString();
+                        _printStr += ",";
+                        _printStr += (_info._blockPlace.y + i_y).ToString();
+                        _printStr += ") ";
+                    }
+                }
+            }
+
+            Debug.Log(_printStr);
+
+        }
+        bool CheckBlockEntered(BlockInfo _info)
+        {
+            int _maxX = _info._blockShapeArr.GetLength(0);
+            int _maxY = _info._blockShapeArr.GetLength(1);
+            bool _returnVal = false;
+            for (int i_y = _maxY - 1; i_y >= 0; i_y--)
+                for (int j_x = 0; j_x < _maxX; j_x++)
+                    if (_info._blockShapeArr[j_x, i_y] != 0)
+                    {
+                        _returnVal = (_triggerPos.Contains(new Vector2Int(
+                                _info._blockPlace.x - _maxX + j_x + 1, _info._blockPlace.y + i_y))) ? true : _returnVal;
+                    }
+
+            return _returnVal;
+
+        }
+        void BreakBlock(BlockInfo _arginfo)
+        {
+            //해당 블럭을 타겟으로 해서 제거하는것
+            //제거한뒤의 것은 각자 막 다를것.
+            if (CheckBlockEntered(_arginfo))
+            {
+                //여기서 이제 할것들 한다. 들어온 애가 같은 색깔일때만 작동함.
+                BlockInfo _savedInfo = new BlockInfo(_arginfo);
+                BlockCase_BlockPlace _case = Global_BlockPlaceMaster.instance.GetBlockCaseByInfo(_arginfo);
+                Global_BlockPlaceMaster.instance.RemoveBlockOnPlace(_case);
+                _case.DeleteBlock();
+            }
+
+            //TestCaller.instance.DebugArrayShape("BlockPlacedOn" + _arginfo._blockPlace, _arginfo._blockShapeArr);
+            //Debug.Log("ModuleTargetPlace" + _arginfo._blockPlace);
+
+
+
+        }
+
+
+    }
 
 }
 

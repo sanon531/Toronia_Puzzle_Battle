@@ -26,8 +26,8 @@ namespace ToronPuzzle.UI
 
         IEnumerator DelayedShow()
         {
-            yield return new WaitForSeconds(0.75f);
-            string _titleName = "현재 수치 당 비율";
+            yield return new WaitForSeconds(0.5f);
+            string _titleName = "속성 효과";
             string _contentName = _blockCalculator.GetCurrentNum();
             Global_ToolTip.instance.SetToolTipData(_titleName, _contentName);
         }

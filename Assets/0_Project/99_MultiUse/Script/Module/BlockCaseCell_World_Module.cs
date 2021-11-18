@@ -34,11 +34,13 @@ namespace ToronPuzzle
         IEnumerator DelayedShow()
         {
             Debug.Log(_blockInfo._moduleID.ToString());
-            yield return new WaitForSeconds(0.75f);
+            yield return new WaitForSeconds(0.25f);
             string _titleName = "¸ðµâ¸í : "+_blockInfo._moduleID.ToString();
             string _contentName = Data.ModuleDic._module_skillExplain[_blockInfo._moduleID];
-            _contentName += ("\n" + Data.ModuleDic._module_devcomment[_blockInfo._moduleID] ) ;
+            string _devCommentName = Data.ModuleDic._module_devcomment[_blockInfo._moduleID];
             Global_ToolTip.instance.SetToolTipData(_titleName, _contentName);
+            yield return new WaitForSeconds(1.5f);
+            Global_ToolTip.instance.SetToolTipData(_titleName, _contentName, _devCommentName);
         }
 
 

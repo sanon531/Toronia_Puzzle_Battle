@@ -23,7 +23,7 @@ SpriteAtlas:
     platformSettings:
     - serializedVersion: 3
       m_BuildTarget: DefaultTexturePlatform
-      m_MaxTextureSize: 512
+      m_MaxTextureSize: 1024
       m_ResizeAlgorithm: 0
       m_TextureFormat: -1
       m_TextureCompression: 1
@@ -49,7 +49,9 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 460558e48413b584cb3b22180d81ec08, type: 3}
     - {fileID: 2800000, guid: 2a895218f0e4efc49b2607bc743c269b, type: 3}
     - {fileID: 2800000, guid: a8e8f2ff17f8a844c9d2c00e5627fa0b, type: 3}
-    totalSpriteSurfaceArea: 20596
+    - {fileID: 2800000, guid: 7dfd4e89a8b7f73488c8871ef7e45587, type: 3}
+    - {fileID: 2800000, guid: d06a375aa53f8c94885b72b1df25367e, type: 3}
+    totalSpriteSurfaceArea: 298890
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -60,6 +62,10 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 460558e48413b584cb3b22180d81ec08, type: 3}
   - {fileID: 21300000, guid: 2a895218f0e4efc49b2607bc743c269b, type: 3}
   - {fileID: 21300000, guid: 45e5476904e64a5468fb8e9c1ed4e8da, type: 3}
+  - {fileID: 21300000, guid: 7dfd4e89a8b7f73488c8871ef7e45587, type: 3}
+  - {fileID: -6316419149885394363, guid: d06a375aa53f8c94885b72b1df25367e, type: 3}
+  - {fileID: -8314853801317715943, guid: d06a375aa53f8c94885b72b1df25367e, type: 3}
+  - {fileID: -3164809056393425246, guid: d06a375aa53f8c94885b72b1df25367e, type: 3}
   - {fileID: 21300000, guid: a8e8f2ff17f8a844c9d2c00e5627fa0b, type: 3}
   m_PackedSpriteNamesToIndex:
   - area_default_top_left
@@ -67,6 +73,10 @@ SpriteAtlas:
   - circle
   - RoomBasic
   - BasicBlockData
+  - 02
+  - 01_2
+  - 01_1
+  - 01_0
   - Selection
   m_RenderDataMap: {}
   m_Tag: Block_related
