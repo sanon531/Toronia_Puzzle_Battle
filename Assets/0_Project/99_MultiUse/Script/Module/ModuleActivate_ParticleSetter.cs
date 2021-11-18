@@ -10,7 +10,12 @@ namespace ToronPuzzle
         public void SetAllParticleColor(Color _argColor)
         {
             foreach (ParticleSystem _particle in _particleSystems)
-                _particle.startColor = _argColor;
+            {
+                Color _color = _argColor;
+                _color.a = 0.25f;
+                _particle.startColor = _color;
+
+            }
         }
 
     }

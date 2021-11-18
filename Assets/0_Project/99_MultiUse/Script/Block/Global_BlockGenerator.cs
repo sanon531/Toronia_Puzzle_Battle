@@ -21,7 +21,7 @@ namespace ToronPuzzle
 
         GameObject
             _blockCase_PlaceCase, _blockCase_World, _blockCase_Module,_moduleActivate,
-            _worldBlock, _UIBlock, _outLinerWorld, _outlinerUI
+            _worldBlockCell, _worldModuleCell, _UIBlockCell, _outLinerWorld, _outlinerUI
             ;
 
 
@@ -51,8 +51,10 @@ namespace ToronPuzzle
         public void BeginBlockGenerator()
         {
             instance = this;
-            _worldBlock = Resources.Load("BlockCase/BlockCaseCell_World") as GameObject;
-            _UIBlock = Resources.Load("BlockCase/BlockCaseCell_UI") as GameObject;
+            _worldBlockCell = Resources.Load("BlockCase/BlockCaseCell_World") as GameObject;
+            _UIBlockCell = Resources.Load("BlockCase/BlockCaseCell_UI") as GameObject;
+            _worldModuleCell = Resources.Load("BlockCase/BlockCaseCell_Module") as GameObject;
+
             _outLinerWorld = Resources.Load("BlockCase/BlockCaseOutLiner_World") as GameObject;
             _outlinerUI = Resources.Load("BlockCase/BlockCaseOutLiner_UI") as GameObject;
             _blockCase_PlaceCase = Resources.Load("BlockCase/BlockCase_PlaceCase") as GameObject;
@@ -109,7 +111,7 @@ namespace ToronPuzzle
                         _spawned.transform.localScale = InputSize * OutlinePercent;
                         _current_Case.SetChildObjOnList(_spawned);
 
-                        _spawned = Instantiate(_worldBlock, new Vector3(0, 0, 0), Quaternion.identity, CaseObject.transform);
+                        _spawned = Instantiate(_worldBlockCell, new Vector3(0, 0, 0), Quaternion.identity, CaseObject.transform);
                         BlockCaseCell _current_Cell = _spawned.GetComponent<BlockCaseCell>();
                         _current_Cell.SetMaterial(SetElementToBlockMaterial(_inputInfo._blockElement));
                         _current_Cell.SetParentCase(_current_Case);
@@ -173,7 +175,7 @@ namespace ToronPuzzle
                         _current_Case._childObjects.Add(_spawned);
 
 
-                        _spawned = Instantiate(_worldBlock, new Vector3(0, 0, 0), Quaternion.identity, CaseObject.transform);
+                        _spawned = Instantiate(_worldBlockCell, new Vector3(0, 0, 0), Quaternion.identity, CaseObject.transform);
                         BlockCaseCell _current_Cell = _spawned.GetComponent<BlockCaseCell>();
                         _current_Cell.SetMaterial(SetElementToBlockMaterial(_inputInfo._blockElement));
                         _current_Cell.SetParentCase(_current_Case);
@@ -233,7 +235,7 @@ namespace ToronPuzzle
                         _current_Case._childObjects.Add(_spawned);
 
 
-                        _spawned = Instantiate(_worldBlock, new Vector3(0, 0, 0), Quaternion.identity, CaseObject.transform);
+                        _spawned = Instantiate(_worldBlockCell, new Vector3(0, 0, 0), Quaternion.identity, CaseObject.transform);
                         BlockCaseCell _current_Cell = _spawned.GetComponent<BlockCaseCell>();
                         _current_Cell.SetMaterial(SetElementToBlockMaterial(_inputInfo._blockElement));
                         _current_Cell.SetParentCase(_current_Case);
@@ -292,7 +294,7 @@ namespace ToronPuzzle
                         _spawned.transform.localScale = InputSize * OutlinePercent;
                         _current_Case.SetChildObjOnList(_spawned);
 
-                        _spawned = Instantiate(_worldBlock, new Vector3(0, 0, 0), Quaternion.identity, CaseObject.transform);
+                        _spawned = Instantiate(_worldBlockCell, new Vector3(0, 0, 0), Quaternion.identity, CaseObject.transform);
                         BlockCaseCell _current_Cell = _spawned.GetComponent<BlockCaseCell>();
                         _current_Cell.SetMaterial(SetElementToBlockMaterial(_inputInfo._blockElement));
                         _current_Cell.SetParentCase(_current_Case);
@@ -357,7 +359,7 @@ namespace ToronPuzzle
                         _spawned.transform.localScale = InputSize * OutlinePercent;
                         _current_Case._childObjects.Add(_spawned);
 
-                        _spawned = Instantiate(_worldBlock, new Vector3(0, 0, 0), Quaternion.identity, CaseObject.transform);
+                        _spawned = Instantiate(_worldModuleCell, new Vector3(0, 0, 0), Quaternion.identity, CaseObject.transform);
                         BlockCaseCell _current_Cell = _spawned.GetComponent<BlockCaseCell>();
                         _current_Cell.SetMaterial(SetElementToBlockMaterial(_inputInfo._blockElement));
                         _current_Cell.SetParentCase(_current_Case);

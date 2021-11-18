@@ -32,7 +32,6 @@ namespace ToronPuzzle.UI
             Global_ToolTip.instance.SetToolTipData(_titleName, _contentName);
         }
 
-
         public void OnPointerExit(PointerEventData eventData)
         {
             if (_showCoroutine != null)

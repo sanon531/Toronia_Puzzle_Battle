@@ -89,6 +89,7 @@ namespace ToronPuzzle
 
 
         }
+
         void SetMousePointerPos()
         {
             Vector3 _mouseWorldPos = _inputCamera.ScreenToWorldPoint(Input.mousePosition);
@@ -96,6 +97,9 @@ namespace ToronPuzzle
             _dragPointer.transform.position = _mouseWorldPos;
 
         }
+
+        //클릭관련
+        #region
         void OnClicked()
         {
             Vector3 _mouseWorldPos = _inputCamera.ScreenToWorldPoint(Input.mousePosition);
@@ -134,11 +138,14 @@ namespace ToronPuzzle
             _savedCase._blockInfo = new BlockInfo(_argCase._blockInfo);
             //TestCaller.instance.DebugArrayShape(_argCase._blockInfo._blockShapeArr);
         }
+        #endregion
 
 
 
-        BlockCase _hoveredCase;
+        //블록을 들고 있을 때의 액션
         //여기서는 이제 블록들이 판에 올라갔을 때 배치 그림자를 보여줄 것.
+        #region
+        BlockCase _hoveredCase;
         void HoldingBlock()
         {
 
@@ -234,6 +241,11 @@ namespace ToronPuzzle
             }
         }
 
+        #endregion
+
+
+        //클릭을 풀었을때의 행동
+        #region
         void UnClicked()
         {
             Vector3 _mouseWorldPos = _inputCamera.ScreenToWorldPoint(Input.mousePosition);
@@ -329,6 +341,10 @@ namespace ToronPuzzle
             }
 
         }
+
+        #endregion
+
+
 
         //컨베이어 케이스 관련
         #region

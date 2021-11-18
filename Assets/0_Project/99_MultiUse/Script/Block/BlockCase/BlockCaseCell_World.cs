@@ -6,8 +6,8 @@ namespace ToronPuzzle
 {
     public class BlockCaseCell_World : BlockCaseCell
     {
-        SpriteRenderer _spriteRenderer;
-        BoxCollider2D _boxCollider;
+        protected SpriteRenderer _spriteRenderer;
+        protected BoxCollider2D _boxCollider;
         void Start()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();

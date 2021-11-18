@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using ToronPuzzle.UI;
 namespace ToronPuzzle
 {
     [System.Serializable]
@@ -40,9 +40,9 @@ namespace ToronPuzzle
             _blockInfo = new BlockInfo(_argInfo);
             _blockInfo._isLiftable = _argIsLiftable;
             _moduleSprite = GetComponentInChildren<SpriteRenderer>();
-            Debug.Log("Module/" + _blockInfo._moduleID.ToString());
             _moduleSprite.sprite = Resources.Load<Sprite>("Module/"+_blockInfo._moduleID.ToString()) ;
             _moduleSprite.transform.localScale = new Vector3(1/_size_x, 1 / _size_x, 1 / _size_x);
+            _childCase.Add(_moduleSprite.GetComponent<BlockCaseCell_World_Module>());
         }
         public void SetSpritePos(Vector3 _vector)
         {
@@ -56,6 +56,7 @@ namespace ToronPuzzle
         {
             return _blockInfo._isLiftable;
         }
+
 
 
         public override BlockCase LiftBlock()

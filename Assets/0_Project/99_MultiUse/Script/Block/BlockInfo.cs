@@ -84,12 +84,9 @@ namespace ToronPuzzle
             _blockStength = 0;
             CheckBlockNum();
         }
-
-
-
         public BlockInfo(BlockInfo blockInfo)
         {
-            _type = BlockType.Block;
+            _type = blockInfo._type;
             _isLiftable = blockInfo._isLiftable;
             _moduleID = blockInfo._moduleID;
             _blockElement = blockInfo._blockElement;

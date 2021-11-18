@@ -14,8 +14,6 @@ namespace ToronPuzzle.Data
 
         };
 
-
-
         //이런 식으로 블록의 데이터를 만들고 저장한다. 모듈에 대한 배치로 여기서 함.
         public static Dictionary<ModuleID, BlockInfo> _IDModuleBlockDic =
             new Dictionary<ModuleID, BlockInfo>()
@@ -34,6 +32,43 @@ namespace ToronPuzzle.Data
 
 
             };
+
+
+        public static Dictionary<ModuleID, string> _module_devcomment = new Dictionary<ModuleID, string>()
+            {
+                {ModuleID.카리스마Lv1,
+                    "이는 월계관이자, 상대방에게 내려찍는 말없는 협상이요 " },
+                {ModuleID.분석력Lv1,
+                    "이성과 논리의 시작은 감당할 수 없는 전체를 나눠서 분석하는 것. " },
+                {ModuleID.책임감Lv1,
+                    "책임감은 권리의 삯이자 세계의 체계가 숨쉬게 만드는 폐포다." },
+                {ModuleID.쇄빙,
+                    "고래도 개미도 세포는 평등하며 태양도 터럭도 같은 원자로 이루어 졌듯. \n"+
+                    "가면을 쓴 허깨비를 부수고 진실을 추구하라. 저 치들을 수치화 하라"},
+                { ModuleID.카리스마Lv2,
+                    "고개를 숙이는 것은 비참하고 증오를 부르는 일일텐테 \n" +
+                    "어째서 그 어떠한 선택보다도 나의 힘줄을 잡아 끄는걸까." },
+
+
+            };
+
+        public static Dictionary<ModuleID, string> _module_skillExplain =
+            new Dictionary<ModuleID, string>()
+            {
+                {ModuleID.카리스마Lv1,
+                    "강경 블록의 공격력을 약간 올립니다." },
+                {ModuleID.분석력Lv1,
+                    "냉소 블록의 방어력을 약간 올립니다." },
+                {ModuleID.책임감Lv1,
+                    "우호 블록의 공격력 방어력을 약간 올립니다." },
+                { ModuleID.쇄빙,
+                    "모듈의 발동 구역에 배치된 1개 이상의 냉소 블록들을 1x1 냉소 블록들로 재생성합니다." },
+
+
+            };
+
+
+
 
 
     }
