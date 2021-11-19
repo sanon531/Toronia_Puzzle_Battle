@@ -28,6 +28,8 @@ namespace ToronPuzzle.Data
                     new BlockInfo(BlockElement.Friendly,BlockShape.Three_G_모듈,new Module_우호업글_균형_약(),ModuleID.책임감Lv1,4)},
                 { ModuleID.쇄빙,
                     new BlockInfo(BlockElement.Cynical,BlockShape.Three_G_쇄빙,new Module_쇄빙(), ModuleID.쇄빙,3)},
+                { ModuleID.현란한_임기응변,
+                    new BlockInfo(BlockElement.Friendly,BlockShape.Two_VL_모듈,new Module_현란한임기응변(), ModuleID.현란한_임기응변,6)},
 
 
 
@@ -57,6 +59,11 @@ namespace ToronPuzzle.Data
                     "고개를 숙이는 것은 비참하고 증오를 부르는 일일텐테 \n" +
                     "어째서 그 어떠한 선택보다도 나의 힘줄을 잡아 끄는걸까." },
 
+                { ModuleID.현란한_임기응변,
+                    "날카로운 칼로 수십 번 잘라내고 바느질로 수천번 꼬매었음에도\n" +
+                    "마치 거미의 그것처럼 흔적 하나 없는 듯하구나. \n" +
+                    " - 천하만람기, 우르 파피루스에 대한 글" },
+
 
             };
 
@@ -73,6 +80,9 @@ namespace ToronPuzzle.Data
                     "<sprite=1> 블록의 공격력을 약간 올립니다.\n"+
                     "모듈의 발동 구역에 배치된 1개 이상의 <sprite=1> 블록들을\n" +
                     " 1x1 <sprite=1> 블록들로 재생성합니다." },
+                { ModuleID.현란한_임기응변,
+                    "모듈의 배치를 배틀 중에도 변경할 수 있게 됩니다."
+                }
 
 
             };

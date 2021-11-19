@@ -25,10 +25,10 @@ namespace ToronPuzzle.Battle
         {
             instance = this;
             BeginConveyer();
-            Global_InWorldEventSystem.on토론시작 += StartConveyerMove;
-            Global_InWorldEventSystem.on토론휴식 += StopInstantConveyerMove;
-            Global_InWorldEventSystem.on토론휴식 += ResetAllConveyer;
-            Global_InWorldEventSystem.on게임종료 += StopInstantConveyerMove;
+            Global_InWorldEventSystem._on토론시작 += StartConveyerMove;
+            Global_InWorldEventSystem._on토론휴식 += StopInstantConveyerMove;
+            Global_InWorldEventSystem._on토론휴식 += ResetAllConveyer;
+            Global_InWorldEventSystem._on게임종료 += StopInstantConveyerMove;
 
 
 

@@ -17,7 +17,7 @@ namespace ToronPuzzle.Data
             SetTriggerPos();
 
             //CheckActivePlace(_moduleBlock);
-            Global_InWorldEventSystem.on블록배치 += BreakBlock;
+            Global_InWorldEventSystem._on블록배치 += BreakBlock;
         }
 
         protected override void Disable()
@@ -115,7 +115,7 @@ namespace ToronPuzzle.Data
             SetTriggerPos();
 
             //CheckActivePlace(_moduleBlock);
-            Global_InWorldEventSystem.on블록배치 += BreakBlock;
+            Global_InWorldEventSystem._on블록배치 += BreakBlock;
         }
 
         protected override void Disable()
@@ -242,7 +242,7 @@ namespace ToronPuzzle.Data
             SetTriggerPos();
 
             //CheckActivePlace(_moduleBlock);
-            Global_InWorldEventSystem.on블록배치 += BreakBlock;
+            Global_InWorldEventSystem._on블록배치 += BreakBlock;
         }
 
         protected override void Disable()

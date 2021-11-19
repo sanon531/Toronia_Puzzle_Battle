@@ -40,16 +40,16 @@ namespace ToronPuzzle.Battle
 
 
             DisableSpeechButton();
-            Global_InWorldEventSystem.on배틀시작 += EnableSpeechButton;
-            Global_InWorldEventSystem.on배틀시작 += SetCalcTextToStart;
-            Global_InWorldEventSystem.on배틀시작 += SetCooltimeData;
+            Global_InWorldEventSystem._on배틀시작 += EnableSpeechButton;
+            Global_InWorldEventSystem._on배틀시작 += SetCalcTextToStart;
+            Global_InWorldEventSystem._on배틀시작 += SetCooltimeData;
 
-            Global_InWorldEventSystem.on토론시작 += IsBattleTrue;
-            Global_InWorldEventSystem.on토론시작 += SetCalcTextToSpeech;
+            Global_InWorldEventSystem._on토론시작 += IsBattleTrue;
+            Global_InWorldEventSystem._on토론시작 += SetCalcTextToSpeech;
 
 
-            Global_InWorldEventSystem.on토론휴식 += IsBattleFalse;
-            Global_InWorldEventSystem.on토론휴식 += SetCalcTextToStart;
+            Global_InWorldEventSystem._on토론휴식 += IsBattleFalse;
+            Global_InWorldEventSystem._on토론휴식 += SetCalcTextToStart;
 
         }
         void SetCalcTextToStart() { _speechText.SetText("배틀\n시작"); }

@@ -20,8 +20,6 @@ namespace ToronPuzzle.Battle
 
         public void BattleBegin()
         {
-
-
             _battleCanvas = GameObject.Find("BattleCanvas").GetComponent<Canvas>();
             _battleCanvas.worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
 

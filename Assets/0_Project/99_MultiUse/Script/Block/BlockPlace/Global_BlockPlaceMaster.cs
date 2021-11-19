@@ -524,8 +524,8 @@ namespace ToronPuzzle
         #region
         void SetBlockPanelCalc()
         {
-            Global_InWorldEventSystem.on판계산선언 += ResetBlockFromPannel;
-            Global_InWorldEventSystem.on판계산선언 += CallCalculatorToCalc;
+            Global_InWorldEventSystem._on판계산선언 += ResetBlockFromPannel;
+            Global_InWorldEventSystem._on판계산선언 += CallCalculatorToCalc;
             //Global_InWorldEventSystem.on판계산 += SetDamageOnEnemy;
             //Global_InWorldEventSystem.on판계산 += SetGuardOnPlayer;
         }

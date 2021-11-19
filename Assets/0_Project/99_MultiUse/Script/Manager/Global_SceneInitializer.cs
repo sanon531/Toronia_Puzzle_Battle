@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using ToronPuzzle.Battle;
 using UnityEngine.SceneManagement;
-using ToronPuzzle.Event;
+using ToronPuzzle.Data;
 using ToronPuzzle.UI;
 
 namespace ToronPuzzle
 {
     public class Global_SceneInitializer : MonoBehaviour
     {
-        Battle_Initializer global_BattleInitializer;
 
+        Battle_Initializer global_BattleInitializer;
         Global_CanvasData global_CanvasData;
         Global_SoundManager global_SoundManager;
         Global_InGameData global_InGameData;
@@ -78,12 +78,17 @@ namespace ToronPuzzle
             {
                 global_BattleInitializer = GameObject.Find("Battle_World").GetComponent<Battle_Initializer>();
                 global_BattleInitializer.BattleBegin();
-                global_DragDropManager.SetCurrentSceneData(BlockType.Block);
             }
-            else if (next.name == "MapScene")
+            else if (next.name == "WorldMapScene")
             {
-                global_DragDropManager.SetCurrentSceneData(BlockType.Module);
+
             }
+            else if (next.name == "TitleScene")
+            {
+
+            }
+            global_DragDropManager.SetCurrentSceneData(Global_SceneManager._currentScene);
+            Debug.Log(Global_SceneManager._currentScene);
         }
 
 

@@ -27,6 +27,8 @@ namespace ToronPuzzle.Event
         Global_계산표시,
         Global_계산툴팁,
 
+        Global_모듈회전불가,
+
         Battle_게임시작표시,
         Battle_계산버튼OnOff,
         Battle_플레이어방어도표시,

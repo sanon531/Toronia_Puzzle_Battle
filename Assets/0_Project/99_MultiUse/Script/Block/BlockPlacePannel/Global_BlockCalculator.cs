@@ -16,7 +16,7 @@ namespace ToronPuzzle
         public void BeginBlockCalc()
         {
             _currentElementValue = BlockElementPool._initialElementPowerDic;
-            Global_InWorldEventSystem.on속성배율변동 += ChangeBlockElement;
+            Global_InWorldEventSystem._on속성배율변동 += ChangeBlockElement;
         }
         void ChangeBlockElement(BlockElement _element, Vector3 _amount)
         {

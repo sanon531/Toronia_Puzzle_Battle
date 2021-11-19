@@ -18,8 +18,8 @@ namespace ToronPuzzle.Battle
         public void AssignGameListener()
         {
             BeginDatatoSize();
-            Global_InWorldEventSystem.onCalc데미지 += SetDamageOnHealth;
-            Global_InWorldEventSystem.onCalc방어도 += SetGuardOnCharactor;
+            Global_InWorldEventSystem._onCalc데미지 += SetDamageOnHealth;
+            Global_InWorldEventSystem._onCalc방어도 += SetGuardOnCharactor;
             SetPlayerGuardPower(0);
             SetEnemyGuardPower(0);
         }

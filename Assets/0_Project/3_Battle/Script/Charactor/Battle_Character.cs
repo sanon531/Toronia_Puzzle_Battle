@@ -26,11 +26,11 @@ namespace ToronPuzzle.Battle
             {
                 _skeletonAnimation = GetComponent<SkeletonAnimation>();
                 ApplyBlink();
-                Global_InWorldEventSystem.on플레이어애니메이션 += CharAnimByString;
+                Global_InWorldEventSystem._on플레이어애니메이션 += CharAnimByString;
             }
             else
             {
-                Global_InWorldEventSystem.on적애니메이션 += CharAnimByString;
+                Global_InWorldEventSystem._on적애니메이션 += CharAnimByString;
 
             }
 

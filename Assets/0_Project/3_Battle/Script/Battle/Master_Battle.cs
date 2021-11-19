@@ -82,8 +82,8 @@ namespace ToronPuzzle.Battle
 
             #endregion
             Battle_ConveyerManager.instance.SetQueueOnConveyer(Global_InGameData.Instance._currentStageData._blockList);
-            Global_InWorldEventSystem.on시퀀스넘기기 += ShiftSequence;
-            Global_InWorldEventSystem.on적턴시작 += EnemyTurnStart;
+            Global_InWorldEventSystem._on시퀀스넘기기 += ShiftSequence;
+            Global_InWorldEventSystem._on적턴시작 += EnemyTurnStart;
             SetBattleTimer();
         }
 
@@ -217,7 +217,7 @@ namespace ToronPuzzle.Battle
         //씬 나갈 때
         void ExitFunction()
         {
-            Global_InWorldEventSystem.on시퀀스넘기기 -= ShiftSequence;
+            Global_InWorldEventSystem._on시퀀스넘기기 -= ShiftSequence;
 
         }
     }

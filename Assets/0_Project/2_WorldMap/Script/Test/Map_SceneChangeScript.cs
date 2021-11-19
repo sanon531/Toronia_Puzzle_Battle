@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using ToronPuzzle.Event;
-namespace ToronPuzzle.Map
+using ToronPuzzle.Data;
+
+namespace ToronPuzzle.WorldMap
 {
     public class Map_SceneChangeScript : MonoBehaviour
     {

@@ -18,6 +18,7 @@ namespace ToronPuzzle
         List<Vector2Int> localPosList = new List<Vector2Int>();
         [SerializeField]
         bool isDebug = false;
+        [SerializeField]
         SpriteRenderer _moduleSprite;
 
         private void Awake()
@@ -35,14 +36,12 @@ namespace ToronPuzzle
             _blockInfo._blockShapeArr = new int[_maxBlockX, _maxBlockY];
         }
 
-        public void InitializeModule(BlockInfo _argInfo,bool _argIsLiftable,float _size_x)
+        public void InitializeModule(BlockInfo _argInfo,float _size_x)
         {
             _blockInfo = new BlockInfo(_argInfo);
-            _blockInfo._isLiftable = _argIsLiftable;
             _moduleSprite = GetComponentInChildren<SpriteRenderer>();
             _moduleSprite.sprite = Resources.Load<Sprite>("Module/"+_blockInfo._moduleID.ToString()) ;
             _moduleSprite.transform.localScale = new Vector3(1/_size_x, 1 / _size_x, 1 / _size_x);
-            _childCase.Add(_moduleSprite.GetComponent<BlockCaseCell_World_Module>());
         }
         public void SetSpritePos(Vector3 _vector)
         {
@@ -54,11 +53,11 @@ namespace ToronPuzzle
         #region
         public override bool CheckLiftable()
         {
-            return _blockInfo._isLiftable;
+            //Debug.Log(Global_SceneManager._currentScene);
+            return Global_SceneManager.ModuleLiftable();
         }
 
-
-
+    
         public override BlockCase LiftBlock()
         {
             HideBlock();

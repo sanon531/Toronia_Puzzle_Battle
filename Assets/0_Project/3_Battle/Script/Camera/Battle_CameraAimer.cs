@@ -29,7 +29,7 @@ namespace ToronPuzzle.Battle
         public void BeginCameraAimer()
         {
             instance = this;
-            Global_InWorldEventSystem.on카메라에임 += SetWorldByData;
+            Global_InWorldEventSystem._on카메라에임 += SetWorldByData;
 
         }
       

@@ -18,6 +18,7 @@ namespace ToronPuzzle.Data
 
         //모듈 정보
         One_D_모듈,
+        Two_VL_모듈,
         Three_G_쇄빙,
         Three_G_모듈,
         Four_D_모듈,
@@ -82,6 +83,7 @@ namespace ToronPuzzle.Data
         //모듈
 
         {BlockShape.One_D_모듈, new int[,]{ {3} } },
+        {BlockShape.Two_VL_모듈, new int[,]{ {3},{ 3} } },
 
         {BlockShape.Three_G_쇄빙, new int[,]{ { 3,3 },{ 3,4 } }},
         {BlockShape.Three_G_모듈, new int[,]{ { 3,3 },{ 3,0 } }},

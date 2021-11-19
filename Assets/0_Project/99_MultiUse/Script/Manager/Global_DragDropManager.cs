@@ -21,7 +21,7 @@ namespace ToronPuzzle
         /// </summary>
         BlockType _genBlockType;
         bool _isPicked;
-        
+
         [SerializeField]
         Camera _inputCamera;
         [SerializeField]
@@ -34,8 +34,9 @@ namespace ToronPuzzle
         //saved는 틀릭한 순간 복사된 데이터, _pickedorigin은 클릭해서 가져온 데이터
         [SerializeField]
         BlockCase _savedCase, _pickOriginCase = null;
+        BlockCase _hoveredCase;
 
-       
+
 
         public void BeginDragDrap()
         {
@@ -50,45 +51,19 @@ namespace ToronPuzzle
             instance = this;
 
         }
-        public void SetCurrentSceneData(BlockType _type)
-        {
-            _genBlockType = _type;
 
-        }
 
+        SceneType _sceneType;
+        public void SetCurrentSceneData(SceneType _argType){ _sceneType = _argType; }
 
 
         void Update()
         {
             SetMousePointerPos();
-
-
-            if (_isPicked && Input.GetMouseButton(0))
-            {
-                HoldingBlock();
-            }
-
-            if (Input.GetMouseButtonDown(0))
-                OnClicked();
-            if (Input.GetMouseButtonUp(0))
-                UnClicked();
-
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                //시계방향.
-                RotateProtocol(true);
-                //HoldlingBlock();
-
-            }
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                //반시계방향.
-                RotateProtocol(false);
-                //HoldlingBlock();
-            }
-
-
+            FullMethod();
         }
+
+
 
         void SetMousePointerPos()
         {
@@ -98,9 +73,37 @@ namespace ToronPuzzle
 
         }
 
+        //맵 씬일때 모듈 조작용 씬.
+        #region
+     
+
+        #endregion
+
+        //배틀일 시 클릭 루틴.
+        #region
+
+        void FullMethod()
+        {
+            if (_isPicked && Input.GetMouseButton(0))
+                HoldingBlock_Common();
+
+            if (Input.GetMouseButtonDown(0))
+                OnClicked_Common();
+            if (Input.GetMouseButtonUp(0))
+                UnClicked_Battle();
+            //시계방향.
+            if (Input.GetKeyDown(KeyCode.E))
+                RotateProtocol(true);
+            //반시계방향.
+            if (Input.GetKeyDown(KeyCode.Q))
+                RotateProtocol(false);
+
+        }
+
+
         //클릭관련
         #region
-        void OnClicked()
+        void OnClicked_Common()
         {
             Vector3 _mouseWorldPos = _inputCamera.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(_mouseWorldPos, Vector3.forward,200f);
@@ -113,11 +116,11 @@ namespace ToronPuzzle
                     //Debug.Log(hit.transform.gameObject.name);
                     BlockCase temptCase = hit.transform.GetComponent<BlockCase>();
                     //TestCaller.instance.DebugArrayShape(temptCase._blockInfo._blockShapeArr);
-                    //Debug.Log("Clicked Case" + hit.collider.name);
+                    Debug.Log("Clicked Case" + hit.collider.name);
 
                     if (temptCase.CheckLiftable())
                     {
-                        //Debug.Log("isLiftable");
+                        Debug.Log("isLiftable");
                         _pickOriginCase = temptCase.LiftBlock();
                         SetBlockOnPointer(_pickOriginCase);
                         Global_SoundManager.Instance.PlaySFX(SFXName.BlockLift);
@@ -140,15 +143,12 @@ namespace ToronPuzzle
         }
         #endregion
 
-
-
         //블록을 들고 있을 때의 액션
         //여기서는 이제 블록들이 판에 올라갔을 때 배치 그림자를 보여줄 것.
+        //모듈의 경우 기본 블럭의 배치 색이 완전히 바뀌도록 해야할듯.
         #region
-        BlockCase _hoveredCase;
-        void HoldingBlock()
+        void HoldingBlock_Common()
         {
-
             Vector3 _mouseWorldPos = _inputCamera.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(_mouseWorldPos, Vector3.forward, 200f);
             //Debug.DrawRay(_mouseWorldPos, Vector3.forward *15f,Color.cyan,0.5f);
@@ -162,12 +162,7 @@ namespace ToronPuzzle
                         return;
                     else
                         _hoveredCase = temptCase;
-
-                    if (temptCase.CheckPlaceable(_savedCase._blockInfo))
-                    {
-                        //Global_SoundManager.Instance.PlaySFX(SFXName.BlockLift);
-                        //Global_BlockPlaceMaster.instance.ActivateHoldingPanel(false);
-                    }
+                    temptCase.CheckPlaceable(_savedCase._blockInfo);
 
                     if(!temptCase.IsOnBlockPlace)
                         Global_BlockPlaceMaster.instance.ResetPreview();
@@ -182,6 +177,8 @@ namespace ToronPuzzle
             if (_savedCase != null)
             {
                 //Debug.Log(_isPicked);
+                //모듈이면 못한다고 선언 
+                if (_savedCase._blockInfo._type == BlockType.Module){ CantRotateAlert(); return; }
 
                 int[,] temptRotate = (int[,])_savedCase._blockInfo._blockShapeArr.Clone();
                 int XLength = temptRotate.GetLength(0);
@@ -240,13 +237,18 @@ namespace ToronPuzzle
 
             }
         }
+        // 맵에서 모듈은 돌릴수 없다고 하는 것.
+        void CantRotateAlert()
+        {
+
+        }
 
         #endregion
 
 
         //클릭을 풀었을때의 행동
         #region
-        void UnClicked()
+        void UnClicked_Battle()
         {
             Vector3 _mouseWorldPos = _inputCamera.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(_mouseWorldPos, Vector3.forward, 200f);
@@ -344,8 +346,6 @@ namespace ToronPuzzle
 
         #endregion
 
-
-
         //컨베이어 케이스 관련
         #region
         public void ConveyerIsPickedOriginCase(Battle_Conveyer_Case _compare)
@@ -358,6 +358,8 @@ namespace ToronPuzzle
 
             return;
         }
+        #endregion
+
         #endregion
     }
 

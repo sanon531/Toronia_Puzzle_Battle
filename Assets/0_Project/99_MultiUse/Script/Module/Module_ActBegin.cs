@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using ToronPuzzle.Event;
 namespace ToronPuzzle.Data
 {
 
-    public sealed class Module_ActBegin : ModuleInfo
+    public class Module_ActBegin : ModuleInfo
     {
         protected override void Enable()
         {
@@ -20,7 +20,24 @@ namespace ToronPuzzle.Data
         {
 
         }
+    }
 
+    public class Module_현란한임기응변 : ModuleInfo
+    {
+        protected override void Enable()
+        {
+            base.Enable();
+            Global_InWorldEventSystem.CallOn모듈항상들기(true);
+        }
+        protected override void Disable()
+        {
+            base.Disable();
+            Global_InWorldEventSystem.CallOn모듈항상들기(false);
+        }
+        private void Effect()
+        {
+
+        }
 
     }
 

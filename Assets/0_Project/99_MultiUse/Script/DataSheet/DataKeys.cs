@@ -28,7 +28,6 @@ namespace ToronPuzzle.Data
 
 
     }
-
     public enum ModuleID
     {
         //디폴트 값 
@@ -56,6 +55,7 @@ namespace ToronPuzzle.Data
         기선제압 = 28,
         궤변_파쇄기,
         진실_천명,
+        현란한_임기응변,
 
         //유니크
         빙점,
@@ -90,4 +90,12 @@ namespace ToronPuzzle.Data
 
 
     }
+    public enum SceneType
+    {
+        Entry,
+        Title,
+        WorldMap,
+        Battle
+    }
+
 }
