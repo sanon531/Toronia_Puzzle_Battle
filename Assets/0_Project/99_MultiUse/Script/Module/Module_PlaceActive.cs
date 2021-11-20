@@ -174,6 +174,7 @@ namespace ToronPuzzle.Data
 
         bool CheckBlockEntered(BlockInfo _info)
         {
+            Debug.Log("");
             int _maxX = _info._blockShapeArr.GetLength(0);
             int _maxY = _info._blockShapeArr.GetLength(1);
             bool _returnVal = false;

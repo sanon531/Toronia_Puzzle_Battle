@@ -18,7 +18,7 @@ namespace ToronPuzzle
         protected List<GameObject> _childObjects = new List<GameObject>();
 
         [SerializeField]
-        List<Material> _childMatList = new List<Material>();
+        protected List<Material> _childMatList = new List<Material>();
         [SerializeField]
         List<Vector2Int> localPosList = new List<Vector2Int>();
 

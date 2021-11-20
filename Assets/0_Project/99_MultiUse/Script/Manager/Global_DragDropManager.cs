@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 using ToronPuzzle.Battle;
 using ToronPuzzle.Data;
+using ToronPuzzle.Event;
 
 namespace ToronPuzzle
 {
@@ -73,15 +73,8 @@ namespace ToronPuzzle
 
         }
 
-        //맵 씬일때 모듈 조작용 씬.
-        #region
-     
-
-        #endregion
-
         //배틀일 시 클릭 루틴.
         #region
-
         void FullMethod()
         {
             if (_isPicked && Input.GetMouseButton(0))
@@ -89,8 +82,10 @@ namespace ToronPuzzle
 
             if (Input.GetMouseButtonDown(0))
                 OnClicked_Common();
+
             if (Input.GetMouseButtonUp(0))
                 UnClicked_Battle();
+            
             //시계방향.
             if (Input.GetKeyDown(KeyCode.E))
                 RotateProtocol(true);
@@ -124,7 +119,7 @@ namespace ToronPuzzle
                         _pickOriginCase = temptCase.LiftBlock();
                         SetBlockOnPointer(_pickOriginCase);
                         Global_SoundManager.Instance.PlaySFX(SFXName.BlockLift);
-                        Global_BlockPlaceMaster.instance.ActivateHoldingPanel(false);
+                        Global_UIEventSystem.Call_UIEvent(UIEventID.Global_블럭집은후UI);
                     }
                 }
             }
@@ -306,7 +301,7 @@ namespace ToronPuzzle
             }
             if (Global_BlockPlaceMaster.instance != null)
             {
-                Global_BlockPlaceMaster.instance.ActivateHoldingPanel(true);
+                Global_UIEventSystem.Call_UIEvent(UIEventID.Global_블럭놓은후UI);
                 Global_BlockPlaceMaster.instance.ResetPreview();
             }
             //if (m_blockInventoryCase != null)

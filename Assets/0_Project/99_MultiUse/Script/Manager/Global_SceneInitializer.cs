@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ToronPuzzle.Battle;
+using ToronPuzzle.WorldMap;
 using UnityEngine.SceneManagement;
 using ToronPuzzle.Data;
 using ToronPuzzle.UI;
@@ -10,8 +11,8 @@ namespace ToronPuzzle
 {
     public class Global_SceneInitializer : MonoBehaviour
     {
-
-        Battle_Initializer global_BattleInitializer;
+        //글로벌 매니져
+        #region
         Global_CanvasData global_CanvasData;
         Global_SoundManager global_SoundManager;
         Global_InGameData global_InGameData;
@@ -22,6 +23,11 @@ namespace ToronPuzzle
         Global_CoroutineManager global_CoroutineManager;
         Global_SceneManager global_SceneManager;
         Global_CanvasUI global_CanvasUI;
+        #endregion
+        //각 씬별 시작 생성자
+        Battle_Initializer global_BattleInitializer;
+        WorldMap_Initializer global_WorldMapInitializer;
+
         [SerializeField]
         string _caseSkin = "PlacingCell";
         [SerializeField]
@@ -76,14 +82,16 @@ namespace ToronPuzzle
 
         private void CheckScene(Scene current, Scene next)
         {
+            global_CanvasUI.BeginUIManager();
             if (next.name == "BattleScene")
             {
-                global_BattleInitializer = GameObject.Find("Battle_World").GetComponent<Battle_Initializer>();
+                global_BattleInitializer = GameObject.Find("Battle_Initializer").GetComponent<Battle_Initializer>();
                 global_BattleInitializer.BattleBegin();
             }
             else if (next.name == "WorldMapScene")
             {
-
+                global_WorldMapInitializer = GameObject.Find("WorldMap_Initializer").GetComponent<WorldMap_Initializer>();
+                global_WorldMapInitializer.WorldMapBegin();
             }
             else if (next.name == "TitleScene")
             {

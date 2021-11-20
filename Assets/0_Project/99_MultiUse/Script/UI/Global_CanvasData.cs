@@ -11,6 +11,7 @@ namespace ToronPuzzle
             public static Vector2 LDAchorPos = default;
             public static Vector2 RUAchorPos = default;
             public static Vector2 _screenWorldSize = default;
+            public static float _worldToCanvasSize = default;
         }
         public GameObject LDAchor;
         public GameObject RUAchor;
@@ -20,6 +21,7 @@ namespace ToronPuzzle
             CanvasData.LDAchorPos = LDAchor.transform.position;
             CanvasData.RUAchorPos = RUAchor.transform.position;
             CanvasData._screenWorldSize = CanvasData.RUAchorPos - CanvasData.LDAchorPos;
+            CanvasData._worldToCanvasSize = GetComponent<RectTransform>().localScale.x;
         }
     }
 

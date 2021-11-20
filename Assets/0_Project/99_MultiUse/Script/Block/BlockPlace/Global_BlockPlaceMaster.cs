@@ -21,12 +21,14 @@ namespace ToronPuzzle
 
         GameObject _placeCellPrefab, _bonusLine, _bonusFull;
         string _placingCellAddress = "BlockPlace/";
-        [ReadOnly] [SerializeField]
+        [ReadOnly]
+        [SerializeField]
         string _placingCellSkin, _bonusSkin;
 
         [SerializeField] SpriteRenderer _placingSprite = default;
-        Transform _cellHolder,_blockHolder,_bonusHolder;
-        [ReadOnly] [SerializeField]
+        Transform _cellHolder, _blockHolder, _bonusHolder;
+        [ReadOnly]
+        [SerializeField]
         Global_BlockCalculator _blockCalculator;
         Vector2 _screenSize;
         Global_PlacingCell[,] placingCellArray;
@@ -38,7 +40,7 @@ namespace ToronPuzzle
         ObjectTweener _showFunctions, _hideFunctions;
         //BattleInitialtor 에 의해 선언된다.
         //
-        public void BeginBlockPlace(string argCellSkin,string argBnsSkin)
+        public void BeginBlockPlace(string argCellSkin, string argBnsSkin)
         {
             instance = this;
             // 순서 바꾸지 말것.
@@ -47,6 +49,7 @@ namespace ToronPuzzle
             SetBlockCellOnPannel();
             SetBonusOnPannel();
             SetBlockTweenEvent();
+            SetHoldPanelEvent();
         }
         private void PresetBlockPlaceData(string argCellSkin, string argBnsSkin)
         {
@@ -74,11 +77,11 @@ namespace ToronPuzzle
         private void SetModuleFromData()
         {
             List<BlockInfo> tempt_BlockInfos = Global_InGameData.Instance._placePannelData._moduleBlockInfos;
-            foreach (BlockInfo _Info in tempt_BlockInfos )
+            foreach (BlockInfo _Info in tempt_BlockInfos)
             {
 
                 //데이터가 있으면일단 만들고 봄
-                
+
                 //GameObject _moduleObj = Global_BlockGenerator.instance.GenerateModuleOnBlockPlace(_Info);
                 //_moduleBlocks.Add(_moduleObj.GetComponent<BlockCase_Module>());
             }
@@ -102,7 +105,7 @@ namespace ToronPuzzle
                 Master_Battle.Data_OnlyInBattle._cellsize = new Vector2(_cellSizeY, _cellSizeY);
 
                 transform.position = _showPos;
-                _showFunctions._targetpos = _showPos;;
+                _showFunctions._targetpos = _showPos; ;
                 _hideFunctions._targetpos = _hidePos;
                 _placingSprite.transform.localScale = new Vector2((-LDAnchor.x + _showPos.x) * 2, _screenSize.y / 2);
 
@@ -152,15 +155,15 @@ namespace ToronPuzzle
         {
             Vector2 LUAnchor = Global_CanvasData.CanvasData.LDAchorPos;
             Vector2 firstSpot = new Vector3(LUAnchor.x + (_cellSizeY), LUAnchor.y + (_heightInterval * 1.5f));
-            _bonusLine = Resources.Load(_bonusSkin+"Line") as GameObject;
+            _bonusLine = Resources.Load(_bonusSkin + "Line") as GameObject;
             _bonusFull = Resources.Load(_bonusSkin + "Full") as GameObject;
 
 
             //x축(세로보너스들)의 보너스 블럭 세팅.
             for (int i_x = 0; i_x < _maxX; i_x++)
             {
-                Vector2 targetpos = new Vector3(firstSpot.x + i_x* _cellSizeY, firstSpot.y - 1.25f* _heightInterval, -1);
-                GameObject bnsLine= Instantiate(_bonusLine, targetpos, Quaternion.identity, _bonusHolder);
+                Vector2 targetpos = new Vector3(firstSpot.x + i_x * _cellSizeY, firstSpot.y - 1.25f * _heightInterval, -1);
+                GameObject bnsLine = Instantiate(_bonusLine, targetpos, Quaternion.identity, _bonusHolder);
                 _blockCalculator._bonusXColumnLines.Add(bnsLine);
 
                 Transform bns_child = bnsLine.transform.GetChild(0);
@@ -182,7 +185,7 @@ namespace ToronPuzzle
 
                 Transform bns_child = bnsLine.transform.GetChild(0);
                 bns_child.localScale = new Vector2(_cellSizeY * 1f, _cellSizeY * 0.5f);
-                bns_child.localPosition = new Vector2(0, (_cellSizeY * (_maxX +0.5f)));
+                bns_child.localPosition = new Vector2(0, (_cellSizeY * (_maxX + 0.5f)));
                 bns_child = bnsLine.transform.GetChild(1);
                 bns_child.localScale = new Vector2(_cellSizeY * 1f, _cellSizeY * 0.5f);
 
@@ -200,14 +203,14 @@ namespace ToronPuzzle
             bns_LU.localPosition = new Vector2(0, (_cellSizeY * (_maxY + 0.25f)));
             bns_LU.localScale = _bnsSize;
             Transform bns_RD = bnsFull.transform.GetChild(2);
-            bns_RD.localPosition = new Vector2((_cellSizeY * (_maxX + 0.5f)),0);
+            bns_RD.localPosition = new Vector2((_cellSizeY * (_maxX + 0.5f)), 0);
             bns_RD.localScale = _bnsSize;
 
             Transform bns_RU = bnsFull.transform.GetChild(3);
             bns_RU.localPosition = new Vector2((_cellSizeY * (_maxX + 0.5f)), (_cellSizeY * (_maxY + 0.25f)));
             bns_RU.localScale = _bnsSize;
 
-            _blockCalculator._fullFXpos = ((Vector3)firstSpot + bns_LU.position + bns_RD.position + bns_RU.position)/4;
+            _blockCalculator._fullFXpos = ((Vector3)firstSpot + bns_LU.position + bns_RD.position + bns_RU.position) / 4;
             _blockCalculator.CalcBonusLine(_blockPlacedArr);
         }
 
@@ -244,19 +247,19 @@ namespace ToronPuzzle
         public void SetPreviewOnBlock(Vector2Int arg_tagetNum, BlockInfo arg_blockInfo)
         {
             // 
-            int[,] _blockArr= (int[,])arg_blockInfo._blockShapeArr.Clone();
-            List<Global_PlacingCell> _cellList = new List<Global_PlacingCell> ();
+            int[,] _blockArr = (int[,])arg_blockInfo._blockShapeArr.Clone();
+            List<Global_PlacingCell> _cellList = new List<Global_PlacingCell>();
 
             int _blockX = _blockArr.GetLength(0);
             int _blockY = _blockArr.GetLength(1);
-            for (int i_y = _blockY - 1; i_y >=0; i_y--)
+            for (int i_y = _blockY - 1; i_y >= 0; i_y--)
             {
                 int posYOnPlace = i_y + arg_tagetNum.y;
                 if (posYOnPlace >= _maxY) continue;
 
                 for (int j_x = 0; j_x < _blockX; j_x++)
                 {
-                    int posXOnPlace = arg_tagetNum.x- _blockX + j_x + 1;
+                    int posXOnPlace = arg_tagetNum.x - _blockX + j_x + 1;
                     if (posXOnPlace < 0) continue;
 
                     //블럭의 위치상
@@ -268,7 +271,7 @@ namespace ToronPuzzle
 
             foreach (Global_PlacingCell _PlacingCell in placingCellArray)
             {
-                if(_cellList.Contains(_PlacingCell))
+                if (_cellList.Contains(_PlacingCell))
                     _PlacingCell.SetColorOnCell(Color.green);
                 else
                     _PlacingCell.SetColorOnCell(Color.white);
@@ -290,7 +293,7 @@ namespace ToronPuzzle
         {
             int[,] _blockArr = (int[,])arg_blockInfo._blockShapeArr.Clone();
             //여기서는 세팅을 할지 말지 고민 함
-            bool returnVal = true; 
+            bool returnVal = true;
 
             int _blockX = _blockArr.GetLength(0);
             int _blockY = _blockArr.GetLength(1);
@@ -482,7 +485,7 @@ namespace ToronPuzzle
             _Block._blockInfo._moduleInfo = ModuleDic._IDModuleDic[_Block._blockInfo._moduleID];
             ResetPreview();
             SendDataToCalc();
-            Debug.Log(_Block._blockInfo._moduleInfo+":Acvtivate");
+            //Debug.Log(_Block._blockInfo._moduleInfo+":Acvtivate");
             _Block._blockInfo._moduleInfo.ActivateModuleEffect();
         }
         public void RemoveBlockOnPlace(BlockCase_BlockPlace _Block)
@@ -498,7 +501,7 @@ namespace ToronPuzzle
             _infoCaseDic.Remove(_Block._blockInfo);
             ResetPreview();
             SendDataToCalc();
-            Debug.Log(_Block._blockInfo._moduleInfo + ":Deacvtivate");
+            //Debug.Log(_Block._blockInfo._moduleInfo + ":Deacvtivate");
             _Block._blockInfo._moduleInfo.DeactivateModuleEffect();
 
         }
@@ -512,7 +515,7 @@ namespace ToronPuzzle
 
         void SendDataToCalc()
         {
-            List<BlockInfo> _totalblockInfos =new List<BlockInfo>();
+            List<BlockInfo> _totalblockInfos = new List<BlockInfo>();
             foreach (BlockCase_BlockPlace _block in _placedBlocks)
                 _totalblockInfos.Add(new BlockInfo(_block._blockInfo));
 
@@ -526,14 +529,22 @@ namespace ToronPuzzle
         }
 
 
-        public void ActivateHoldingPanel(bool turnOn)
+        void SetHoldPanelEvent()
         {
-            if (turnOn)
-                foreach (BlockCase_BlockPlace _Block in _placedBlocks)
-                    _Block.ShowBlock();
-            else
-                foreach (BlockCase_BlockPlace _Block in _placedBlocks)
-                    _Block.HideBlock();
+            Global_UIEventSystem.Register_UIEvent(UIEventID.Global_블럭집은후UI, DeActivateHoldingPanel, EventRegistOption.Permanent);
+            Global_UIEventSystem.Register_UIEvent(UIEventID.Global_블럭놓은후UI, ActivateHoldingPanel, EventRegistOption.Permanent);
+        }
+
+        void DeActivateHoldingPanel()
+        {
+            foreach (BlockCase_BlockPlace _Block in _placedBlocks)
+                _Block.HideBlock();
+        }
+
+        void ActivateHoldingPanel()
+        {
+            foreach (BlockCase_BlockPlace _Block in _placedBlocks)
+                _Block.ShowBlock();
         }
 
         #endregion
@@ -545,7 +556,7 @@ namespace ToronPuzzle
         {
             BlockInfo _return = new BlockInfo();
 
-            foreach (BlockCase_Module _Module in   _placedModules)
+            foreach (BlockCase_Module _Module in _placedModules)
             {
                 if (_Module._blockInfo._moduleID == _argID)
                     _return = _Module._blockInfo;
@@ -600,11 +611,11 @@ namespace ToronPuzzle
         #region
         public Transform GetBlockHolder() { return _blockHolder; }
         //블럭의 위치를 탐색할때 사용함.
-        public BlockCase_BlockPlace GetBlockCaseByInfo(BlockInfo _info){return _infoCaseDic[_info];}
+        public BlockCase_BlockPlace GetBlockCaseByInfo(BlockInfo _info) { return _infoCaseDic[_info]; }
 
         private void Start()
         {
-            
+
 
 
         }

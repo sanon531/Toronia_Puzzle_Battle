@@ -23,6 +23,10 @@ namespace ToronPuzzle
 
         [SerializeField]
         List<BlockInfo> _ownedModule = new List<BlockInfo>();
+        [SerializeField]
+        List<ModuleID> _inventoryModule = new List<ModuleID>();
+
+
         public StageInfo _currentStageData ;
 
 
@@ -69,7 +73,7 @@ namespace ToronPuzzle
             }
         }
 
-
+        public List<ModuleID> GetInventoryModuleList() { return _inventoryModule; }
 
         //
         private void Start()

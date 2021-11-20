@@ -103,7 +103,7 @@ namespace ToronPuzzle
                 }
             SetElementToPower();
             //계산 툴팁 변경 잠기 없램
-            //Global_UIEventSystem.Call_UIEvent(UIEventID.Global_계산표시, _attackNum, _defendNum);
+            Global_UIEventSystem.Call_UIEvent(UIEventID.Global_계산표시, _attackNum, _defendNum);
         }
         public override void CalcBonusLine(int[,] _arg_Arr)
         {

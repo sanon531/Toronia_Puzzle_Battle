@@ -26,7 +26,8 @@ namespace ToronPuzzle.Event
         Global_일정시간동안암전,
         Global_계산표시,
         Global_계산툴팁,
-
+        Global_블럭집은후UI,
+        Global_블럭놓은후UI,
         Global_모듈회전불가,
 
         Battle_게임시작표시,
