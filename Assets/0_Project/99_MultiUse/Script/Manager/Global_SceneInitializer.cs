@@ -62,7 +62,9 @@ namespace ToronPuzzle
             global_BlockGenerator = GameObject.Find("Global_BlockGenerator").GetComponent<Global_BlockGenerator>();
             global_BlockGenerator.BeginBlockGenerator();
             SetBlockPlace();
+
         }
+
 
         // 제거한다음 새로 만드는 것.
         public void SetBlockPlace()
@@ -88,7 +90,7 @@ namespace ToronPuzzle
 
             }
             global_DragDropManager.SetCurrentSceneData(Global_SceneManager._currentScene);
-            Debug.Log(Global_SceneManager._currentScene);
+            //Debug.Log(Global_SceneManager._currentScene);
         }
 
 

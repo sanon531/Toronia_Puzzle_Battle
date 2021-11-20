@@ -116,11 +116,11 @@ namespace ToronPuzzle
                     //Debug.Log(hit.transform.gameObject.name);
                     BlockCase temptCase = hit.transform.GetComponent<BlockCase>();
                     //TestCaller.instance.DebugArrayShape(temptCase._blockInfo._blockShapeArr);
-                    Debug.Log("Clicked Case" + hit.collider.name);
+                    //Debug.Log("Clicked Case" + hit.collider.name);
 
                     if (temptCase.CheckLiftable())
                     {
-                        Debug.Log("isLiftable");
+                        //Debug.Log("isLiftable");
                         _pickOriginCase = temptCase.LiftBlock();
                         SetBlockOnPointer(_pickOriginCase);
                         Global_SoundManager.Instance.PlaySFX(SFXName.BlockLift);
@@ -270,8 +270,8 @@ namespace ToronPuzzle
                         if (targetCase.CheckPlaceable(_savedCase._blockInfo))
                         {
                             //먼저 지우고 그다음에 설치 한다. 배치의 문제 때문에
-                            targetCase.PlaceBlock(_savedCase._blockInfo);
                             OriginBlockDelete();
+                            targetCase.PlaceBlock(_savedCase._blockInfo);
 
                             //Debug.Log("Placable :"+targetCase.CheckPlaceable(_savedCase._blockInfo));
                         }
@@ -334,8 +334,12 @@ namespace ToronPuzzle
             {
                 if (_pickOriginCase.IsOnBlockPlace && Global_BlockPlaceMaster.instance != null)
                 {
-                    Global_BlockPlaceMaster.instance.RemoveBlockOnPlace((BlockCase_BlockPlace)_pickOriginCase);
+                    //Debug.Log("+"+ _pickOriginCase._blockInfo._type);
 
+                    if (_pickOriginCase._blockInfo._type == BlockType.Block)
+                        Global_BlockPlaceMaster.instance.RemoveBlockOnPlace((BlockCase_BlockPlace)_pickOriginCase);
+                    else
+                        Global_BlockPlaceMaster.instance.RemoveModuleOnPlace((BlockCase_Module)_pickOriginCase);
                 }
 
                 _pickOriginCase.DeleteBlock();

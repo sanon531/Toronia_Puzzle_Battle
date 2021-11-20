@@ -61,7 +61,7 @@ namespace ToronPuzzle
         public override BlockCase LiftBlock()
         {
             HideBlock();
-            Global_BlockPlaceMaster.instance.RemoveBlockDataOnArray(_blockInfo);
+            Global_BlockPlaceMaster.instance.RemoveModuleDataOnArray(_blockInfo);
             return this;
         }
 
@@ -85,7 +85,7 @@ namespace ToronPuzzle
 
         public override void ResetBlock(BlockInfo blockInfo)
         {
-            Global_BlockPlaceMaster.instance.PlaceBlockDataOnArray(_blockInfo);
+            Global_BlockPlaceMaster.instance.PlaceModuleDataOnArray(_blockInfo);
             TestCaller.instance.DebugArrayShape("Resetted", blockInfo._blockShapeArr);
 
         }
@@ -102,6 +102,7 @@ namespace ToronPuzzle
         public override void PlaceBlock(BlockInfo _argInfo)
         {
             Global_BlockGenerator.instance.GenerateOnNormalCase(_argInfo, transform, _width);
+
         }
 
 

@@ -23,7 +23,7 @@ namespace ToronPuzzle.Data
         protected override void Disable()
         {
             base.Disable();
-
+            RemoveTriggerPos();
         }
         void SetTriggerPos()
         {
@@ -36,7 +36,10 @@ namespace ToronPuzzle.Data
 
 
         }
-
+        void RemoveTriggerPos()
+        {
+            _triggerPos.Clear();
+        }
         //판을 기준으로
         void PrintActivePlace(BlockInfo _info)
         {
@@ -121,7 +124,11 @@ namespace ToronPuzzle.Data
         protected override void Disable()
         {
             base.Disable();
-
+            float _amount = BlockElementPool._powerTofloatDic[Element_Power.약];
+            Global_InWorldEventSystem.CallOn속성배율변동(
+                BlockElement.Cynical, new Vector3(-_amount, 0f, 0f));
+            RemoveTriggerPos();
+            Global_InWorldEventSystem._on블록배치 -= BreakBlock;
         }
         void SetTriggerPos()
         {
@@ -133,6 +140,11 @@ namespace ToronPuzzle.Data
                         _triggerPos.Add(new Vector2Int(_moduleBlock._blockPlace.x - _maxX + j_x + 1, _moduleBlock._blockPlace.y + i_y));
 
 
+        }
+
+        void RemoveTriggerPos()
+        {
+            _triggerPos.Clear();
         }
 
         //판을 기준으로

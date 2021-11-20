@@ -75,7 +75,11 @@ namespace ToronPuzzle
         private void Start()
         {
             foreach (BlockInfo blockInfo in _ownedModule)
-                blockInfo._moduleInfo.ActivateModuleEffect();
+            {
+                //blockInfo._moduleInfo.ActivateModuleEffect();
+                //Debug.Log(blockInfo._moduleID);
+
+            }
         }
 
 

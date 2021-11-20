@@ -35,6 +35,26 @@ namespace ToronPuzzle.Data
 
             };
 
+        public static Dictionary<ModuleID,ModuleInfo > _IDModuleDic =
+          new Dictionary<ModuleID, ModuleInfo>()
+          {
+                { ModuleID.기선제압,
+                    new Module_ActBegin()},
+                { ModuleID.카리스마Lv1,
+                    new Module_강경업글_공업_약()},
+                { ModuleID.분석력Lv1,
+                    new Module_냉소업글_방업_약()},
+                { ModuleID.책임감Lv1,
+                    new Module_우호업글_균형_약()},
+                { ModuleID.쇄빙,
+                    new Module_쇄빙()},
+                { ModuleID.현란한_임기응변,
+                    new Module_현란한임기응변()},
+
+
+
+          };
+
 
         public static Dictionary<ModuleID, string> _module_devcomment = new Dictionary<ModuleID, string>()
             {

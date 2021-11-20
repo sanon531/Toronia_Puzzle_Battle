@@ -347,50 +347,11 @@ namespace ToronPuzzle
                     if (_blockArr[j_x, i_y] != 0)
                     {
                         _blockPlacedArr[posXOnPlace, posYOnPlace] = _blockArr[j_x, i_y];
-                        //TestCaller.instance.DebugArrayShape("Added" + posXOnPlace + "+" + posYOnPlace, _blockPlacedArr);
                     }
 
                 }
             }
-
-        }
-        public void PlaceModuleDataOnArray(BlockInfo arg_blockInfo)
-        {
-            Vector2Int _targetNum = arg_blockInfo._blockPlace;
-
-            if (!CheckBlockSettable(_targetNum, arg_blockInfo))
-                return;
-
-            int[,] _blockArr = (int[,])arg_blockInfo._blockShapeArr.Clone();
-
-            int _blockX = _blockArr.GetLength(0);
-            int _blockY = _blockArr.GetLength(1);
-            for (int i_y = _blockY - 1; i_y >= 0; i_y--)
-            {
-                int posYOnPlace = i_y + _targetNum.y;
-                if (posYOnPlace >= _maxY)
-                {
-                    return;
-                }
-
-                for (int j_x = 0; j_x < _blockX; j_x++)
-                {
-                    int posXOnPlace = _targetNum.x - _blockX + j_x + 1;
-                    if (posXOnPlace < 0)
-                    {
-                        return;
-                    }
-
-                    //블럭의 위치상
-                    if (_blockArr[j_x, i_y] !=0)
-                    {
-                        _blockPlacedArr[posXOnPlace, posYOnPlace]= _blockArr[j_x, i_y];
-                    }
-                }
-            }
-            //모듈의 배치는 일반 블롣이 사라짐에도 존재해야하기 때문 
-            _modulePlacedArr = (int[,]) _blockPlacedArr.Clone();
-            //TestCaller.instance.DebugArrayShape("Added", _blockPlacedArr);
+            //TestCaller.instance.DebugArrayShape("Added" + posXOnPlace + "+" + posYOnPlace, _blockPlacedArr);
 
         }
         public void RemoveBlockDataOnArray(BlockInfo arg_blockInfo)
@@ -422,6 +383,72 @@ namespace ToronPuzzle
 
         }
 
+        public void PlaceModuleDataOnArray(BlockInfo arg_blockInfo)
+        {
+            Vector2Int _targetNum = arg_blockInfo._blockPlace;
+
+            if (!CheckBlockSettable(_targetNum, arg_blockInfo))
+                return;
+
+            int[,] _blockArr = (int[,])arg_blockInfo._blockShapeArr.Clone();
+
+            int _blockX = _blockArr.GetLength(0);
+            int _blockY = _blockArr.GetLength(1);
+            for (int i_y = _blockY - 1; i_y >= 0; i_y--)
+            {
+                int posYOnPlace = i_y + _targetNum.y;
+                if (posYOnPlace >= _maxY)
+                {
+                    return;
+                }
+
+                for (int j_x = 0; j_x < _blockX; j_x++)
+                {
+                    int posXOnPlace = _targetNum.x - _blockX + j_x + 1;
+                    if (posXOnPlace < 0)
+                    {
+                        return;
+                    }
+
+                    //블럭의 위치상
+                    if (_blockArr[j_x, i_y] != 0)
+                    {
+                        _blockPlacedArr[posXOnPlace, posYOnPlace] = _blockArr[j_x, i_y];
+                    }
+                }
+            }
+            //모듈의 배치는 일반 블롣이 사라짐에도 존재해야하기 때문 
+            _modulePlacedArr = (int[,])_blockPlacedArr.Clone();
+            //TestCaller.instance.DebugArrayShape("BlockAdded", _blockPlacedArr);
+
+        }
+        public void RemoveModuleDataOnArray(BlockInfo arg_blockInfo)
+        {
+            Vector2Int _targetNum = arg_blockInfo._blockPlace;
+            int[,] _blockArr = (int[,])arg_blockInfo._blockShapeArr.Clone();
+
+            int _blockX = _blockArr.GetLength(0);
+            int _blockY = _blockArr.GetLength(1);
+            for (int i_y = _blockY - 1; i_y >= 0; i_y--)
+            {
+                int posYOnPlace = i_y + _targetNum.y;
+                if (posYOnPlace >= _maxY) return;
+
+                for (int j_x = 0; j_x < _blockX; j_x++)
+                {
+                    int posXOnPlace = _targetNum.x - _blockX + j_x + 1;
+                    //블럭의 위치상
+                    if (posXOnPlace < 0) return;
+
+                    if (_blockArr[j_x, i_y] != 0 && _blockArr[j_x, i_y] != 1)
+                    {
+                        _blockPlacedArr[posXOnPlace, posYOnPlace] = 0;
+                    }
+                }
+            }
+        }
+
+
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space))
@@ -452,18 +479,31 @@ namespace ToronPuzzle
         {
             _placedModules.Add(_Block);
             PlaceModuleDataOnArray(_Block._blockInfo);
+            _Block._blockInfo._moduleInfo = ModuleDic._IDModuleDic[_Block._blockInfo._moduleID];
             ResetPreview();
             SendDataToCalc();
+            Debug.Log(_Block._blockInfo._moduleInfo+":Acvtivate");
+            _Block._blockInfo._moduleInfo.ActivateModuleEffect();
         }
         public void RemoveBlockOnPlace(BlockCase_BlockPlace _Block)
         {
             _placedBlocks.Remove(_Block);
             _infoCaseDic.Remove(_Block._blockInfo);
-
-
             ResetPreview();
             SendDataToCalc();
         }
+        public void RemoveModuleOnPlace(BlockCase_Module _Block)
+        {
+            _placedModules.Remove(_Block);
+            _infoCaseDic.Remove(_Block._blockInfo);
+            ResetPreview();
+            SendDataToCalc();
+            Debug.Log(_Block._blockInfo._moduleInfo + ":Deacvtivate");
+            _Block._blockInfo._moduleInfo.DeactivateModuleEffect();
+
+        }
+
+
 
         public void SetBlockCallByPos(Vector2Int _pos, BlockInfo _argInfo)
         {

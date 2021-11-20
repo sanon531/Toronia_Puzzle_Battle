@@ -227,8 +227,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2935832687378220162, guid: 7e666f5d0167c8043bc29c285a640661, type: 3}
+      propertyPath: _debug_ModuleIDs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935832687378220162, guid: 7e666f5d0167c8043bc29c285a640661, type: 3}
       propertyPath: _debug_ModuleIDs.Array.data[0]
-      value: 31
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2935832687378220162, guid: 7e666f5d0167c8043bc29c285a640661, type: 3}
       propertyPath: _currentPlacement.cells.Array.data[0].row.Array.data[1]

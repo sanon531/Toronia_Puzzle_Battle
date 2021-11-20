@@ -21,7 +21,7 @@ namespace ToronPuzzle
 
         public override bool CheckLiftable()
         {
-            Debug.Log("Module Liftable" + _parentCase.CheckLiftable());
+            //Debug.Log("Module Liftable" + _parentCase.CheckLiftable());
 
             return _parentCase.CheckLiftable();
         }
