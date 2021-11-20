@@ -75,6 +75,7 @@ namespace ToronPuzzle
 
         public override void ResetBlock()
         {
+            ShowBlock();
         }
         public void ShowBlock()
         {

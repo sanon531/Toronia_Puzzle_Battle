@@ -8,12 +8,20 @@ namespace ToronPuzzle.WorldMap
     {
         Transform _setttingTranfrom;
         WorldMap_Inventory _worldmap_Inventory;
+        RectTransform _thisRect;
         float _rectWidth;
+
         public void BeginInventoryCase(WorldMap_Inventory _arginventory, float _argWidth)
         {
             _worldmap_Inventory = _arginventory;
             _setttingTranfrom = GameObject.Find("WorldMap_Inventory_Content").transform;
             _rectWidth = _argWidth;
+            _thisRect = GetComponent<RectTransform>();
+
+            GetComponent<BoxCollider2D>().size = _thisRect.rect.size;
+            Transform _Mask = GameObject.Find("WorldMap_Inventory_SpriteMask").transform;
+            _Mask.transform.localScale = _thisRect.rect.size;
+            _Mask.localPosition = new Vector2(_thisRect.rect.width * 0.5f, -_thisRect.rect.width * 0.5f);
 
             foreach (ModuleID _info in _worldmap_Inventory.GetModuleList())
                 PlaceBlock(ModuleDic._IDModuleBlockDic[_info]);
@@ -24,10 +32,12 @@ namespace ToronPuzzle.WorldMap
 
         public override bool CheckPlaceable(BlockInfo blockinfo)
         {
-            if (blockinfo._type == BlockType.Module)
-                return true;
-            else
+
+            Debug.Log(_InfoCaseList.ContainsKey(blockinfo));
+            if (blockinfo._type == BlockType.Block|| _InfoCaseList.ContainsKey(blockinfo))
                 return false;
+            else
+                return true;
         }
 
 

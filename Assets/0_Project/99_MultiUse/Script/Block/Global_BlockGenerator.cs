@@ -533,6 +533,7 @@ namespace ToronPuzzle
                                                     (InputSize.y * (i_y - (_maxY - 1) * 0.5f)), 0);
                         _spawned.transform.localPosition = spawnedvector + new Vector3(0, 0, 0.1f);
                         _spawned.transform.localScale = InputSize * OutlinePercent;
+                        _spawned.GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
                         _current_Case.SetChildObjOnList(_spawned);
 
                         _spawned = Instantiate(_worldModuleCell, new Vector3(0, 0, 0), Quaternion.identity, CaseObject.transform);
@@ -540,6 +541,7 @@ namespace ToronPuzzle
                         _current_Cell.SetMaterial(SetElementToBlockMaterial(_inputInfo._blockElement));
                         _current_Cell.SetParentCase(_current_Case);
                         _spawned.transform.localScale = InputSize;
+                        _spawned.GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
 
                         _current_Case.SetChildCaseOnList(_current_Cell);
 

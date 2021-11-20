@@ -21,6 +21,14 @@ namespace ToronPuzzle.WorldMap
             _moduleImage.transform.localScale = new Vector3(1/_size_x, 1 / _size_x, 1 / _size_x);
         }
 
+        public override bool CheckLiftable(){ return true; }
+
+        public override void ResetBlock(BlockInfo _info)
+        {
+            Debug.Log("BlockResetShow!" );
+
+            ShowBlock();
+        }
         public void SetSpritePos(Vector3 _vector)
         {
             _moduleImage.transform.position = _vector;

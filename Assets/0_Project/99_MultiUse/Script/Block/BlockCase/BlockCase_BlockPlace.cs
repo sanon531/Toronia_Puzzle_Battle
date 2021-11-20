@@ -44,7 +44,9 @@ namespace ToronPuzzle
         public void SetChildObjOnList(GameObject _child)
         {
             _childObjects.Add(_child);
-            _childMatList.Add(_child.GetComponent<SpriteRenderer>().material);
+
+            if(_child.GetComponent<SpriteRenderer>())
+                _childMatList.Add(_child.GetComponent<SpriteRenderer>().material);
         }
         public void SetChildCaseOnList(BlockCaseCell _cell)
         {
@@ -67,7 +69,7 @@ namespace ToronPuzzle
             return this;
         }
 
-        public void HideBlock()
+        public virtual void HideBlock()
         {
             foreach (BlockCaseCell _childcell in _childCase)
             {
@@ -77,8 +79,9 @@ namespace ToronPuzzle
 
         public override void ResetBlock()
         {
+            ShowBlock();
         }
-        public void ShowBlock()
+        public virtual void ShowBlock()
         {
             foreach (BlockCaseCell _childcell in _childCase)
                 _childcell.ResetCell();

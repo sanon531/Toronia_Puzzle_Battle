@@ -22,8 +22,6 @@ namespace ToronPuzzle.WorldMap
         public void AssignGameListener()
         {
             _inventoryModule = Global_InGameData.Instance.GetInventoryModuleList();
-            _inventoryCase = GameObject.Find("WorldMap_InventoryCase").GetComponent<WorldMap_InventoryCase>();
-            _caseImage = _inventoryCase.GetComponent<Image>();
             Global_UIEventSystem.Register_UIEvent(UIEventID.Global_블럭집은후UI, ActivateInventoryPlace, EventRegistOption.None);
             Global_UIEventSystem.Register_UIEvent(UIEventID.Global_블럭놓은후UI, DeactivateInventoryPlace, EventRegistOption.None);
             BeginInventory();
@@ -39,8 +37,14 @@ namespace ToronPuzzle.WorldMap
             _caseImage.enabled = true;
 
         }
+
+
         void BeginInventory()
         {
+            _inventoryCase = GameObject.Find("WorldMap_InventoryCase").GetComponent<WorldMap_InventoryCase>();
+            _caseImage = _inventoryCase.GetComponent<Image>();
+
+
             //인벤토리 사이즈 변경하기.
             _inventoryRect = GameObject.Find("WorldMap_InventorySet").GetComponent<RectTransform>();
             _inventoryRect.sizeDelta = new Vector2(Screen.width*0.45f, Screen.height * 0.25f);
@@ -51,6 +55,8 @@ namespace ToronPuzzle.WorldMap
             _content_LayoutGroup = GameObject.Find("WorldMap_Inventory_Content").GetComponent<GridLayoutGroup>();
             _content_LayoutGroup.cellSize = new Vector2(_caseRectWidth, _caseRectWidth);
             _inventoryCase.BeginInventoryCase(this,_caseRectWidth);
+
+
 
         }
 

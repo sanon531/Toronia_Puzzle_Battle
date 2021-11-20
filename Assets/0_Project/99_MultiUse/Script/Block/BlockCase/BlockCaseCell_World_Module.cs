@@ -31,6 +31,8 @@ namespace ToronPuzzle
             return _parentCase;
         }
 
+
+
         public override void SetMaterial(Material _mat)
         {
             //Debug.Log("SetMaterial on "+gameObject.name);
