@@ -98,7 +98,9 @@ namespace ToronPuzzle.Data
             {5,3} }},
         {BlockShape.Four_AG_개미지옥, new int[,]{ 
             { 3,3,3,5},
-            { 3,4,5,5}
+            { 3,4,4,5},
+            { 5,4,0,0},
+            { 5,0,0,0},
         } },
 
         {BlockShape.Three_G_쇄빙, new int[,]{ { 3,3 },{ 3,4 } }},

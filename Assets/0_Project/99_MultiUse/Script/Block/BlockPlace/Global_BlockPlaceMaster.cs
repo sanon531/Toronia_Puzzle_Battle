@@ -390,7 +390,7 @@ namespace ToronPuzzle
 
                 }
             }
-            TestCaller.instance.DebugArrayShape("Added", _blockPlacedArr);
+            //TestCaller.instance.DebugArrayShape("Added", _blockPlacedArr);
 
         }
         public void RemoveBlockDataOnArray(BlockInfo arg_blockInfo)
@@ -530,6 +530,7 @@ namespace ToronPuzzle
             _infoCaseDic.Remove(_Block._blockInfo);
             ResetPreview();
             SendDataToCalc();
+            TestCaller.instance.DebugArrayShape("removed", _blockPlacedArr);
         }
         public void RemoveModuleOnPlace(BlockCase_Module _Block)
         {
@@ -596,7 +597,7 @@ namespace ToronPuzzle
         public BlockInfo GetModuleFromIt(ModuleID _argID)
         {
             BlockInfo _return = new BlockInfo();
-
+            Debug.Log(_argID);
             foreach (BlockCase_Module _Module in _placedModules)
             {
                 if (_Module._blockInfo._moduleID == _argID)

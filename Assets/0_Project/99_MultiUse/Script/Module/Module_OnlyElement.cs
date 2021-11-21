@@ -31,6 +31,10 @@ namespace ToronPuzzle.Data
         protected override void Disable()
         {
             base.Disable();
+            float _amount = BlockElementPool._powerTofloatDic[Element_Power.약];
+            Global_InWorldEventSystem.CallOn속성배율변동(
+                BlockElement.Aggressive, new Vector3(-_amount, 0f, 0f));
+
         }
 
     }
@@ -49,8 +53,9 @@ namespace ToronPuzzle.Data
         protected override void Disable()
         {
             base.Disable();
-
-
+            float _amount = BlockElementPool._powerTofloatDic[Element_Power.약];
+            Global_InWorldEventSystem.CallOn속성배율변동(
+                BlockElement.Cynical, new Vector3(0f, -_amount, 0f));
         }
 
 

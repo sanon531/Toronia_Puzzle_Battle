@@ -553,7 +553,7 @@ namespace ToronPuzzle
                     {
                         _spawned = Instantiate(_outLinerWorld, new Vector3(0, 0, 0), Quaternion.identity, CaseObject.transform);
                         Vector3 spawnedvector = new Vector3(InputSize.x * (j_x - (_maxX - 1) * 0.5f),
-                                                    (InputSize.y * (i_y - (_maxY - 1) * 0.5f)), 0);
+                                                    (InputSize.y * (i_y - (_maxY - 1) * 0.5f)), 1);
                         _spawned.transform.localPosition = spawnedvector + new Vector3(0, 0, 0.1f);
                         _spawned.transform.localScale = InputSize * OutlinePercent;
                         _spawned.GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
@@ -579,7 +579,7 @@ namespace ToronPuzzle
                     {
                         _spawned = Instantiate(_moduleActivate, new Vector3(0, 0, 0), Quaternion.identity, CaseObject.transform);
                         Vector3 spawnedvector = new Vector3(InputSize.x * (j_x - (_maxX - 1) * 0.5f),
-                                                    (InputSize.y * (i_y - (_maxY - 1) * 0.5f)), 0);
+                                                    (InputSize.y * (i_y - (_maxY - 1) * 0.5f)), 1);
                         _spawned.transform.localPosition = spawnedvector;
                         _spawned.transform.localScale = InputSize;
                         _current_Case.SetChildObjOnList(_spawned);
@@ -593,7 +593,7 @@ namespace ToronPuzzle
                     {
                         _spawned = Instantiate(_module_Occupy, new Vector3(0, 0, 0), Quaternion.identity, CaseObject.transform);
                         Vector3 spawnedvector = new Vector3(InputSize.x * (j_x - (_maxX - 1) * 0.5f),
-                                                   (InputSize.y * (i_y - (_maxY - 1) * 0.5f)), 0);
+                                                   (InputSize.y * (i_y - (_maxY - 1) * 0.5f)), 1);
                         _spawned.transform.localPosition = spawnedvector;
                         _spawned.transform.localScale = InputSize;
                         _current_Case.SetChildObjOnList(_spawned);

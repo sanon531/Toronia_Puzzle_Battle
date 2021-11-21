@@ -32,6 +32,8 @@ namespace ToronPuzzle.Data
                     new BlockInfo(BlockElement.Friendly,BlockShape.Two_VL_모듈,new Module_현란한임기응변(), ModuleID.현란한_임기응변,6)},
                 { ModuleID.개미지옥 ,
                     new BlockInfo(BlockElement.Friendly,BlockShape.Four_AG_개미지옥,new Module_개미지옥(), ModuleID.개미지옥,6)},
+                { ModuleID.승화,
+                    new BlockInfo(BlockElement.Aggressive,BlockShape.Three_G_쇄빙,new Module_승화(), ModuleID.승화,6)}
 
             };
 
@@ -50,7 +52,10 @@ namespace ToronPuzzle.Data
                     new Module_쇄빙()},
                 { ModuleID.현란한_임기응변,
                     new Module_현란한임기응변()},
-                { ModuleID.개미지옥 ,new Module_개미지옥() },
+                { ModuleID.개미지옥 ,
+                  new Module_개미지옥() },
+                { ModuleID.승화 ,
+                  new Module_승화() },
 
 
           };
@@ -85,8 +90,12 @@ namespace ToronPuzzle.Data
                     " - 천하만람기, 우르 파피루스에 대한 글" },
                 { ModuleID.개미지옥,
                     "이곳을 생각을 했다면 이미 들이게 된 것이고 \n" +
-                    "들이게된 순간 서서히 빨려 들어갈 것\n" +
-                    " - 도금된 무채색의 도시에서 " }
+                    "들이게된 순간 이미 발버둥 칠 수도 없는 것이다\n" +
+                    " - 도금된 무채색의 도시에서 " },
+                { ModuleID.승화,
+                    "아무리 식히고자 하더라도 명치 밑에서 수천번 단조질해대는 \n" +
+                    "분노는 그대들의 역겹게 꿈틀대는 혀들의 벽을 불태워버릴 것이요 \n" +
+                    " - 파괴의 칸의 8개조 포고문 " }
 
 
             };
@@ -109,8 +118,10 @@ namespace ToronPuzzle.Data
                 },
                 { ModuleID.개미지옥,
                     "강력한 <sprite=2> 블록 추가 보너스를 얻게 됩니다. \n" +
-                    "대신 특정 구간에 블럭을 놓을 경우 큰 데미지를 받게 됩니다.\n" +
-                    "(미구현)" }
+                    "대신 특정 구간에 블럭을 놓을 경우 해당 블록공격력 * 10 데미지를 받게 됩니다." },
+                { ModuleID.승화,
+                    "<sprite=0>  블럭이 설치될경우 즉시 파괴하고 적에게 \n" +
+                    "해당 블럭 값만큼의 데미지로 환산합니다. "}
 
             };
 

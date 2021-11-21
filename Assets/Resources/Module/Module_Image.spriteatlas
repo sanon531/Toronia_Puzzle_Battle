@@ -459,7 +459,7 @@ SpriteAtlas:
   - skill_icons40
   - release_v1.2-single_73
   - release_v1.2-single_58
-  - release_v1.2-single_43
+  - "\uC2B9\uD654"
   - release_v1.2-single_70
   - skill_icons25
   - release_v1.2-single_98
@@ -484,8 +484,8 @@ SpriteAtlas:
   - release_v1.2-single_66
   - release_v1.2-single_81
   - skill_icons32
+  - "\uBCA0\uAE30"
   - "\uC1C4\uBE59"
-  - release_v1.2-single_97
   - release_v1.2-single_93
   - "\uCC45\uC784\uAC10Lv1"
   - release_v1.2-single_13

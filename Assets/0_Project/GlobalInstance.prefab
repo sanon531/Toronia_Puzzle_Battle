@@ -2180,7 +2180,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2935832686983550763}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2566,7 +2566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _FXDictionary:
-    m_keys: 0000000001000000020000000300000004000000050000000600000007000000
+    m_keys: 00000000010000000200000003000000040000000500000006000000070000000800000009000000
     m_values:
     - {fileID: 2446996066179108411, guid: e6023aa5faa3e8849a2f5c035761d427, type: 3}
     - {fileID: 2446996066179108411, guid: a9064b5dbe2200447994818243d7b2ed, type: 3}
@@ -2576,6 +2576,8 @@ MonoBehaviour:
     - {fileID: 131410, guid: 336dcb8e80cbdfe4380b048ee5c38b34, type: 3}
     - {fileID: 131410, guid: 336dcb8e80cbdfe4380b048ee5c38b34, type: 3}
     - {fileID: 5994203494003849669, guid: efde323f503adaf4d99873c267e55f94, type: 3}
+    - {fileID: 6168951750085107150, guid: c2d4491b6d3792245ba8de18822d93e1, type: 3}
+    - {fileID: 356703378993719623, guid: b993547119398fb4d9969ca1b8337ab9, type: 3}
 --- !u!1 &2935832687204988650
 GameObject:
   m_ObjectHideFlags: 0
@@ -2878,6 +2880,7 @@ GameObject:
   - component: {fileID: 2935832687233001287}
   - component: {fileID: 2935832687233001284}
   - component: {fileID: 2935832687233001285}
+  - component: {fileID: 116491854}
   m_Layer: 5
   m_Name: PauseButton
   m_TagString: Untagged
@@ -3060,6 +3063,27 @@ MonoBehaviour:
   _waitTime: 0
   arg_RectTransform: {fileID: 2935832687233001282}
   current_Ease: 29
+  _targetPos: {x: 0, y: 0, z: 0}
+  _targetImages: []
+  _targetTexts: []
+--- !u!114 &116491854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2935832687233001283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc790717acb620246b42a36a23a8cc9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onButton: 0
+  function: 3
+  _fadeInAmount: 0
+  _waitTime: 0
+  arg_RectTransform: {fileID: 0}
+  current_Ease: 2
   _targetPos: {x: 0, y: 0, z: 0}
   _targetImages: []
   _targetTexts: []
@@ -3725,6 +3749,8 @@ MonoBehaviour:
         _value: 0
   isDebug: 1
   _ownedModule: []
+  _inventoryModule: 01000000060000002000000008000000
+  _placed_Modules: 
   _currentStageData:
     _battleTime: 30
     _spawnSpeed: 1
@@ -3784,16 +3810,15 @@ MonoBehaviour:
         _artifactID: 0
         _value: 0
     _stageEnemys: 
-  _debug_ModuleIDs: 0200000008000000
   _currentPlacement:
     gridSize: {x: 4, y: 6}
     cellSize: {x: 64, y: 16}
     cells:
-    - row: 00000000020000000000000000000000
-    - row: 00000000000000000000000000000000
-    - row: 00000000080000000000000000000000
+    - row: 00000000230000000000000000000000
     - row: 00000000000000000000000000000000
     - row: 00000000000000000000000000000000
+    - row: 00000000000000000000000000000000
+    - row: 00000000000000000200000000000000
     - row: 00000000000000000000000000000000
 --- !u!1 &2935832687383773405
 GameObject:
@@ -6145,7 +6170,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 126.29999, y: 31.159973}
+  m_AnchoredPosition: {x: 126.29999, y: 31.159912}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2935832688051869497

@@ -30,6 +30,10 @@ namespace ToronPuzzle.Event
         Global_블럭놓은후UI,
         Global_모듈회전불가,
 
+
+        WorldMap_배틀전환허용,
+
+
         Battle_게임시작표시,
         Battle_계산버튼OnOff,
         Battle_플레이어방어도표시,

@@ -33,7 +33,7 @@ namespace ToronPuzzle.WorldMap
         public override bool CheckPlaceable(BlockInfo blockinfo)
         {
 
-            Debug.Log(_InfoCaseList.ContainsKey(blockinfo));
+            //Debug.Log(_InfoCaseList.ContainsKey(blockinfo));
             if (blockinfo._type == BlockType.Block|| _InfoCaseList.ContainsKey(blockinfo))
                 return false;
             else

@@ -20,7 +20,9 @@ namespace ToronPuzzle.Data
         Bonus_Small,
         Bonus_Big,
         BlockRotate,
-        Frozen_Crack
+        Frozen_Crack,
+        Fire_Explosion,
+        Evil_Action
 
     }
 

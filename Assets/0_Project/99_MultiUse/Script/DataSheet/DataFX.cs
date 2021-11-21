@@ -16,8 +16,9 @@ namespace ToronPuzzle.Data
         BlockBns_Full,
 
 
-        Module_¼âºù
-
+        Module_¼âºù,
+        Module_°³¹ÌÁö¿Á,
+        Module_½ÂÈ­
 
 
     }

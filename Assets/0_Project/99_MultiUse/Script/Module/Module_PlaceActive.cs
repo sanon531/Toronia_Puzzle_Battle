@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ToronPuzzle.Event;
+using ToronPuzzle.Battle;
 
 namespace ToronPuzzle.Data
 {
@@ -250,7 +251,7 @@ namespace ToronPuzzle.Data
         protected override void Enable()
         {
             base.Enable();
-            _moduleBlock = new BlockInfo(Global_BlockPlaceMaster.instance.GetModuleFromIt(ModuleID.쇄빙));
+            _moduleBlock = new BlockInfo(Global_BlockPlaceMaster.instance.GetModuleFromIt(ModuleID.승화));
             SetTriggerPos();
 
             //CheckActivePlace(_moduleBlock);
@@ -260,6 +261,7 @@ namespace ToronPuzzle.Data
         protected override void Disable()
         {
             base.Disable();
+
             Global_InWorldEventSystem._on블록배치 -= BreakBlock;
         }
         void SetTriggerPos()
@@ -320,11 +322,23 @@ namespace ToronPuzzle.Data
             //제거한뒤의 것은 각자 막 다를것.
             if (CheckBlockEntered(_arginfo))
             {
-                //여기서 이제 할것들 한다. 들어온 애가 같은 색깔일때만 작동함.
-                BlockInfo _savedInfo = new BlockInfo(_arginfo);
-                BlockCase_BlockPlace _case = Global_BlockPlaceMaster.instance.GetBlockCaseByInfo(_arginfo);
-                Global_BlockPlaceMaster.instance.RemoveBlockOnPlace(_case);
-                _case.DeleteBlock();
+
+                if (_arginfo._blockElement == BlockElement.Aggressive)
+                {
+
+                    //여기서 이제 할것들 한다. 들어온 애가 같은 색깔일때만 작동함.
+                    BlockInfo _savedInfo = new BlockInfo(_arginfo);
+                    BlockCase_BlockPlace _case = Global_BlockPlaceMaster.instance.GetBlockCaseByInfo(_arginfo);
+                    Global_SoundManager.Instance.PlaySFX(SFXName.Fire_Explosion);
+                    Global_FXPlayer.PlayFX(FXKind.Module_승화, _case.transform.position);
+                    Global_InWorldEventSystem.CallOnCalc데미지(Master_Battle.Data_OnlyInBattle._enemyData, 
+                        DataEntity.고유데이터(_arginfo._blockStength * 10));
+                    Global_BlockPlaceMaster.instance.RemoveBlockDataOnArray(_case._blockInfo);
+                    Global_BlockPlaceMaster.instance.RemoveBlockOnPlace(_case);
+                    _case.DeleteBlock();
+
+
+                }
             }
 
             //TestCaller.instance.DebugArrayShape("BlockPlacedOn" + _arginfo._blockPlace, _arginfo._blockShapeArr);
@@ -345,7 +359,9 @@ namespace ToronPuzzle.Data
         protected override void Enable()
         {
             base.Enable();
-            _moduleBlock = new BlockInfo(Global_BlockPlaceMaster.instance.GetModuleFromIt(ModuleID.쇄빙));
+            float _amount = BlockElementPool._powerTofloatDic[Element_Power.강];
+            Global_InWorldEventSystem.CallOn속성배율변동(BlockElement.Friendly, new Vector3(_amount, _amount, 0f));
+            _moduleBlock = new BlockInfo(Global_BlockPlaceMaster.instance.GetModuleFromIt(ModuleID.개미지옥));
             SetTriggerPos();
 
             //CheckActivePlace(_moduleBlock);
@@ -356,6 +372,8 @@ namespace ToronPuzzle.Data
         {
             base.Disable();
             RemoveTriggerPos();
+            float _amount = BlockElementPool._powerTofloatDic[Element_Power.강];
+            Global_InWorldEventSystem.CallOn속성배율변동(BlockElement.Friendly, new Vector3(-_amount, -_amount, 0f));
             Global_InWorldEventSystem._on블록배치 -= BreakBlock;
         }
         void SetTriggerPos()
@@ -419,13 +437,20 @@ namespace ToronPuzzle.Data
             //제거한뒤의 것은 각자 막 다를것.
             if (CheckBlockEntered(_arginfo))
             {
-
                 if (_arginfo._blockElement == BlockElement.Friendly )
                 {
                     //여기서 이제 할것들 한다. 들어온 애가 같은 색깔일때만 작동함.
+
+                    Global_InWorldEventSystem.CallOnCalc데미지(Master_Battle.Data_OnlyInBattle._playerData, DataEntity.고유데이터(_arginfo._blockStength * 10));
                     BlockInfo _savedInfo = new BlockInfo(_arginfo);
                     BlockCase_BlockPlace _case = Global_BlockPlaceMaster.instance.GetBlockCaseByInfo(_arginfo);
+                    Global_SoundManager.Instance.PlaySFX(SFXName.Evil_Action);
+                    Global_FXPlayer.PlayFX(FXKind.Module_개미지옥, _case.transform.position);
+
+                    //TestCaller.instance.DebugArrayShape("removed"+ _case._blockInfo._blockPlace.ToString(), _case._blockInfo._blockShapeArr);
+                    Global_BlockPlaceMaster.instance.RemoveBlockDataOnArray(_case._blockInfo);
                     Global_BlockPlaceMaster.instance.RemoveBlockOnPlace(_case);
+
                     _case.DeleteBlock();
                 }
             }
