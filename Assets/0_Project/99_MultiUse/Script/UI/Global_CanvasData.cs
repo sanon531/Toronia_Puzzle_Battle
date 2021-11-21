@@ -12,6 +12,7 @@ namespace ToronPuzzle
             public static Vector2 RUAchorPos = default;
             public static Vector2 _screenWorldSize = default;
             public static float _worldToCanvasSize = default;
+            public static Vector2 _inventoryCellSize = default;
         }
         public GameObject LDAchor;
         public GameObject RUAchor;

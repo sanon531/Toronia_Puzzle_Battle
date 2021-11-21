@@ -28,7 +28,7 @@ namespace ToronPuzzle.WorldMap
 
         }
 
-        public override bool CheckLiftable() { return true; }
+        public override bool CheckLiftable() { return false; }
 
         public override bool CheckPlaceable(BlockInfo blockinfo)
         {

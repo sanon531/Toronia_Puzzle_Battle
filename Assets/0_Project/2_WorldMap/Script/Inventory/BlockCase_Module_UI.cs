@@ -12,6 +12,8 @@ namespace ToronPuzzle.WorldMap
 
         [SerializeField]
         SpriteRenderer _moduleImage;
+        [SerializeField]
+        BoxCollider2D _boxCollider;
 
         public void InitializeModule(BlockInfo _argInfo, float _size_x)
         {
@@ -19,13 +21,13 @@ namespace ToronPuzzle.WorldMap
             _moduleImage = GetComponentInChildren<SpriteRenderer>();
             _moduleImage.sprite = Resources.Load<Sprite>("Module/" + _blockInfo._moduleID.ToString());
             _moduleImage.transform.localScale = new Vector3(1/_size_x, 1 / _size_x, 1 / _size_x);
+            _boxCollider.size = Global_CanvasData.CanvasData._inventoryCellSize;
         }
 
         public override bool CheckLiftable(){ return true; }
 
         public override void ResetBlock(BlockInfo _info)
         {
-            Debug.Log("BlockResetShow!" );
 
             ShowBlock();
         }

@@ -111,7 +111,7 @@ namespace ToronPuzzle
                     //Debug.Log(hit.transform.gameObject.name);
                     BlockCase temptCase = hit.transform.GetComponent<BlockCase>();
                     //TestCaller.instance.DebugArrayShape(temptCase._blockInfo._blockShapeArr);
-                    Debug.Log("Clicked Case" + hit.collider.name);
+                    //Debug.Log("Clicked Case" + hit.collider.name);
 
                     if (temptCase.CheckLiftable())
                     {
@@ -157,6 +157,7 @@ namespace ToronPuzzle
                         return;
                     else
                         _hoveredCase = temptCase;
+
                     temptCase.CheckPlaceable(_savedCase._blockInfo);
 
                     if(!temptCase.IsOnBlockPlace)
@@ -261,7 +262,7 @@ namespace ToronPuzzle
                     {
                         BlockCase targetCase = hit.transform.GetComponent<BlockCase>();
 
-                        Debug.Log(targetCase.name+ "+" + targetCase.CheckPlaceable(_savedCase._blockInfo));
+                        //Debug.Log(targetCase.name+ "+" + targetCase.CheckPlaceable(_savedCase._blockInfo));
                         //세팅 가능하면 바로 세팅함.
                         if (targetCase.CheckPlaceable(_savedCase._blockInfo))
                         {

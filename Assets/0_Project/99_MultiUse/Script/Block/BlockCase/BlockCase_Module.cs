@@ -12,8 +12,13 @@ namespace ToronPuzzle
         Vector3 centerData, OriginCenter;
         [SerializeField]
         float _width = 1f;
-        public List<BlockCaseCell> _childCase = new List<BlockCaseCell>();
-        public List<GameObject> _childObjects = new List<GameObject>();
+        [SerializeField]
+        protected List<BlockCaseCell> _childCase = new List<BlockCaseCell>();
+        [SerializeField]
+        protected List<GameObject> _childObjects = new List<GameObject>();
+        [SerializeField]
+        protected List<Material> _childMatList = new List<Material>();
+
         [SerializeField]
         List<Vector2Int> localPosList = new List<Vector2Int>();
         [SerializeField]
@@ -36,6 +41,17 @@ namespace ToronPuzzle
             _blockInfo._blockShapeArr = new int[_maxBlockX, _maxBlockY];
         }
 
+        public void SetChildObjOnList(GameObject _child)
+        {
+            _childObjects.Add(_child);
+
+            if (_child.GetComponent<SpriteRenderer>())
+                _childMatList.Add(_child.GetComponent<SpriteRenderer>().material);
+        }
+        public void SetChildCaseOnList(BlockCaseCell _cell)
+        {
+            _childCase.Add(_cell);
+        }
         public void InitializeModule(BlockInfo _argInfo,float _size_x)
         {
             _blockInfo = new BlockInfo(_argInfo);

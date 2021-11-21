@@ -23,7 +23,7 @@ namespace ToronPuzzle
         GameObject
             _blockCase_PlaceCase, _blockCase_World, _blockCase_Module,_moduleActivate,
             _blockCase_Module_UI, 
-            _worldBlockCell, _worldModuleCell, _outLinerWorld, _outLinerUI
+            _worldBlockCell, _worldModuleCell, _module_Occupy,_outLinerWorld, _outLinerUI
             ;
 
 
@@ -55,6 +55,7 @@ namespace ToronPuzzle
             instance = this;
             _worldBlockCell = Resources.Load("BlockCase/BlockCaseCell_World") as GameObject;
             _worldModuleCell = Resources.Load("BlockCase/BlockCaseCell_Module") as GameObject;
+            _module_Occupy = Resources.Load("BlockCase/BlockCaseCell_Module_Occupy") as GameObject;
 
             _outLinerWorld = Resources.Load("BlockCase/BlockCaseOutLiner_World") as GameObject;
             _outLinerUI = Resources.Load("BlockCase/BlockCaseOutLiner_UI") as GameObject;
@@ -187,7 +188,7 @@ namespace ToronPuzzle
                         Vector3 spawnedvector = new Vector3(InputSize.x * j_x, (InputSize.y * i_y), 0);
                         _spawned.transform.localPosition = spawnedvector + new Vector3(0, 0, 0.1f);
                         _spawned.transform.localScale = InputSize * OutlinePercent;
-                        _current_Case._childObjects.Add(_spawned);
+                        _current_Case.SetChildObjOnList(_spawned);
 
                         _spawned = Instantiate(_worldModuleCell, new Vector3(0, 0, 0), Quaternion.identity, CaseObject.transform);
                         BlockCaseCell _current_Cell = _spawned.GetComponent<BlockCaseCell>();
@@ -195,11 +196,11 @@ namespace ToronPuzzle
                         _current_Cell.SetParentCase(_current_Case);
                         _spawned.transform.localScale = InputSize;
 
-                        _current_Case._childCase.Add(_current_Cell);
+                        _current_Case.SetChildCaseOnList(_current_Cell);
 
                         _spawned.transform.localPosition = spawnedvector - new Vector3(0, 0, 0.1f);
 
-                        _current_Case._childObjects.Add(_spawned);
+                        _current_Case.SetChildObjOnList(_spawned);
 
                         Global_FXPlayer.PlayFX(ElementToBlockFX[_inputInfo._blockElement], _spawned.transform.position, _spawned.transform);
                         _totalPos += _spawned.transform.position;
@@ -211,9 +212,19 @@ namespace ToronPuzzle
                         Vector3 spawnedvector = new Vector3(InputSize.x * j_x, (InputSize.y * i_y), 0);
                         _spawned.transform.localPosition = spawnedvector;
                         _spawned.transform.localScale = InputSize;
-                        _current_Case._childObjects.Add(_spawned);
+                        _current_Case.SetChildObjOnList(_spawned);
 
                         _spawned.GetComponent<ModuleActivate_ParticleSetter>().SetAllParticleColor(BlockElementPool._ElementToColor[_inputInfo._blockElement]);
+
+                        _totalPos += _spawned.transform.position;
+                        _blockNum++;
+                    } else if (_tempt_BlockArray[j_x, i_y] == 5)
+                    {
+                        _spawned = Instantiate(_module_Occupy, new Vector3(0, 0, 0), Quaternion.identity, CaseObject.transform);
+                        Vector3 spawnedvector = new Vector3(InputSize.x * j_x, (InputSize.y * i_y), 0);
+                        _spawned.transform.localPosition = spawnedvector;
+                        _spawned.transform.localScale = InputSize;
+                        _current_Case.SetChildObjOnList(_spawned);
 
                         _totalPos += _spawned.transform.position;
                         _blockNum++;
@@ -262,7 +273,7 @@ namespace ToronPuzzle
             int _maxY = _tempt_BlockArray.GetLength(1);
             //케이스의 로컬위치 설정
             CaseObject.transform.localPosition = new Vector2(InputSize.x * (1 - _maxX), 0);
-
+            _current_Case.InitializeModule(_inputInfo, InputSize.x);
 
             int _blockNum = 0;
             Vector3 _totalPos = new Vector3();
@@ -276,7 +287,7 @@ namespace ToronPuzzle
                         Vector3 spawnedvector = new Vector3(InputSize.x * j_x, (InputSize.y * i_y), 0);
                         _spawned.transform.localPosition = spawnedvector + new Vector3(0, 0, 0.1f);
                         _spawned.transform.localScale = InputSize * OutlinePercent;
-                        _current_Case._childObjects.Add(_spawned);
+                        _current_Case.SetChildObjOnList(_spawned);
 
                         _spawned = Instantiate(_worldModuleCell, new Vector3(0, 0, 0), Quaternion.identity, CaseObject.transform);
                         BlockCaseCell _current_Cell = _spawned.GetComponent<BlockCaseCell>();
@@ -284,10 +295,10 @@ namespace ToronPuzzle
                         _current_Cell.SetParentCase(_current_Case);
                         _spawned.transform.localScale = InputSize;
 
-                        _current_Case._childCase.Add(_current_Cell);
+                        _current_Case.SetChildCaseOnList(_current_Cell);
 
                         _spawned.transform.localPosition = spawnedvector;
-                        _current_Case._childObjects.Add(_spawned);
+                        _current_Case.SetChildObjOnList(_spawned);
 
                         Global_FXPlayer.PlayFX(ElementToBlockFX[_inputInfo._blockElement], _spawned.transform.position, _spawned.transform);
                         _totalPos += _spawned.transform.position;
@@ -299,9 +310,21 @@ namespace ToronPuzzle
                         Vector3 spawnedvector = new Vector3(InputSize.x * j_x, (InputSize.y * i_y), 0);
                         _spawned.transform.localPosition = spawnedvector;
                         _spawned.transform.localScale = InputSize;
-                        _current_Case._childObjects.Add(_spawned);
+                        _current_Case.SetChildObjOnList(_spawned);
 
                         _spawned.GetComponent<ModuleActivate_ParticleSetter>().SetAllParticleColor(BlockElementPool._ElementToColor[_inputInfo._blockElement]);
+
+                        _totalPos += _spawned.transform.position;
+                        _blockNum++;
+                    }
+                    else if (_tempt_BlockArray[j_x, i_y] == 5)
+                    {
+                        _spawned = Instantiate(_module_Occupy, new Vector3(0, 0, 0), Quaternion.identity, CaseObject.transform);
+                        Vector3 spawnedvector = new Vector3(InputSize.x * j_x, (InputSize.y * i_y), 0);
+                        _spawned.transform.localPosition = spawnedvector;
+                        _spawned.transform.localScale = InputSize;
+                        _current_Case.SetChildObjOnList(_spawned);
+
 
                         _totalPos += _spawned.transform.position;
                         _blockNum++;
@@ -562,6 +585,19 @@ namespace ToronPuzzle
                         _current_Case.SetChildObjOnList(_spawned);
 
                         _spawned.GetComponent<ModuleActivate_ParticleSetter>().SetAllParticleColor(BlockElementPool._ElementToColor[_inputInfo._blockElement]);
+
+                        _totalPos += _spawned.transform.position;
+                        _blockNum++;
+                    }
+                    else if (_tempt_BlockArray[j_x, i_y] == 5)
+                    {
+                        _spawned = Instantiate(_module_Occupy, new Vector3(0, 0, 0), Quaternion.identity, CaseObject.transform);
+                        Vector3 spawnedvector = new Vector3(InputSize.x * (j_x - (_maxX - 1) * 0.5f),
+                                                   (InputSize.y * (i_y - (_maxY - 1) * 0.5f)), 0);
+                        _spawned.transform.localPosition = spawnedvector;
+                        _spawned.transform.localScale = InputSize;
+                        _current_Case.SetChildObjOnList(_spawned);
+
 
                         _totalPos += _spawned.transform.position;
                         _blockNum++;

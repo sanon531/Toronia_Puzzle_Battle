@@ -289,15 +289,22 @@ namespace ToronPuzzle
             }
         }
 
+        //블록 생성 가능 체크
+        //여기서는 세팅을 할지 말지 고민 함
         public bool CheckBlockSettable(Vector2Int arg_targetNum, BlockInfo arg_blockInfo)
         {
             int[,] _blockArr = (int[,])arg_blockInfo._blockShapeArr.Clone();
-            //여기서는 세팅을 할지 말지 고민 함
             bool returnVal = true;
 
             int _blockX = _blockArr.GetLength(0);
             int _blockY = _blockArr.GetLength(1);
-            for (int i_y = _blockY - 1; i_y >= 0; i_y--)
+
+            //
+
+            #region
+
+            if(arg_blockInfo._type == BlockType.Block)
+                for (int i_y = _blockY - 1; i_y >= 0; i_y--)
             {
                 int posYOnPlace = i_y + arg_targetNum.y;
                 if (posYOnPlace >= _maxY)
@@ -319,10 +326,39 @@ namespace ToronPuzzle
                     }
                 }
             }
+            else
+                for (int i_y = _blockY - 1; i_y >= 0; i_y--)
+                {
+                    int posYOnPlace = i_y + arg_targetNum.y;
+                    if (posYOnPlace >= _maxY)
+                        return false;
+
+                    for (int j_x = 0; j_x < _blockX; j_x++)
+                    {
+                        int posXOnPlace = arg_targetNum.x - _blockX + j_x + 1;
+                        if (posXOnPlace < 0)
+                            return false;
+                        //블럭의 위치상
+                        if (_blockArr[j_x, i_y] != 0)
+                        {
+                            if (_blockPlacedArr[posXOnPlace, posYOnPlace] == 1 || 
+                                _blockPlacedArr[posXOnPlace, posYOnPlace] == 3 ||
+                                _blockPlacedArr[posXOnPlace, posYOnPlace] == 4 ||
+                                _blockPlacedArr[posXOnPlace, posYOnPlace] == 5 )
+                            {
+                                returnVal = false;
+                            }
+
+                        }
+                    }
+                }
+
+            #endregion
 
             //Debug.Log("Settable : " + returnVal);
             return returnVal;
         }
+
 
         public void PlaceBlockDataOnArray(BlockInfo arg_blockInfo)
         {
@@ -354,7 +390,7 @@ namespace ToronPuzzle
 
                 }
             }
-            //TestCaller.instance.DebugArrayShape("Added" + posXOnPlace + "+" + posYOnPlace, _blockPlacedArr);
+            TestCaller.instance.DebugArrayShape("Added", _blockPlacedArr);
 
         }
         public void RemoveBlockDataOnArray(BlockInfo arg_blockInfo)
@@ -454,9 +490,9 @@ namespace ToronPuzzle
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                TestCaller.instance.DebugArrayShape("current", _blockPlacedArr);
+                TestCaller.instance.DebugArrayShape("current", _modulePlacedArr);
             }
         }
 
@@ -528,23 +564,28 @@ namespace ToronPuzzle
 
         }
 
-
+        //UI 이벤트 콜함
         void SetHoldPanelEvent()
         {
             Global_UIEventSystem.Register_UIEvent(UIEventID.Global_블럭집은후UI, DeActivateHoldingPanel, EventRegistOption.Permanent);
             Global_UIEventSystem.Register_UIEvent(UIEventID.Global_블럭놓은후UI, ActivateHoldingPanel, EventRegistOption.Permanent);
         }
-
         void DeActivateHoldingPanel()
         {
             foreach (BlockCase_BlockPlace _Block in _placedBlocks)
                 _Block.HideBlock();
-        }
+            foreach (BlockCase_Module _Module in _placedModules)
+                _Module.HideBlock();
 
+
+        }
         void ActivateHoldingPanel()
         {
             foreach (BlockCase_BlockPlace _Block in _placedBlocks)
                 _Block.ShowBlock();
+            foreach (BlockCase_Module _Module in _placedModules)
+                _Module.ShowBlock();
+
         }
 
         #endregion

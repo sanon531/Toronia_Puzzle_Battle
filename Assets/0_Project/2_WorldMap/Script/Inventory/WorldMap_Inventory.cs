@@ -54,6 +54,7 @@ namespace ToronPuzzle.WorldMap
             _caseRectWidth = Screen.width * 0.15f;
             _content_LayoutGroup = GameObject.Find("WorldMap_Inventory_Content").GetComponent<GridLayoutGroup>();
             _content_LayoutGroup.cellSize = new Vector2(_caseRectWidth, _caseRectWidth);
+            Global_CanvasData.CanvasData._inventoryCellSize = _content_LayoutGroup.cellSize;
             _inventoryCase.BeginInventoryCase(this,_caseRectWidth);
 
 

@@ -123,7 +123,11 @@ namespace ToronPuzzle
             {
                 bool isLined = true;
                 for (int j = 0; j < _arg_Arr.GetLength(1); j++)
-                    if (_arg_Arr[i, j] == 0) isLined = false;
+                {
+                    isLined = (_arg_Arr[i, j] == 0) ? false : isLined;
+                    isLined = (_arg_Arr[i, j] == 4) ? false : isLined;
+                    isLined = (_arg_Arr[i, j] == 5) ? false : isLined;
+                }
 
                 if (isLined) _filledLineX.Add(i);
             }
@@ -132,7 +136,12 @@ namespace ToronPuzzle
             {
                 bool isLined = true;
                 for (int j = 0; j < _arg_Arr.GetLength(0); j++)
-                    if (_arg_Arr[j, i] == 0) isLined = false;
+                {
+                    isLined = (_arg_Arr[j, i] == 0) ? false : isLined;
+                    isLined = (_arg_Arr[j, i] == 4) ? false : isLined;
+                    isLined = (_arg_Arr[j, i] == 5) ? false : isLined;
+
+                }
 
                 if (isLined) _filledLineY.Add(i);
             }

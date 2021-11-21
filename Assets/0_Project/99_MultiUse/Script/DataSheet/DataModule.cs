@@ -30,8 +30,8 @@ namespace ToronPuzzle.Data
                     new BlockInfo(BlockElement.Cynical,BlockShape.Three_G_쇄빙,new Module_쇄빙(), ModuleID.쇄빙,3)},
                 { ModuleID.현란한_임기응변,
                     new BlockInfo(BlockElement.Friendly,BlockShape.Two_VL_모듈,new Module_현란한임기응변(), ModuleID.현란한_임기응변,6)},
-
-
+                { ModuleID.개미지옥 ,
+                    new BlockInfo(BlockElement.Friendly,BlockShape.Four_AG_개미지옥,new Module_개미지옥(), ModuleID.개미지옥,6)},
 
             };
 
@@ -50,7 +50,7 @@ namespace ToronPuzzle.Data
                     new Module_쇄빙()},
                 { ModuleID.현란한_임기응변,
                     new Module_현란한임기응변()},
-
+                { ModuleID.개미지옥 ,new Module_개미지옥() },
 
 
           };
@@ -83,6 +83,10 @@ namespace ToronPuzzle.Data
                     "날카로운 칼로 수십 번 잘라내고 바느질로 수천번 꼬매었음에도\n" +
                     "마치 거미의 그것처럼 흔적 하나 없는 듯하구나. \n" +
                     " - 천하만람기, 우르 파피루스에 대한 글" },
+                { ModuleID.개미지옥,
+                    "이곳을 생각을 했다면 이미 들이게 된 것이고 \n" +
+                    "들이게된 순간 서서히 빨려 들어갈 것\n" +
+                    " - 도금된 무채색의 도시에서 " }
 
 
             };
@@ -102,8 +106,11 @@ namespace ToronPuzzle.Data
                     " 1x1 <sprite=1> 블록들로 재생성합니다." },
                 { ModuleID.현란한_임기응변,
                     "모듈의 배치를 배틀 중에도 변경할 수 있게 됩니다."
-                }
-
+                },
+                { ModuleID.개미지옥,
+                    "강력한 <sprite=2> 블록 추가 보너스를 얻게 됩니다. \n" +
+                    "대신 특정 구간에 블럭을 놓을 경우 큰 데미지를 받게 됩니다.\n" +
+                    "(미구현)" }
 
             };
 

@@ -26,7 +26,6 @@ namespace ToronPuzzle
 
         public ModuleInfo(ModuleID moduleID)
         {
-            Module_DataTable tableData = ModuleDic.ModuleTableDic[moduleID];
             
         }
 

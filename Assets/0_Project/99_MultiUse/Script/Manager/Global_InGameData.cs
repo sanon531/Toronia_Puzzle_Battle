@@ -25,6 +25,7 @@ namespace ToronPuzzle
         List<BlockInfo> _ownedModule = new List<BlockInfo>();
         [SerializeField]
         List<ModuleID> _inventoryModule = new List<ModuleID>();
+        public List<ModuleID> _placed_Modules = new List<ModuleID>();
 
 
         public StageInfo _currentStageData ;
@@ -33,7 +34,6 @@ namespace ToronPuzzle
         /// <summary>
         /// 디버그 시에만 활용되는 것.
         /// </summary>
-        public List<ModuleID> _debug_ModuleIDs = new List<ModuleID>();
         [SerializeField]
         Array2DEditor.Array2DModuleID _currentPlacement ;
 
@@ -52,7 +52,7 @@ namespace ToronPuzzle
             {
                 // 여기서 모듈들을 디버깅 용으로 모듈 설치를 한다. 
                 // 일반적으로는 저장된 블록의 데이터를 기반으로 새로이 저장된 데이터를 따로 저장해서 그걸 기반으로 만든다.
-                foreach (ModuleID moduleID in _debug_ModuleIDs)
+                foreach (ModuleID moduleID in _placed_Modules)
                 {
                     for (int i_y = 0; i_y < _currentPlacement.GridSize.y; i_y++)
                     {
