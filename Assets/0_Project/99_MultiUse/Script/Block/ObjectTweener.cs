@@ -7,8 +7,8 @@ namespace ToronPuzzle
     public enum TweenType
     {
         world_Move,
-        local_Move
-
+        local_Move,
+        Anchor_Move
     }
 
 
@@ -30,6 +30,12 @@ namespace ToronPuzzle
                     break;
                 case TweenType.local_Move:
                     _targetTransform.DOMove(_targetpos, _duration).SetEase(current_Ease);
+                    break;
+                case TweenType.Anchor_Move:
+                    _targetTransform.GetComponent<RectTransform>().DOAnchorPos(_targetpos, _duration).SetEase(current_Ease);
+                    break;
+                default:
+                    Debug.LogError("ObjectTweener Type Error");
                     break;
             }
 

@@ -105,7 +105,7 @@ namespace ToronPuzzle
                 Master_Battle.Data_OnlyInBattle._cellsize = new Vector2(_cellSizeY, _cellSizeY);
 
                 transform.position = _showPos;
-                _showFunctions._targetpos = _showPos; ;
+                _showFunctions._targetpos = _showPos;
                 _hideFunctions._targetpos = _hidePos;
                 _placingSprite.transform.localScale = new Vector2((-LDAnchor.x + _showPos.x) * 2, _screenSize.y / 2);
 

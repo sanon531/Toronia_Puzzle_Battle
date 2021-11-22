@@ -27,8 +27,8 @@ namespace ToronPuzzle
         List<ModuleID> _inventoryModule = new List<ModuleID>();
         public List<ModuleID> _placed_Modules = new List<ModuleID>();
 
-
-        public StageInfo _currentStageData ;
+        [SerializeField]
+        StageInfo _currentStageData ;
 
 
         /// <summary>
@@ -73,6 +73,12 @@ namespace ToronPuzzle
             }
         }
 
+        public void SetStageData(StageInfo _argData)
+        {
+            _currentStageData = _argData;
+
+        }
+        public StageInfo GetStageData() { return _currentStageData; }
         public List<ModuleID> GetInventoryModuleList() { return _inventoryModule; }
 
         //
@@ -101,5 +107,6 @@ namespace ToronPuzzle
 
 
     }
+
 }
 

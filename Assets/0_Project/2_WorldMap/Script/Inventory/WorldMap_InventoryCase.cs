@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ToronPuzzle.Data;
+using ToronPuzzle.Event;
 namespace ToronPuzzle.WorldMap
 {
     public class WorldMap_InventoryCase : BlockCase
@@ -10,7 +11,6 @@ namespace ToronPuzzle.WorldMap
         WorldMap_Inventory _worldmap_Inventory;
         RectTransform _thisRect;
         float _rectWidth;
-
         public void BeginInventoryCase(WorldMap_Inventory _arginventory, float _argWidth)
         {
             _worldmap_Inventory = _arginventory;
@@ -18,15 +18,20 @@ namespace ToronPuzzle.WorldMap
             _rectWidth = _argWidth;
             _thisRect = GetComponent<RectTransform>();
 
+            //마스크 사이즈 조절 부분
             GetComponent<BoxCollider2D>().size = _thisRect.rect.size;
             Transform _Mask = GameObject.Find("WorldMap_Inventory_SpriteMask").transform;
             _Mask.transform.localScale = _thisRect.rect.size;
-            _Mask.localPosition = new Vector2(_thisRect.rect.width * 0.5f, -_thisRect.rect.width * 0.5f);
+            _Mask.localPosition = new Vector2(_thisRect.rect.width * 0.5f, -_thisRect.rect.width * 0.35f); ;
 
             foreach (ModuleID _info in _worldmap_Inventory.GetModuleList())
                 PlaceBlock(ModuleDic._IDModuleBlockDic[_info]);
 
+
         }
+
+
+      
 
         public override bool CheckLiftable() { return false; }
 

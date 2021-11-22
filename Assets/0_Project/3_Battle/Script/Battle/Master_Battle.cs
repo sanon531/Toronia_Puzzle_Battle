@@ -77,11 +77,11 @@ namespace ToronPuzzle.Battle
             Data_OnlyInBattle._enemyChar.BeginCharactor();
 
             Data_OnlyInBattle._enemyData = Data_OnlyInBattle._enemyChar._characterData;
-            Data_OnlyInBattle._currentStageData = Global_InGameData.Instance._currentStageData;
+            Data_OnlyInBattle._currentStageData = Global_InGameData.Instance.GetStageData();
             Data_OnlyInBattle.SetStageDataToinfo();
 
             #endregion
-            Battle_ConveyerManager.instance.SetQueueOnConveyer(Global_InGameData.Instance._currentStageData._blockList);
+            Battle_ConveyerManager.instance.SetQueueOnConveyer(Global_InGameData.Instance.GetStageData()._blockList);
             Global_InWorldEventSystem._on시퀀스넘기기 += ShiftSequence;
             Global_InWorldEventSystem._on적턴시작 += EnemyTurnStart;
             SetBattleTimer();

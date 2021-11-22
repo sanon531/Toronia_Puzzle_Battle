@@ -39,6 +39,7 @@ namespace ToronPuzzle.WorldMap
         }
 
 
+
         void BeginInventory()
         {
             _inventoryCase = GameObject.Find("WorldMap_InventoryCase").GetComponent<WorldMap_InventoryCase>();
@@ -48,7 +49,14 @@ namespace ToronPuzzle.WorldMap
             //인벤토리 사이즈 변경하기.
             _inventoryRect = GameObject.Find("WorldMap_InventorySet").GetComponent<RectTransform>();
             _inventoryRect.sizeDelta = new Vector2(Screen.width*0.45f, Screen.height * 0.25f);
-            _inventoryRect.anchoredPosition = new Vector2(-_inventoryRect.sizeDelta.x*0.5f, -_inventoryRect.sizeDelta.y * 0.75f);
+
+            _showPos = new Vector2(-_inventoryRect.sizeDelta.x * 0.5f, -_inventoryRect.sizeDelta.y * 0.6f);
+            _hidePos = new Vector2(_inventoryRect.sizeDelta.x * 0.5f, _inventoryRect.sizeDelta.y * 0.6f);
+            _inventoryRect.anchoredPosition = _showPos;
+
+            //트윈 설정
+            SetInventoryMoveEvent();
+
 
             //케이스 데이터 인풋.
             _caseRectWidth = Screen.width * 0.15f;
@@ -60,6 +68,38 @@ namespace ToronPuzzle.WorldMap
 
 
         }
+        //트위너 설정
+        Vector2 _showPos, _hidePos;
+        ObjectTweener _showFunctions, _hideFunctions;
+        void SetInventoryMoveEvent()
+        {
+            _showFunctions = GameObject.Find("Inv_ShowInv").GetComponent<ObjectTweener>();
+            _hideFunctions = GameObject.Find("Inv_HideInv").GetComponent<ObjectTweener>();
+            _showFunctions._targetpos = _showPos;
+            _hideFunctions._targetpos = _hidePos;
+            SetBlockTweenEvent();
+        }
+
+        private void SetBlockTweenEvent()
+        {
+            Global_UIEventSystem.Register_UIEvent(UIEventID.WorldMap_인벤토리숨기기, HideBlockPannel, EventRegistOption.None);
+            Global_UIEventSystem.Register_UIEvent(UIEventID.WorldMap_인벤토리보이기, ShowBlockPannel, EventRegistOption.None);
+        }
+        private void HideBlockPannel()
+        {
+            _hideFunctions.CallTween();
+        }
+        private void ShowBlockPannel()
+        {
+            _showFunctions.CallTween();
+
+        }
+
+
+
+
+        //초기화 이후
+
 
         [SerializeField] [ReadOnly] List<ModuleID> _inventoryModule = new List<ModuleID>();
 

@@ -10,15 +10,16 @@ namespace ToronPuzzle.WorldMap
 {
     public class Worldmap_SceneChangeScript : UI_Object, IGameListenerUI
     {
-
+        RectTransform _thisRect;
         Button _thisButton;
         public void AssignGameListener()
         {
+            _thisRect = GetComponent<RectTransform>();
             _thisButton = GetComponent<Button>();
             _thisButton.onClick.AddListener(() => OnClick());
             Global_UIEventSystem.Register_UIEvent<bool>(UIEventID.WorldMap_배틀전환허용, SetIsAble, EventRegistOption.None);
             //일단 처음에는 꺼둘 것임.
-            //SetIsAble(false);
+            SetIsAble(false);
         }
 
         void SetIsAble(bool _argBool)
