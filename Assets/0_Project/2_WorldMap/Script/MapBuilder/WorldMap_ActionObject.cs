@@ -45,6 +45,7 @@ namespace ToronPuzzle.WorldMap
         private void OnMouseDown()
         {
             SetColorPressed();
+
             if (_isUsedfalse)
             {
                 switch (_objectAction)
@@ -71,7 +72,11 @@ namespace ToronPuzzle.WorldMap
             }
         }
 
-        private void OnMouseUp() { SetColorCurrent();}
+        private void OnMouseUp() {
+            SetColorCurrent();
+            WorldMap_MapBuilder.Instance.ActionObjectClicked(transform.localPosition);
+
+        }
         private void OnMouseExit() { SetColorCurrent(); }
 
         void SetColorPressed() { _itemSprite.color = _pressedColor; _thisSprite.color = _pressedColor; }
@@ -87,6 +92,10 @@ namespace ToronPuzzle.WorldMap
         {
             Global_InGameData.Instance.SetStageData(_currentStage);
             Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_배틀전환허용, true);
+            Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_인벤토리보이기);
+            Global_UIEventSystem.Call_UIEvent(UIEventID.Global_블록판보이기);
+            Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_전투정보보이기);
+
         }
 
         void StartItem()

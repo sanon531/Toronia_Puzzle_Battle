@@ -34,6 +34,8 @@ namespace ToronPuzzle.Event
         WorldMap_배틀전환허용,
         WorldMap_인벤토리숨기기,
         WorldMap_인벤토리보이기,
+        WorldMap_전투정보보이기,
+        WorldMap_전투정보숨기기,
 
 
         Battle_게임시작표시,

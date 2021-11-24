@@ -22,6 +22,7 @@ namespace ToronPuzzle.Data
     public class StageInfo
     {
         //그냥 스테이지 데이터
+        public string _stageName = "Sample_Map";
         public float _battleTime = 10;
         public float _spawnSpeed = 10;
 
@@ -37,8 +38,9 @@ namespace ToronPuzzle.Data
 
         // float array는 순차적으로, 한 배틀 당의 시간 쿨타임간의 관계임 
         //그리고 아직은 그냥 대강 놓은 거고 대부분의 내용들은 아이템 얻어가면서 바꿔갈것.
-        public StageInfo(float[] _argFloatData, List<BlockInfo> _argBlockList,List<CharacterID> _argStageEnemys)
+        public StageInfo(string _argname,float[] _argFloatData, List<BlockInfo> _argBlockList,List<CharacterID> _argStageEnemys)
         {
+            _stageName = _argname;
             _battleTime = _argFloatData[0];
             _spawnSpeed = _argFloatData[1];
             _startCoolTime = _argFloatData[2];
@@ -52,8 +54,8 @@ namespace ToronPuzzle.Data
     {
         public static Dictionary<string, StageInfo> StageinfoDic
             = new Dictionary<string, StageInfo> {
-                { "Basic",
-                    new StageInfo(new float[]{
+                { "멸고단_1",
+                    new StageInfo("멸고단_1",new float[]{
                         20f,2f,5f,10f},
                         new List<BlockInfo>(){
                             new BlockInfo(BlockElement.Aggressive, BlockShape.One_D,1),
