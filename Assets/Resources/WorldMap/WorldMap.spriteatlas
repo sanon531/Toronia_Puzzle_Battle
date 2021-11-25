@@ -48,23 +48,29 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 0aa43d163b29bf442afbde8e544fa8b2, type: 3}
     - {fileID: 2800000, guid: dc1f0823d9a33534dac6a386df3d61be, type: 3}
     - {fileID: 2800000, guid: 65c598f2ffd1a1f4fbe340ed946cc1b8, type: 3}
-    totalSpriteSurfaceArea: 5120
+    - {fileID: 2800000, guid: 85c0af12ea3868143a2d656df27ef1a9, type: 3}
+    - {fileID: 2800000, guid: 3d52a6843e3f09442acffc4c45884f29, type: 3}
+    totalSpriteSurfaceArea: 7168
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 85c0af12ea3868143a2d656df27ef1a9, type: 3}
   - {fileID: 21300000, guid: 65c598f2ffd1a1f4fbe340ed946cc1b8, type: 3}
   - {fileID: 21300000, guid: dc1f0823d9a33534dac6a386df3d61be, type: 3}
   - {fileID: 21300000, guid: 78e7944325c56b645aa92afb727931af, type: 3}
+  - {fileID: 21300000, guid: 3d52a6843e3f09442acffc4c45884f29, type: 3}
   - {fileID: 21300000, guid: 0aa43d163b29bf442afbde8e544fa8b2, type: 3}
   - {fileID: 21300000, guid: 50c41b0a32462564d8e5cee2d1e6369b, type: 3}
   m_PackedSpriteNamesToIndex:
-  - Shop
-  - Item
-  - Battle
-  - Event
-  - Corrupted
+  - "\uC5D8\uB9AC\uD2B8_\uBC30\uD2C0"
+  - "\uC0C1\uC810"
+  - "\uC544\uC774\uD15C"
+  - "\uC77C\uBC18_\uBC30\uD2C0"
+  - "\uBCF4\uC2A4_\uBC30\uD2C0"
+  - "\uC774\uBCA4\uD2B8"
+  - "\uC815\uBCF4\uC624\uC5FC"
   m_RenderDataMap: {}
   m_Tag: WorldMap
   m_IsVariant: 0

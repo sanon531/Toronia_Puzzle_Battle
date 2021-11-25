@@ -6,7 +6,7 @@ using DG.Tweening;
 
 namespace ToronPuzzle.WorldMap
 {
-    public class WorldMap_MapBuilder : BlockCase
+    public class WorldMap_MapBuilder : MonoBehaviour
     {
         [SerializeField]
         Transform _ActionObjectPlace;
@@ -18,6 +18,8 @@ namespace ToronPuzzle.WorldMap
             Instance = this;
         }
 
+
+
         // Update is called once per frame
         void Update()
         {
@@ -28,19 +30,7 @@ namespace ToronPuzzle.WorldMap
             _dragStartPos,
             _difference;
 
-
-        public override bool CheckLiftable() {
-            Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_배틀전환허용, false);
-            Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_인벤토리숨기기);
-            Global_UIEventSystem.Call_UIEvent(UIEventID.Global_블록판숨기기);
-            Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_전투정보숨기기);
-
-            return false;
-        }
-        public override bool CheckPlaceable(BlockInfo blockinfo){
-            return false;}
-
-        //드래그시 업무와 관함
+        //드래그,클릭시 업무와 관함
         #region
         [SerializeField]
         Vector3 _clampSize;
@@ -48,6 +38,12 @@ namespace ToronPuzzle.WorldMap
         {
             _dragStartPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             _startPos = transform.position;
+            Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_오브젝트_실행, false);
+            Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_인벤토리숨기기);
+            Global_UIEventSystem.Call_UIEvent(UIEventID.Global_블록판숨기기);
+            Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_맵오브젝트정보숨기기);
+
+
         }
         private void OnMouseUp()
         {
@@ -65,17 +61,17 @@ namespace ToronPuzzle.WorldMap
 
 
         }
+        //클릭 했을 때
+        Tween _tweenMove = null;
+        public void ActionObjectClicked(Vector3 _targetVector)
+        {
+            Vector3 _temptVector = new Vector3(-_targetVector.x, -(_targetVector.y - 1.75f), transform.position.z);
+            _tweenMove = transform.DOMove(_temptVector, 0.5f);
+        }
+
         #endregion
 
 
-        //클릭 했을 때
-        Tween _tweenMove=null;
-        public void ActionObjectClicked(Vector3 _targetVector)
-        {
-            Vector3 _temptVector = new Vector3(-_targetVector.x, -(_targetVector.y - 1.5f), transform.position.z);
-            Debug.Log(_temptVector);
-            _tweenMove = transform.DOMove(_temptVector, 0.5f);
-        }
 
 
     }

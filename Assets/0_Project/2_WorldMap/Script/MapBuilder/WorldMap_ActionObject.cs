@@ -6,15 +6,6 @@ using ToronPuzzle.Data;
 
 namespace ToronPuzzle.WorldMap
 {
-    public enum ActionObjectKind
-    {
-        //일반 이벤트,
-        Event,
-        Battle,
-        Item,
-        Shop,
-        Corrupted
-    }
 
     public class WorldMap_ActionObject : MonoBehaviour
     {
@@ -50,20 +41,29 @@ namespace ToronPuzzle.WorldMap
             {
                 switch (_objectAction)
                 {
-                    case ActionObjectKind.Event:
+                    case ActionObjectKind.이벤트:
                         StartEvent();
                         break;
-                    case ActionObjectKind.Battle:
+                    case ActionObjectKind.일반_배틀:
                         StartBattle();
                         break;
-                    case ActionObjectKind.Item:
+                    case ActionObjectKind.아이템:
                         StartItem();
                         break;
-                    case ActionObjectKind.Shop:
+                    case ActionObjectKind.상점:
                         StartShop();
                         break;
-                    case ActionObjectKind.Corrupted:
+                    case ActionObjectKind.정보오염:
                         StartCorrupted();
+                        break;
+                    case ActionObjectKind.엘리트_배틀:
+                        StartBattle_Elite();
+                        break;
+                    case ActionObjectKind.보스_배틀:
+                        StartBattle_Boss();
+                        break;
+                    case ActionObjectKind.미정:
+                        Debug.LogError("No Action");
                         break;
                     default:
                         Debug.LogError("No Action");
@@ -85,31 +85,67 @@ namespace ToronPuzzle.WorldMap
 
         void StartEvent()
         {
-
+            Global_InGameData.Instance.SetStageAction(ActionObjectKind.이벤트);
+            Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_오브젝트_실행, true);
+            Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_맵오브젝트정보보이기, ActionObjectKind.이벤트);
         }
 
         void StartBattle()
         {
+            Global_InGameData.Instance.SetStageAction(ActionObjectKind.일반_배틀);
             Global_InGameData.Instance.SetStageData(_currentStage);
-            Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_배틀전환허용, true);
+            Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_오브젝트_실행, true);
             Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_인벤토리보이기);
             Global_UIEventSystem.Call_UIEvent(UIEventID.Global_블록판보이기);
-            Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_전투정보보이기);
-
+            Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_맵오브젝트정보보이기,ActionObjectKind.일반_배틀);
+            //오브젝트세팅 뭐시기
         }
+
+        void StartBattle_Elite()
+        {
+            Global_InGameData.Instance.SetStageAction(ActionObjectKind.엘리트_배틀);
+            Global_InGameData.Instance.SetStageData(_currentStage);
+
+            Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_오브젝트_실행, true);
+            Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_인벤토리보이기);
+            Global_UIEventSystem.Call_UIEvent(UIEventID.Global_블록판보이기);
+            Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_맵오브젝트정보보이기, ActionObjectKind.엘리트_배틀);
+            //오브젝트세팅 뭐시기
+        }
+        void StartBattle_Boss()
+        {
+            Global_InGameData.Instance.SetStageAction(ActionObjectKind.보스_배틀);
+            Global_InGameData.Instance.SetStageData(_currentStage);
+
+            Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_오브젝트_실행, true);
+            Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_인벤토리보이기);
+            Global_UIEventSystem.Call_UIEvent(UIEventID.Global_블록판보이기);
+            Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_맵오브젝트정보보이기, ActionObjectKind.보스_배틀);
+            //오브젝트세팅 뭐시기
+        }
+
 
         void StartItem()
         {
-            Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_배틀전환허용, false);
+            Global_InGameData.Instance.SetStageAction(ActionObjectKind.아이템);
+
+            Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_오브젝트_실행, true);
+            Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_맵오브젝트정보보이기, ActionObjectKind.아이템);
 
         }
 
         void StartShop()
         {
+            Global_InGameData.Instance.SetStageAction(ActionObjectKind.상점);
+
+            Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_맵오브젝트정보보이기, ActionObjectKind.상점);
 
         }
         void StartCorrupted()
         {
+            Global_InGameData.Instance.SetStageAction(ActionObjectKind.정보오염);
+            Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_오브젝트_실행, true);
+            Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_맵오브젝트정보보이기, ActionObjectKind.정보오염);
 
         }
 

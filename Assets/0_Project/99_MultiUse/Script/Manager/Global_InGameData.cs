@@ -28,6 +28,9 @@ namespace ToronPuzzle
         public List<ModuleID> _placed_Modules = new List<ModuleID>();
 
         [SerializeField]
+        ActionObjectKind _currentActionObject = ActionObjectKind.미정;
+
+        [SerializeField]
         StageInfo _currentStageData ;
 
 
@@ -73,6 +76,9 @@ namespace ToronPuzzle
             }
         }
 
+        public void SetStageAction(ActionObjectKind _Action){_currentActionObject = _Action;}
+        public ActionObjectKind GetStageAction() { return _currentActionObject; }
+
         public void SetStageData(StageInfo _argData)
         {
             _currentStageData = _argData;
@@ -80,6 +86,8 @@ namespace ToronPuzzle
         }
         public StageInfo GetStageData() { return _currentStageData; }
         public List<ModuleID> GetInventoryModuleList() { return _inventoryModule; }
+
+
 
         //
         private void Start()

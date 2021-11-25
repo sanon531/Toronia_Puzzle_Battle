@@ -5,6 +5,25 @@ using UnityEngine;
 
 namespace ToronPuzzle.Data
 {
+    /// <summary>
+    /// 맵에서 나오는 오브젝트 들에 대한 정보.
+    /// </summary>
+    public enum ActionObjectKind
+    {
+        이벤트,
+        일반_배틀,
+        엘리트_배틀,
+        보스_배틀,
+        아이템,
+        상점,
+        정보오염,
+        미정
+
+    }
+
+    /// <summary>
+    /// 배경 화면의 이미지에대한 설정
+    /// </summary>
     public enum BGImageKind
     {
         AGR_1,
@@ -28,7 +47,6 @@ namespace ToronPuzzle.Data
 
         public float _startCoolTime = 10f;
         public float _battleCoolTime = 10f;
-
 
         public List<BlockInfo> _blockList;
 

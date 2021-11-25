@@ -14,11 +14,16 @@ namespace ToronPuzzle
         {
             coroutine = Global_CoroutineManager.Run(DelayedDestroyCode());
         }
-        private void OnDestroy()
+        private void OnDisable()
         {
             Global_CoroutineManager.Stop(coroutine);
         }
 
+
+        private void OnDestroy()
+        {
+            Global_CoroutineManager.Stop(coroutine);
+        }
         IEnumerator DelayedDestroyCode()
         {
             yield return new WaitForSeconds(_destoyTime);

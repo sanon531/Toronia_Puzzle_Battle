@@ -13,6 +13,8 @@ namespace ToronPuzzle.WorldMap
             _worldMapCanvas.worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
             WorldMap_CanvasUI battle_CanvasUI = _worldMapCanvas.gameObject.GetComponent<WorldMap_CanvasUI>();
             battle_CanvasUI.BeginUIManager();
+
+            WorldMap_MapBuilder world_mapBuilder = GameObject.Find("Main Camera").GetComponent<WorldMap_MapBuilder>();
         }
 
         // Update is called once per frame

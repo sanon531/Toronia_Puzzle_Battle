@@ -17,6 +17,7 @@ namespace ToronPuzzle.WorldMap
         GridLayoutGroup _content_LayoutGroup;
 
         Image _caseImage;
+        BoxCollider2D _collider;
         float _caseRectWidth;
 
         public void AssignGameListener()
@@ -30,11 +31,12 @@ namespace ToronPuzzle.WorldMap
         void DeactivateInventoryPlace()
         {
             _caseImage.enabled = false;
-
+            _collider.enabled = false;
         }
         void ActivateInventoryPlace()
         {
             _caseImage.enabled = true;
+            _collider.enabled = true;
 
         }
 
@@ -44,7 +46,7 @@ namespace ToronPuzzle.WorldMap
         {
             _inventoryCase = GameObject.Find("WorldMap_InventoryCase").GetComponent<WorldMap_InventoryCase>();
             _caseImage = _inventoryCase.GetComponent<Image>();
-
+            _collider = _inventoryCase.GetComponent<BoxCollider2D>();
 
             //인벤토리 사이즈 변경하기.
             _inventoryRect = GameObject.Find("WorldMap_InventorySet").GetComponent<RectTransform>();
@@ -56,7 +58,6 @@ namespace ToronPuzzle.WorldMap
 
             //트윈 설정
             SetInventoryMoveEvent();
-
 
             //케이스 데이터 인풋.
             _caseRectWidth = Screen.width * 0.15f;
