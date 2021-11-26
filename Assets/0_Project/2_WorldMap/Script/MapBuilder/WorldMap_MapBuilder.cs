@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ToronPuzzle.Event;
+using ToronPuzzle.Data;
 using DG.Tweening;
 
 namespace ToronPuzzle.WorldMap
@@ -12,11 +13,44 @@ namespace ToronPuzzle.WorldMap
         Transform _ActionObjectPlace;
         public static WorldMap_MapBuilder Instance;
 
-        // Start is called before the first frame update
-        void Start()
+
+
+        // 맵 이 시작되면 저장된 정보가 있는지 저장된 정보가 없는지 저장해두고 한다.
+        public void BeginMapBulider()
         {
             Instance = this;
+            GenerateWorldMap();
+
         }
+
+
+        GameObject _ActionObject;
+        void GenerateWorldMap()
+        {
+            _ActionObject = Resources.Load("WorldMap/WorldMap_ActionObject") as GameObject;
+            //노드 초기화
+            WorldMapGenClass.Set_mapNodeListsConnected();
+            int _total_Node = 10;
+            int _thirdNodeCounts = 1;
+            int _firstLeastNodeCounts = 3;
+            Dictionary<int, WorldMap_ActionObject> _placedNodeList = new Dictionary<int, WorldMap_ActionObject>();
+
+            //실험용
+            GameObject _tempt = Instantiate(_ActionObject, WorldMapGenClass._NodeIdToPos[0], Quaternion.identity, _ActionObjectPlace);
+            WorldMap_ActionObject _temptActionObjScript = _tempt.GetComponent<WorldMap_ActionObject>(); 
+
+            for (int i = 1; i<=10; i++)
+            {
+                _tempt = Instantiate(_ActionObject, WorldMapGenClass._NodeIdToPos[i], Quaternion.identity, _ActionObjectPlace);
+                _tempt.name = i.ToString();
+                _temptActionObjScript = _tempt.GetComponent<WorldMap_ActionObject>(); 
+                _temptActionObjScript.BeginActionObject();
+            }
+            //처음 최소 노드들 설치하기
+            //최소 노드중 하나를 잡고 그것들을 기반으로 계산을 한다,
+
+        }
+
 
 
 

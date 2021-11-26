@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using ToronPuzzle.Event;
 using ToronPuzzle.Data;
 using ToronPuzzle.UI;
@@ -12,10 +13,12 @@ namespace ToronPuzzle.WorldMap
     {
         RectTransform _thisRect;
         Button _thisButton;
+        TextMeshProUGUI _ShowText;
         public void AssignGameListener()
         {
             _thisRect = GetComponent<RectTransform>();
             _thisButton = GetComponent<Button>();
+            _ShowText = GetComponentInChildren<TextMeshProUGUI>();
             _thisButton.onClick.AddListener(() => OnClick());
             Global_UIEventSystem.Register_UIEvent<bool>(UIEventID.WorldMap_오브젝트_실행, SetIsAble, EventRegistOption.None);
             //일단 처음에는 꺼둘 것임.
@@ -25,6 +28,7 @@ namespace ToronPuzzle.WorldMap
         void SetIsAble(bool _argBool)
         {
             _thisButton.interactable = _argBool;
+            _ShowText.enabled = _argBool;
         }
         void OnClick()
         {

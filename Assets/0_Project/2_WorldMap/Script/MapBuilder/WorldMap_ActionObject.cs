@@ -15,24 +15,34 @@ namespace ToronPuzzle.WorldMap
 
         Color _currentColor,_pressedColor;
 
-        [SerializeField]
-        bool _isUsedfalse = true;
-        [SerializeField]
-        StageInfo _currentStage;
+        [SerializeField] bool _isUsedfalse = true;
+        [SerializeField] StageInfo _currentStage;
 
- 
+        public WorldMapNode _thisNode;
+
         // Start is called before the first frame update
         void Start()
         {
             BeginActionObject();
         }
-        void BeginActionObject()
+        public void BeginActionObject()
         {
             _itemSprite.sprite = Resources.Load<Sprite>("WorldMap/" + _objectAction.ToString());
             _currentColor = Color.white;
             _pressedColor = new Color(.5f,.5f,.5f);
         }
 
+
+        //업무가 다 끝나면 이제 연결된 곳데이터 받아와서 해당 부분으로 연결함. 
+        IEnumerator ConnectLineToHigh()
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
+
+
+        //클릭, 관련 업무
+        #region
         private void OnMouseDown()
         {
             SetColorPressed();
@@ -158,6 +168,6 @@ namespace ToronPuzzle.WorldMap
         }
 
     }
-
+    #endregion
 
 }

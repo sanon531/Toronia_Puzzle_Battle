@@ -78,7 +78,6 @@ namespace ToronPuzzle.WorldMap
 
         void SetInfoOnScript()
         {
-
             _obejctKind_Image.sprite = Resources.Load<Sprite>("WorldMap/" + _currentObjectKind.ToString());
             StageInfo _info = Global_InGameData.Instance.GetStageData();
             _stageName.SetText(_currentObjectKind.ToString());
