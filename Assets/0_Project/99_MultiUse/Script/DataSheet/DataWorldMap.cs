@@ -4,24 +4,24 @@ using UnityEngine;
 namespace ToronPuzzle.Data
 {
     /// <summary>
-    /// ∏ ø°º≠ ≥™ø¿¥¬ ø¿∫Í¡ß∆Æ µÈø° ¥Î«— ¡§∫∏.
+    /// 
     /// </summary>
     public enum ActionObjectKind
     {
-        ¿Ã∫•∆Æ,
-        ¿œπ›_πË∆≤,
-        ø§∏Æ∆Æ_πË∆≤,
-        ∫∏Ω∫_πË∆≤,
-        æ∆¿Ã≈€,
-        ªÛ¡°,
-        ¡§∫∏ø¿ø∞,
-        πÃ¡§
+        ÎØ∏Ï†ï,
+        Ïù¥Î≤§Ìä∏,
+        ÏùºÎ∞ò_Î∞∞ÌãÄ,
+        ÏóòÎ¶¨Ìä∏_Î∞∞ÌãÄ,
+        Î≥¥Ïä§_Î∞∞ÌãÄ,
+        ÏïÑÏù¥ÌÖú,
+        ÏÉÅÏ†ê,
+        Ï†ïÎ≥¥Ïò§Ïóº
     }
 
     public static class WorldMapGenClass
     {
         /// <summary>
-        /// π›µÂΩ√Set_mapNodeListsConnected() ∑Œ «—π¯ √ ±‚»≠ «—¥Ÿ¿Ω ªÁøÎ«ÿæﬂ«‘.
+        /// ÔøΩ›µÔøΩÔøΩSet_mapNodeListsConnected() ÔøΩÔøΩ ÔøΩ—πÔøΩ ÔøΩ ±ÔøΩ»≠ ÔøΩ—¥ÔøΩÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩÿæÔøΩÔøΩÔøΩ.
         /// </summary>
         public static List<WorldMapNode> _mapNodeLists = new List<WorldMapNode>()
         {
@@ -36,31 +36,31 @@ namespace ToronPuzzle.Data
             new WorldMapNode(25,3),new WorldMapNode(26,3),new WorldMapNode(27,3),new WorldMapNode(28,3),new WorldMapNode(29,3),new WorldMapNode(30,3),
             new WorldMapNode(31,3),new WorldMapNode(32,3),new WorldMapNode(33,3),new WorldMapNode(34,3),new WorldMapNode(35,3),new WorldMapNode(36,3)
         };
-        //¿Ã∞≈¥¬ ºˆ¡§«œ±‚ ∆Ì«œ∂Û∞Ì ¿·Ω√ ∫–∏ÆΩ√ƒ—µ–∞≈
+        //
         public static void Set_mapNodeListsConnected()
         {
-            _mapNodeLists[0].SetNodeListConnected(new List<int>(){ 1,2,3,4,5,6 });
+            _mapNodeLists[0].SetNodeListConnected(new List<int>() { 1, 2, 3, 4, 5, 6 });
 
-            _mapNodeLists[1].SetNodeListConnected(new List<int>() { 0, 2, 6, 7, 8, 18 });            _mapNodeLists[2].SetNodeListConnected(new List<int>() { 0, 1, 3, 8, 9, 10 });
-            _mapNodeLists[3].SetNodeListConnected(new List<int>() { 0, 2, 4, 10,11,12 });            _mapNodeLists[4].SetNodeListConnected(new List<int>() { 0, 3, 5, 12,13,14 });
-            _mapNodeLists[5].SetNodeListConnected(new List<int>() { 0, 4, 6, 14,15,16 });            _mapNodeLists[6].SetNodeListConnected(new List<int>() { 0, 5, 1, 16,17,18 });
+            _mapNodeLists[1].SetNodeListConnected(new List<int>() { 0, 2, 6, 7, 8, 18 }); _mapNodeLists[2].SetNodeListConnected(new List<int>() { 0, 1, 3, 8, 9, 10 });
+            _mapNodeLists[3].SetNodeListConnected(new List<int>() { 0, 2, 4, 10, 11, 12 }); _mapNodeLists[4].SetNodeListConnected(new List<int>() { 0, 3, 5, 12, 13, 14 });
+            _mapNodeLists[5].SetNodeListConnected(new List<int>() { 0, 4, 6, 14, 15, 16 }); _mapNodeLists[6].SetNodeListConnected(new List<int>() { 0, 5, 1, 16, 17, 18 });
 
-            _mapNodeLists[7].SetNodeListConnected(new List<int>() { 1, 8, 18, 19, 20, 36 });   _mapNodeLists[8].SetNodeListConnected(new List<int>() { 1, 2, 7,  9, 20,21 });
+            _mapNodeLists[7].SetNodeListConnected(new List<int>() { 1, 8, 18, 19, 20, 36 }); _mapNodeLists[8].SetNodeListConnected(new List<int>() { 1, 2, 7, 9, 20, 21 });
             _mapNodeLists[9].SetNodeListConnected(new List<int>() { 2, 8, 10, 21, 22, 23 }); _mapNodeLists[10].SetNodeListConnected(new List<int>() { 2, 3, 9, 11, 23, 24 });
             _mapNodeLists[11].SetNodeListConnected(new List<int>() { 3, 10, 12, 24, 25, 26 }); _mapNodeLists[12].SetNodeListConnected(new List<int>() { 3, 4, 11, 13, 26, 27 });
             _mapNodeLists[13].SetNodeListConnected(new List<int>() { 4, 12, 14, 27, 28, 29 }); _mapNodeLists[14].SetNodeListConnected(new List<int>() { 4, 5, 13, 15, 29, 30 });
-            _mapNodeLists[15].SetNodeListConnected(new List<int>() { 5, 14, 16, 30, 31, 32 }); _mapNodeLists[16].SetNodeListConnected(new List<int>() { 5, 6, 15, 17, 32, 33  });
-            _mapNodeLists[17].SetNodeListConnected(new List<int>() { 6, 16, 18, 33, 34, 35 }); _mapNodeLists[3].SetNodeListConnected(new List<int>() { 1, 6, 7, 17, 35, 36 });
+            _mapNodeLists[15].SetNodeListConnected(new List<int>() { 5, 14, 16, 30, 31, 32 }); _mapNodeLists[16].SetNodeListConnected(new List<int>() { 5, 6, 15, 17, 32, 33 });
+            _mapNodeLists[17].SetNodeListConnected(new List<int>() { 6, 16, 18, 33, 34, 35 }); _mapNodeLists[18].SetNodeListConnected(new List<int>() { 1, 6, 7, 17, 35, 36 });
 
 
 
-            _mapNodeLists[19].SetNodeListConnected(new List<int>() { 7, 20, 36 }); _mapNodeLists[20].SetNodeListConnected(new List<int>() { 7,8,19, 21});
-            _mapNodeLists[21].SetNodeListConnected(new List<int>() { 8,9, 22, 23 }); _mapNodeLists[22].SetNodeListConnected(new List<int>() { 9, 21, 23});
-            _mapNodeLists[23].SetNodeListConnected(new List<int>() { 9, 10, 22, 24}); _mapNodeLists[24].SetNodeListConnected(new List<int>() { 10, 11, 23 , 25  });
+            _mapNodeLists[19].SetNodeListConnected(new List<int>() { 7, 20, 36 }); _mapNodeLists[20].SetNodeListConnected(new List<int>() { 7, 8, 19, 21 });
+            _mapNodeLists[21].SetNodeListConnected(new List<int>() { 8, 9, 22, 23 }); _mapNodeLists[22].SetNodeListConnected(new List<int>() { 9, 21, 23 });
+            _mapNodeLists[23].SetNodeListConnected(new List<int>() { 9, 10, 22, 24 }); _mapNodeLists[24].SetNodeListConnected(new List<int>() { 10, 11, 23, 25 });
             _mapNodeLists[25].SetNodeListConnected(new List<int>() { 11, 24, 26 }); _mapNodeLists[26].SetNodeListConnected(new List<int>() { 11, 12, 25, 27 });
-            _mapNodeLists[27].SetNodeListConnected(new List<int>() { 12, 13, 28, 29}); _mapNodeLists[28].SetNodeListConnected(new List<int>() { 13, 27, 29 });
+            _mapNodeLists[27].SetNodeListConnected(new List<int>() { 12, 13, 28, 29 }); _mapNodeLists[28].SetNodeListConnected(new List<int>() { 13, 27, 29 });
             _mapNodeLists[29].SetNodeListConnected(new List<int>() { 13, 14, 28, 30 }); _mapNodeLists[30].SetNodeListConnected(new List<int>() { 14, 15, 29, 31 });
-            _mapNodeLists[31].SetNodeListConnected(new List<int>() {  15, 30, 32 }); _mapNodeLists[32].SetNodeListConnected(new List<int>() { 15, 16, 31,33 });
+            _mapNodeLists[31].SetNodeListConnected(new List<int>() { 15, 30, 32 }); _mapNodeLists[32].SetNodeListConnected(new List<int>() { 15, 16, 31, 33 });
             _mapNodeLists[33].SetNodeListConnected(new List<int>() { 16, 17, 31, 32 }); _mapNodeLists[34].SetNodeListConnected(new List<int>() { 17, 33, 35 });
             _mapNodeLists[35].SetNodeListConnected(new List<int>() { 17, 18, 34, 36 }); _mapNodeLists[36].SetNodeListConnected(new List<int>() { 7, 18, 35, 19 });
 
@@ -100,21 +100,21 @@ namespace ToronPuzzle.Data
             string _Nodestr = _ID.ToString() + " : ";
             foreach (WorldMapNode _node in _mapNodeLists[_ID].GetConnectedNode())
             {
-                _Nodestr += _node.GetNodeID() +", ";
+                _Nodestr += _node.GetNodeID() + ", ";
             }
             Debug.Log(_Nodestr);
         }
 
     }
-
-
+    [System.Serializable]
     public class WorldMapNode
     {
+        [SerializeField]
         int _nodeID;
         int _nodeLevel;
-        List<WorldMapNode> _directlyConnected=new List<WorldMapNode>();
+        List<WorldMapNode> _directlyConnected = new List<WorldMapNode>();
         List<WorldMapNode> _higherConnected = new List<WorldMapNode>();
-        List<WorldMapNode> _nearConnected =new List<WorldMapNode>();
+        List<WorldMapNode> _nearConnected = new List<WorldMapNode>();
         List<WorldMapNode> _lowerConnected = new List<WorldMapNode>();
 
 
@@ -124,10 +124,10 @@ namespace ToronPuzzle.Data
             _nodeLevel = nodeLevel;
         }
         /// <summary>
-        /// π´¡∂∞« ø¨∞·µ» ¬ ∏∏ ≥ı¿ª ∞Õ
+        /// ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩÔøΩ ÔøΩ ∏ÔøΩ ÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩ
         /// </summary>
         /// <param name="_nodeList"></param>
-        
+
         public void SetNodeListConnected(List<int> _nodeIDList)
         {
             _directlyConnected = new List<WorldMapNode>();
@@ -154,7 +154,7 @@ namespace ToronPuzzle.Data
 
         public void SetNodeListConnected(List<WorldMapNode> _nodeList)
         {
-            _directlyConnected =_nodeList;
+            _directlyConnected = _nodeList;
             foreach (WorldMapNode _node in _directlyConnected)
             {
                 if (_node._nodeLevel == _nodeLevel)
@@ -175,7 +175,7 @@ namespace ToronPuzzle.Data
 
         public int GetNodeID() { return _nodeID; }
         public List<WorldMapNode> GetConnectedNode() { return _directlyConnected; }
-        public List<WorldMapNode> GetNearConnectedNode(){ return _nearConnected;}
+        public List<WorldMapNode> GetNearConnectedNode() { return _nearConnected; }
         public List<WorldMapNode> GetLowerConnectedNode() { return _lowerConnected; }
         public List<WorldMapNode> GetHigerConnectedNode() { return _higherConnected; }
 

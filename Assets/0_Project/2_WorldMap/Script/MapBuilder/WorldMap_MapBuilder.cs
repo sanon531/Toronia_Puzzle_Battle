@@ -12,13 +12,15 @@ namespace ToronPuzzle.WorldMap
         [SerializeField]
         Transform _ActionObjectPlace;
         public static WorldMap_MapBuilder Instance;
-
+        WorldMap_LineSetter _lineSetter;
 
 
         // 맵 이 시작되면 저장된 정보가 있는지 저장된 정보가 없는지 저장해두고 한다.
         public void BeginMapBulider()
         {
             Instance = this;
+            _lineSetter = GameObject.Find("WorldMap_LineSetter").GetComponent<WorldMap_LineSetter>();
+            _lineSetter.BeginLineSetter();
             GenerateWorldMap();
 
         }
@@ -34,20 +36,26 @@ namespace ToronPuzzle.WorldMap
             int _thirdNodeCounts = 1;
             int _firstLeastNodeCounts = 3;
             Dictionary<int, WorldMap_ActionObject> _placedNodeList = new Dictionary<int, WorldMap_ActionObject>();
+            List<int> _targePlaceList = new List<int>();
 
             //실험용
             GameObject _tempt = Instantiate(_ActionObject, WorldMapGenClass._NodeIdToPos[0], Quaternion.identity, _ActionObjectPlace);
-            WorldMap_ActionObject _temptActionObjScript = _tempt.GetComponent<WorldMap_ActionObject>(); 
-
-            for (int i = 1; i<=10; i++)
+            WorldMap_ActionObject _temptActionObjScript = _tempt.GetComponent<WorldMap_ActionObject>();
+            _targePlaceList.Add(0);
+            //지금은 그냥 정해진 대로
+            for (int i = 1; i< 10; i++)
             {
                 _tempt = Instantiate(_ActionObject, WorldMapGenClass._NodeIdToPos[i], Quaternion.identity, _ActionObjectPlace);
                 _tempt.name = i.ToString();
                 _temptActionObjScript = _tempt.GetComponent<WorldMap_ActionObject>(); 
                 _temptActionObjScript.BeginActionObject();
+                _targePlaceList.Add(i);
             }
             //처음 최소 노드들 설치하기
+
+            
             //최소 노드중 하나를 잡고 그것들을 기반으로 계산을 한다,
+            _lineSetter.PlaceLineByIntList(_targePlaceList);
 
         }
 

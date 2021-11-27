@@ -9,7 +9,8 @@ namespace ToronPuzzle.WorldMap
 
     public class WorldMap_ActionObject : MonoBehaviour
     {
-        public ActionObjectKind _objectAction;
+        [SerializeField]
+        ActionObjectKind _objectAction;
         [SerializeField]
         SpriteRenderer _thisSprite,_itemSprite;
 

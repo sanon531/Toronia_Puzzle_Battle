@@ -30,6 +30,7 @@ namespace ToronPuzzle
         [SerializeField]
         ActionObjectKind _currentActionObject = ActionObjectKind.미정;
 
+
         [SerializeField]
         StageInfo _currentStageData ;
 
