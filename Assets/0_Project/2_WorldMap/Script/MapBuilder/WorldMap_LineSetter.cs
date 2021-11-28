@@ -45,12 +45,21 @@ public class WorldMap_LineSetter : MonoBehaviour
     }
     public void SetNodeColorPassed(Vector2Int _target)
     {
-        _vectorLineDic[_target].colorGradient = _linePassed;
+        if (_vectorLineDic.ContainsKey(_target))
+            _vectorLineDic[_target].colorGradient = _lineUnPassed;
+        else if (_vectorLineDic.ContainsKey(new Vector2Int(_target.y, _target.x)))
+            _vectorLineDic[new Vector2Int(_target.y, _target.x)].colorGradient = _lineUnPassed;
+        else
+            Debug.Log("Did'tContaion");
     }
-
     public void SetNodeColorCorrupted(Vector2Int _target)
     {
-        _vectorLineDic[_target].colorGradient = _lineCorrupted;
+        if (_vectorLineDic.ContainsKey(_target))
+            _vectorLineDic[_target].colorGradient = _lineCorrupted;
+        else if (_vectorLineDic.ContainsKey(new Vector2Int(_target.y, _target.x)))
+            _vectorLineDic[new Vector2Int(_target.y, _target.x)].colorGradient = _lineCorrupted;
+        else
+            Debug.Log("Did'tContaion");
     }
 
 }

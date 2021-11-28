@@ -13,6 +13,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 4
+--- !u!28 &-6197280475815188858
+Texture2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: _ColorRampTexGradientTex{"mode":0,"colorKeys":[{"color":{"r":0.0,"g":0.22515630722045899,"b":1.0,"a":1.0},"time":0.0},{"color":{"r":0.9450980424880981,"g":0.9215207099914551,"b":0.054901957511901858,"a":1.0},"time":0.6382390856742859},{"color":{"r":1.0,"g":0.12406183779239655,"b":0.0,"a":1.0},"time":0.7617608904838562},{"color":{"r":0.06917457282543183,"g":0.9567519426345825,"b":0.021335886791348459,"a":1.0},"time":0.9499961733818054}],"alphaKeys":[{"alpha":1.0,"time":0.002944991225376725},{"alpha":1.0,"time":0.9176470637321472}]}
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 2
+  m_Width: 64
+  m_Height: 1
+  m_CompleteImageSize: 256
+  m_MipsStripped: 0
+  m_TextureFormat: 4
+  m_MipCount: 1
+  m_IsReadable: 1
+  m_IsPreProcessed: 0
+  m_IgnoreMasterTextureLimit: 0
+  m_StreamingMipmaps: 0
+  m_StreamingMipmapsPriority: 0
+  m_VTOnly: 0
+  m_AlphaIsTransparency: 0
+  m_ImageCount: 1
+  m_TextureDimension: 2
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_LightmapFormat: 0
+  m_ColorSpace: 0
+  m_PlatformBlob: 
+  image data: 256
+  _typelessdata: 0039ffff063ef9ff0c42f3ff1247edff184be7ff1e4fe1ff2454dbff2a58d5ff305dcfff3661c9ff3c66c3ff426abdff486eb7ff4e73b1ff5477abff5a7ca5ff60809fff668499ff6c8993ff728d8dff789287ff7e9681ff849b7bff8a9f75ff90a36fff96a869ff9cac63ffa2b15dffa8b557ffaeb951ffb4be4bffbac245ffc0c73fffc6cb39ffccd033ffd2d42dffd8d827ffdedd21ffe4e11bffeae615fff0ea0ffff2d60dfff4bc0bfff6a209fff88807fffa6e05fffb5404fffd3a02ffff2000ffeb3200ffd74401ffc35601ffaf6702ff9b7902ff878b03ff739d03ff5faf04ff4bc104ff37d305ff23e505ff12f405ff12f405ff12f405ff12f405ff
+  m_StreamData:
+    serializedVersion: 2
+    offset: 0
+    size: 0
+    path: 
 --- !u!21 &2100000
 Material:
   serializedVersion: 6
@@ -22,8 +69,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Block_Bonus
   m_Shader: {fileID: 4800000, guid: a36b7719ff0465b42ab1407d67672c5f, type: 3}
-  m_ShaderKeywords: CHANGECOLOR2_ON COLORSWAP_ON FADE_ON OUTBASEPIXELPERF_ON SHINE_ON
-    _OUTLINEISPIXEL_ON
+  m_ShaderKeywords: CHANGECOLOR2_ON COLORRAMP_ON FADE_ON GRADIENTCOLORRAMP_ON OUTBASEPIXELPERF_ON
+    SHINE_ON _OUTLINEISPIXEL_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -42,11 +89,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ColorRampTex:
-        m_Texture: {fileID: 2800000, guid: 279657edc397ece4b8029c727adf6ddc, type: 3}
+        m_Texture: {fileID: 2800000, guid: 74087f6d03f233e4a8a142fa01f9e5cf, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ColorRampTexGradient:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: -6197280475815188858}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ColorSwapTex:
@@ -161,11 +208,11 @@ Material:
     - _ColorChangeTolerance2: 0.836
     - _ColorChangeTolerance3: 0.25
     - _ColorRampBlend: 1
-    - _ColorRampLuminosity: 0
+    - _ColorRampLuminosity: -0.13
     - _ColorRampOutline: 0
     - _ColorSwapBlend: 1
     - _ColorSwapBlueLuminosity: 0.076
-    - _ColorSwapGreenLuminosity: 0.029
+    - _ColorSwapGreenLuminosity: -0.18
     - _ColorSwapRedLuminosity: 0.013
     - _Contrast: 1.2
     - _Cull: 2
@@ -219,7 +266,7 @@ Material:
     - _HologramUnmodAmount: 0
     - _HsvBright: 1
     - _HsvSaturation: 1
-    - _HsvShift: 141
+    - _HsvShift: 193
     - _InnerOutlineAlpha: 0.822
     - _InnerOutlineGlow: 4
     - _InnerOutlineThickness: 1.2
@@ -307,8 +354,8 @@ Material:
     - _ColorChangeTarget: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 1}
     - _ColorChangeTarget2: {r: 1, g: 1, b: 1, a: 1}
     - _ColorChangeTarget3: {r: 1, g: 0, b: 0, a: 1}
-    - _ColorSwapBlue: {r: 0, g: 0.2024517, b: 1, a: 1}
-    - _ColorSwapGreen: {r: 0.043376923, g: 1, b: 0, a: 1}
+    - _ColorSwapBlue: {r: 0.05724919, g: 1, b: 0, a: 1}
+    - _ColorSwapGreen: {r: 0.6446338, g: 0.8679245, b: 0.63456744, a: 1}
     - _ColorSwapRed: {r: 1, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FadeBurnColor: {r: 1, g: 1, b: 0, a: 1}

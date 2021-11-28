@@ -27,46 +27,131 @@ namespace ToronPuzzle.WorldMap
 
 
         GameObject _ActionObject;
+        Dictionary<int, WorldMap_ActionObject> _placedNodeDic = new Dictionary<int, WorldMap_ActionObject>();
+        List<int> _targePlaceList = new List<int>();
+        [SerializeField]
+        int _total_Node = 10;
+        [SerializeField]
+        int _thirdNodeCounts = 1;
+        [SerializeField]
+        int _firstLeastNodeCounts = 3;
+        List<ActionObjectKind> actionObjectKindList = new List<ActionObjectKind>();
+
         void GenerateWorldMap()
         {
             _ActionObject = Resources.Load("WorldMap/WorldMap_ActionObject") as GameObject;
             //노드 초기화
             WorldMapGenClass.Set_mapNodeListsConnected();
-            int _total_Node = 10;
-            int _thirdNodeCounts = 1;
-            int _firstLeastNodeCounts = 3;
-            Dictionary<int, WorldMap_ActionObject> _placedNodeList = new Dictionary<int, WorldMap_ActionObject>();
-            List<int> _targePlaceList = new List<int>();
 
+            var random = new System.Random();
+
+            //처음의 배치는 그냥 그대로 함.
+            SetActionObjectByInt(0);
             //실험용
-            GameObject _tempt = Instantiate(_ActionObject, WorldMapGenClass._NodeIdToPos[0], Quaternion.identity, _ActionObjectPlace);
-            WorldMap_ActionObject _temptActionObjScript = _tempt.GetComponent<WorldMap_ActionObject>();
-            _targePlaceList.Add(0);
-            //지금은 그냥 정해진 대로
-            for (int i = 1; i< 10; i++)
-            {
-                _tempt = Instantiate(_ActionObject, WorldMapGenClass._NodeIdToPos[i], Quaternion.identity, _ActionObjectPlace);
-                _tempt.name = i.ToString();
-                _temptActionObjScript = _tempt.GetComponent<WorldMap_ActionObject>(); 
-                _temptActionObjScript.BeginActionObject();
-                _targePlaceList.Add(i);
-            }
-            //처음 최소 노드들 설치하기
 
-            
+
+            //만약 주어진 세이브 정보가 있을 경우 관련해서
+
+            //지금은 그냥 정해진 대로 배치해 봄
+            //처음 최소 노드들 설치하기
+            Stack<int> _node_stack = new Stack<int>();
+            List<int> _selectedList = new List<int>() { 3, 6, 2 , 4, 1, 5 };
+            for (int i = 0; i < _firstLeastNodeCounts; i++)
+            {
+                int j = random.Next(0,_selectedList.Count-1);
+                SetActionObjectByInt(_selectedList[j]);
+                _node_stack.Push(_selectedList[j]);
+                _selectedList.RemoveAt(j);
+            }
+
+            List<WorldMapNode> _secondnodeList;
+            //최종점까지 배치 할꺼 체크
+            while (_thirdNodeCounts !=0)
+            {
+                int i = _node_stack.Pop();
+                _secondnodeList = WorldMapGenClass._mapNodeLists[i].GetHigerConnectedNode();
+
+                int j = random.Next(0, _secondnodeList.Count - 1);
+                while (!SetActionObjectByInt(_secondnodeList[j].GetNodeID()))
+                {
+                    if (_secondnodeList.Count != 0)
+                    {
+                        _secondnodeList.RemoveAt(j);
+                        j = random.Next(0, _secondnodeList.Count - 1);
+                    }
+                    else
+                        break;
+                }
+                SetActionObjectByInt(j);
+                _node_stack.Push(j);
+
+                List<WorldMapNode> _thirdNodeList = WorldMapGenClass._mapNodeLists[_secondnodeList[j].GetNodeID()].GetHigerConnectedNode();
+                int k = random.Next(0, _thirdNodeList.Count - 1);
+
+                while (!SetActionObjectByInt(_thirdNodeList[k].GetNodeID()))
+                {
+                    if (_thirdNodeList.Count != 0)
+                    {
+                        _thirdNodeList.RemoveAt(k);
+                        k = random.Next(0, _thirdNodeList.Count - 1);
+                    }
+                    else
+                        break;
+                }
+
+                _thirdNodeCounts--;
+            }
+
+
+
+            int n_i = _node_stack.Pop();
+            _secondnodeList = WorldMapGenClass._mapNodeLists[n_i].GetHigerConnectedNode();
+            while (_total_Node >0 && _node_stack.Count >0)
+            {
+                int j = random.Next(0, _secondnodeList.Count - 1);
+                while (!SetActionObjectByInt(_secondnodeList[j].GetNodeID()))
+                {
+                    if (_secondnodeList.Count != 0)
+                    {
+                        _secondnodeList.RemoveAt(j);
+                        j = random.Next(0, _secondnodeList.Count - 1);
+                    }
+                    else
+                    {
+                        n_i = _node_stack.Pop();
+                        _secondnodeList = WorldMapGenClass._mapNodeLists[n_i].GetNearConnectedNode();
+                        break;
+                    }
+                }
+
+            }
+
+
+
+
+
+            Debug.Log(_total_Node);
             //최소 노드중 하나를 잡고 그것들을 기반으로 계산을 한다,
             _lineSetter.PlaceLineByIntList(_targePlaceList);
-
         }
 
-
-
-
-        // Update is called once per frame
-        void Update()
+        bool SetActionObjectByInt(int i)
         {
-
+            if (_placedNodeDic.ContainsKey(i)) return false;
+            //Debug.Log(i);
+            GameObject _tempt = Instantiate(_ActionObject, WorldMapGenClass._NodeIdToPos[i], Quaternion.identity, _ActionObjectPlace);
+            WorldMap_ActionObject _temptActionObjScript = _tempt.GetComponent<WorldMap_ActionObject>();
+            _tempt.name = "AO" + i + ","+ WorldMapGenClass._mapNodeLists[i].GetNodeLevel();
+            _temptActionObjScript.BeginActionObject(i);
+            _placedNodeDic.Add(i, _temptActionObjScript);
+            _targePlaceList.Add(i);
+            _total_Node--;
+            return true;
         }
+
+
+
+
         Vector3 
             _startPos,
             _dragStartPos,

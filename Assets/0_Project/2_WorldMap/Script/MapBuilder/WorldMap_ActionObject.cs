@@ -24,9 +24,8 @@ namespace ToronPuzzle.WorldMap
         // Start is called before the first frame update
         void Start()
         {
-            BeginActionObject();
         }
-        public void BeginActionObject()
+        public void BeginActionObject(int _NodeID)
         {
             _itemSprite.sprite = Resources.Load<Sprite>("WorldMap/" + _objectAction.ToString());
             _currentColor = Color.white;

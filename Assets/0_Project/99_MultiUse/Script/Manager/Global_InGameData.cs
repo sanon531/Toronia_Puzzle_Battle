@@ -104,8 +104,6 @@ namespace ToronPuzzle
 
     }
 
-
-
     [System.Serializable]
     public class PlacePannelData
     {

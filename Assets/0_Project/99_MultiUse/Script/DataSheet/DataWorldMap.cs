@@ -21,7 +21,6 @@ namespace ToronPuzzle.Data
     public static class WorldMapGenClass
     {
         /// <summary>
-        /// �ݵ��Set_mapNodeListsConnected() �� �ѹ� �ʱ�ȭ �Ѵ��� ����ؾ���.
         /// </summary>
         public static List<WorldMapNode> _mapNodeLists = new List<WorldMapNode>()
         {
@@ -36,7 +35,7 @@ namespace ToronPuzzle.Data
             new WorldMapNode(25,3),new WorldMapNode(26,3),new WorldMapNode(27,3),new WorldMapNode(28,3),new WorldMapNode(29,3),new WorldMapNode(30,3),
             new WorldMapNode(31,3),new WorldMapNode(32,3),new WorldMapNode(33,3),new WorldMapNode(34,3),new WorldMapNode(35,3),new WorldMapNode(36,3)
         };
-        //
+        //임시로 해둠 관련 안전성이 아직 담보 되지않아서
         public static void Set_mapNodeListsConnected()
         {
             _mapNodeLists[0].SetNodeListConnected(new List<int>() { 1, 2, 3, 4, 5, 6 });
@@ -106,10 +105,8 @@ namespace ToronPuzzle.Data
         }
 
     }
-    [System.Serializable]
     public class WorldMapNode
     {
-        [SerializeField]
         int _nodeID;
         int _nodeLevel;
         List<WorldMapNode> _directlyConnected = new List<WorldMapNode>();
@@ -123,10 +120,8 @@ namespace ToronPuzzle.Data
             _nodeID = nodeID;
             _nodeLevel = nodeLevel;
         }
-        /// <summary>
-        /// ������ ����� �ʸ� ���� ��
-        /// </summary>
-        /// <param name="_nodeList"></param>
+
+
 
         public void SetNodeListConnected(List<int> _nodeIDList)
         {
@@ -174,6 +169,7 @@ namespace ToronPuzzle.Data
 
 
         public int GetNodeID() { return _nodeID; }
+        public int GetNodeLevel() { return _nodeLevel; }
         public List<WorldMapNode> GetConnectedNode() { return _directlyConnected; }
         public List<WorldMapNode> GetNearConnectedNode() { return _nearConnected; }
         public List<WorldMapNode> GetLowerConnectedNode() { return _lowerConnected; }

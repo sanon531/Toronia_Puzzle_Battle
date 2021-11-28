@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bc1c1b263bb55d4c9e5caefe927710c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectAction: 1
+  _objectAction: 3
   _thisSprite: {fileID: 842788964636936771}
   _itemSprite: {fileID: 842788966127526975}
   _isUsedfalse: 1
