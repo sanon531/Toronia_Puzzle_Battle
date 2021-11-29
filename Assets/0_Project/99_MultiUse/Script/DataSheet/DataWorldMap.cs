@@ -8,14 +8,15 @@ namespace ToronPuzzle.Data
     /// </summary>
     public enum ActionObjectKind
     {
-        미정,
-        이벤트,
-        일반_배틀,
-        엘리트_배틀,
-        보스_배틀,
-        아이템,
-        상점,
-        정보오염
+        미정=0,
+        시작=2,
+        이벤트= 3,
+        일반_배틀=4,
+        엘리트_배틀=5,
+        보스_배틀=6,
+        아이템=7,
+        상점=8,
+        정보오염=9
     }
 
     public static class WorldMapGenClass
@@ -66,8 +67,6 @@ namespace ToronPuzzle.Data
 
 
         }
-
-
         public static Dictionary<int, Vector2> _NodeIdToPos = new Dictionary<int, Vector2>()
         {
             {0,new Vector2(0,0) },
@@ -103,6 +102,17 @@ namespace ToronPuzzle.Data
             }
             Debug.Log(_Nodestr);
         }
+
+        public static Dictionary<ActionObjectKind, float> GetCurrentWorldMapSpawn = new Dictionary<ActionObjectKind, float>()
+        {
+            {ActionObjectKind.일반_배틀,0.5f },
+            {ActionObjectKind.이벤트,0.3f },
+            {ActionObjectKind.아이템,0.1f },
+            {ActionObjectKind.상점,0.1f },
+
+
+
+        };
 
     }
     public class WorldMapNode

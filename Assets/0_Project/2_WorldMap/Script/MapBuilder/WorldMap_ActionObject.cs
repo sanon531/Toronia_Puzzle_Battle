@@ -12,32 +12,72 @@ namespace ToronPuzzle.WorldMap
         [SerializeField]
         ActionObjectKind _objectAction;
         [SerializeField]
-        SpriteRenderer _thisSprite,_itemSprite;
+        SpriteRenderer _thisSprite,_itemSprite,_AuraSprite;
 
         Color _currentColor,_pressedColor;
 
-        [SerializeField] bool _isUsedfalse = true;
+        [SerializeField] bool _isNotUsed = true;
         [SerializeField] StageInfo _currentStage;
 
         public WorldMapNode _thisNode;
+        [SerializeField]
+        int _nodeID;
+        Material _this_Mat;
 
-        // Start is called before the first frame update
-        void Start()
+
+        public void BeginActionObject(int _arg_NodeID,ActionObjectKind _kind)
         {
+            _nodeID = _arg_NodeID;
+            _objectAction = _kind;
+            _this_Mat = _thisSprite.material;
+            SetPanelSpriteByChange();
         }
-        public void BeginActionObject(int _NodeID)
+
+        public void SetPanelSpriteByChange()
         {
+            if (_isNotUsed)
+            {
+                _currentColor = Color.white;
+                _pressedColor = new Color(.5f, .5f, .5f);
+            }
+            else
+                _itemSprite.color = new Color(.25f, .25f, .25f);
+
             _itemSprite.sprite = Resources.Load<Sprite>("WorldMap/" + _objectAction.ToString());
-            _currentColor = Color.white;
-            _pressedColor = new Color(.5f,.5f,.5f);
-        }
+            _AuraSprite.enabled = false;
+
+            switch (_objectAction)
+            {
+                case ActionObjectKind.미정:
+                    _itemSprite.color = new Color(.25f, .25f, .25f);
+                    break;
+                case ActionObjectKind.시작:
+                    break;
+                case ActionObjectKind.이벤트:
+                    break;
+                case ActionObjectKind.일반_배틀:
+                    break;
+                case ActionObjectKind.엘리트_배틀:
+                    _AuraSprite.enabled = true;
+                    _AuraSprite.color = Color.white;
+                    break;
+                case ActionObjectKind.보스_배틀:
+                    _AuraSprite.enabled = true;
+                    _AuraSprite.color = Color.red;
+                    break;
+                case ActionObjectKind.아이템:
+                    break;
+                case ActionObjectKind.상점:
+                    break;
+                case ActionObjectKind.정보오염:
+                    _this_Mat.SetColor("_Color", new Color(.25f, .25f, .25f));
+                    _this_Mat.SetFloat("_DistortAmount", 0.8f);
+                    break;
+            }
 
 
-        //업무가 다 끝나면 이제 연결된 곳데이터 받아와서 해당 부분으로 연결함. 
-        IEnumerator ConnectLineToHigh()
-        {
-            yield return new WaitForEndOfFrame();
         }
+
 
 
 
@@ -45,10 +85,9 @@ namespace ToronPuzzle.WorldMap
         #region
         private void OnMouseDown()
         {
-            SetColorPressed();
-
-            if (_isUsedfalse)
+            if (_isNotUsed)
             {
+                SetColorPressed();
                 switch (_objectAction)
                 {
                     case ActionObjectKind.이벤트:
@@ -79,12 +118,14 @@ namespace ToronPuzzle.WorldMap
                         Debug.LogError("No Action");
                         break;
                 }
+                WorldMap_MapBuilder.Instance.ActionObjectClicked(_nodeID,transform.localPosition);
             }
         }
 
-        private void OnMouseUp() {
-            SetColorCurrent();
-            WorldMap_MapBuilder.Instance.ActionObjectClicked(transform.localPosition);
+        private void OnMouseUp()
+        {
+            if (_isNotUsed)
+                SetColorCurrent();
 
         }
         private void OnMouseExit() { SetColorCurrent(); }
@@ -164,7 +205,7 @@ namespace ToronPuzzle.WorldMap
             _currentColor = new Color(.75f, .75f, .75f);
             _itemSprite.color = _currentColor;
             _thisSprite.color = _currentColor;
-            _isUsedfalse = false;
+            _isNotUsed = false;
         }
 
     }

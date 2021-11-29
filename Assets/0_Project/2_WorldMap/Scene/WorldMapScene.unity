@@ -410,7 +410,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a4b6188a3256dbf4ebc7cea2b62ef722, type: 3}
-  m_Color: {r: 0.8705883, g: 0.8705883, b: 0.8705883, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2107,7 +2107,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1004350011
 GameObject:
@@ -2249,7 +2249,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7618313552544650223, guid: a3fbdfafd047abe43b7a6e83d578c739, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7618313552544650223, guid: a3fbdfafd047abe43b7a6e83d578c739, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2773,10 +2773,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ActionObjectPlace: {fileID: 329774988}
-  _total_Node: 8
+  _total_Node: 11
   _thirdNodeCounts: 1
   _firstLeastNodeCounts: 3
-  _clampSize: {x: 2, y: 3, z: 0}
+  actionObjectKindList: 
+  _clampSize: {x: 3, y: 4, z: 0}
 --- !u!61 &1183500023
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3657,7 +3658,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5230807512495682006, guid: f37fe5b3c1232884abb8f801fe781ceb, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5230807512495682006, guid: f37fe5b3c1232884abb8f801fe781ceb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3828,7 +3829,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &2040626873
 GameObject:
