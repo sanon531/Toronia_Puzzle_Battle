@@ -34,9 +34,13 @@ MonoBehaviour:
     - spine-unity
     - Cinemachine
     - spine-csharp
+    - Febucci.TextAnimator.Runtime
+    - Febucci.TextAnimator.Demo.Runtime
     - PsdPlugin
     - spine-unity-editor
     - spine-unity-examples-editor
+    - Febucci.TextAnimator.Demo.Editor
+    - Febucci.TextAnimator.Editor
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1

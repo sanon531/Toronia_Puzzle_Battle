@@ -65,7 +65,7 @@ namespace ToronPuzzle.Data
             {
                 {ModuleID.카리스마Lv1,
                     "백금으로 만든 월계관이자, \n" +
-                    "마주한 이에게 내려찍는 말없는 협상 \n" +
+                    "마주한 이에게 <red>내려찍는</red> 말없는 협상 \n" +
                     " - 총독의 미덕에 대하여" },
                 {ModuleID.분석력Lv1,
                     "이성적 사고의 기본은 한 이야기를 들었을때 \n" +
@@ -77,9 +77,9 @@ namespace ToronPuzzle.Data
                 {ModuleID.쇄빙,
                     "고래도 개미도 세포는 평등하며 \n" +
                     "태양도 터럭도 같은 원자로 이루어 졌듯. \n"+
-                    "크기에 압도되었을 때는 그것을 해체하라. \n" +
-                    "논리는 가장 위대한 메스일지니 \n" +
-                    " - 자인 아르록,파괴 변증법 p.42"},
+                    "크기에 압도되었을 때는 그것을 <blue>해체</blue>하라. \n" +
+                    "<blue>논리</blue>는 가장 위대한 메스일지니 \n" +
+                    " - <blue>자인 아르록,파괴 변증법 p.42</blue>"},
                 { ModuleID.카리스마Lv2,
                     "고개를 숙이는 것은 비참하고 증오를 부르는 일일텐테 \n" +
                     "어째서 그 어떠한 선택보다도 나의 힘줄을 잡아 끄는걸까." },
@@ -104,15 +104,15 @@ namespace ToronPuzzle.Data
             new Dictionary<ModuleID, string>()
             {
                 {ModuleID.카리스마Lv1,
-                    "<sprite=0> 블록의 공격력을 약간 올립니다." },
+                    "<sprite=0> <red>블록</red>의 <red>공격력</red>을 약간 올립니다." },
                 {ModuleID.분석력Lv1,
-                    "<sprite=1> 블록의 방어력을 약간 올립니다." },
+                    "<sprite=1> <blue>블록</blue>의 <blue>방어력</blue>을 약간 올립니다." },
                 {ModuleID.책임감Lv1,
                     "<sprite=2> 블록의 공격력 방어력을 약간 올립니다." },
                 { ModuleID.쇄빙,
-                    "<sprite=1> 블록의 공격력을 약간 올립니다.\n"+
-                    "모듈의 발동 구역에 배치된 1개 이상의 <sprite=1> 블록들을\n" +
-                    " 1x1 <sprite=1> 블록들로 재생성합니다." },
+                    "<sprite=1> <blue>블록</blue>의 <red>공격력</red>을 약간 올립니다.\n"+
+                    "모듈의 발동 구역에 배치된 1개 이상의 <sprite=1> <blue>블록</blue>들을\n" +
+                    " 1x1 <sprite=1> <blue>블록들</blue>로 재생성합니다." },
                 { ModuleID.현란한_임기응변,
                     "모듈의 배치를 배틀 중에도 변경할 수 있게 됩니다."
                 },

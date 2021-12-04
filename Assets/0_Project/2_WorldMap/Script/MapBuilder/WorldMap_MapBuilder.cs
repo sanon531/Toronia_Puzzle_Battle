@@ -133,8 +133,8 @@ namespace ToronPuzzle.WorldMap
                 if (!_secondnodeList.Contains(_NearNodes))
                     _secondnodeList.Add(_NearNodes);
             }
-            foreach (WorldMapNode _Node in _secondnodeList)
-                Debug.Log("Second nodes" + _Node.GetNodeID() + "," + _Node.GetNodeLevel());
+            //foreach (WorldMapNode _Node in _secondnodeList)
+                //Debug.Log("Second nodes" + _Node.GetNodeID() + "," + _Node.GetNodeLevel());
 
 
 
@@ -232,7 +232,7 @@ namespace ToronPuzzle.WorldMap
             if (_placedNodeDic.ContainsKey(i)) return false;
 
 
-            Debug.Log("Spawn  : " + i);
+            //Debug.Log("Spawn  : " + i);
             GameObject _tempt = Instantiate(_ActionObject, WorldMapGenClass._NodeIdToPos[i], Quaternion.identity, _ActionObjectPlace);
             WorldMap_ActionObject _temptActionObjScript = _tempt.GetComponent<WorldMap_ActionObject>();
             _tempt.name = "AO" + i + "," + WorldMapGenClass._mapNodeLists[i].GetNodeLevel();
