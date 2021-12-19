@@ -117,7 +117,6 @@ namespace ToronPuzzle
                         Debug.LogError("Calc: default error ");
                         break;
                 }
-            SetElementToPower();
         }
 
 
@@ -202,9 +201,10 @@ namespace ToronPuzzle
                 Global_FXPlayer.PlayFX(FXKind.BlockBns_Full , _fullFXpos, new Vector2((int)(_filledLineX.Count * 0.75f), (int)(_filledLineY.Count * 0.75f)), lowestY * 0.25f);
                 Global_SoundManager.Instance.PlaySFX(SFXName.Bonus_Big, lowestY * 0.25f);
             }
+            SetElementToPower();
 
         }
-        
+
 
     }
 }
