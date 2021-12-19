@@ -36,9 +36,9 @@ namespace ToronPuzzle.Data
                 { ModuleID.½ÂÈ­,
                     new BlockInfo(BlockElement.Aggressive,BlockShape.Three_G_¼âºù,new Module_½ÂÈ­(), ModuleID.½ÂÈ­,6)},
                 { ModuleID.Ãæµ¿ ,
-                  new Module_ActBegin() },
+                    new BlockInfo(BlockElement.Aggressive,BlockShape.One_D_¸ðµâ,new Module_ActBegin(), ModuleID.Ãæµ¿,1)},
                 { ModuleID.ÂøÃë ,
-                  new Module_ActBegin() },
+                    new BlockInfo(BlockElement.Aggressive,BlockShape.One_D_¸ðµâ,new Module_ActBegin(), ModuleID.ÂøÃë,1)},
 
 
             };

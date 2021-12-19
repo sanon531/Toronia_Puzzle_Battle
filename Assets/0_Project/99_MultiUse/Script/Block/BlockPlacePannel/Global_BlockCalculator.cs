@@ -21,6 +21,7 @@ namespace ToronPuzzle
         void ChangeBlockElement(BlockElement _element, Vector3 _amount)
         {
             _currentElementValue[_element] += _amount;
+            SetElementToPower();
             //Debug.Log(_element+"+"+_amount);
         } 
 
@@ -60,6 +61,8 @@ namespace ToronPuzzle
             _attackNum = 0;
             _defendNum = 0;
         }
+        //계산 및 보이는거 여기서 함.
+        Coroutine _callCoroutine;
         private void SetElementToPower()
         {
             _attackNum = _aggressiveNum * _currentElementValue[BlockElement.Aggressive].x
@@ -74,8 +77,21 @@ namespace ToronPuzzle
                 + _emptinessNum * _currentElementValue[BlockElement.Emptiness].y
                 + _bonusNum * _currentElementValue[BlockElement.Bonus].y;
 
+            if (_callCoroutine != null)
+                Global_CoroutineManager.Stop(_callCoroutine);
 
+            _callCoroutine = Global_CoroutineManager.Run(LateCalc());
+
+            //계산 툴팁 변경 계산.
         }
+
+        IEnumerator LateCalc()
+        {
+            yield return new WaitForEndOfFrame();
+            Global_UIEventSystem.Call_UIEvent(UIEventID.Global_계산표시, _attackNum, _defendNum);
+        }
+
+
         public override void CalcPannelData(List<BlockInfo> _argBlockInfos)
         {
             ResetNum();
@@ -102,9 +118,9 @@ namespace ToronPuzzle
                         break;
                 }
             SetElementToPower();
-            //계산 툴팁 변경 잠기 없램
-            Global_UIEventSystem.Call_UIEvent(UIEventID.Global_계산표시, _attackNum, _defendNum);
         }
+
+
         public override void CalcBonusLine(int[,] _arg_Arr)
         {
             _filledLineX.Clear();

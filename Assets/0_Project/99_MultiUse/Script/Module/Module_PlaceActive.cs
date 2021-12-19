@@ -128,6 +128,7 @@ namespace ToronPuzzle.Data
             float _amount = BlockElementPool._powerTofloatDic[Element_Power.약];
             Global_InWorldEventSystem.CallOn속성배율변동(
                 BlockElement.Cynical, new Vector3(-_amount, 0f, 0f));
+
             RemoveTriggerPos();
             Global_InWorldEventSystem._on블록배치 -= BreakBlock;
         }
