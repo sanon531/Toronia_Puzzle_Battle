@@ -65,7 +65,7 @@ namespace ToronPuzzle.Data
     }
     // 턴수가 지남에따라 감소하는 상태이상과 아닌 상태이상으로 나뉨 
     // 해당하는 상태에 따라 이펙트가 달라짐 
-    public enum CharStatusEffect
+    public enum CharBuff
     {
         //합리 포인트 절반일때
         Tired = 0,
@@ -77,17 +77,41 @@ namespace ToronPuzzle.Data
         Concentrate = 3,
         //공격력 증가 감소랑 중첩 불가
         Boasted = 4,
+        //일정시간 블록 배치 불가.
         Surprised = 5,
+        //발언 쿨타임이 돌면 바로 발언, 발언 쿨타임 절반 감소
         Rage,
+        //보너스 블록 능력치 2배
         Compassion,
         Horror,
         Brave,
         //독뎀
         Painful,
         //회복
-        Relaxed
+        Relaxed,
+
+        //여기서 부터는 블록과 행동에 의한 것
+        //공격시 반사가 들어옴
+        Spiked,
+
+        //1회 패배 직전의 상황에서 해당 공격 무시함.
+        Famed,
 
 
+    }
+    [System.Serializable]
+    public class CharBuffData
+    {
+
+        public CharBuff _effect;
+        public int _amount;
+
+        public CharBuffData(CharBuff effect, int amount)
+        {
+            _effect = effect;
+            _amount = amount;
+        }
+     
     }
 
 

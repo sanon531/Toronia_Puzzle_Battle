@@ -27,6 +27,8 @@ namespace ToronPuzzle
         List<ModuleID> _inventoryModule = new List<ModuleID>();
         public List<ModuleID> _placed_Modules = new List<ModuleID>();
 
+        public List<CharBuffData> _playerBuff, _enemyBuff;
+
         [SerializeField]
         ActionObjectKind _currentActionObject = ActionObjectKind.미정;
 

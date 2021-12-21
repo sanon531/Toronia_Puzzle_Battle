@@ -51,7 +51,7 @@ public class SFXAudioDictionary : SerializableDictionary<SFXName, AudioSource> {
 public class BGMAudioDictionary : SerializableDictionary<BGMName, AudioSource> { }
 
 [Serializable]
-public class StatusObjectDictionary : SerializableDictionary<CharStatusEffect, GameObject> { }
+public class StatusObjectDictionary : SerializableDictionary<CharBuff, GameObject> { }
 
 
 

@@ -436,7 +436,7 @@ SpriteAtlas:
   - release_v1.2-single_46
   - icon012
   - release_v1.2-single_8
-  - skill_icons13
+  - Rage
   - release_v1.2-single_17
   - release_v1.2-single_85
   - skill_icons43
@@ -452,7 +452,7 @@ SpriteAtlas:
   - release_v1.2-single_4
   - release_v1.2-single_1
   - release_v1.2-single_16
-  - skill_icons42
+  - Painful
   - release_v1.2-single_49
   - release_v1.2-single_77
   - release_v1.2-single_51
@@ -526,7 +526,7 @@ SpriteAtlas:
   - release_v1.2-single_88
   - release_v1.2-single_3
   - release_v1.2-single_14
-  - skill_icons20
+  - Tired
   - skill_icons51
   - release_v1.2-single_59
   - skill_icons38
@@ -561,7 +561,7 @@ SpriteAtlas:
   - release_v1.2-single_68
   - release_v1.2-single_54
   - skill_icons22
-  - skill_icons16
+  - Compassion
   - release_v1.2-single_84
   - skill_icons11
   - release_v1.2-single_42
@@ -581,7 +581,7 @@ SpriteAtlas:
   - release_v1.2-single_2
   - release_v1.2-single_55
   - release_v1.2-single_28
-  - skill_icons36
+  - Relaxed
   - icon020
   - skill_icons7
   - skill_icons8

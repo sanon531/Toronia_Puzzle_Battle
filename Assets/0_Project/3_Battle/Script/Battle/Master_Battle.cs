@@ -99,6 +99,7 @@ namespace ToronPuzzle.Battle
                         _currentBattleTimer = 0;
                         Global_UIEventSystem.Call_UIEvent<bool>(UIEventID.Battle_계산버튼OnOff, false);
                         Global_CoroutineManager.InvokeDelay(ShiftSequence, 1f);
+                        CallStatusEffectChagned();
                         break;
                     case GameSequence.WaitForStart:
                         //Debug.Log("WaitForStart");
@@ -106,11 +107,12 @@ namespace ToronPuzzle.Battle
                         Global_UIEventSystem.Call_UIEvent<int>(UIEventID.Battle_현재턴표시, Data_OnlyInBattle._currentTurn);
                         Global_UIEventSystem.Call_UIEvent<bool>(UIEventID.Battle_계산버튼OnOff, true);
                         Global_InWorldEventSystem.CallOn카메라에임(CameraAimEnum.Aim_Player);
-
+                        CallStatusEffectChagned();
                         break;
                     case GameSequence.BattleSequence:
                         Global_InWorldEventSystem.CallOn토론시작();
                         Global_UIEventSystem.Call_UIEvent<string>(UIEventID.Battle_현재시퀀스표시, "발언 시작!");
+                        CallStatusEffectChagned();
                         //Debug.Log("BattleSequence");
                         break;
                     case GameSequence.EnemyDamageCalc:
@@ -120,10 +122,12 @@ namespace ToronPuzzle.Battle
                         Global_UIEventSystem.Call_UIEvent<string>(UIEventID.Battle_현재시퀀스표시, "상대 발언!");
                         Global_UIEventSystem.Call_UIEvent<bool>(UIEventID.Battle_계산버튼OnOff, false);
                         //적의 행동이 완료 되었을 떄 발동 하는 방시으로 추후에 바꿀것 지금은 임시로 해둠
+                        CallStatusEffectChagned();
                         Global_CoroutineManager.InvokeDelay(ShiftSequence,2f);
                         //Debug.Log("BackToBegin");
                         break;
                     case GameSequence.EndOfGame:
+                        CallStatusEffectChagned();
                         break;
                     default:
                         break;
@@ -138,6 +142,13 @@ namespace ToronPuzzle.Battle
                     BattleTimeCount();
             }
 
+        }
+
+
+        void CallStatusEffectChagned()
+        {
+            Global_UIEventSystem.Call_UIEvent<List<CharBuffData>>(UIEventID.Battle_플레이어_특성변동, Global_InGameData.Instance._playerBuff);
+            Global_UIEventSystem.Call_UIEvent<List<CharBuffData>>(UIEventID.Battle_적_특성변동, Global_InGameData.Instance._enemyBuff);
         }
 
         //시퀀스 관련

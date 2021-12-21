@@ -16,7 +16,7 @@ namespace ToronPuzzle
         [SerializeField]
         protected SkeletonAnimation _skeletonAnimation = default;
         [SerializeField]
-        protected List<CharStatusEffect> _status_Effects = new List<CharStatusEffect>();
+        protected List<CharBuff> _status_Effects = new List<CharBuff>();
 
         public virtual void BeginCharactor()
         {

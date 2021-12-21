@@ -65,7 +65,7 @@ namespace ToronPuzzle.Battle
         }
         public override void SetMaterialTweenAll()
         {
-            foreach (CharStatusEffect charStatus in _status_Effects)
+            foreach (CharBuff charStatus in _status_Effects)
             {
 
 
@@ -182,17 +182,17 @@ namespace ToronPuzzle.Battle
         }
 
 
-        public void SetBlinkTimeByStatus(List <CharStatusEffect> _statusEffects)
+        public void SetBlinkTimeByStatus(List <CharBuff> _statusEffects)
         {
 
-            if (_statusEffects.Contains(CharStatusEffect.Horror))
+            if (_statusEffects.Contains(CharBuff.Horror))
                 _blinkCooltime = UnityEngine.Random.Range(0.25f, 1f);
-            else if (_statusEffects.Contains(CharStatusEffect.Brave))
+            else if (_statusEffects.Contains(CharBuff.Brave))
                 _blinkCooltime = UnityEngine.Random.Range(3f, 4f);
             else
                 _blinkCooltime = UnityEngine.Random.Range(0.25f, 3f);
 
-            if (_statusEffects.Contains(CharStatusEffect.Tired))
+            if (_statusEffects.Contains(CharBuff.Tired))
                 _blinkDuration = 1f;
             else
                 _blinkDuration = 0.05f;
@@ -206,12 +206,12 @@ namespace ToronPuzzle.Battle
     {
         public StatusObjectDictionary _statusObjectDic;
 
-        public void SetStatusToFX(List<CharStatusEffect> _charStatusEffects)
+        public void SetStatusToFX(List<CharBuff> _charStatusEffects)
         {
-            foreach (KeyValuePair<CharStatusEffect, GameObject> _statusObject in _statusObjectDic)
+            foreach (KeyValuePair<CharBuff, GameObject> _statusObject in _statusObjectDic)
                 _statusObject.Value.SetActive(false);
 
-            foreach (CharStatusEffect statusEffect in _charStatusEffects)
+            foreach (CharBuff statusEffect in _charStatusEffects)
                 _statusObjectDic[statusEffect].SetActive(true);
 
 
