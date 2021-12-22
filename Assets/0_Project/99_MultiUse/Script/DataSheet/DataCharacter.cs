@@ -130,6 +130,45 @@ namespace ToronPuzzle.Data
     public static class CharacterLibrary
     {
 
+        public static Dictionary<CharBuff, string> BuffNameDic =
+            new Dictionary<CharBuff, string>()
+            {
+                { CharBuff.Tired , "지침."},
+                { CharBuff.Confused , "혼란."},
+                { CharBuff.Depressed , "우울."},
+                { CharBuff.Concentrate  , "집중. "},
+                { CharBuff.Boasted , "자신감."},
+                { CharBuff.Surprised , "놀람."},
+                { CharBuff.Rage , "분노"},
+                { CharBuff.Horror , "무서움"},
+                { CharBuff.Painful , "고통스러움"},
+                { CharBuff.Relaxed , "편안함."},
+                { CharBuff.Spiked , "가시돋힘"},
+                { CharBuff.Brave , "위풍당당"},
+                { CharBuff.Compassion , "이해심"},
+                { CharBuff.Famed , "명망있는"},
+
+            };
+
+        public static Dictionary<CharBuff, string> BuffExplainDic =
+            new Dictionary<CharBuff, string>()
+            {
+                { CharBuff.Tired , "공격력과 방어력이 10% 감소합니다."},
+                { CharBuff.Confused , "방어력이 25% 감소합니다. "},
+                { CharBuff.Depressed , "공격력이 25% 감소합니다. "},
+                { CharBuff.Concentrate  , "방어력이 25% 상승합니다. "},
+                { CharBuff.Boasted , "공격력이 25% 상승합니다."},
+                { CharBuff.Surprised , "제한 시간 동안 배치가 불가능합니다."},
+                { CharBuff.Rage , "발언 쿨타임이 돌면 바로 발언, 발언 쿨타임 절반 감소"},
+                { CharBuff.Horror , "무서움? 몰?루"},
+                { CharBuff.Painful , "발언 시간 동안 지속적으로 데미지를 받습니다."},
+                { CharBuff.Relaxed , "발언 시간 동안 지속적으로 회복됩니다."},
+                { CharBuff.Spiked , "받는 공격이 반사가 됩니다. ."},
+                { CharBuff.Brave , "아직 안정함. 머쓱 타드"},
+                { CharBuff.Compassion , "보너스 블록 2배 효과"},
+                { CharBuff.Famed , "1회 즉사 데미지를 막아줍니다."},
+
+            };
     }
 
     public struct CharactorActionInfo
