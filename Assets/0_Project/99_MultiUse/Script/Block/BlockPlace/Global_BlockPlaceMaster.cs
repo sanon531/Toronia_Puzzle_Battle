@@ -641,11 +641,9 @@ namespace ToronPuzzle
 
         void CallCalculatorToCalc()
         {
-            Vector2 _calcData = _blockCalculator.GetCalcData();
 
-
-            Global_InWorldEventSystem.CallOnCalc데미지(Master_Battle.Data_OnlyInBattle._enemyData, DataEntity.고유데이터((int)_calcData.x));
-            Global_InWorldEventSystem.CallOnCalc방어도(Master_Battle.Data_OnlyInBattle._playerData, DataEntity.고유데이터((int)_calcData.y));
+            Global_InWorldEventSystem.CallOnCalc데미지(Master_Battle.Data_OnlyInBattle._enemyData, _blockCalculator.GetAttackData());
+            Global_InWorldEventSystem.CallOnCalc방어도(Master_Battle.Data_OnlyInBattle._playerData, _blockCalculator.GetDefendData());
         }
         #endregion
 

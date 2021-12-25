@@ -55,6 +55,12 @@ namespace ToronPuzzle.Event
         public static void CallOn속성배율변동(BlockElement _element, Vector3 _amount)
         { _on속성배율변동?.Invoke(_element,_amount); }
 
+        public static event On이벤트WithFloat수치값 _on공격배수추가;
+        public static void CallOn공격배수추가(float _배수) { _on공격배수추가?.Invoke(_배수);  }
+        public static event On이벤트WithFloat수치값 _on방어배수추가;
+        public static void CallOn방어배수추가(float _배수) { _on방어배수추가?.Invoke(_배수); }
+
+
         public static event On이벤트Withbool수치값 _on모듈항상들기;
         public static void CallOn모듈항상들기(bool 수치값)
         { _on모듈항상들기?.Invoke(수치값); }

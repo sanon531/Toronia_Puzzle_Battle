@@ -31,13 +31,25 @@ namespace ToronPuzzle
         {
             _currentElementValue = BlockElementPool._initialElementPowerDic;
             Global_InWorldEventSystem._on속성배율변동 += ChangeBlockElement;
+            Global_InWorldEventSystem._on공격배수추가 += ChangeAttackMultiply;
+            Global_InWorldEventSystem._on방어배수추가 += ChangeDefendMultiply;
+
         }
         void ChangeBlockElement(BlockElement _element, Vector3 _amount)
         {
             _currentElementValue[_element] += _amount;
             SetElementToPower();
             //Debug.Log(_element+"+"+_amount);
-        } 
+        }
+        void ChangeAttackMultiply(float _배수)
+        {
+            _attackData.Add증가량배수(_배수);
+        }
+        void ChangeDefendMultiply(float _배수)
+        {
+            _defendData.Add증가량배수(_배수);
+        }
+
 
         public string GetCurrentNum()
         {
@@ -65,6 +77,8 @@ namespace ToronPuzzle
 
             return temptContentStr;
         }
+        [SerializeField]
+        float _attackNum, _defendNum = 0;
         private void ResetNum()
         {
             _aggressiveNum = 0;
@@ -79,17 +93,24 @@ namespace ToronPuzzle
         Coroutine _callCoroutine;
         private void SetElementToPower()
         {
+            _attackData.ResetAdd();
             _attackNum = _aggressiveNum * _currentElementValue[BlockElement.Aggressive].x
                 + _cynicalNum * _currentElementValue[BlockElement.Cynical].x
                 + _friendlyNum * _currentElementValue[BlockElement.Friendly].x
                 + _emptinessNum * _currentElementValue[BlockElement.Emptiness].x
                 + _bonusNum * _currentElementValue[BlockElement.Bonus].x;
+            _attackData.Add증가량(_attackNum);
 
+
+            _defendData.ResetAdd();
             _defendNum = _aggressiveNum * _currentElementValue[BlockElement.Aggressive].y
                 + _cynicalNum * _currentElementValue[BlockElement.Cynical].y
                 + _friendlyNum * _currentElementValue[BlockElement.Friendly].y
                 + _emptinessNum * _currentElementValue[BlockElement.Emptiness].y
                 + _bonusNum * _currentElementValue[BlockElement.Bonus].y;
+            _defendData.Add증가량(_defendNum);
+
+
 
             if (_callCoroutine != null)
                 Global_CoroutineManager.Stop(_callCoroutine);
@@ -102,7 +123,7 @@ namespace ToronPuzzle
         IEnumerator LateCalc()
         {
             yield return new WaitForEndOfFrame();
-            Global_UIEventSystem.Call_UIEvent(UIEventID.Global_계산표시, _attackNum, _defendNum);
+            Global_UIEventSystem.Call_UIEvent(UIEventID.Global_계산표시, _attackData.FinalValue, _defendData.FinalValue);
         }
 
 
@@ -221,9 +242,6 @@ namespace ToronPuzzle
 
 
 
-        [SerializeField]
-        protected float _attackNum, _defendNum = 0;
-        public Vector2 GetCalcData() { return new Vector2(_attackNum, _defendNum); }
         public DataEntity GetAttackData() { return _attackData; }
         public DataEntity GetDefendData() { return _defendData; }
 
