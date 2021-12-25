@@ -20170,6 +20170,18 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7618313550791802944, guid: a3fbdfafd047abe43b7a6e83d578c739, type: 3}
+      propertyPath: _inventoryModule.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618313550791802944, guid: a3fbdfafd047abe43b7a6e83d578c739, type: 3}
+      propertyPath: _inventoryModule.Array.data[0]
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618313550791802944, guid: a3fbdfafd047abe43b7a6e83d578c739, type: 3}
+      propertyPath: _inventoryModule.Array.data[1]
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618313550791802944, guid: a3fbdfafd047abe43b7a6e83d578c739, type: 3}
       propertyPath: _enemyBuff.Array.data[0]._effect
       value: 7
       objectReference: {fileID: 0}
@@ -20180,6 +20192,10 @@ PrefabInstance:
     - target: {fileID: 7618313550791802944, guid: a3fbdfafd047abe43b7a6e83d578c739, type: 3}
       propertyPath: _playerBuff.Array.data[0]._effect
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618313550791802944, guid: a3fbdfafd047abe43b7a6e83d578c739, type: 3}
+      propertyPath: _currentPlacement.cells.Array.data[0].row.Array.data[1]
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7618313551263605236, guid: a3fbdfafd047abe43b7a6e83d578c739, type: 3}
       propertyPath: m_AnchorMax.y

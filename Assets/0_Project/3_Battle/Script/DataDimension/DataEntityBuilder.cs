@@ -6,7 +6,7 @@ namespace ToronPuzzle
 {
     public partial class DataEntity
     {
-        private DataEntity(Type type, int 기본값)
+        public DataEntity(Type type, int 기본값)
         {
             this.type = type;
             _기본값 = 기본값;

@@ -49,7 +49,7 @@ namespace ToronPuzzle
         {
             Instance= this;
             if(!isDebug)
-                _currentStageData = StageDataPool.StageinfoDic["Basic"];
+                _currentStageData = StageDataPool.StageinfoDic["멸고단_1"];
         }
 
         public void BegingModuleData()

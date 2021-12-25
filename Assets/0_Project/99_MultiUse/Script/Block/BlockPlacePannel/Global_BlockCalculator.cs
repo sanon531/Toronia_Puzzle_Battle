@@ -7,11 +7,25 @@ using ToronPuzzle.Event;
 
 namespace ToronPuzzle
 {
-    public class Global_BlockCalculator : BlockCalculator
+    public class Global_BlockCalculator : MonoBehaviour
     {
         //계산 관련
         [SerializeField]
         int _aggressiveNum, _cynicalNum, _friendlyNum, _emptinessNum, _bonusNum = 0;
+
+        public List<GameObject> _bonusXColumnLines = new List<GameObject>();
+        public List<GameObject> _bonusYRowLines = new List<GameObject>();
+        [SerializeField]
+        protected List<int> _filledLineX = new List<int>();
+        [SerializeField]
+        protected List<int> _filledLineY = new List<int>();
+        public GameObject _perfectSetting;
+        public Vector2 _fullFXpos = new Vector2();
+        public ElementVectorDictionary _currentElementValue;
+
+
+        DataEntity _attackData = new DataEntity(DataEntity.Type.피해량, 0);
+        DataEntity _defendData = new DataEntity(DataEntity.Type.방어도, 0);
 
         public void BeginBlockCalc()
         {
@@ -92,7 +106,7 @@ namespace ToronPuzzle
         }
 
 
-        public override void CalcPannelData(List<BlockInfo> _argBlockInfos)
+        public void CalcPannelData(List<BlockInfo> _argBlockInfos)
         {
             ResetNum();
             foreach (BlockInfo _blockInfo in _argBlockInfos)
@@ -120,7 +134,7 @@ namespace ToronPuzzle
         }
 
 
-        public override void CalcBonusLine(int[,] _arg_Arr)
+        public void CalcBonusLine(int[,] _arg_Arr)
         {
             _filledLineX.Clear();
             _filledLineY.Clear();
@@ -205,6 +219,13 @@ namespace ToronPuzzle
 
         }
 
+
+
+        [SerializeField]
+        protected float _attackNum, _defendNum = 0;
+        public Vector2 GetCalcData() { return new Vector2(_attackNum, _defendNum); }
+        public DataEntity GetAttackData() { return _attackData; }
+        public DataEntity GetDefendData() { return _defendData; }
 
     }
 }

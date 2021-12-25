@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace ToronPuzzle.Data
 {
-
     /// <summary>
     /// 배경 화면의 이미지에대한 설정
     /// </summary>
@@ -85,5 +84,5 @@ namespace ToronPuzzle.Data
             };
 
     }
-
+    
 }
