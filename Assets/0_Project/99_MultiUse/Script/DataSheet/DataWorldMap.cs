@@ -131,8 +131,6 @@ namespace ToronPuzzle.Data
             _nodeLevel = nodeLevel;
         }
 
-
-
         public void SetNodeListConnected(List<int> _nodeIDList)
         {
             _directlyConnected = new List<WorldMapNode>();
@@ -187,7 +185,20 @@ namespace ToronPuzzle.Data
 
         public bool IsNodeConnected(WorldMapNode _node) { return _directlyConnected.Contains(_node); }
     }
+    [System.Serializable]
+    public class ActionObjectData
+    {
+        public ActionObjectKind _objectKind = ActionObjectKind.미정;
+        public int _positionNum  = 0 ;
+        public StageInfo _stageInfo;
+        public bool _isUsed = false;
+        public bool _isSelectable = false;
+        public bool _isCorrupted = false;
 
+        public void CheckSelectable() { if (_isUsed) _isSelectable = false; }
+
+
+    }
 
 
 }

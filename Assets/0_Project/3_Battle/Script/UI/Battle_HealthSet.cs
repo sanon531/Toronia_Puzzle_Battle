@@ -90,12 +90,12 @@ namespace ToronPuzzle.Battle
 
             if (_targetChar.소속진영 == CharacterSide.Ally)
             {
-                DamageTextScript.Create(_playerHealthRect.transform.position, 1, 0.3f, -계산정보체.FinalValue, Color.red, 0.5f);
+                DamageTextScript.Create(_playerHealthRect.transform.position, 1, 0.3f, -(int)계산정보체.FinalValue, Color.red, 0.5f);
                 SetPlayerBar(_changedVal);
             }
             else if (_targetChar.소속진영 == CharacterSide.Enemy)
             {
-                DamageTextScript.Create(_enemyHealthRect.transform.position, 1, 0.3f, -계산정보체.FinalValue, Color.red,0.5f);
+                DamageTextScript.Create(_enemyHealthRect.transform.position, 1, 0.3f, -(int)계산정보체.FinalValue, Color.red,0.5f);
                 SetEnemyBar(_changedVal);
             }
         }
@@ -105,7 +105,7 @@ namespace ToronPuzzle.Battle
 
         void SetGuardOnCharactor(Data_Character _targetChar, DataEntity 계산정보체)
         {
-            _targetChar.현재방어도 += 계산정보체.FinalValue;
+            _targetChar.현재방어도 += (int)계산정보체.FinalValue;
             SetGuardByCharside(_targetChar.소속진영, _targetChar.현재방어도);
         }
         void SetGuardByCharside(CharacterSide _side,int _val)

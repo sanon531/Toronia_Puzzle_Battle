@@ -34,6 +34,9 @@ namespace ToronPuzzle.WorldMap
         {
             switch (Global_InGameData.Instance.GetStageAction())
             {
+                case ActionObjectKind.시작:
+                    Debug.Log("시작 이벤트 사용됨");
+                    break;
                 case ActionObjectKind.이벤트:
                     break;
                 case ActionObjectKind.일반_배틀:
@@ -56,6 +59,9 @@ namespace ToronPuzzle.WorldMap
                     break;
                 case ActionObjectKind.미정:
                     Debug.Log("아직 행동 설정이 안됬습니다.");
+                    break;
+                default:
+                    Debug.Log("default : 아직 행동 설정이 안됬습니다.");
                     break;
             }
         }

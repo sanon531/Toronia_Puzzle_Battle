@@ -46,7 +46,7 @@ namespace ToronPuzzle
             {
                 DataEntity 최대생명력data = DataEntity.고유데이터(최대생명력_Default);
                 Global_InWorldEventSystem.CallOnCalc최대생명력(this, 최대생명력data);
-                return 최대생명력data.FinalValue;
+                return (int)최대생명력data.FinalValue;
             }
         }
         public int 현재생명력;

@@ -10,14 +10,12 @@ namespace ToronPuzzle.WorldMap
     public class WorldMap_ActionObject : MonoBehaviour
     {
         [SerializeField]
-        ActionObjectKind _objectAction;
-        [SerializeField]
         SpriteRenderer _thisSprite,_itemSprite,_AuraSprite;
-
+        [SerializeField]
         Color _currentColor,_pressedColor;
 
-        [SerializeField] bool _isNotUsed = true;
-        [SerializeField] StageInfo _currentStage;
+        public ActionObjectData _thisData = new ActionObjectData();
+
 
         public WorldMapNode _thisNode;
         [SerializeField]
@@ -27,26 +25,41 @@ namespace ToronPuzzle.WorldMap
 
         public void BeginActionObject(int _arg_NodeID,ActionObjectKind _kind)
         {
+            _thisData._positionNum = _arg_NodeID;
+            _thisData._objectKind = _kind;
             _nodeID = _arg_NodeID;
-            _objectAction = _kind;
+            _this_Mat = _thisSprite.material;
+            SetPanelSpriteByChange();
+        }
+        public void BeginActionObject(int _arg_NodeID, ActionObjectData _data)
+        {
+            _thisData = _data;
+            _nodeID = _arg_NodeID;
             _this_Mat = _thisSprite.material;
             SetPanelSpriteByChange();
         }
 
+
+
         public void SetPanelSpriteByChange()
         {
-            if (_isNotUsed)
+            if (!_thisData._isUsed && _thisData._isSelectable)
             {
                 _currentColor = Color.white;
                 _pressedColor = new Color(.5f, .5f, .5f);
             }
             else
+            {
+                _currentColor = new Color(.75f, .75f, .75f);
+                _pressedColor = new Color(.75f, .75f, .75f);
                 _itemSprite.color = new Color(.25f, .25f, .25f);
 
-            _itemSprite.sprite = Resources.Load<Sprite>("WorldMap/" + _objectAction.ToString());
+            }
+            SetColorCurrent();
+            _itemSprite.sprite = Resources.Load<Sprite>("WorldMap/" + _thisData._objectKind.ToString());
             _AuraSprite.enabled = false;
 
-            switch (_objectAction)
+            switch (_thisData._objectKind)
             {
                 case ActionObjectKind.미정:
                     _itemSprite.color = new Color(.25f, .25f, .25f);
@@ -85,11 +98,15 @@ namespace ToronPuzzle.WorldMap
         #region
         private void OnMouseDown()
         {
-            if (_isNotUsed)
+            if (!_thisData._isUsed && _thisData._isSelectable)
             {
+                Debug.Log("selectable");
                 SetColorPressed();
-                switch (_objectAction)
+                switch (_thisData._objectKind)
                 {
+                    case ActionObjectKind.시작:
+                        StartStartEvent();
+                        break;
                     case ActionObjectKind.이벤트:
                         StartEvent();
                         break;
@@ -124,7 +141,7 @@ namespace ToronPuzzle.WorldMap
 
         private void OnMouseUp()
         {
-            if (_isNotUsed)
+            if (!_thisData._isUsed)
                 SetColorCurrent();
 
         }
@@ -133,6 +150,13 @@ namespace ToronPuzzle.WorldMap
         void SetColorPressed() { _itemSprite.color = _pressedColor; _thisSprite.color = _pressedColor; }
         void SetColorCurrent() { _itemSprite.color = _currentColor; _thisSprite.color = _currentColor; }
 
+
+        void StartStartEvent()
+        {
+            Global_InGameData.Instance.SetStageAction(ActionObjectKind.시작);
+            Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_오브젝트_실행, true);
+            Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_맵오브젝트정보보이기, ActionObjectKind.이벤트);
+        }
 
         void StartEvent()
         {
@@ -144,7 +168,7 @@ namespace ToronPuzzle.WorldMap
         void StartBattle()
         {
             Global_InGameData.Instance.SetStageAction(ActionObjectKind.일반_배틀);
-            Global_InGameData.Instance.SetStageData(_currentStage);
+            Global_InGameData.Instance.SetStageData(_thisData._stageInfo);
             Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_오브젝트_실행, true);
             Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_인벤토리보이기);
             Global_UIEventSystem.Call_UIEvent(UIEventID.Global_블록판보이기);
@@ -155,18 +179,18 @@ namespace ToronPuzzle.WorldMap
         void StartBattle_Elite()
         {
             Global_InGameData.Instance.SetStageAction(ActionObjectKind.엘리트_배틀);
-            Global_InGameData.Instance.SetStageData(_currentStage);
+            Global_InGameData.Instance.SetStageData(_thisData._stageInfo);
 
             Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_오브젝트_실행, true);
             Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_인벤토리보이기);
             Global_UIEventSystem.Call_UIEvent(UIEventID.Global_블록판보이기);
             Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_맵오브젝트정보보이기, ActionObjectKind.엘리트_배틀);
-            //오브젝트세팅 뭐시기
+
         }
         void StartBattle_Boss()
         {
             Global_InGameData.Instance.SetStageAction(ActionObjectKind.보스_배틀);
-            Global_InGameData.Instance.SetStageData(_currentStage);
+            Global_InGameData.Instance.SetStageData(_thisData._stageInfo);
 
             Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_오브젝트_실행, true);
             Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_인벤토리보이기);
@@ -179,7 +203,6 @@ namespace ToronPuzzle.WorldMap
         void StartItem()
         {
             Global_InGameData.Instance.SetStageAction(ActionObjectKind.아이템);
-
             Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_오브젝트_실행, true);
             Global_UIEventSystem.Call_UIEvent(UIEventID.WorldMap_맵오브젝트정보보이기, ActionObjectKind.아이템);
 
@@ -205,7 +228,7 @@ namespace ToronPuzzle.WorldMap
             _currentColor = new Color(.75f, .75f, .75f);
             _itemSprite.color = _currentColor;
             _thisSprite.color = _currentColor;
-            _isNotUsed = false;
+            _thisData._isUsed = true;
         }
 
     }

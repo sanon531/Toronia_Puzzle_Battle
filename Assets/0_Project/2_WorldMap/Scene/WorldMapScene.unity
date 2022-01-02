@@ -3557,7 +3557,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 806aede2a9ced3c448abd9bfe7461a27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _generateNew: 0
   _ActionObjectPlace: {fileID: 329774988}
+  _currentSelectedID: 0
+  _targetPlace_numList: 
   _total_Node: 11
   _thirdNodeCounts: 1
   _firstLeastNodeCounts: 3

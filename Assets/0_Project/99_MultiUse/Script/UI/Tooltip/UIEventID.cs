@@ -34,6 +34,7 @@ namespace ToronPuzzle.Event
         WorldMap_오브젝트_실행,
         WorldMap_인벤토리숨기기,
         WorldMap_인벤토리보이기,
+        WorldMap_맵오브젝트정보초기화,
         WorldMap_맵오브젝트정보보이기,
         WorldMap_맵오브젝트정보숨기기,
 
