@@ -49,7 +49,7 @@ namespace ToronPuzzle.WorldMap
         [SerializeField]
         List<ActionObjectKind> actionObjectKindList = new List<ActionObjectKind>();
 
-
+        // 생성및, 세이브 부분
         void GenerateWorldMapWithNew()
         {
             //노드 초기화
@@ -208,7 +208,6 @@ namespace ToronPuzzle.WorldMap
             SaveCurrentData();
             CheckActionObjectState();
         }
-
         void SaveCurrentData()
         {
             Dictionary<int, ActionObjectData> _currentDic = new Dictionary<int, ActionObjectData>();
@@ -219,7 +218,6 @@ namespace ToronPuzzle.WorldMap
             Debug.Log("save Call");
 
         }
-
         void GenerateWorldMapWithSavefile()
         {
             _targetPlace_numList.Clear();
@@ -242,7 +240,6 @@ namespace ToronPuzzle.WorldMap
             CheckActionObjectState();
 
         }
-
         void SetActionObjectKindList()
         {
             //3번째의 라인은 무조건 보스이 므로 첫번째의 시작 턴과 합쳐서 뺀다.
@@ -293,7 +290,6 @@ namespace ToronPuzzle.WorldMap
             }
             return true;
         }
-
         bool SetActionObject(int i, ActionObjectData _data)
         {
             if (_placedNodeDic.ContainsKey(i)) return false;
@@ -308,13 +304,13 @@ namespace ToronPuzzle.WorldMap
             return true;
         }
 
-
         void CheckActionObjectState()
         {
             //첫 번째 꺼는 언제든 선택 가능하게 한다. 대신 선택 했을 경우 비활성화 한다.
 
             _placedNodeDic[0]._thisData._isSelectable = true;
             _placedNodeDic[0]._thisData.CheckSelectable();
+            _placedNodeDic[0].SetPanelSpriteByChange();
             Queue<WorldMap_ActionObject> _q2BFS = new Queue<WorldMap_ActionObject>();
             List<int> _alreadyPassed = new List<int>();
             _q2BFS.Enqueue(_placedNodeDic[0]);
@@ -339,11 +335,24 @@ namespace ToronPuzzle.WorldMap
                         {
                             _placedNodeDic[_node.GetNodeID()]._thisData._isSelectable = true;
                             _placedNodeDic[_node.GetNodeID()]._thisData.CheckSelectable();
+                            _placedNodeDic[_node.GetNodeID()].SetPanelSpriteByChange();
                         }
                     }
             }
 
         }
+
+
+        //해당 월드맵 형태 바꾸기
+        public void SetActionObjectUsed()
+        {
+            Debug.Log(_currentSelectedID);
+            _placedNodeDic[_currentSelectedID]._thisData._isUsed = true;
+            CheckActionObjectState();
+            SaveCurrentData();
+
+        }
+
 
 
 

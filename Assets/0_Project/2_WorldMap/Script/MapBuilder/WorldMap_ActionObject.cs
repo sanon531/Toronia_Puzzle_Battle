@@ -40,7 +40,6 @@ namespace ToronPuzzle.WorldMap
         }
 
 
-
         public void SetPanelSpriteByChange()
         {
             if (!_thisData._isUsed && _thisData._isSelectable)

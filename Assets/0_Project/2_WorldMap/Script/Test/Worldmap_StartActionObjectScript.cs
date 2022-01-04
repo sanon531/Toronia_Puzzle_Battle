@@ -13,12 +13,15 @@ namespace ToronPuzzle.WorldMap
     {
         RectTransform _thisRect;
         Button _thisButton;
+        BoxCollider2D _collider2D;
         TextMeshProUGUI _ShowText;
         public void AssignGameListener()
         {
             _thisRect = GetComponent<RectTransform>();
             _thisButton = GetComponent<Button>();
             _ShowText = GetComponentInChildren<TextMeshProUGUI>();
+            _collider2D = GetComponent<BoxCollider2D>();
+            _collider2D.size = _thisRect.rect.size;
             _thisButton.onClick.AddListener(() => OnClick());
             Global_UIEventSystem.Register_UIEvent<bool>(UIEventID.WorldMap_오브젝트_실행, SetIsAble, EventRegistOption.None);
             //일단 처음에는 꺼둘 것임.
@@ -36,23 +39,31 @@ namespace ToronPuzzle.WorldMap
             {
                 case ActionObjectKind.시작:
                     Debug.Log("시작 이벤트 사용됨");
+                    WorldMap_MapBuilder.Instance.SetActionObjectUsed();
                     break;
                 case ActionObjectKind.이벤트:
+                    Debug.Log("이벤트 사용됨");
+                    WorldMap_MapBuilder.Instance.SetActionObjectUsed();
                     break;
                 case ActionObjectKind.일반_배틀:
                     Global_UIEventSystem.Call_UIEvent<SceneType>(UIEventID.Global_씬이동, SceneType.Battle);
+                    WorldMap_MapBuilder.Instance.SetActionObjectUsed();
                     break;
                 case ActionObjectKind.엘리트_배틀:
                     Global_UIEventSystem.Call_UIEvent<SceneType>(UIEventID.Global_씬이동, SceneType.Battle);
+                    WorldMap_MapBuilder.Instance.SetActionObjectUsed();
                     break;
                 case ActionObjectKind.보스_배틀:
                     Global_UIEventSystem.Call_UIEvent<SceneType>(UIEventID.Global_씬이동, SceneType.Battle);
+                    WorldMap_MapBuilder.Instance.SetActionObjectUsed();
                     break;
                 case ActionObjectKind.아이템:
                     Debug.Log("아이템 사용됨");
+                    WorldMap_MapBuilder.Instance.SetActionObjectUsed();
                     break;
                 case ActionObjectKind.상점:
                     Debug.Log("상점 입장");
+                    WorldMap_MapBuilder.Instance.SetActionObjectUsed();
                     break;
                 case ActionObjectKind.정보오염:
                     Debug.Log("정보 오염 지역 입니다.");
@@ -64,6 +75,7 @@ namespace ToronPuzzle.WorldMap
                     Debug.Log("default : 아직 행동 설정이 안됬습니다.");
                     break;
             }
+            SetIsAble(false);
         }
 
     }
