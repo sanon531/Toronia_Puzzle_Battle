@@ -13,8 +13,6 @@ namespace ToronPuzzle
         public static Global_BlockGenerator instance;
 
         [SerializeField]
-        bool _isModuleLiftable = false;
-        [SerializeField]
         BlockInfo _lastBlockInfo;
         #region
         GameObject _spawned;//매개로 사용되는 변수

@@ -13,7 +13,8 @@ namespace ToronPuzzle
             {
                 Color _color = _argColor;
                 _color.a = 0.25f;
-                _particle.startColor = _color;
+                var _main = _particle.main;
+                _main.startColor = _color;
 
             }
         }
