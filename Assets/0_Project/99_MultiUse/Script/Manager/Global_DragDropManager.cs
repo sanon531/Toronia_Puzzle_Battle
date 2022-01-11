@@ -67,9 +67,12 @@ namespace ToronPuzzle
 
         void SetMousePointerPos()
         {
+            if (_inputCamera == null)
+                _inputCamera = Camera.main;
             Vector3 _mouseWorldPos = _inputCamera.ScreenToWorldPoint(Input.mousePosition);
             _mouseWorldPos += new Vector3(0, 0, 20);
-            _dragPointer.transform.position = _mouseWorldPos;
+            if(_dragPointer !=null)
+                _dragPointer.transform.position = _mouseWorldPos;
 
         }
 

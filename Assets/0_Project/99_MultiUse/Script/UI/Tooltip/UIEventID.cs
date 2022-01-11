@@ -49,7 +49,8 @@ namespace ToronPuzzle.Event
 
         Battle_시퀀스넘기기,
         Battle_현재턴표시,
-        Battle_현재시퀀스표시
+        Battle_현재시퀀스표시,
+        Battle_게임_종료
 
     }
 

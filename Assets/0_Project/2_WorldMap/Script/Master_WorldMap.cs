@@ -8,6 +8,7 @@ public class Master_WorldMap : MonoBehaviour
     void Start()
     {
         
+
     }
 
     // Update is called once per frame
@@ -15,4 +16,11 @@ public class Master_WorldMap : MonoBehaviour
     {
         
     }
+
+    void GetRandomItem()
+    {
+
+
+    }
+
 }

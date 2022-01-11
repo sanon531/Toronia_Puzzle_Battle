@@ -60,12 +60,15 @@ namespace ToronPuzzle.Data
                     new StageInfo("¸ê°í´Ü_1",new float[]{
                         20f,2f,5f,10f},
                         new List<BlockInfo>(){
-                            new BlockInfo(BlockElement.Aggressive, BlockShape.One_D,1),
+                            new BlockInfo(BlockElement.Aggressive, BlockShape.Three_AG,4),
+                            new BlockInfo(BlockElement.Cynical, BlockShape.Three_AG,4),
+                            new BlockInfo(BlockElement.Friendly, BlockShape.Three_AG,4)
                         },
                         new List<CharacterID>(){
                             CharacterID.¸ê°í´Ü¿ø
                         }
                 )},
+
 
 
 

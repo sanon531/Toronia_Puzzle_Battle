@@ -16,7 +16,7 @@ namespace ToronPuzzle
         public void BeginSceneManager()
         {
             Instance = this;
-            Global_UIEventSystem.Register_UIEvent<SceneType>(UIEventID.Global_씬이동, ChangeScene);
+            Global_UIEventSystem.Register_UIEvent<SceneType>(UIEventID.Global_씬이동, ChangeScene,EventRegistOption.Permanent);
             Global_InWorldEventSystem._on모듈항상들기 += SetIsModuleAlwaysLitfable;
             CheckSceneByName();
         }

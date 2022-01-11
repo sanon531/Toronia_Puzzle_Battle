@@ -92,11 +92,22 @@ namespace ToronPuzzle.Battle
             {
                 DamageTextScript.Create(_playerHealthRect.transform.position, 1, 0.3f, -(int)계산정보체.FinalValue, Color.red, 0.5f);
                 SetPlayerBar(_changedVal);
+                if (_targetChar.현재생명력 <= 0)
+                {
+                    Debug.Log("dead me");
+                    Global_UIEventSystem.Call_UIEvent(UIEventID.Battle_게임_종료, GameEndSituation.GameOver);
+                }
+
             }
             else if (_targetChar.소속진영 == CharacterSide.Enemy)
             {
                 DamageTextScript.Create(_enemyHealthRect.transform.position, 1, 0.3f, -(int)계산정보체.FinalValue, Color.red,0.5f);
                 SetEnemyBar(_changedVal);
+                if (_targetChar.현재생명력 <= 0)
+                {
+                    Debug.Log("dead Enemy");
+                    Global_UIEventSystem.Call_UIEvent(UIEventID.Battle_게임_종료, GameEndSituation.GameClear);
+                }
             }
         }
 

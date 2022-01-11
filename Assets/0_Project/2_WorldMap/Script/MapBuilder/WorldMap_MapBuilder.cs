@@ -29,6 +29,7 @@ namespace ToronPuzzle.WorldMap
             _ActionObject = Resources.Load("WorldMap/WorldMap_ActionObject") as GameObject;
             _lineSetter.BeginLineSetter();
             _placedNodeDic.Clear();
+
             if (_generateNew)
                 GenerateWorldMapWithNew();
             else
@@ -303,7 +304,6 @@ namespace ToronPuzzle.WorldMap
             _temptActionObjScript.BeginActionObject(i, _data);
             return true;
         }
-
         void CheckActionObjectState()
         {
             //첫 번째 꺼는 언제든 선택 가능하게 한다. 대신 선택 했을 경우 비활성화 한다.

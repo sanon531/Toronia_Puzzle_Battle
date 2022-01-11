@@ -29,8 +29,14 @@ namespace ToronPuzzle.WorldMap
             _thisData._objectKind = _kind;
             _nodeID = _arg_NodeID;
             _this_Mat = _thisSprite.material;
+            if (_kind == ActionObjectKind.일반_배틀 || _kind == ActionObjectKind.엘리트_배틀 || _kind == ActionObjectKind.보스_배틀)
+            {
+                _thisData._stageInfo = StageDataPool.StageinfoDic["멸고단_1"];
+            }
             SetPanelSpriteByChange();
         }
+
+
         public void BeginActionObject(int _arg_NodeID, ActionObjectData _data)
         {
             _thisData = _data;

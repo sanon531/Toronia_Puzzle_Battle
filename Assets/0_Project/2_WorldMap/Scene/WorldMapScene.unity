@@ -2712,7 +2712,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7618313550791802944, guid: a3fbdfafd047abe43b7a6e83d578c739, type: 3}
       propertyPath: _inventoryModule.Array.size
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7618313550791802944, guid: a3fbdfafd047abe43b7a6e83d578c739, type: 3}
       propertyPath: _inventoryModule.Array.data[2]
@@ -2721,6 +2721,14 @@ PrefabInstance:
     - target: {fileID: 7618313550791802944, guid: a3fbdfafd047abe43b7a6e83d578c739, type: 3}
       propertyPath: _inventoryModule.Array.data[3]
       value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618313550791802944, guid: a3fbdfafd047abe43b7a6e83d578c739, type: 3}
+      propertyPath: _inventoryModule.Array.data[4]
+      value: 37
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618313550791802944, guid: a3fbdfafd047abe43b7a6e83d578c739, type: 3}
+      propertyPath: _inventoryModule.Array.data[5]
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7618313551263605236, guid: a3fbdfafd047abe43b7a6e83d578c739, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3584,7 +3592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 806aede2a9ced3c448abd9bfe7461a27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _generateNew: 0
+  _generateNew: 1
   _ActionObjectPlace: {fileID: 329774988}
   _currentSelectedID: 0
   _targetPlace_numList: 
