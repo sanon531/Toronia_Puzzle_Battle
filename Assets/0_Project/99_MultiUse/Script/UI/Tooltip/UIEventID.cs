@@ -29,8 +29,9 @@ namespace ToronPuzzle.Event
         Global_블럭집은후UI,
         Global_블럭놓은후UI,
         Global_모듈회전불가,
+        Global_씬뒤로가기,
 
-        
+
         WorldMap_오브젝트_실행,
         WorldMap_인벤토리숨기기,
         WorldMap_인벤토리보이기,

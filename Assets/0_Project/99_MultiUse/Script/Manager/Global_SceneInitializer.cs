@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using ToronPuzzle.Battle;
 using ToronPuzzle.WorldMap;
 using UnityEngine.SceneManagement;
@@ -21,6 +22,8 @@ namespace ToronPuzzle
         Global_BlockGenerator global_BlockGenerator;
         Global_BlockPlaceMaster global_BlockPlaceMaster;
         Global_CoroutineManager global_CoroutineManager;
+
+        Global_PausePanelBack global_PausePanelBack;
         Global_SceneManager global_SceneManager;
         Global_CanvasUI global_CanvasUI;
         #endregion
@@ -69,8 +72,14 @@ namespace ToronPuzzle
             global_BlockGenerator.BeginBlockGenerator();
             SetBlockPlace();
 
+            global_PausePanelBack = GameObject.Find("Global_PausePanelBack").GetComponent<Global_PausePanelBack>();
+            global_PausePanelBack.BeginPausePanelBack();
         }
 
+        private void Start()
+        {
+            GameObject.Find("Global_UnPauseButton").GetComponent<Button>().onClick.Invoke();
+        }
 
         // 제거한다음 새로 만드는 것.
         public void SetBlockPlace()
@@ -87,15 +96,17 @@ namespace ToronPuzzle
             {
                 global_BattleInitializer = GameObject.Find("Battle_Initializer").GetComponent<Battle_Initializer>();
                 global_BattleInitializer.BattleBegin();
+                global_PausePanelBack.CallOnChangeScene(SceneType.Battle);
             }
             else if (next.name == "WorldMapScene")
             {
                 global_WorldMapInitializer = GameObject.Find("WorldMap_Initializer").GetComponent<WorldMap_Initializer>();
                 global_WorldMapInitializer.WorldMapBegin();
+                global_PausePanelBack.CallOnChangeScene(SceneType.WorldMap);
             }
-            else if (next.name == "TitleScene")
+            else if (next.name == "Title")
             {
-
+                global_PausePanelBack.CallOnChangeScene(SceneType.Title);
             }
             global_DragDropManager.SetCurrentSceneData(Global_SceneManager._currentScene);
             //Debug.Log(Global_SceneManager._currentScene);
