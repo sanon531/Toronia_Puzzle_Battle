@@ -52,13 +52,16 @@ namespace ToronPuzzle.Data
         } 
     }
 
+    // 스테이지의 적은 큐에 따라서 나올 것이며
+    // 슬레이더 스파이어 처럼 정해진 적들이 나온다. 
+    // 
     public static class StageDataPool
     {
         public static Dictionary<string, StageInfo> StageinfoDic
             = new Dictionary<string, StageInfo> {
                 { "멸고단_1",
                     new StageInfo("멸고단_1",new float[]{
-                        20f,2f,5f,10f},
+                        25f,1f,5f,10f},
                         new List<BlockInfo>(){
                             new BlockInfo(BlockElement.Aggressive, BlockShape.Three_AG,4),
                             new BlockInfo(BlockElement.Cynical, BlockShape.Three_AG,4),
@@ -66,6 +69,18 @@ namespace ToronPuzzle.Data
                         },
                         new List<CharacterID>(){
                             CharacterID.멸고단원
+                        }
+                )},
+                { "반_멸고단_1",
+                    new StageInfo("반_멸고단_1",new float[]{
+                        15f,0.75f,5f,8f},
+                        new List<BlockInfo>(){
+                            new BlockInfo(BlockElement.Aggressive, BlockShape.Three_AG,4),
+                            new BlockInfo(BlockElement.Cynical, BlockShape.Three_AG,4),
+                            new BlockInfo(BlockElement.Friendly, BlockShape.Three_AG,4)
+                        },
+                        new List<CharacterID>(){
+                            CharacterID.반멸고단원
                         }
                 )},
 

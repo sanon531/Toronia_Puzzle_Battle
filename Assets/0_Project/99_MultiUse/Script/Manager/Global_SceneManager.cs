@@ -30,6 +30,9 @@ namespace ToronPuzzle
                 case "WorldMapScene":
                     _currentScene = SceneType.WorldMap;
                     break;
+                case "Title":
+                    _currentScene = SceneType.Title;
+                    break;
                 default:
                     Debug.LogError("No Scene name Exist");
                     break;

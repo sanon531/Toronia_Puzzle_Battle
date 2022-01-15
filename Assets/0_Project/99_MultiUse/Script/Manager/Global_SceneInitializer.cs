@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using ToronPuzzle.Title;
 using ToronPuzzle.Battle;
 using ToronPuzzle.WorldMap;
 using UnityEngine.SceneManagement;
@@ -30,6 +31,7 @@ namespace ToronPuzzle
         //각 씬별 시작 생성자
         Battle_Initializer global_BattleInitializer;
         WorldMap_Initializer global_WorldMapInitializer;
+        Title_Initializer globla_TitleInitializer;
 
         [SerializeField]
         string _caseSkin = "PlacingCell";
@@ -70,43 +72,62 @@ namespace ToronPuzzle
 
             global_BlockGenerator = GameObject.Find("Global_BlockGenerator").GetComponent<Global_BlockGenerator>();
             global_BlockGenerator.BeginBlockGenerator();
-            SetBlockPlace();
-
             global_PausePanelBack = GameObject.Find("Global_PausePanelBack").GetComponent<Global_PausePanelBack>();
             global_PausePanelBack.BeginPausePanelBack();
+
         }
 
         private void Start()
         {
-            GameObject.Find("Global_UnPauseButton").GetComponent<Button>().onClick.Invoke();
         }
+
+        void BeginPanel()
+        {
+        }
+
+
 
         // 제거한다음 새로 만드는 것.
         public void SetBlockPlace()
         {
-            global_BlockPlaceMaster = GameObject.Find("Global_BlockPlaceMaster").GetComponent<Global_BlockPlaceMaster>();
-            global_BlockPlaceMaster.BeginBlockPlace( _caseSkin, _bonusSkin);
-            Global_InGameData.Instance.BegingModuleData();
+            if (global_BlockPlaceMaster == null)
+            {
+                global_BlockPlaceMaster = GameObject.Find("Global_BlockPlaceMaster").GetComponent<Global_BlockPlaceMaster>();
+                global_BlockPlaceMaster.BeginBlockPlace(_caseSkin, _bonusSkin);
+                global_BlockPlaceMaster.BeginBlockPlace(_caseSkin, _bonusSkin);
+                Global_InGameData.Instance.BegingModuleData();
+            }
         }
 
         private void CheckScene(Scene current, Scene next)
         {
-            global_CanvasUI.BeginUIManager();
             if (next.name == "BattleScene")
             {
                 global_BattleInitializer = GameObject.Find("Battle_Initializer").GetComponent<Battle_Initializer>();
                 global_BattleInitializer.BattleBegin();
                 global_PausePanelBack.CallOnChangeScene(SceneType.Battle);
+                GameObject.Find("Global_UnPauseButton").GetComponent<Button>().onClick.Invoke();
+                global_CanvasUI.gameObject.SetActive(true);
+                global_CanvasUI.BeginUIManager();
+                SetBlockPlace();
             }
             else if (next.name == "WorldMapScene")
             {
                 global_WorldMapInitializer = GameObject.Find("WorldMap_Initializer").GetComponent<WorldMap_Initializer>();
                 global_WorldMapInitializer.WorldMapBegin();
                 global_PausePanelBack.CallOnChangeScene(SceneType.WorldMap);
+                GameObject.Find("Global_UnPauseButton").GetComponent<Button>().onClick.Invoke();
+                global_CanvasUI.gameObject.SetActive(true);
+                global_CanvasUI.BeginUIManager();
+                SetBlockPlace();
             }
             else if (next.name == "Title")
             {
+                globla_TitleInitializer = GameObject.Find("Title_Initializer").GetComponent<Title_Initializer>();
+                globla_TitleInitializer.TitleBegin();
                 global_PausePanelBack.CallOnChangeScene(SceneType.Title);
+                GameObject.Find("Global_UnPauseButton").GetComponent<Button>().onClick.Invoke();
+                global_CanvasUI.gameObject.SetActive(false);
             }
             global_DragDropManager.SetCurrentSceneData(Global_SceneManager._currentScene);
             //Debug.Log(Global_SceneManager._currentScene);

@@ -52,7 +52,6 @@ namespace ToronPuzzle.UI
         }
 
 
-
         void SetCalcData(int _argAttack, int _argDefence)
         {
 

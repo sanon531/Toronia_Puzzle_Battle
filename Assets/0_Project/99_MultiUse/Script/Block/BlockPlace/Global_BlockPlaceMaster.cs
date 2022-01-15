@@ -38,8 +38,10 @@ namespace ToronPuzzle
         [SerializeField]
         List<BlockCase_Module> _placedModules = new List<BlockCase_Module>();
         ObjectTweener _showFunctions, _hideFunctions;
+
+        List<GameObject> _placedCell = new List<GameObject>();
+
         //BattleInitialtor 에 의해 선언된다.
-        //
         public void BeginBlockPlace(string argCellSkin, string argBnsSkin)
         {
             instance = this;
@@ -107,6 +109,7 @@ namespace ToronPuzzle
                 transform.position = _showPos;
                 _showFunctions._targetpos = _showPos;
                 _hideFunctions._targetpos = _hidePos;
+                _placingSprite.enabled = true;
                 _placingSprite.transform.localScale = new Vector2((-LDAnchor.x + _showPos.x) * 2, _screenSize.y / 2);
 
             }
