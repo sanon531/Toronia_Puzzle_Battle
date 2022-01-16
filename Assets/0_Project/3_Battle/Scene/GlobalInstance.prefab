@@ -1768,7 +1768,7 @@ MonoBehaviour:
         _value: 0
   isDebug: 1
   _ownedModule: []
-  _inventoryModule: 0800000000000000060000001f0000002500000002000000
+  _inventoryModule: 0800000001000000060000001f0000002500000002000000
   _placed_Modules: 
   _playerBuff:
   - _effect: 1
@@ -7927,12 +7927,12 @@ GameObject:
   - component: {fileID: 7618313552223921383}
   - component: {fileID: 7618313552223921377}
   m_Layer: 5
-  m_Name: UnPauseButton
+  m_Name: Global_UnPauseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7618313552223921378
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7948,10 +7948,10 @@ RectTransform:
   m_Father: {fileID: 7618313551280419061}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.93061113, y: 0.9563907}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -8.5}
-  m_SizeDelta: {x: 0, y: -9}
+  m_AnchorMin: {x: 0.4413889, y: 0.924}
+  m_AnchorMax: {x: 0.5642222, y: 1}
+  m_AnchoredPosition: {x: -0.5, y: 1}
+  m_SizeDelta: {x: 1, y: 0.0000076293945}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7618313552223921403
 CanvasRenderer:
@@ -8085,7 +8085,7 @@ MonoBehaviour:
   function: 1
   _fadeInAmount: 0
   _waitTime: 0
-  arg_RectTransform: {fileID: 7618313551280419061}
+  arg_RectTransform: {fileID: 7618313550863791473}
   current_Ease: 29
   _targetPos: {x: 0, y: 0, z: 0}
   _targetImages: []
@@ -8450,12 +8450,12 @@ GameObject:
   - component: {fileID: 7618313552290751366}
   - component: {fileID: 7618313552290751367}
   m_Layer: 5
-  m_Name: PauseButton
+  m_Name: Global_PauseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7618313552290751360
 RectTransform:
   m_ObjectHideFlags: 0

@@ -215,23 +215,23 @@ namespace ToronPuzzle.WorldMap
             foreach (KeyValuePair<int, WorldMap_ActionObject> _pairs in _placedNodeDic)
                 _currentDic.Add(_pairs.Key, _pairs.Value._thisData);
 
-            ES3.Save("temptMapBuildDic", _currentDic);
-            Debug.Log("save Call");
+            ES3.Save("temptMapBuildDic", _currentDic, ToronSaveclass._datascriptPath);
+            //Debug.Log("save Call");
 
         }
         void GenerateWorldMapWithSavefile()
         {
             _targetPlace_numList.Clear();
             _placedNodeDic.Clear();
-            if (!ES3.KeyExists("temptMapBuildDic"))
+            if (!ES3.KeyExists("temptMapBuildDic", ToronSaveclass._datascriptPath))
             {
-                Debug.Log("loadfail");
+                //Debug.Log("loadfail");
                 GenerateWorldMapWithNew();
                 return;
             }
-            Debug.Log("load success");
+            //Debug.Log("load success");
 
-            Dictionary<int, ActionObjectData> _currentDic = ES3.Load<Dictionary<int, ActionObjectData>>("temptMapBuildDic");
+            Dictionary<int, ActionObjectData> _currentDic = ES3.Load<Dictionary<int, ActionObjectData>>("temptMapBuildDic", ToronSaveclass._datascriptPath);
 
             foreach (KeyValuePair<int, ActionObjectData> _pair in _currentDic)
                 SetActionObject(_pair.Key, _pair.Value);

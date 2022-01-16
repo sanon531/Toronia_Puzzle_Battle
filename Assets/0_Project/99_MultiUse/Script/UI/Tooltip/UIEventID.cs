@@ -32,6 +32,9 @@ namespace ToronPuzzle.Event
         Global_씬뒤로가기,
 
 
+        Title_새게임_시작_알림,
+
+
         WorldMap_오브젝트_실행,
         WorldMap_인벤토리숨기기,
         WorldMap_인벤토리보이기,
