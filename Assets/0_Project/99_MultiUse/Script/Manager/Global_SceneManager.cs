@@ -55,19 +55,20 @@ namespace ToronPuzzle
         private IEnumerator ChangeSceneRoutine(SceneType targetSceneType)
         {
             _currentScene = targetSceneType;
-            Global_UIEventSystem.Call_UIEvent(UIEventID.Global_블록판숨기기);
             Global_UIEventSystem.Call_UIEvent(UIEventID.Global_암전);
             Global_CoroutineManager.InvokeDelay(() => {
                 switch (targetSceneType)
                 {
                     case SceneType.Title:
                         LoadSceneAsync("Title");
+                        Global_UIEventSystem.Call_UIEvent(UIEventID.Global_블록판숨기기);
                         break;
                     case SceneType.WorldMap:
                         LoadSceneAsync("WorldMapScene");
                         break;
                     case SceneType.Battle:
                         LoadSceneAsync("BattleScene");
+                        Global_UIEventSystem.Call_UIEvent(UIEventID.Global_블록판숨기기);
                         break;
                 }
             }, 1f);

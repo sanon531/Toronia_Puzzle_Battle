@@ -22,16 +22,16 @@ namespace ToronPuzzle.Title
             _continueButton.onClick.AddListener(() => ClickContinueGameButton());
             _creditButton.onClick.AddListener(() => ClickCreditButton());
 
-            Debug.Log(ES3.Load<bool>("ContinueFileExist", ToronSaveclass._datascriptPath));
             if (ES3.KeyExists("ContinueFileExist", ToronSaveclass._datascriptPath))
             {
+                Debug.Log(ES3.Load<bool>("ContinueFileExist", ToronSaveclass._datascriptPath));
                 if (ES3.Load<bool>("ContinueFileExist", ToronSaveclass._datascriptPath))
-                    _continueButton.enabled = true;
+                    _continueButton.interactable = true;
                 else
-                    _continueButton.enabled = false;
+                    _continueButton.interactable = false;
             }
             else
-                _continueButton.enabled = false;
+                _continueButton.interactable = false;
 
 
 
@@ -41,8 +41,7 @@ namespace ToronPuzzle.Title
         //만약 알림창을 띄우고 그 다음에 한다.
         void ClickNewGameButton()
         {
-            Debug.Log("Click new button"+ _continueButton.enabled);
-            if (_continueButton.enabled)
+            if (_continueButton.interactable)
             {
                 Global_UIEventSystem.Call_UIEvent(UIEventID.Title_새게임_시작_알림);
             }
@@ -50,21 +49,19 @@ namespace ToronPuzzle.Title
             {
                 ES3.Save("ContinueFileExist", true, ToronSaveclass._datascriptPath);
                 Debug.Log(ES3.Load<bool>("ContinueFileExist", ToronSaveclass._datascriptPath));
-
                 StartNewGame();
             }
         }
 
         void StartNewGame()
         {
-
-
+            Global_UIEventSystem.Call_UIEvent(UIEventID.Global_씬이동, Data.SceneType.WorldMap);
         }
 
         //바로 속행한다.
         void ClickContinueGameButton()
         {
-
+            Global_UIEventSystem.Call_UIEvent(UIEventID.Global_씬이동, Data.SceneType.WorldMap);
         }
         void ClickCreditButton()
         {

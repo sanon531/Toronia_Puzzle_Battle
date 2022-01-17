@@ -14,6 +14,7 @@ namespace ToronPuzzle.UI
         public override void BeginUIManager()
         {
             base.BeginUIManager();
+            //Debug.Log("Scene Change Dim Set");
             Instance = this;
             Global_UIEventSystem.Register_UIEvent(UIEventID.Global_암전, GlobalDimOn, EventRegistOption.Permanent);
             Global_UIEventSystem.Register_UIEvent(UIEventID.Global_암전해제, GlobalDimOff, EventRegistOption.Permanent);
@@ -25,11 +26,23 @@ namespace ToronPuzzle.UI
                 ui.AssignGameListener();
             }
         }
+
+        public void SetActiveUIObject(bool _isActive)
+        {
+            foreach (var ui in uI_Objects)
+            {
+                ui.gameObject.SetActive(_isActive);
+            }
+
+        }
+
         int _dimRequest = 0;
         void GlobalDimOn()
         {
+
             _dimRequest++;
             _globalDim.gameObject.SetActive(true);
+            //Debug.Log("Scene Change Dim"+ _globalDim.gameObject.activeSelf);
             _globalDim.DOKill();
             _globalDim.color = Color.clear;
             _globalDim.DOColor(Color.black, 0.8f).SetUpdate(true);
