@@ -199,7 +199,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD0C0\uC774\uD2C0 \uB85C"
+  m_text: "\uD0C0\uC774\uD2C0\uB85C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cd38c6df70357184bb8cfff184acc07b, type: 2}
   m_sharedMaterial: {fileID: -554900440281515210, guid: cd38c6df70357184bb8cfff184acc07b, type: 2}
@@ -2870,7 +2870,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a4b6188a3256dbf4ebc7cea2b62ef722, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 724962a4eff341b4fba0249c18bcc922, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

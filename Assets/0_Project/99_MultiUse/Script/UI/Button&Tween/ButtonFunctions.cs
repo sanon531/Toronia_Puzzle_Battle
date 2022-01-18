@@ -44,8 +44,7 @@ namespace ToronPuzzle.UI
         public RectTransform arg_RectTransform;
         [SerializeField]
         Ease current_Ease = Ease.InSine;
-        [SerializeField]
-        Vector3 _targetPos;
+        public Vector3 _targetPos;
         [SerializeField]
         List<Image> _targetImages = new List<Image>();
         [SerializeField]

@@ -24,7 +24,7 @@ namespace ToronPuzzle.Title
 
             if (ES3.KeyExists("ContinueFileExist", ToronSaveclass._datascriptPath))
             {
-                Debug.Log(ES3.Load<bool>("ContinueFileExist", ToronSaveclass._datascriptPath));
+                //Debug.Log(ES3.Load<bool>("ContinueFileExist", ToronSaveclass._datascriptPath));
                 if (ES3.Load<bool>("ContinueFileExist", ToronSaveclass._datascriptPath))
                     _continueButton.interactable = true;
                 else
