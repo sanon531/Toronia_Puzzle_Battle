@@ -109,6 +109,8 @@ namespace ToronPuzzle
                 global_CanvasUI.BeginUIManager();
                 SetBlockPlace();
                 global_CanvasUI.SetActiveUIObject(true);
+                global_PausePanelBack.SetActiveButton(true);
+                global_PausePanelBack.SetTextOnButton("타이틀로");
             }
             else if (next.name == "WorldMapScene")
             {
@@ -118,6 +120,8 @@ namespace ToronPuzzle
                 global_CanvasUI.BeginUIManager();
                 SetBlockPlace();
                 global_CanvasUI.SetActiveUIObject(true);
+                global_PausePanelBack.SetActiveButton(true);
+                global_PausePanelBack.SetTextOnButton("타이틀로");
 
             }
             else if (next.name == "Title")
@@ -126,6 +130,8 @@ namespace ToronPuzzle
                 globla_TitleInitializer.TitleBegin();
                 global_PausePanelBack.CallOnChangeScene(SceneType.Title);
                 global_CanvasUI.SetActiveUIObject(false);
+                global_PausePanelBack.SetActiveButton(false);
+                global_PausePanelBack.SetTextOnButton("비활성");
             }
 
             global_DragDropManager.SetCurrentSceneData(Global_SceneManager._currentScene);

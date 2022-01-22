@@ -34,16 +34,18 @@ SpriteAtlas:
     - {fileID: 2800000, guid: d146d304a7b8071418fc3e8069d45d99, type: 3}
     - {fileID: 2800000, guid: ae0749d6ff4febb45a307432e4fb1b13, type: 3}
     - {fileID: 2800000, guid: 724962a4eff341b4fba0249c18bcc922, type: 3}
-    totalSpriteSurfaceArea: 459520
+    totalSpriteSurfaceArea: 460544
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: d146d304a7b8071418fc3e8069d45d99, type: 3}
+  - {fileID: 21300000, guid: 724962a4eff341b4fba0249c18bcc922, type: 3}
   - {fileID: 21300000, guid: ae0749d6ff4febb45a307432e4fb1b13, type: 3}
   m_PackedSpriteNamesToIndex:
   - recycle-gf10ec1460_640
+  - icon041
   - emblem
   m_RenderDataMap: {}
   m_Tag: UIUse
