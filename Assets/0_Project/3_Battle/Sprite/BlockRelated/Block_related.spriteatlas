@@ -53,7 +53,9 @@ SpriteAtlas:
     - {fileID: 2800000, guid: d06a375aa53f8c94885b72b1df25367e, type: 3}
     - {fileID: 2800000, guid: ca4ee5255ccf34d429cb91d91d8efbfa, type: 3}
     - {fileID: 2800000, guid: b7dcc03e988192048883b04393f1b478, type: 3}
-    totalSpriteSurfaceArea: 305630
+    - {fileID: 2800000, guid: 5be969c4d3bdfab4bbe89058ffb59cbd, type: 3}
+    - {fileID: 2800000, guid: 67fcba5210e502e448be1357662a6019, type: 3}
+    totalSpriteSurfaceArea: 391154
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -61,6 +63,8 @@ SpriteAtlas:
   m_PackedSprites:
   - {fileID: 21300000, guid: d8639bb195743c3419f475ca56065eb6, type: 3}
   - {fileID: 21300000, guid: c198c302820c5a54c97416a85a1ecf1d, type: 3}
+  - {fileID: 21300000, guid: 67fcba5210e502e448be1357662a6019, type: 3}
+  - {fileID: 21300000, guid: 5be969c4d3bdfab4bbe89058ffb59cbd, type: 3}
   - {fileID: 21300000, guid: 460558e48413b584cb3b22180d81ec08, type: 3}
   - {fileID: 21300000, guid: ca4ee5255ccf34d429cb91d91d8efbfa, type: 3}
   - {fileID: 21300000, guid: 2a895218f0e4efc49b2607bc743c269b, type: 3}
@@ -74,6 +78,8 @@ SpriteAtlas:
   m_PackedSpriteNamesToIndex:
   - area_default_top_left
   - arrow_point_up
+  - Structure_Case
+  - Structure_Case 1
   - circle
   - arrow_point_Left
   - RoomBasic
