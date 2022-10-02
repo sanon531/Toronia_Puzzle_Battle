@@ -44,10 +44,9 @@ namespace ToronPuzzle
 
         #endregion
 
-
         public BlockElement this_BlockElement;
 
-
+        //블록관련 데이터 로드
         public void BeginBlockGenerator()
         {
             instance = this;
@@ -77,7 +76,7 @@ namespace ToronPuzzle
 
         }
 
-        //블록 플레이서에 뭐가 되었든 일단 놓는다.
+        //블록의 저장이 가능한 케이스에 설치를 하게된다
         public GameObject GenerateOnBlockPlace(BlockInfo _inputInfo)
         {
             _lastBlockInfo = _inputInfo;
@@ -401,6 +400,7 @@ namespace ToronPuzzle
         #endregion
 
         // 케이스를 생성하는 곳
+        #region
         public GameObject GenerateOnNormalCase(BlockInfo _inputInfo, Transform _casePos, float _caseSize)
         {
             _lastBlockInfo = _inputInfo;
@@ -614,10 +614,13 @@ namespace ToronPuzzle
         {
             TestCaller.instance.DebugArrayShape("BlockPlacedOn" + info._blockPlace, info._blockShapeArr);
         }
-        
 
 
 
+        #endregion
+
+
+        //요소 세팅을 하는곳.
         Material SetElementToBlockMaterial(BlockElement _element)
         {
             switch (_element)
